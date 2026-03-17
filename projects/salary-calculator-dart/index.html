@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Salaire Brut/Net | Flutter App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../archive/old_portfolio/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-showcase {
+            padding: 4rem 5%;
+            color: #fff;
+        }
+
+        .screenshot-grid {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+
+        .screenshot-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshot-grid::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .screenshot {
+            flex: 0 0 auto;
+            width: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid #333;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-10px);
+        }
+
+        .code-preview {
+            background: #1e1e1e;
+            padding: 2rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            margin-top: 3rem;
+            border: 1px solid #333;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">S. EL RHADI</div>
+        <div class="nav-links">
+            <a href="../../portfolio/index.html#projects">Retour</a>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 60vh;">
+        <h1>Calculateur Brut/Net</h1>
+        <p>Application mobile développée en Dart/Flutter pour le calcul de salaire et cotisations au Luxembourg (règles
+            2026).</p>
+        <div class="tech-stack" style="justify-content: center;">
+            <span class="tech-pill"><i class="fab fa-google"></i> Flutter</span>
+            <span class="tech-pill"><i class="fas fa-code"></i> Dart</span>
+            <span class="tech-pill"><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+        </div>
+    </header>
+
+    <section class="app-showcase">
+        <h2 class="section-title">Aperçu de l'Application</h2>
+        <div class="screenshot-grid">
+            <p style="text-align: center; width: 100%; color: var(--text-muted);"><i>Captures d'écran en cours
+                    d'intégration...</i></p>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 4rem;">Structure du Code (Dart)</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+            Le projet est structuré selon les best practices Flutter. Voici un aperçu de l'arborescence du projet.
+        </p>
+
+        <div class="code-preview">
+            <pre style="color: #d4d4d4;">
+<span style="color: #569cd6;">lib/</span>
+├── <span style="color: #4ec9b0;">main.dart</span>           <span style="color: #6a9955;">// Point d'entrée de l'application</span>
+├── <span style="color: #4ec9b0;">core/</span>               <span style="color: #6a9955;">// Logique métier (Calculs, Tax Laws)</span>
+│   ├── <span style="color: #9cdcfe;">salary_calculator.dart</span>
+│   └── <span style="color: #9cdcfe;">tax_rules_2026.dart</span>
+├── <span style="color: #4ec9b0;">ui/</span>                 <span style="color: #6a9955;">// Composants visuels (Widgets)</span>
+│   ├── <span style="color: #9cdcfe;">home_screen.dart</span>
+│   └── <span style="color: #9cdcfe;">result_card.dart</span>
+└── <span style="color: #4ec9b0;">utiles/</span>             <span style="color: #6a9955;">// Utilitaires et Helpers</span>
+</pre>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="../../portfolio/index.html" class="btn">Retour au Portfolio</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Soufiane EL RHADI. Projet Flutter.</p>
+    </footer>
+</body>
+
+</html>

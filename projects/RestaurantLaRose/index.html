@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO de base → À personnaliser par client -->
+  <title>Restaurant La Rose — Cuisine Gastronomique Française à Nancy</title>
+  <meta name="description" content="Restaurant gastronomique français à Nancy. Cuisine maison avec produits frais et locaux. Réservation en ligne disponible. Ouvert du mardi au dimanche.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (réseaux sociaux) → À personnaliser -->
+  <meta property="og:title" content="Restaurant La Rose — Gastronomie Française à Nancy">
+  <meta property="og:description" content="Cuisine française raffinée dans une ambiance chaleureuse. Produits locaux, chef passionné, carte des vins sélectionnée.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://votre-domaine.com">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://votre-domaine.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="header">
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-utensils"></i>
+          <span>Restaurant La Rose</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#temoignages">Avis</a></li>
+          <li><a href="prestations.html">Formules</a></li>
+          <li><a href="#reservation" class="nav-cta">Réserver</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Menu mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="accueil" class="section-hero">
+    <div class="hero-content">
+      <div class="section-hero__badge">Restaurant Gastronomique • Nancy</div>
+      <h1 class="section-hero__title">L'Art de la Table Française</h1>
+      <p class="section-hero__subtitle">
+        Cuisine maison raffinée avec des produits frais et locaux,<br>
+        dans une ambiance élégante et chaleureuse au cœur de Nancy.
+      </p>
+      <div class="hero__cta">
+        <a href="#reservation" class="btn btn-primary btn-large">
+          <i class="fas fa-calendar-check"></i> Réserver une table
+        </a>
+        <a href="#menu" class="btn btn-outline btn-large">
+          <i class="fas fa-book-open"></i> Découvrir le menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRÉSENTATION RAPIDE ===== -->
+  <section id="apropos" class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section__title" style="text-align:left; margin-bottom: var(--spacing-md);">
+            Notre Histoire
+          </h2>
+          <p>
+            Depuis 2015, le Restaurant La Rose vous propose une expérience gastronomique unique 
+            au cœur de Nancy. Notre chef passionné sélectionne chaque jour les meilleurs produits 
+            locaux pour créer des plats traditionnels revisités avec créativité et élégance.
+          </p>
+          <p>
+            Notre ambition : vous faire voyager à travers les saveurs de la France, 
+            dans un cadre chaleureux où chaque détail compte.
+          </p>
+          <div class="about-values fade-up">
+            <div class="value-item">
+              <i class="fas fa-leaf"></i>
+              <span>Produits 100% locaux</span>
+            </div>
+            <div class="value-item">
+              <i class="fas fa-award"></i>
+              <span>Cuisine fait maison</span>
+            </div>
+            <div class="value-item">
+              <i class="fas fa-wine-glass"></i>
+              <span>Carte des vins sélectionnée</span>
+            </div>
+            <div class="value-item">
+              <i class="fas fa-seedling"></i>
+              <span>Circuit court</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RÉSUMÉ DES PRESTATIONS / MENU ===== -->
+  <section id="menu" class="section-menu">
+    <div class="container">
+      <h2 class="section__title fade-up">Notre Menu</h2>
+      <div class="menu-grid">
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-fish"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Entrées</h3>
+            <p class="menu-card-description">
+              Saumon fumé maison, salade de chèvre chaud, soupe à l'oignon gratinée, tartare de saumon frais.
+            </p>
+            <div class="menu-card-price">12€ – 18€</div>
+          </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-drumstick-bite"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Plats Principaux</h3>
+            <p class="menu-card-description">
+              Confit de canard, filet mignon de porc en croûte, saumon sauce béarnaise, bœuf bourguignon.
+            </p>
+            <div class="menu-card-price">24€ – 38€</div>
+          </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-ice-cream"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Desserts</h3>
+            <p class="menu-card-description">
+              Crème brûlée à la vanille, tarte Tatin tiède, fondant chocolat, île flottante caramel.
+            </p>
+            <div class="menu-card-price">8€ – 12€</div>
+          </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-wine-bottle"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Vins</h3>
+            <p class="menu-card-description">
+              Sélection de vins français : Bourgogne, Bordeaux, Côtes du Rhône — blancs, rouges, rosés.
+            </p>
+            <div class="menu-card-price">25€ – 85€</div>
+          </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-star"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Menu Dégustation</h3>
+            <p class="menu-card-description">
+              5 services avec accord mets-vins — une expérience gastronomique complète et inoubliable.
+            </p>
+            <div class="menu-card-price">65€ / personne</div>
+          </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-card-image"><i class="fas fa-users"></i></div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Événements Privés</h3>
+            <p class="menu-card-description">
+              Anniversaires, repas d'affaires, team-building — privatisation possible sur demande.
+            </p>
+            <div class="menu-card-price">Sur devis</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: var(--spacing-xl);">
+        <a href="prestations.html" class="btn btn-primary">
+          <i class="fas fa-book-open"></i> Voir toutes les formules & tarifs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION CHIFFRES / RÉASSURANCE ===== -->
+  <section class="section-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <span class="stat__number">8+</span>
+          <div class="stat__label">Ans d'expérience</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">50+</span>
+          <div class="stat__label">Plats signature</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">15+</span>
+          <div class="stat__label">Vins sélectionnés</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">5 000+</span>
+          <div class="stat__label">Clients satisfaits</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TÉMOIGNAGES ===== -->
+  <section id="temoignages" class="section-testimonials">
+    <div class="container">
+      <h2 class="section__title fade-up">Ce Que Disent Nos Clients</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "Une expérience gastronomique exceptionnelle ! Les plats sont créatifs et délicieux, 
+            le service est impeccable et l'ambiance chaleureuse. Je reviendrai sans hésiter."
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Marie Dubois</span>
+              <span class="author-location">Nancy — TripAdvisor ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "L'ambiance est chaleureuse et la cuisine raffinée. Le menu dégustation 
+            avec accord mets-vins est une véritable découverte. Bravo à l'équipe !"
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Pierre Martin</span>
+              <span class="author-location">Metz — Google ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "Un restaurant qui sait marquer les esprits. Les produits sont frais, 
+            la présentation soignée et les saveurs uniques. À recommander absolument !"
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Sophie Laurent</span>
+              <span class="author-location">Strasbourg — TripAdvisor ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECONDAIRE ===== -->
+  <section class="section-cta-secondary">
+    <div class="container">
+      <h2 class="cta__title fade-up">Prêt à Vivre une Expérience Gastronomique ?</h2>
+      <p class="cta__subtitle fade-up">Réservez votre table et laissez-vous surprendre par notre cuisine française raffinée.</p>
+      <a href="#reservation" class="btn btn-accent btn-large fade-up">
+        <i class="fas fa-calendar-check"></i> Réserver maintenant
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SECTION CONTACT / RÉSERVATION ===== -->
+  <section id="reservation" class="section-reservation">
+    <div class="container">
+      <h2 class="section__title fade-up">Réserver une Table</h2>
+      <div class="reservation-form fade-up">
+        <form id="reservationForm" action="https://formspree.io/f/XXXXXXXX" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nom complet *</label>
+              <input type="text" id="name" name="name" placeholder="ex : Marie Dupont" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Téléphone *</label>
+              <input type="tel" id="phone" name="phone" placeholder="ex : 06 12 34 56 78" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="ex : marie@email.fr" required>
+            </div>
+            <div class="form-group">
+              <label for="date">Date *</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="time">Heure *</label>
+              <select id="time" name="time" required>
+                <option value="">Choisir l'heure</option>
+                <option value="12:00">12h00 — Déjeuner</option>
+                <option value="12:30">12h30 — Déjeuner</option>
+                <option value="13:00">13h00 — Déjeuner</option>
+                <option value="19:00">19h00 — Dîner</option>
+                <option value="19:30">19h30 — Dîner</option>
+                <option value="20:00">20h00 — Dîner</option>
+                <option value="20:30">20h30 — Dîner</option>
+                <option value="21:00">21h00 — Dîner</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guests">Nombre de convives *</label>
+              <select id="guests" name="guests" required>
+                <option value="">Nombre de personnes</option>
+                <option value="1">1 personne</option>
+                <option value="2">2 personnes</option>
+                <option value="3">3 personnes</option>
+                <option value="4">4 personnes</option>
+                <option value="5">5 personnes</option>
+                <option value="6">6 personnes</option>
+                <option value="7+">7 personnes et plus</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Commentaires (allergies, préférences, occasions spéciales…)</label>
+            <textarea id="message" name="message" rows="4" placeholder="Ex : allergie aux noix, anniversaire, chaise haute nécessaire…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <i class="fas fa-calendar-check"></i> Confirmer la réservation
+          </button>
+        </form>
+        <div id="formMessage" class="form-message"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <i class="fas fa-utensils"></i>
+            <span>Restaurant La Rose</span>
+          </div>
+          <p class="footer-description">
+            Restaurant gastronomique français au cœur de Nancy. Cuisine maison avec des produits frais et locaux.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Horaires</h3>
+          <ul class="footer-links">
+            <li><span>Mar–Ven : 12h–14h, 19h–22h</span></li>
+            <li><span>Samedi : 12h–14h, 19h–22h</span></li>
+            <li><span>Dimanche : 12h–14h</span></li>
+            <li><span><strong>Lundi : Fermé</strong></span></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="prestations.html">Formules & Tarifs</a></li>
+            <li><a href="#temoignages">Avis clients</a></li>
+            <li><a href="#reservation">Réservation</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Contact</h3>
+          <ul class="footer-links">
+            <li><span><i class="fas fa-phone"></i> 03 83 XX XX XX</span></li>
+            <li><span><i class="fas fa-envelope"></i> contact@larose.fr</span></li>
+            <li><span><i class="fas fa-map-marker-alt"></i> 15 Rue Stanislas, Nancy</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Restaurant La Rose. Tous droits réservés. | 
+          <a href="#">Mentions légales</a> | 
+          <a href="#">Politique de confidentialité</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

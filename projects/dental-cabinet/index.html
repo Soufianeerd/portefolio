@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO de base → À personnaliser par client -->
+  <title>[Nom du client] — Cabinet Dentaire à [Ville]</title>
+  <meta name="description"
+    content="Cabinet dentaire moderne proposant des soins complets : implantologie, prothèses, blanchiment, orthodontie. Prenez rendez-vous en ligne dès aujourd'hui.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph → À personnaliser -->
+  <meta property="og:title" content="[Nom du client] — Cabinet Dentaire">
+  <meta property="og:description"
+    content="Soins dentaires de qualité avec les dernières technologies. Implantologie, prothèses, blanchiment, orthodontie.">
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1200&h=630&fit=crop">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://votre-site.com">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://votre-site.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="header">
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-tooth"></i>
+          <span>[Nom du Cabinet]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">Le Cabinet</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#temoignages">Avis</a></li>
+          <li><a href="prestations.html">Tarifs</a></li>
+          <li><a href="#contact" class="nav-cta">Prendre RDV</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Menu mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="accueil" class="section-hero">
+    <div class="hero-content">
+      <div class="section-hero__badge">Cabinet Dentaire — [Ville]</div>
+      <h1 class="section-hero__title">Votre Sourire,<br>Notre Expertise</h1>
+      <p class="section-hero__subtitle">
+        Des soins dentaires de qualité dans un environnement moderne et rassurant.<br>
+        Implantologie, prothèses, esthétique dentaire — tout sous le même toit.
+      </p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn-primary btn-large">
+          <i class="fas fa-calendar-check"></i> Prendre un rendez-vous
+        </a>
+        <a href="prestations.html" class="btn btn-outline btn-large">
+          <i class="fas fa-list"></i> Nos prestations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRÉSENTATION DU CABINET ===== -->
+  <section id="apropos" class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section__title" style="text-align:left; margin-bottom:var(--spacing-md);">
+            Le Cabinet
+          </h2>
+          <p>
+            [Nom du Cabinet] est un cabinet dentaire de pointe situé au cœur de [Ville].
+            Nos praticiens expérimentés vous accueillent dans un espace moderne et apaisant,
+            équipé des dernières technologies pour des soins précis et confortables.
+          </p>
+          <p>
+            De la première consultation au suivi post-opératoire, notre équipe vous
+            accompagne avec professionnalisme et bienveillance.
+          </p>
+          <div class="about-values fade-up">
+            <div class="value-item"><i class="fas fa-microscope"></i><span>Équipements haute technologie</span></div>
+            <div class="value-item"><i class="fas fa-shield-virus"></i><span>Hygiène & stérilisation</span></div>
+            <div class="value-item"><i class="fas fa-heart"></i><span>Approche sans douleur</span></div>
+            <div class="value-item"><i class="fas fa-users"></i><span>Équipe pluridisciplinaire</span></div>
+          </div>
+          <div style="margin-top: var(--spacing-lg);">
+            <a href="prestations.html" class="btn btn-outline-dark">
+              <i class="fas fa-stethoscope"></i> Voir toutes nos prestations
+            </a>
+          </div>
+        </div>
+        <div class="about-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RÉSUMÉ DES SERVICES ===== -->
+  <section id="services" class="section-services">
+    <div class="container">
+      <h2 class="section__title fade-up">Nos Spécialités</h2>
+      <div class="services-grid">
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-tooth"></i></div>
+          <h3 class="card__title">Implantologie</h3>
+          <p class="card__body">
+            Remplacement durable des dents manquantes par des implants en titane de haute qualité.
+            Esthétique naturelle et confort au quotidien.
+          </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-smile"></i></div>
+          <h3 class="card__title">Prothèses Dentaires</h3>
+          <p class="card__body">
+            Couronnes, bridges et dentiers sur mesure. Retrouvez un sourire complet
+            et une mastication efficace grâce à nos prothèses de précision.
+          </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-star"></i></div>
+          <h3 class="card__title">Blanchiment Dentaire</h3>
+          <p class="card__body">
+            Traitement professionnel au cabinet ou kit ambulatoire.
+            Résultat visible dès la première séance, confort maximal.
+          </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-align-center"></i></div>
+          <h3 class="card__title">Orthodontie</h3>
+          <p class="card__body">
+            Alignement des dents pour enfants et adultes.
+            Gouttières transparentes discrètes ou appareil traditionnel.
+          </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-spa"></i></div>
+          <h3 class="card__title">Parodontologie</h3>
+          <p class="card__body">
+            Traitement des maladies des gencives. Détartrage, surfaçage,
+            maintien de la santé des tissus de soutien dentaire.
+          </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-syringe"></i></div>
+          <h3 class="card__title">Soins Conservateurs</h3>
+          <p class="card__body">
+            Dépistage et traitement des caries, obturations composites esthétiques,
+            soins endodontiques (dévitalisation). Préserver vos dents naturelles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHIFFRES / RÉASSURANCE ===== -->
+  <section class="section-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <span class="stat__number">15+</span>
+          <div class="stat__label">Ans d'expérience</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">3 500+</span>
+          <div class="stat__label">Patients traités</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">98%</span>
+          <div class="stat__label">Satisfaction patient</div>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat__number">6</span>
+          <div class="stat__label">Praticiens spécialisés</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TÉMOIGNAGES ===== -->
+  <section id="temoignages" class="section-testimonials">
+    <div class="container">
+      <h2 class="section__title fade-up">Avis de Nos Patients</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "Je craignais les soins dentaires, mais l'équipe m'a mis à l'aise dès le premier rendez-vous.
+            L'implant est parfait, je ne le sens même pas. Merci !"
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Isabelle M.</span>
+              <span class="author-location">Google Maps ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "Cabinet moderne, personnel attentionné et praticiens très professionnels.
+            Mon blanchiment est impeccable. Je recommande à tous."
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Thomas B.</span>
+              <span class="author-location">Doctolib ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial__text">
+            "Suivi orthodontique excellent pour ma fille. Les gouttières sont discrètes
+            et le résultat après 18 mois est remarquable. Très satisfaits."
+          </p>
+          <div class="testimonial__author">
+            <div class="author-avatar"></div>
+            <div>
+              <span class="author-name">Sylvie V.</span>
+              <span class="author-location">Google Maps ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECONDAIRE ===== -->
+  <section class="section-cta-secondary">
+    <div class="container">
+      <h2 class="cta__title fade-up">Prenez Soin de Votre Sourire</h2>
+      <p class="cta__subtitle fade-up">Un premier rendez-vous de bilan dentaire complet — sans attente.</p>
+      <a href="#contact" class="btn btn-outline btn-large fade-up" style="border-color:white; color:white;">
+        <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section-contact">
+    <div class="container">
+      <h2 class="section__title fade-up">Prendre Rendez-vous</h2>
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <h3 style="margin-bottom:var(--spacing-md);">Coordonnées</h3>
+          <p>Disponibles du lundi au vendredi. Urgences dentaires prises en charge le jour même.</p>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Téléphone</strong><br>
+              <span>+33 X XX XX XX XX</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email</strong><br>
+              <span>contact@cabinet-dentaire.fr</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Adresse</strong><br>
+              <span>[N° Rue], [Ville] [Code Postal]</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Horaires</strong><br>
+              <span>Lun-Ven : 9h–12h et 14h–19h</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form fade-up">
+          <form id="contactForm" action="https://formspree.io/f/XXXXXXXX" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nom complet *</label>
+                <input type="text" id="name" name="name" placeholder="Prénom Nom" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Téléphone *</label>
+                <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="vous@email.fr" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Service souhaité</label>
+              <select id="service" name="service">
+                <option value="">Choisir un service</option>
+                <option value="bilan">Bilan dentaire (1ère visite)</option>
+                <option value="implant">Implantologie</option>
+                <option value="prothese">Prothèse dentaire</option>
+                <option value="blanchiment">Blanchiment</option>
+                <option value="orthodontie">Orthodontie</option>
+                <option value="paro">Parodontologie</option>
+                <option value="autre">Autre soin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="4" placeholder="Décrivez votre demande ou symptôme..."
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i> Envoyer ma demande
+            </button>
+          </form>
+          <div id="formMessage" class="form-message"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <i class="fas fa-tooth"></i>
+            <span>[Nom du Cabinet]</span>
+          </div>
+          <p class="footer-description">
+            Cabinet dentaire moderne à [Ville]. Soins de qualité dans un environnement rassurant pour toute la famille.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Doctolib"><i class="fas fa-calendar-check"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Horaires</h3>
+          <ul class="footer-links">
+            <li><span>Lun–Ven : 9h–12h, 14h–19h</span></li>
+            <li><span>Samedi : 9h–12h</span></li>
+            <li><span><strong>Dimanche : Fermé</strong></span></li>
+            <li><span><i class="fas fa-exclamation-triangle"></i> Urgences : même jour</span></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#services">Nos services</a></li>
+            <li><a href="prestations.html">Tarifs & Formules</a></li>
+            <li><a href="#temoignages">Avis patients</a></li>
+            <li><a href="#contact">Rendez-vous</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Contact</h3>
+          <ul class="footer-links">
+            <li><span><i class="fas fa-phone"></i> +33 X XX XX XX XX</span></li>
+            <li><span><i class="fas fa-envelope"></i> contact@cabinet.fr</span></li>
+            <li><span><i class="fas fa-map-marker-alt"></i> [Adresse], [Ville]</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 [Nom du Cabinet]. Tous droits réservés. |
+          <a href="#">Mentions légales</a> |
+          <a href="#">Politique de confidentialité</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>

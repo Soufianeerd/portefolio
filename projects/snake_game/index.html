@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Snake | Soufiane EL RHADI</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --neon-pink: #ff00ff;
+            --dark-bg: #050505;
+            --surface: #111;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+            font-family: 'Source Code Pro', monospace;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        canvas {
+            background-color: var(--surface);
+            border: 2px solid #333;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+            border-radius: 4px;
+        }
+
+        .score-board {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            color: var(--neon-pink);
+        }
+
+        .controls {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            animation: pulse 1s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../../index.html#projects" class="back-btn">← Portfolio</a>
+
+    <div class="loading" id="loading">Initialize Python Environment...</div>
+
+    <div class="container">
+        <h1>SNAKE.PY</h1>
+        <div class="subtitle">Runs natively in browser via PyScript</div>
+
+        <div id="game-wrapper" style="position: relative; display: inline-block;">
+            <canvas id="gameCanvas" width="500" height="500"></canvas>
+
+            <div id="start-overlay"
+                style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
+                <button id="start-btn"
+                    style="background: var(--neon-green); border: none; padding: 1rem 2rem; font-size: 1.5rem; font-family: 'Source Code Pro', monospace; font-weight: bold; cursor: pointer; border-radius: 5px; box-shadow: 0 0 20px var(--neon-green);">
+                    PLAY
+                </button>
+            </div>
+        </div>
+
+        <div class="score-board">Score: <span id="score">0</span></div>
+
+        <div class="controls">
+            Use ARROW KEYS to move • Press SPACE to Restart
+        </div>
+    </div>
+
+    <!-- The Game Logic -->
+    <script type="py">
+import asyncio
+import random
+from js import document, window, console
+from pyodide.ffi import create_proxy
+
+# Configuration
+CANVAS_SIZE = 500
+GRID_SIZE = 20
+TILE_COUNT = CANVAS_SIZE // GRID_SIZE
+SPEED = 0.10
+
+# Colors
+COLOR_BG = "#111"
+COLOR_SNAKE = "#39ff14"
+COLOR_FOOD = "#ff00ff"
+
+class SnakeGame:
+    def __init__(self):
+        try:
+            self.canvas = document.getElementById("gameCanvas")
+            self.ctx = self.canvas.getContext("2d")
+            self.score_el = document.getElementById("score")
+            self.start_overlay = document.getElementById("start-overlay")
+            
+            # Initial Draw (Black screen)
+            self.ctx.fillStyle = COLOR_BG
+            self.ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+            
+            self.running = False
+            self.game_over = False
+            self.snake = []
+            self.food = None
+            self.velocity = (0, 0)
+            self.score = 0
+            
+            # Bind Start Button
+            self.start_proxy = create_proxy(self.start_game)
+            start_btn = document.getElementById("start-btn")
+            if start_btn:
+                start_btn.addEventListener("click", self.start_proxy)
+
+            # Bind controls (global)
+            self.key_handler_proxy = create_proxy(self.handle_keydown)
+            window.addEventListener("keydown", self.key_handler_proxy)
+            
+            # Hide loading screen when Python is ready
+            loading = document.getElementById("loading")
+            if loading:
+                loading.style.display = "none"
+            
+            console.log("Snake Game Initialized Successfully")
+            
+        except Exception as e:
+            console.error(f"Error init: {e}")
+            print(f"Error init: {e}")
+
+    def start_game(self, event):
+        if self.start_overlay:
+            self.start_overlay.style.display = "none"
+        self.reset()
+        if not self.running:
+            self.running = True
+            asyncio.ensure_future(self.game_loop())
+
+    def reset(self):
+        self.snake = [(10, 10), (10, 11), (10, 12)] # Head is first
+        self.velocity = (0, -1) # Moving Up
+        self.food = self.spawn_food()
+        self.score = 0
+        self.game_over = False
+        self.update_score()
+
+    def spawn_food(self):
+        while True:
+            x = random.randint(0, TILE_COUNT - 1)
+            y = random.randint(0, TILE_COUNT - 1)
+            if (x, y) not in self.snake:
+                return (x, y)
+
+    def handle_keydown(self, event):
+        try:
+            key = event.code
+            
+            # Prevent scrolling with arrows
+            if key in ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"]:
+                event.preventDefault()
+
+            # Restart
+            if self.game_over and key == "Space":
+                self.reset()
+                return
+
+            # Directions (prevent 180 turns)
+            vx, vy = self.velocity
+            
+            if key == "ArrowUp" and vy != 1:
+                self.velocity = (0, -1)
+            elif key == "ArrowDown" and vy != -1:
+                self.velocity = (0, 1)
+            elif key == "ArrowLeft" and vx != 1:
+                self.velocity = (-1, 0)
+            elif key == "ArrowRight" and vx != -1:
+                self.velocity = (1, 0)
+        except Exception as e:
+            console.error(f"Input error: {e}")
+
+    def update(self):
+        if self.game_over:
+            return
+
+        # Move Head
+        head_x, head_y = self.snake[0]
+        vx, vy = self.velocity
+        
+        new_head = (head_x + vx, head_y + vy)
+        
+        # Check Collisions (Walls)
+        if (new_head[0] < 0 or new_head[0] >= TILE_COUNT or 
+            new_head[1] < 0 or new_head[1] >= TILE_COUNT):
+            self.game_over = True
+            return
+
+        # Check Self Collision
+        if new_head in self.snake:
+            self.game_over = True
+            return
+
+        self.snake.insert(0, new_head)
+
+        # Check Food
+        if new_head == self.food:
+            self.score += 10
+            self.update_score()
+            self.food = self.spawn_food()
+        else:
+            self.snake.pop() # Remove tail
+
+    def draw(self):
+        # Clear
+        self.ctx.fillStyle = COLOR_BG
+        self.ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+
+        # Draw Food
+        if self.food:
+            self.ctx.fillStyle = COLOR_FOOD
+            self.ctx.shadowBlur = 15
+            self.ctx.shadowColor = COLOR_FOOD
+            fx, fy = self.food
+            self.ctx.fillRect(fx * GRID_SIZE, fy * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2)
+
+        # Draw Snake
+        self.ctx.fillStyle = COLOR_SNAKE
+        self.ctx.shadowBlur = 10
+        self.ctx.shadowColor = COLOR_SNAKE
+        
+        for i, (x, y) in enumerate(self.snake):
+            # Head glow is stronger
+            if i == 0:
+                self.ctx.shadowBlur = 20
+            else:
+                 self.ctx.shadowBlur = 0
+            
+            self.ctx.fillRect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2)
+
+        # Game Over Text
+        if self.game_over:
+            self.ctx.fillStyle = "white"
+            self.ctx.font = "40px 'Source Code Pro'"
+            self.ctx.textAlign = "center"
+            self.ctx.shadowBlur = 0
+            self.ctx.fillText("GAME OVER", CANVAS_SIZE // 2, CANVAS_SIZE // 2)
+            self.ctx.font = "20px 'Source Code Pro'"
+            self.ctx.fillText("Press SPACE to Restart", CANVAS_SIZE // 2, CANVAS_SIZE // 2 + 40)
+
+    def update_score(self):
+        self.score_el.innerText = str(self.score)
+
+    async def game_loop(self):
+        while True:
+            if not self.game_over:
+                self.update()
+            self.draw()
+            await asyncio.sleep(SPEED)
+
+# Start Game Instance
+try:
+    game = SnakeGame()
+except Exception as e:
+    console.error(f"Global error: {e}")
+    print(f"Global error: {e}")
+    </script>
+
+</body>
+
+</html>

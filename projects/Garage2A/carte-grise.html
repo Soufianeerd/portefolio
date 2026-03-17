@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Grise - A+ Glass / Garage 2A</title>
+    <meta name="description" content="Service Carte Grise - A+ Glass / Garage 2A. Procédure complète et codes de la route pour votre certificat d'immatriculation.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-primary: #4a4a4a;
+            --text-secondary: #666666;
+            --accent-orange: #e86a2b;
+            --accent-orange-light: #ff8c42;
+            --accent-warm: #fff3e6;
+            --border-color: rgba(232, 106, 43, 0.15);
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #fff3e6 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-orange);
+            border-radius: 4px;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px var(--shadow-light);
+            animation: slideDown 0.6s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(232, 106, 43, 0.25);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 8rem 2rem 2rem;
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .page-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 400;
+        }
+        
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+        
+        /* Process Steps */
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .process-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 400;
+        }
+        
+        .process-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+        
+        .process-card p {
+            color: var(--text-secondary);
+        }
+        
+        /* Code de la Route Section */
+        .code-section {
+            background: var(--bg-warm);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+        
+        .code-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .code-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .code-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .code-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .code-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px var(--shadow-medium);
+        }
+        
+        .code-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .code-icon svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+        
+        .code-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .code-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Documents Section */
+        .documents-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .document-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+        
+        .document-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .document-icon svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+        
+        .document-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+        
+        .document-list {
+            list-style: none;
+        }
+        
+        .document-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .document-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(232, 106, 43, 0.05), rgba(255, 140, 66, 0.08));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+        }
+        
+        .cta-section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 400;
+        }
+        
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-light));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px var(--shadow-light);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 106, 43, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-orange);
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent-orange);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-orange);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 -2px 20px var(--shadow-light);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .process-grid,
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i data-lucide="shield" style="width: 30px; height: 30px;"></i>
+                A+ Glass / Garage 2A
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="carte-grise.html">Carte Grise</a></li>
+            </ul>
+            <a href="tel:0383211002" class="cta-button">Devis gratuit</a>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Service Carte Grise</h1>
+            <p class="page-subtitle">Votre certificat d'immatriculation en toute simplicité</p>
+        </div>
+        
+        <!-- Process Steps -->
+        <div class="process-container">
+            <div class="process-grid">
+                <div class="process-card" style="animation-delay: 0.1s;">
+                    <div class="step-number">1</div>
+                    <h3>Demande en Ligne</h3>
+                    <p>Remplissez le formulaire de demande sur le site officiel du gouvernement</p>
+                </div>
+                
+                <div class="process-card" style="animation-delay: 0.2s;">
+                    <div class="step-number">2</div>
+                    <h3>Préparez vos Documents</h3>
+                    <p>Rassemblez tous les documents nécessaires pour votre dossier</p>
+                </div>
+                
+                <div class="process-card" style="animation-delay: 0.3s;">
+                    <div class="step-number">3</div>
+                    <h3>Validation</h3>
+                    <p>Soumettez votre demande et recevez votre confirmation par email</p>
+                </div>
+                
+                <div class="process-card" style="animation-delay: 0.4s;">
+                    <div class="step-number">4</div>
+                    <h3>Réception</h3>
+                    <p>Recevez votre nouvelle carte grise à domicile ou en agence</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Code de la Route Section -->
+        <section class="code-section">
+            <div class="code-header">
+                <h2 class="code-title">Codes de la Route Essentiels</h2>
+                <p class="page-subtitle">Les connaissances indispensables pour votre conduite</p>
+            </div>
+            
+            <div class="code-grid">
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="triangle-alert"></i>
+                    </div>
+                    <h4>Panautisation</h4>
+                    <p>Signaux routiers et interdictions</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="gauge"></i>
+                    </div>
+                    <h4>Vitesses Limites</h4>
+                    <p>Limitations selon les zones</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h4>Priorités</h4>
+                    <p>Règles de croisement et dépassement</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h4>Sécurité</h4>
+                    <p>Équipements obligatoires et conduite sécuritaire</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="wine-off"></i>
+                    </div>
+                    <h4>Alcoolémie</h4>
+                    <p>Taux autorisés et sanctions</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="phone-off"></i>
+                    </div>
+                    <h4>Téléphone</h4>
+                    <p>Utilisation du téléphone au volant</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="cloud-rain"></i>
+                    </div>
+                    <h4>Conditions Météo</h4>
+                    <p>Conduite en cas de pluie, neige, brouillard</p>
+                </div>
+                
+                <div class="code-card">
+                    <div class="code-icon">
+                        <i data-lucide="car"></i>
+                    </div>
+                    <h4>Entretien Véhicule</h4>
+                    <p>Contrôles techniques et maintenance</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Documents Section -->
+        <section class="documents-section">
+            <div class="section-header">
+                <h2 class="page-title">Documents Requis</h2>
+                <p class="page-subtitle">Tout ce dont vous avez besoin pour votre demande</p>
+            </div>
+            
+            <div class="documents-grid">
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3>Pour un Véhicule Neuf</h3>
+                    <ul class="document-list">
+                        <li>Formulaire de demande cerfa 13750*05</li>
+                        <li>Justificatif de domicile</li>
+                        <li>Pièce d'identité</li>
+                        <li>Attestation d'assurance</li>
+                        <li>Certificat de conformité européen</li>
+                    </ul>
+                </div>
+                
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3>Pour un Véhicule d'Occasion</h3>
+                    <ul class="document-list">
+                        <li>Formulaire de demande cerfa 13750*05</li>
+                        <li>Justificatif de domicile</li>
+                        <li>Pièce d'identité</li>
+                        <li>Attestation d'assurance</li>
+                        <li>Certificat de cession</li>
+                        <li>Ancienne carte grise barrée</li>
+                    </ul>
+                </div>
+                
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3>Pour un Changement d'Adresse</h3>
+                    <ul class="document-list">
+                        <li>Formulaire de demande cerfa 13750*05</li>
+                        <li>Justificatif de domicile</li>
+                        <li>Pièce d'identité</li>
+                        <li>Attestation d'assurance</li>
+                        <li>Ancienne carte grise</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Besoin d'Aide ?</h2>
+            <p>Notre équipe vous accompagne dans toutes vos démarches administratives</p>
+            <div class="cta-buttons">
+                <a href="tel:0383211002" class="btn-primary">
+                    <i data-lucide="phone" style="width: 20px; height: 20px;"></i>
+                    Appeler maintenant
+                </a>
+                <a href="index.html#contact" class="btn-secondary">
+                    <i data-lucide="map-pin" style="width: 20px; height: 20px;"></i>
+                    Nous trouver
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#why-us">Pourquoi nous</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="carte-grise.html">Carte Grise</a>
+            </div>
+            <div class="footer-copyright">
+                © 2024 A+ Glass / Garage 2A. Tous droits réservés. Saint-Nicolas-de-Port (54210)
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Phone number click tracking
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('Phone call initiated');
+            });
+        });
+        
+        // Dynamic year in footer
+        const currentYear = new Date().getFullYear();
+        document.querySelector('.footer-copyright').textContent = 
+            `© ${currentYear} A+ Glass / Garage 2A. Tous droits réservés. Saint-Nicolas-de-Port (54210)`;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#f8f7f4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AirTrack">
+<title>AirTrack — Programme Sport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --surface2: #f2f1ee;
+  --border: #e8e6e0;
+  --border2: #d4d1c8;
+  --text: #1a1916;
+  --text2: #6b6860;
+  --text3: #a09d96;
+  --accent: #1a1916;
+  --accent-air: #c8622a;
+  --accent-air-bg: #fdf0e8;
+  --accent-force: #2a5c8a;
+  --accent-force-bg: #e8f0f8;
+  --accent-frappe: #2a7a4a;
+  --accent-frappe-bg: #e8f4ed;
+  --accent-cardio: #7a4a8a;
+  --accent-cardio-bg: #f4eef8;
+  --red: #c0392b;
+  --red-bg: #fdf0ee;
+  --green: #27ae60;
+  --green-bg: #edfaf3;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-xs: 5px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04);
+  --font: 'DM Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', monospace;
+  --nav-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--bg); font-family: var(--font); color: var(--text); overscroll-behavior: none; }
+
+/* LAYOUT */
+#app { display: flex; flex-direction: column; height: 100dvh; overflow: hidden; }
+#content { flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 16px); }
+.screen { display: none; padding: 0 16px; animation: fadeUp .2s ease; }
+.screen.active { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* NAV */
+#nav { height: var(--nav-h); background: var(--surface); border-top: 1px solid var(--border); display: flex; padding-bottom: var(--safe-bottom); position: relative; z-index: 100; flex-shrink: 0; }
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; color: var(--text3); transition: color .15s; padding: 8px 0; }
+.nav-item.active { color: var(--accent); }
+.nav-icon { font-size: 20px; line-height: 1; }
+.nav-label { font-size: 10px; font-weight: 500; letter-spacing: .02em; }
+
+/* HEADER */
+.screen-header { padding: 20px 0 8px; display: flex; align-items: baseline; justify-content: space-between; }
+.screen-title { font-size: 26px; font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.screen-sub { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+/* CARDS */
+.card { background: var(--surface); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; border: 1px solid var(--border); }
+.card-title { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text2); margin-bottom: 12px; }
+
+/* BADGES */
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 20px; }
+.badge-air { background: var(--accent-air-bg); color: var(--accent-air); }
+.badge-force { background: var(--accent-force-bg); color: var(--accent-force); }
+.badge-frappe { background: var(--accent-frappe-bg); color: var(--accent-frappe); }
+.badge-cardio { background: var(--accent-cardio-bg); color: var(--accent-cardio); }
+.badge-repos { background: var(--surface2); color: var(--text3); }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font); font-size: 14px; font-weight: 500; padding: 11px 18px; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: all .15s; }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:active { transform: scale(.97); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-outline:active { background: var(--surface2); }
+.btn-lg { font-size: 16px; padding: 15px 24px; border-radius: var(--radius); width: 100%; }
+.btn-icon { width: 40px; height: 40px; padding: 0; border-radius: 10px; font-size: 18px; }
+
+/* INPUTS */
+input[type=number], input[type=text], input[type=date] {
+  font-family: var(--font); font-size: 15px; padding: 11px 14px;
+  border: 1px solid var(--border2); border-radius: var(--radius-sm);
+  background: var(--surface); color: var(--text); width: 100%;
+  transition: border-color .15s;
+}
+input:focus { outline: none; border-color: var(--accent); }
+label { font-size: 13px; font-weight: 500; color: var(--text2); display: block; margin-bottom: 6px; }
+
+/* ===== SCREEN HOME ===== */
+.today-card { background: var(--accent); color: white; border-radius: var(--radius); padding: 20px; margin-bottom: 10px; position: relative; overflow: hidden; }
+.today-card::before { content:''; position:absolute; top:-30px; right:-30px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.05); }
+.today-card::after { content:''; position:absolute; bottom:-20px; right:40px; width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,.04); }
+.today-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .6; margin-bottom: 6px; }
+.today-day { font-size: 28px; font-weight: 600; letter-spacing: -.03em; margin-bottom: 4px; }
+.today-seance { font-size: 15px; opacity: .85; margin-bottom: 16px; }
+.today-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.today-badge { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,.15); color: white; }
+
+.week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 10px; }
+.week-dot { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px; border-radius: var(--radius-sm); cursor: pointer; transition: background .15s; }
+.week-dot:active { background: var(--surface2); }
+.week-dot-label { font-size: 10px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: .04em; }
+.week-dot-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; background: var(--surface2); color: var(--text2); }
+.week-dot.today .week-dot-circle { background: var(--accent); color: white; }
+.week-dot.air .week-dot-circle { background: var(--accent-air-bg); color: var(--accent-air); border: 1.5px solid var(--accent-air); }
+.week-dot.force .week-dot-circle { background: var(--accent-force-bg); color: var(--accent-force); }
+.week-dot.frappe .week-dot-circle { background: var(--accent-frappe-bg); color: var(--accent-frappe); }
+.week-dot.repos .week-dot-circle { opacity: .4; }
+
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.stat-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.stat-value { font-size: 22px; font-weight: 600; letter-spacing: -.03em; color: var(--text); font-family: var(--mono); }
+.stat-unit { font-size: 13px; font-weight: 400; color: var(--text2); margin-left: 2px; }
+.stat-delta { font-size: 12px; margin-top: 2px; }
+.stat-delta.pos { color: var(--green); }
+.stat-delta.neg { color: var(--red); }
+
+/* ===== SCREEN PLANNING ===== */
+.week-toggle { display: flex; background: var(--surface2); border-radius: var(--radius-sm); padding: 3px; margin-bottom: 16px; }
+.week-toggle-btn { flex: 1; font-size: 13px; font-weight: 500; padding: 8px; text-align: center; border-radius: 6px; cursor: pointer; color: var(--text2); transition: all .15s; }
+.week-toggle-btn.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+
+.day-row { display: flex; align-items: stretch; gap: 10px; margin-bottom: 8px; cursor: pointer; }
+.day-row-left { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; padding-top: 14px; }
+.day-row-name { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; }
+.day-row-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; background: var(--surface2); color: var(--text2); margin-top: 4px; }
+.day-row-num.today-num { background: var(--accent); color: white; }
+.day-row-card { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; transition: border-color .15s; }
+.day-row-card:active { border-color: var(--border2); }
+.day-row-card.air-day { border-left: 3px solid var(--accent-air); }
+.day-row-card.force-day { border-left: 3px solid var(--accent-force); }
+.day-row-card.frappe-day { border-left: 3px solid var(--accent-frappe); }
+.day-row-card.repos-day { opacity: .55; }
+.day-row-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+.day-row-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+
+/* ===== SÉANCE DETAIL ===== */
+#seance-overlay { position: fixed; inset: 0; z-index: 200; display: none; flex-direction: column; background: var(--bg); }
+#seance-overlay.open { display: flex; }
+.seance-header { padding: 16px 16px 0; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.seance-back { width: 38px; height: 38px; border-radius: 10px; background: var(--surface2); border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.seance-title-wrap { flex: 1; }
+.seance-title-main { font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+.seance-title-sub { font-size: 12px; color: var(--text2); }
+.seance-body { flex: 1; overflow-y: auto; padding: 16px; }
+
+.bloc-title { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text3); margin: 16px 0 8px; }
+.exo-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 6px; }
+.exo-num { font-size: 12px; font-weight: 600; color: var(--text3); min-width: 20px; font-family: var(--mono); padding-top: 1px; }
+.exo-content { flex: 1; }
+.exo-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.exo-detail { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.exo-item.highlighted { border-color: var(--accent-air); background: var(--accent-air-bg); }
+.tip-strip { background: #fffbf0; border: 1px solid #f0d88a; border-radius: var(--radius-sm); padding: 10px 12px; font-size: 12px; color: #7a6020; margin-top: 8px; line-height: 1.5; }
+
+/* ===== SCREEN AIR ALERT ===== */
+.air-progress { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; }
+.air-weeks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+.air-week { aspect-ratio: 1; border-radius: var(--radius-sm); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); transition: all .15s; }
+.air-week .wn { font-size: 11px; font-weight: 600; font-family: var(--mono); color: var(--text2); }
+.air-week .ws { font-size: 9px; color: var(--text3); }
+.air-week.done { background: var(--accent); border-color: var(--accent); }
+.air-week.done .wn, .air-week.done .ws { color: white; }
+.air-week.current { background: var(--accent-air-bg); border-color: var(--accent-air); border-width: 2px; }
+.air-week.current .wn { color: var(--accent-air); }
+.air-week.repos-week { background: var(--green-bg); border-color: var(--green); }
+.air-week.repos-week .wn { color: var(--green); }
+.air-week.inactive { opacity: .35; }
+
+.air-tableau { margin-top: 10px; }
+.at-row { display: grid; grid-template-columns: 1fr repeat(6, auto); gap: 6px; align-items: center; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); margin-bottom: 4px; }
+.at-exo { font-size: 13px; font-weight: 500; }
+.at-cell { font-size: 12px; font-family: var(--mono); color: var(--text2); text-align: center; background: var(--surface2); border-radius: 5px; padding: 3px 5px; min-width: 32px; }
+.at-header { background: none; border-color: transparent; }
+.at-header .at-exo { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--text3); }
+.at-header .at-cell { background: none; font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; }
+
+/* ===== TIMER ===== */
+#timer-overlay { position: fixed; inset: 0; z-index: 300; background: var(--accent); color: white; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+#timer-overlay.open { display: flex; }
+.timer-label { font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 8px; }
+.timer-display { font-size: 80px; font-weight: 300; letter-spacing: -.04em; font-family: var(--mono); line-height: 1; margin-bottom: 8px; }
+.timer-sub { font-size: 14px; opacity: .6; margin-bottom: 48px; }
+.timer-btns { display: flex; gap: 12px; }
+.timer-btn { width: 64px; height: 64px; border-radius: 50%; border: none; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.timer-btn-main { background: white; color: var(--accent); }
+.timer-btn-reset { background: rgba(255,255,255,.15); color: white; }
+.timer-btn-close { position: absolute; top: 20px; right: 20px; width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,.15); border: none; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.timer-presets { display: flex; gap: 8px; margin-bottom: 32px; }
+.timer-preset { padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.1); color: white; font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--font); }
+.timer-preset.active-preset { background: white; color: var(--accent); border-color: white; }
+
+/* TIMER FAB */
+#timer-fab { position: fixed; bottom: calc(var(--nav-h) + var(--safe-bottom) + 16px); right: 16px; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); color: white; border: none; font-size: 22px; cursor: pointer; z-index: 90; box-shadow: 0 4px 16px rgba(0,0,0,.18); display: flex; align-items: center; justify-content: center; transition: transform .15s; }
+#timer-fab:active { transform: scale(.92); }
+
+/* ===== SCREEN SUIVI ===== */
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.input-group { margin-bottom: 12px; }
+
+.history-list { display: flex; flex-direction: column; gap: 6px; }
+.history-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.history-date { font-size: 12px; color: var(--text3); }
+.history-vals { display: flex; gap: 12px; }
+.history-val { font-size: 14px; font-weight: 500; font-family: var(--mono); }
+.history-val span { font-size: 11px; font-weight: 400; color: var(--text2); }
+
+.chart-wrap { height: 120px; position: relative; margin: 8px 0; }
+canvas#weightChart { width: 100% !important; height: 120px !important; }
+
+/* AIR ALERT WEEK DETAIL */
+.week-detail-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.wdh-num { font-size: 32px; font-weight: 600; font-family: var(--mono); letter-spacing: -.04em; }
+.wdh-info { flex: 1; }
+.wdh-title { font-size: 16px; font-weight: 600; }
+.wdh-sub { font-size: 12px; color: var(--text2); }
+.btn-sm { padding: 7px 14px; font-size: 13px; border-radius: var(--radius-xs); }
+
+/* PROGRESS BAR */
+.progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-top: 10px; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; }
+
+/* CHECK COMPLETE */
+.complete-banner { background: var(--green-bg); border: 1px solid var(--green); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.complete-icon { font-size: 22px; }
+.complete-text { font-size: 14px; font-weight: 500; color: var(--green); }
+
+/* SEPARATOR */
+.sep { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+
+/* AIR ALERT DETAIL OVERLAY */
+#air-detail-overlay { position: fixed; inset: 0; z-index: 200; background: var(--bg); display: none; flex-direction: column; }
+#air-detail-overlay.open { display: flex; }
+
+/* EMPTY STATE */
+.empty { text-align: center; padding: 40px 20px; color: var(--text3); }
+.empty-icon { font-size: 36px; margin-bottom: 8px; }
+.empty-text { font-size: 14px; }
+
+/* TOAST */
+#toast { position: fixed; bottom: calc(var(--nav-h) + var(--safe-bottom) + 80px); left: 50%; transform: translateX(-50%) translateY(10px); background: var(--accent); color: white; font-size: 13px; font-weight: 500; padding: 10px 18px; border-radius: 20px; opacity: 0; transition: all .25s; z-index: 500; white-space: nowrap; pointer-events: none; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="content">
+
+    <!-- HOME -->
+    <div class="screen active" id="screen-home">
+      <div class="screen-header">
+        <div>
+          <div class="screen-title" id="home-greeting">Bonjour 👋</div>
+          <div class="screen-sub" id="home-date"></div>
+        </div>
+      </div>
+      <div id="today-card-wrap"></div>
+      <div class="week-strip" id="week-strip"></div>
+      <div class="stat-row" id="home-stats"></div>
+      <div class="card" id="air-status-card"></div>
+    </div>
+
+    <!-- PLANNING -->
+    <div class="screen" id="screen-planning">
+      <div class="screen-header">
+        <div>
+          <div class="screen-title">Planning</div>
+          <div class="screen-sub">7 jours complets</div>
+        </div>
+      </div>
+      <div class="week-toggle">
+        <div class="week-toggle-btn active" onclick="setParity(1)">Semaine impaire</div>
+        <div class="week-toggle-btn" onclick="setParity(0)">Semaine paire</div>
+      </div>
+      <div id="planning-list"></div>
+    </div>
+
+    <!-- AIR ALERT -->
+    <div class="screen" id="screen-air">
+      <div class="screen-header">
+        <div>
+          <div class="screen-title">Air Alert 3</div>
+          <div class="screen-sub">Programme 15 semaines</div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="openAirWeekDetail(getCurrentAirWeek())">Séance du jour</button>
+      </div>
+      <div id="air-progress-wrap"></div>
+      <div id="air-tableau-wrap"></div>
+    </div>
+
+    <!-- SUIVI -->
+    <div class="screen" id="screen-suivi">
+      <div class="screen-header">
+        <div>
+          <div class="screen-title">Suivi</div>
+          <div class="screen-sub">Poids & mensurations</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Nouvelle entrée</div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Poids (kg)</label>
+            <input type="number" id="inp-poids" placeholder="85.0" step="0.1">
+          </div>
+          <div class="input-group">
+            <label>Date</label>
+            <input type="date" id="inp-date">
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:4px">Mensurations (cm) — optionnel</div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Tour de taille</label>
+            <input type="number" id="inp-taille" placeholder="90" step="0.5">
+          </div>
+          <div class="input-group">
+            <label>Tour de hanches</label>
+            <input type="number" id="inp-hanches" placeholder="100" step="0.5">
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Poitrine</label>
+            <input type="number" id="inp-poitrine" placeholder="105" step="0.5">
+          </div>
+          <div class="input-group">
+            <label>Biceps</label>
+            <input type="number" id="inp-biceps" placeholder="35" step="0.5">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Détente verticale (cm) — optionnel</label>
+          <input type="number" id="inp-detente" placeholder="40" step="1">
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="saveMesure()" style="margin-top:4px">Enregistrer</button>
+      </div>
+      <div class="card">
+        <div class="card-title">Progression poids</div>
+        <div class="chart-wrap"><canvas id="weightChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Historique</div>
+        <div id="history-list"></div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <nav id="nav">
+    <div class="nav-item active" onclick="showScreen('home')" id="nav-home">
+      <div class="nav-icon">🏠</div>
+      <div class="nav-label">Accueil</div>
+    </div>
+    <div class="nav-item" onclick="showScreen('planning')" id="nav-planning">
+      <div class="nav-icon">📅</div>
+      <div class="nav-label">Planning</div>
+    </div>
+    <div class="nav-item" onclick="showScreen('air')" id="nav-air">
+      <div class="nav-icon">🦅</div>
+      <div class="nav-label">Air Alert</div>
+    </div>
+    <div class="nav-item" onclick="showScreen('suivi')" id="nav-suivi">
+      <div class="nav-icon">📊</div>
+      <div class="nav-label">Suivi</div>
+    </div>
+  </nav>
+</div>
+
+<!-- SÉANCE OVERLAY -->
+<div id="seance-overlay">
+  <div class="seance-header">
+    <button class="seance-back" onclick="closeSeanceOverlay()">←</button>
+    <div class="seance-title-wrap">
+      <div class="seance-title-main" id="seance-overlay-title"></div>
+      <div class="seance-title-sub" id="seance-overlay-sub"></div>
+    </div>
+  </div>
+  <div class="seance-body" id="seance-overlay-body"></div>
+</div>
+
+<!-- AIR ALERT DETAIL OVERLAY -->
+<div id="air-detail-overlay">
+  <div class="seance-header">
+    <button class="seance-back" onclick="closeAirDetail()">←</button>
+    <div class="seance-title-wrap">
+      <div class="seance-title-main" id="air-detail-title"></div>
+      <div class="seance-title-sub" id="air-detail-sub"></div>
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="markWeekDone()">✓ Fait</button>
+  </div>
+  <div class="seance-body" id="air-detail-body"></div>
+</div>
+
+<!-- TIMER OVERLAY -->
+<div id="timer-overlay">
+  <button class="timer-btn-close" onclick="closeTimer()">✕</button>
+  <div class="timer-label" id="timer-label">Repos</div>
+  <div class="timer-display" id="timer-display">2:00</div>
+  <div class="timer-sub" id="timer-sub">Masser le muscle travaillé</div>
+  <div class="timer-presets">
+    <div class="timer-preset active-preset" onclick="setTimerPreset(120)">2 min</div>
+    <div class="timer-preset" onclick="setTimerPreset(90)">1:30</div>
+    <div class="timer-preset" onclick="setTimerPreset(60)">1 min</div>
+    <div class="timer-preset" onclick="setTimerPreset(180)">3 min</div>
+  </div>
+  <div class="timer-btns">
+    <button class="timer-btn timer-btn-reset" onclick="resetTimer()">↺</button>
+    <button class="timer-btn timer-btn-main" id="timer-play-btn" onclick="toggleTimer()">▶</button>
+  </div>
+</div>
+
+<button id="timer-fab" onclick="openTimer()">⏱</button>
+<div id="toast"></div>
+
+<script>
+// ============ DATA ============
+const DAYS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+const DAYS_SHORT = ['Di','Lu','Ma','Me','Je','Ve','Sa'];
+
+// Programme complet
+const PROGRAMME = {
+  impaire: [ // Lu Ma Me Je Ve Sa Di
+    { name:'Lundi', type:'air', label:'Air Alert + Muscu haut A', badges:['air','force'], color:'air' },
+    { name:'Mardi', type:'force', label:'Force jambes lourde', badges:['force'], color:'force' },
+    { name:'Mercredi', type:'air_full', label:'Air Alert complet + Cardio', badges:['air','cardio'], color:'air', squat_hops:true },
+    { name:'Jeudi', type:'frappe', label:'Frappe + Explosivité + Plyométrie', badges:['frappe'], color:'frappe' },
+    { name:'Vendredi', type:'air', label:'Air Alert + Muscu haut B', badges:['air','force'], color:'air' },
+    { name:'Samedi', type:'repos', label:'Repos total', badges:['repos'], color:'repos' },
+    { name:'Dimanche', type:'repos', label:'Repos total', badges:['repos'], color:'repos' },
+  ],
+  paire: [
+    { name:'Lundi', type:'force', label:'Force jambes lourde', badges:['force'], color:'force' },
+    { name:'Mardi', type:'air', label:'Air Alert + Muscu haut A', badges:['air','force'], color:'air' },
+    { name:'Mercredi', type:'air_full', label:'Air Alert complet + Cardio', badges:['air','cardio'], color:'air', squat_hops:true },
+    { name:'Jeudi', type:'air', label:'Air Alert + Muscu haut B', badges:['air','force'], color:'air' },
+    { name:'Vendredi', type:'frappe', label:'Frappe + Explosivité + Plyométrie', badges:['frappe'], color:'frappe' },
+    { name:'Samedi', type:'repos', label:'Repos total', badges:['repos'], color:'repos' },
+    { name:'Dimanche', type:'repos', label:'Repos total', badges:['repos'], color:'repos' },
+  ]
+};
+
+// Séances détaillées
+const SEANCES = {
+  air_haut_a: {
+    title: 'Air Alert + Muscu haut A',
+    sub: '75–90 min · Poussée',
+    blocs: [
+      { title: 'Bloc 1 — Air Alert 3 (~45 min)', exos: [
+        { num:'0', name:'Échauffement 5 min', detail:'Rotations chevilles, genoux, hanches. Quelques squats légers poids de corps.', highlight:false },
+        { num:'1', name:'Leap Ups', detail:"Sets × reps selon ton tableau Air Alert. Saut vertical max, réception genoux pliés.", highlight:false },
+        { num:'2', name:'Calf Raises', detail:'Sur step ou plaque de fonte. Amplitude max, talon jamais au sol.', highlight:false },
+        { num:'3', name:'Step Ups', detail:'Banc stable. Alterner jambes. Explosif à la montée.', highlight:false },
+        { num:'4', name:'Thrust Ups', detail:'Genoux verrouillés, saut depuis les hanches uniquement.', highlight:false },
+        { num:'5', name:'Burnouts', detail:'Sauts petits et rapides, maximum de reps. Finisseur de bloc.', highlight:false },
+      ]},
+      { title: 'Bloc 2 — Muscu haut A : Poussée (~35 min)', exos: [
+        { num:'1', name:'Développé couché barre', detail:'Sem. 1-6 : 4×10 modéré. Sem. 7+ : 5×5 lourd. Force brute horizontale.' },
+        { num:'2', name:'Développé militaire haltères', detail:'4×10 — épaules + triceps. Force de frappe verticale.' },
+        { num:'3', name:'Dips ou push-ups pieds surélevés', detail:'3×max — triceps + pec bas.' },
+        { num:'4', name:'Gainage planche', detail:'3×45-60s — sangle abdominale = transmission de force.' },
+      ]},
+    ],
+    tip:'Air Alert TOUJOURS en premier. Repos 90s entre séries muscu.'
+  },
+  air_haut_b: {
+    title: 'Air Alert + Muscu haut B',
+    sub: '75–90 min · Tirage',
+    blocs: [
+      { title: 'Bloc 1 — Air Alert 3 (~45 min)', exos: [
+        { num:'0', name:'Échauffement 5 min', detail:'Rotations chevilles, genoux, hanches.', highlight:false },
+        { num:'1-5', name:'Leap Ups → Calf Raises → Step Ups → Thrust Ups → Burnouts', detail:'Selon tableau Air Alert. Pas de Squat Hops le vendredi/jeudi.', highlight:false },
+      ]},
+      { title: 'Bloc 2 — Muscu haut B : Tirage (~35 min)', exos: [
+        { num:'1', name:'Tractions ou tirage poulie haute', detail:'4×8 — grand dorsal. Élastique si tractions impossibles.' },
+        { num:'2', name:'Rowing barre ou machine', detail:'4×10 — milieu du dos, rhomboïdes. Base de la frappe.' },
+        { num:'3', name:'Face pulls à la poulie', detail:'3×15 — rotateurs externes. Santé des épaules.' },
+        { num:'4', name:'Ab wheel ou crunch lestés', detail:'3×12 — finir la semaine sur les abdos.' },
+      ]},
+    ],
+    tip:'Équilibre poussée/tirage : autant de tirage que de développé couché.'
+  },
+  air_full: {
+    title: 'Air Alert COMPLET + Cardio',
+    sub: '75–90 min · Squat Hops inclus',
+    blocs: [
+      { title: 'Bloc 1 — Air Alert 3 COMPLET (~50 min)', exos: [
+        { num:'0', name:'Échauffement 5 min', detail:'Rotations chevilles, genoux, hanches.' },
+        { num:'1', name:'Leap Ups', detail:'Selon tableau Air Alert.' },
+        { num:'2', name:'Calf Raises', detail:'Selon tableau Air Alert.' },
+        { num:'3', name:'Step Ups', detail:'Selon tableau Air Alert.' },
+        { num:'4', name:'Thrust Ups', detail:'Selon tableau Air Alert.' },
+        { num:'5', name:'Burnouts', detail:'Selon tableau Air Alert.' },
+        { num:'6', name:'Squat Hops ⚡ Mercredi seulement', detail:'Cuisses parallèles sol, ballon contre torse, bonds 3-5 pouces. Dernière rep de chaque série = explosion verticale max. Repos 2 min, masser les cuisses.', highlight:true },
+      ]},
+      { title: 'Bloc 2 — Cardio post-Air Alert (~25 min)', exos: [
+        { num:'1', name:'Tapis ou vélo elliptique — zone 2', detail:'20-25 min à 65-70% FC max. Glycogène entamé → brûle les graisses directement.' },
+        { num:'2', name:'Étirements mollets + cuisses', detail:'5 min obligatoires.' },
+      ]},
+    ],
+    tip:'Le mercredi est le jour le plus dur. Squat Hops = JAMAIS un autre jour.'
+  },
+  force: {
+    title: 'Force jambes lourde',
+    sub: '60–75 min · Salle muscu',
+    blocs: [
+      { title: 'Séance complète', exos: [
+        { num:'0', name:'Mobilité 8 min', detail:'Cercles de hanche, fentes légères, squat poids de corps ×15.' },
+        { num:'1', name:'Squat barre — mouvement roi', detail:'Sem. 1-6 : 4×10 technique. Sem. 7+ : 5×5 lourd. +2,5 kg/semaine.' },
+        { num:'2', name:'Deadlift conventionnel', detail:'4×6 — force totale du postérieur. Technique prioritaire.' },
+        { num:'3', name:'Leg press ou fentes haltères', detail:'3×12 — volume quadriceps. Fentes = meilleur transfert vers le saut.' },
+        { num:'4', name:'Mollets machine ou barre', detail:'4×20 sur step — amplitude max. Synergique avec Air Alert.' },
+        { num:'5', name:'Ab wheel ou crunch lestés', detail:'3×12 — abdominaux forts = sauts plus hauts.' },
+      ]},
+    ],
+    tip:'+2,5 kg/semaine max sur squat et deadlift. La technique prime toujours.'
+  },
+  frappe: {
+    title: 'Frappe + Explosivité + Plyométrie',
+    sub: '60–75 min · La séance la plus fun',
+    blocs: [
+      { title: 'Séance complète', exos: [
+        { num:'0', name:'Échauffement dynamique 8 min', detail:'Shadowboxing léger, rotations épaules + tronc, montées de genoux.' },
+        { num:'1', name:'Sprints 20m × 10', detail:'Départ explosif depuis arrêt. 2 min repos entre chaque. Vitesse du 1er pas.' },
+        { num:'2', name:'Box jumps ou sauts verticaux max', detail:'5×5 — montée max, descente contrôlée, reset complet. Qualité > quantité.' },
+        { num:'3', name:'Sac de frappe — rounds 2 min × 6', detail:'1 min repos. Focus rotation des hanches. Sans sac : shadowboxing haltères 1-2 kg.' },
+        { num:'4', name:'Medicine ball slams 4×10', detail:'Tout le corps, puissance explosive descendante. Sans med ball : burpees sautés 4×8.' },
+        { num:'5', name:'Russian twists lestés 3×20', detail:'Gainage rotatoire = base de la frappe. Avec haltère ou disque.' },
+      ]},
+    ],
+    tip:'Force de frappe : jambes → hanches → tronc → bras. La rotation des hanches = 60% de la puissance.'
+  }
+};
+
+// Air Alert 3 — tableau officiel
+const AIR_WEEKS = [
+  null, // index 0 unused
+  // [Leap Ups S×R, Calf Raises S×R, Step Ups S×R, Thrust Ups S×R, Burnouts S×R, Squat Hops S×R]
+  { lu_ve: [[2,15],[2,25],[2,15],[2,15],[2,15],[0,0]], me:[[2,15],[2,25],[2,15],[2,15],[2,15],[2,15]] },
+  { lu_ve: [[2,20],[2,30],[2,20],[2,20],[2,20],[0,0]], me:[[2,20],[2,30],[2,20],[2,20],[2,20],[2,20]] },
+  { lu_ve: [[2,20],[3,30],[2,20],[2,20],[2,20],[0,0]], me:[[2,20],[3,30],[2,20],[2,20],[2,20],[2,20]] },
+  { lu_ve: [[3,20],[3,30],[3,20],[2,20],[3,20],[0,0]], me:[[3,20],[3,30],[3,20],[2,20],[3,20],[3,20]] },
+  { lu_ve: [[3,20],[3,35],[3,20],[3,20],[3,20],[0,0]], me:[[3,20],[3,35],[3,20],[3,20],[3,20],[3,20]] },
+  { lu_ve: [[3,25],[3,35],[3,25],[3,25],[3,25],[0,0]], me:[[3,25],[3,35],[3,25],[3,25],[3,25],[3,25]] },
+  { lu_ve: [[3,25],[4,35],[3,25],[3,25],[3,25],[0,0]], me:[[3,25],[4,35],[3,25],[3,25],[3,25],[3,25]] },
+  { lu_ve: [[3,25],[4,40],[4,25],[3,25],[3,25],[0,0]], me:[[3,25],[4,40],[4,25],[3,25],[3,25],[3,25]] },
+  { lu_ve: [[4,25],[4,40],[4,25],[4,25],[4,25],[0,0]], me:[[4,25],[4,40],[4,25],[4,25],[4,25],[4,25]] },
+  { lu_ve: [[4,25],[4,40],[4,25],[4,25],[4,25],[0,0]], me:[[4,25],[4,40],[4,25],[4,25],[4,25],[4,25]] },
+  { lu_ve: [[4,30],[5,40],[4,30],[4,30],[4,30],[0,0]], me:[[4,30],[5,40],[4,30],[4,30],[4,30],[4,30]] },
+  { lu_ve: [[4,30],[5,45],[5,30],[4,30],[4,30],[0,0]], me:[[4,30],[5,45],[5,30],[4,30],[4,30],[4,30]] },
+  'repos',
+  { lu_ve: [[3,20],[3,30],[3,20],[3,20],[3,20],[0,0]], me:[[3,20],[3,30],[3,20],[3,20],[3,20],[3,20]] },
+  { lu_ve: [[5,30],[5,50],[5,30],[5,30],[5,30],[0,0]], me:[[5,30],[5,50],[5,30],[5,30],[5,30],[5,30]] },
+];
+const AIR_EXO_NAMES = ['Leap Ups','Calf Raises','Step Ups','Thrust Ups','Burnouts','Squat Hops'];
+
+// ============ STATE ============
+let state = {
+  airWeek: 1,
+  airDone: [], // semaines complétées
+  parity: 1, // 1=impaire, 0=paire
+  mesures: [],
+  startDate: null,
+};
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('airtrack_state');
+    if (s) state = { ...state, ...JSON.parse(s) };
+  } catch(e) {}
+}
+function saveState() {
+  localStorage.setItem('airtrack_state', JSON.stringify(state));
+}
+
+// ============ HELPERS ============
+function getCurrentWeekParity() {
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const weekNum = Math.ceil(((now - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
+  return weekNum % 2 === 1 ? 'impaire' : 'paire';
+}
+function getTodayDayIndex() {
+  return new Date().getDay(); // 0=Di
+}
+function getCurrentAirWeek() {
+  return Math.min(state.airWeek, 15);
+}
+function isAirDay(dayIndex, parity) {
+  // dayIndex: 0=Di,1=Lu,2=Ma,3=Me,4=Je,5=Ve,6=Sa
+  if (parity === 'impaire') return [1,3,5].includes(dayIndex); // Lu Me Ve
+  return [2,3,4].includes(dayIndex); // Ma Me Je
+}
+
+function getDayProgram(dayIndex, parity) {
+  const prog = parity === 'impaire' ? PROGRAMME.impaire : PROGRAMME.paire;
+  // dayIndex 0=Di → prog index 6
+  const map = [6,0,1,2,3,4,5]; // Di=6,Lu=0,Ma=1,Me=2,Je=3,Ve=4,Sa=5
+  return prog[map[dayIndex]];
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+function badgeHTML(type) {
+  const labels = { air:'Air Alert', force:'Muscu', frappe:'Frappe', cardio:'Cardio', repos:'Repos' };
+  return `<span class="badge badge-${type}">${labels[type]||type}</span>`;
+}
+
+// ============ NAVIGATION ============
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  document.getElementById('content').scrollTop = 0;
+  if (name === 'home') renderHome();
+  if (name === 'planning') renderPlanning();
+  if (name === 'air') renderAirAlert();
+  if (name === 'suivi') renderSuivi();
+}
+
+// ============ HOME ============
+function renderHome() {
+  const now = new Date();
+  const dayIdx = now.getDay();
+  const parity = getCurrentWeekParity();
+  const dayProg = getDayProgram(dayIdx, parity);
+
+  // Greeting
+  const h = now.getHours();
+  const g = h < 12 ? 'Bonjour' : h < 18 ? 'Bon après-midi' : 'Bonsoir';
+  document.getElementById('home-greeting').textContent = g + ' 💪';
+  document.getElementById('home-date').textContent = DAYS_FR[dayIdx] + ' · ' + now.toLocaleDateString('fr-FR', {day:'numeric',month:'long'});
+
+  // Today card
+  const tc = document.getElementById('today-card-wrap');
+  if (dayProg.type === 'repos') {
+    tc.innerHTML = `<div class="today-card" style="background:var(--surface);color:var(--text);border:1px solid var(--border)">
+      <div class="today-label">Aujourd'hui</div>
+      <div class="today-day" style="color:var(--text)">Repos total 😴</div>
+      <div class="today-seance" style="color:var(--text2)">Récupération active — marche, étirements</div>
+    </div>`;
+  } else {
+    const colors = { air:'#c8622a', force:'#2a5c8a', frappe:'#2a7a4a', air_full:'#c8622a' };
+    const bg = colors[dayProg.type] || '#1a1916';
+    tc.innerHTML = `<div class="today-card" style="background:${bg}">
+      <div class="today-label">Aujourd'hui</div>
+      <div class="today-day">${dayProg.name}</div>
+      <div class="today-seance">${dayProg.label}</div>
+      <div class="today-badges">${dayProg.badges.map(b => `<span class="today-badge">${b.toUpperCase()}</span>`).join('')}</div>
+    </div>`;
+  }
+  // Attach click
+  tc.querySelector('.today-card').onclick = () => {
+    if (dayProg.type !== 'repos') openSeanceOverlay(dayProg.type, dayProg.name);
+  };
+
+  // Week strip
+  const strip = document.getElementById('week-strip');
+  const weekDays = [1,2,3,4,5,6,0]; // Lu→Di
+  strip.innerHTML = weekDays.map(d => {
+    const dp = getDayProgram(d, parity);
+    const isToday = d === dayIdx;
+    const dateObj = new Date(now);
+    dateObj.setDate(now.getDate() + ((d - dayIdx + 7) % 7 || (d===dayIdx?0:0)));
+    // simple offset
+    let diff = d - dayIdx;
+    if (diff < 0) diff += 7;
+    const dayDate = new Date(now); dayDate.setDate(now.getDate() + diff);
+    return `<div class="week-dot ${dp.color||''} ${isToday?'today':''}" onclick="setParity(${parity==='impaire'?1:0});showScreen('planning')">
+      <div class="week-dot-label">${DAYS_SHORT[d]}</div>
+      <div class="week-dot-circle">${dayDate.getDate()}</div>
+    </div>`;
+  }).join('');
+
+  // Stats
+  const stats = document.getElementById('home-stats');
+  const mesures = state.mesures;
+  let poidsHtml = '—', deltaHtml = '';
+  if (mesures.length > 0) {
+    const last = mesures[mesures.length-1];
+    poidsHtml = last.poids || '—';
+    if (mesures.length > 1) {
+      const prev = mesures[mesures.length-2];
+      const delta = (last.poids - prev.poids).toFixed(1);
+      const cls = delta > 0 ? 'neg' : 'pos';
+      const sign = delta > 0 ? '+' : '';
+      deltaHtml = `<div class="stat-delta ${cls}">${sign}${delta} kg</div>`;
+    }
+  }
+  stats.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Poids actuel</div>
+      <div class="stat-value">${poidsHtml}<span class="stat-unit">kg</span></div>
+      ${deltaHtml}
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Air Alert</div>
+      <div class="stat-value" style="color:var(--accent-air)">S${getCurrentAirWeek()}<span class="stat-unit">/15</span></div>
+      <div class="stat-delta">${state.airDone.length} semaines faites</div>
+    </div>`;
+
+  // Air status card
+  const airCard = document.getElementById('air-status-card');
+  const w = getCurrentAirWeek();
+  const pct = Math.round((state.airDone.length / 15) * 100);
+  airCard.innerHTML = `
+    <div class="card-title">Progression Air Alert 3</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <span style="font-size:14px;font-weight:500">Semaine ${w} / 15</span>
+      <span style="font-size:13px;color:var(--text2)">${pct}%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    ${w===13?'<div class="complete-banner" style="margin-top:12px"><div class="complete-icon">😴</div><div class="complete-text">Semaine de repos total — pas de sauts cette semaine !</div></div>':''}
+    <button class="btn btn-outline btn-sm" style="margin-top:12px;width:100%" onclick="showScreen(\'air\')">Voir le programme complet →</button>
+  `;
+}
+
+// ============ PLANNING ============
+let currentParity = 1;
+function setParity(p) {
+  currentParity = p;
+  document.querySelectorAll('.week-toggle-btn').forEach((el,i) => {
+    el.classList.toggle('active', (p===1 && i===0) || (p===0 && i===1));
+  });
+  renderPlanning();
+}
+
+function renderPlanning() {
+  const parity = currentParity === 1 ? 'impaire' : 'paire';
+  const prog = PROGRAMME[parity];
+  const now = new Date();
+  const todayIdx = now.getDay();
+  const list = document.getElementById('planning-list');
+  const dayOrder = [1,2,3,4,5,6,0]; // Lu→Di
+  list.innerHTML = dayOrder.map((d, i) => {
+    const dp = prog[i];
+    const isToday = d === todayIdx && getCurrentWeekParity() === parity;
+    return `<div class="day-row" onclick="${dp.type!=='repos'?`openSeanceOverlay('${dp.type}','${dp.name}')`:''}" >
+      <div class="day-row-left">
+        <div class="day-row-name">${DAYS_SHORT[d]}</div>
+        <div class="day-row-num ${isToday?'today-num':''}">${d}</div>
+      </div>
+      <div class="day-row-card ${dp.type !== 'repos' ? dp.color+'-day' : 'repos-day'}">
+        <div class="day-row-title">${dp.label}</div>
+        <div class="day-row-badges">${dp.badges.map(b => badgeHTML(b)).join('')}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ============ SÉANCE OVERLAY ============
+function getSeanceKey(type) {
+  const map = {
+    air: null, // lundi ou vendredi — déterminer selon contexte
+    air_full: 'air_full',
+    force: 'force',
+    frappe: 'frappe',
+  };
+  return map[type];
+}
+
+function openSeanceOverlay(type, dayName) {
+  let key = type;
+  if (type === 'air') {
+    // Lu en impaire = haut_a, Ve en impaire = haut_b, Ma en paire = haut_a, Je en paire = haut_b
+    const imp = currentParity === 1;
+    if (dayName === 'Lundi' || dayName === 'Mardi') key = 'air_haut_a';
+    else if (dayName === 'Vendredi' || dayName === 'Jeudi') key = 'air_haut_b';
+    else key = 'air_haut_a';
+  }
+  const seance = SEANCES[key];
+  if (!seance) return;
+  document.getElementById('seance-overlay-title').textContent = seance.title;
+  document.getElementById('seance-overlay-sub').textContent = seance.sub;
+  const body = document.getElementById('seance-overlay-body');
+  body.innerHTML = seance.blocs.map(bloc => `
+    <div class="bloc-title">${bloc.title}</div>
+    ${bloc.exos.map(e => `
+      <div class="exo-item ${e.highlight?'highlighted':''}">
+        <div class="exo-num">${e.num}</div>
+        <div class="exo-content">
+          <div class="exo-name">${e.name}</div>
+          <div class="exo-detail">${e.detail}</div>
+        </div>
+      </div>`).join('')}
+  `).join('') + (seance.tip ? `<div class="tip-strip">💡 ${seance.tip}</div>` : '');
+  document.getElementById('seance-overlay').classList.add('open');
+}
+
+function closeSeanceOverlay() {
+  document.getElementById('seance-overlay').classList.remove('open');
+}
+
+// ============ AIR ALERT ============
+function renderAirAlert() {
+  renderAirProgress();
+  renderAirTableau();
+}
+
+function renderAirProgress() {
+  const w = getCurrentAirWeek();
+  const wrap = document.getElementById('air-progress-wrap');
+  const weeks = Array.from({length:15},(_,i)=>i+1);
+  wrap.innerHTML = `
+    <div class="air-progress">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:16px;font-weight:600">Semaine actuelle : <span style="color:var(--accent-air)">${w}</span></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-outline btn-sm" onclick="changeAirWeek(-1)">−</button>
+          <button class="btn btn-outline btn-sm" onclick="changeAirWeek(1)">+</button>
+        </div>
+      </div>
+      <div class="progress-bar" style="margin-top:8px"><div class="progress-fill" style="width:${Math.round(state.airDone.length/15*100)}%"></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">${state.airDone.length} / 15 semaines complétées</div>
+      <div class="air-weeks" style="margin-top:14px">
+        ${weeks.map(n => {
+          const done = state.airDone.includes(n);
+          const cur = n === w;
+          const isRepos = n === 13;
+          let cls = 'air-week';
+          if (done) cls += ' done';
+          else if (cur) cls += ' current';
+          else if (isRepos) cls += ' repos-week';
+          else if (n > w) cls += ' inactive';
+          return `<div class="${cls}" onclick="openAirWeekDetail(${n})">
+            <div class="wn">${n===13?'😴':n}</div>
+            <div class="ws">${n===13?'Repos':done?'✓':'S'+n}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+function renderAirTableau() {
+  const w = getCurrentAirWeek();
+  const wrap = document.getElementById('air-tableau-wrap');
+  if (w === 13) {
+    wrap.innerHTML = `<div class="complete-banner"><div class="complete-icon">😴</div><div class="complete-text">Semaine de repos TOTAL — aucun saut, aucun Air Alert. Les gains se consolident cette semaine.</div></div>`;
+    return;
+  }
+  const data = AIR_WEEKS[w];
+  if (!data) { wrap.innerHTML=''; return; }
+  wrap.innerHTML = `
+    <div class="card-title" style="margin-bottom:8px">Tableau semaine ${w}</div>
+    <div class="air-tableau">
+      <div class="at-row at-header">
+        <div class="at-exo">Exercice</div>
+        <div class="at-cell">Lu/Ve</div>
+        <div class="at-cell">Me</div>
+        <div class="at-cell">Séries</div>
+        <div class="at-cell">Reps</div>
+        <div class="at-cell">Ma/Je</div>
+        <div class="at-cell">Séries</div>
+      </div>
+      ${AIR_EXO_NAMES.map((name, i) => {
+        const lv = data.lu_ve[i];
+        const me = data.me[i];
+        if (name === 'Squat Hops' && lv[0] === 0) {
+          return `<div class="at-row">
+            <div class="at-exo" style="color:var(--accent-air)">${name} ⚡</div>
+            <div class="at-cell" style="color:var(--text3)">—</div>
+            <div class="at-cell" style="color:var(--accent-air)">${me[0]}×${me[1]}</div>
+            <div class="at-cell">${me[0]}</div>
+            <div class="at-cell">${me[1]}</div>
+            <div class="at-cell" style="color:var(--text3)">—</div>
+            <div class="at-cell" style="color:var(--text3)">Me seul</div>
+          </div>`;
+        }
+        return `<div class="at-row">
+          <div class="at-exo">${name}</div>
+          <div class="at-cell">${lv[0]}×${lv[1]}</div>
+          <div class="at-cell">${me[0]}×${me[1]}</div>
+          <div class="at-cell">${lv[0]}</div>
+          <div class="at-cell">${lv[1]}</div>
+          <div class="at-cell">${me[0]}×${me[1]}</div>
+          <div class="at-cell">${me[0]}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <button class="btn btn-outline btn-sm" style="width:100%;margin-top:8px" onclick="openAirWeekDetail(${w})">Voir détail séance →</button>
+  `;
+}
+
+function changeAirWeek(delta) {
+  state.airWeek = Math.max(1, Math.min(15, state.airWeek + delta));
+  saveState();
+  renderAirAlert();
+}
+
+function openAirWeekDetail(w) {
+  w = Math.max(1, Math.min(15, w));
+  const overlay = document.getElementById('air-detail-overlay');
+  document.getElementById('air-detail-title').textContent = `Semaine ${w}`;
+  document.getElementById('air-detail-sub').textContent = w===13 ? 'Semaine de repos total' : `Air Alert 3 — ${state.airDone.includes(w)?'✓ Complétée':'En cours'}`;
+  const body = document.getElementById('air-detail-body');
+
+  if (w === 13) {
+    body.innerHTML = `<div class="complete-banner"><div class="complete-icon">😴</div><div class="complete-text">Semaine de repos TOTAL. Aucun saut. Muscu haut du corps possible. C'est ici que les gains se fixent.</div></div>`;
+    overlay.classList.add('open');
+    return;
+  }
+  const data = AIR_WEEKS[w];
+  const done = state.airDone.includes(w);
+  body.innerHTML = `
+    ${done ? `<div class="complete-banner"><div class="complete-icon">✅</div><div class="complete-text">Semaine ${w} complétée !</div></div>` : ''}
+    <div class="bloc-title">Lundi + Vendredi (sem. impaire) / Mardi + Jeudi (sem. paire)</div>
+    ${AIR_EXO_NAMES.slice(0,5).map((name, i) => {
+      const lv = data.lu_ve[i];
+      return `<div class="exo-item">
+        <div class="exo-num">${i+1}</div>
+        <div class="exo-content">
+          <div class="exo-name">${name}</div>
+          <div class="exo-detail">${lv[0]} séries × ${lv[1]} reps</div>
+        </div>
+      </div>`;
+    }).join('')}
+    <div class="bloc-title" style="margin-top:16px">Mercredi — séance complète (+ Squat Hops)</div>
+    ${AIR_EXO_NAMES.map((name, i) => {
+      const me = data.me[i];
+      const isHops = i === 5;
+      if (isHops && me[0] === 0) return '';
+      return `<div class="exo-item ${isHops?'highlighted':''}">
+        <div class="exo-num">${i+1}</div>
+        <div class="exo-content">
+          <div class="exo-name">${name}${isHops?' ⚡':''}</div>
+          <div class="exo-detail">${me[0]} séries × ${me[1]} reps${isHops?' — Mercredi UNIQUEMENT':''}</div>
+        </div>
+      </div>`;
+    }).join('')}
+    <div class="tip-strip" style="margin-top:12px">💡 Repos 2 min max entre séries. Masser le muscle pendant le repos. Enchaîner immédiatement l'exercice suivant.</div>
+    <div style="margin-top:16px;display:flex;gap:8px">
+      <button class="btn btn-primary" style="flex:1" onclick="markWeekDone()">✓ Marquer complétée</button>
+      <button class="btn btn-outline" onclick="openTimer()">⏱ Timer</button>
+    </div>
+  `;
+  overlay.classList.add('open');
+}
+
+function closeAirDetail() {
+  document.getElementById('air-detail-overlay').classList.remove('open');
+}
+
+function markWeekDone() {
+  const w = getCurrentAirWeek();
+  if (!state.airDone.includes(w)) {
+    state.airDone.push(w);
+    if (w < 15) state.airWeek = w + 1;
+    saveState();
+    toast(`Semaine ${w} complétée ! 🎉`);
+    renderAirAlert();
+    renderHome();
+  } else {
+    toast('Déjà complétée.');
+  }
+}
+
+// ============ TIMER ============
+let timerInterval = null;
+let timerRunning = false;
+let timerSeconds = 120;
+let timerTotal = 120;
+
+function openTimer() {
+  document.getElementById('timer-overlay').classList.add('open');
+  updateTimerDisplay();
+}
+function closeTimer() {
+  document.getElementById('timer-overlay').classList.remove('open');
+  if (timerInterval) { clearInterval(timerInterval); timerInterval=null; timerRunning=false; }
+  timerSeconds = timerTotal;
+  updateTimerDisplay();
+  document.getElementById('timer-play-btn').textContent = '▶';
+}
+function setTimerPreset(s) {
+  if (timerRunning) { clearInterval(timerInterval); timerInterval=null; timerRunning=false; document.getElementById('timer-play-btn').textContent='▶'; }
+  timerSeconds = s; timerTotal = s;
+  document.querySelectorAll('.timer-preset').forEach(el => el.classList.remove('active-preset'));
+  event.target.classList.add('active-preset');
+  updateTimerDisplay();
+}
+function toggleTimer() {
+  if (timerRunning) {
+    clearInterval(timerInterval); timerInterval=null; timerRunning=false;
+    document.getElementById('timer-play-btn').textContent='▶';
+  } else {
+    if (timerSeconds <= 0) { timerSeconds = timerTotal; }
+    timerRunning=true;
+    document.getElementById('timer-play-btn').textContent='⏸';
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      updateTimerDisplay();
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval); timerRunning=false;
+        document.getElementById('timer-play-btn').textContent='▶';
+        if ('vibrate' in navigator) navigator.vibrate([200,100,200]);
+        document.getElementById('timer-label').textContent = '✅ Repos terminé !';
+        setTimeout(()=>document.getElementById('timer-label').textContent='Repos', 3000);
+      }
+    }, 1000);
+  }
+}
+function resetTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval=null; timerRunning=false; }
+  timerSeconds=timerTotal;
+  updateTimerDisplay();
+  document.getElementById('timer-play-btn').textContent='▶';
+}
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds/60);
+  const s = timerSeconds%60;
+  document.getElementById('timer-display').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+}
+
+// ============ SUIVI ============
+function saveMesure() {
+  const poids = parseFloat(document.getElementById('inp-poids').value);
+  const date = document.getElementById('inp-date').value || new Date().toISOString().split('T')[0];
+  const taille = parseFloat(document.getElementById('inp-taille').value)||null;
+  const hanches = parseFloat(document.getElementById('inp-hanches').value)||null;
+  const poitrine = parseFloat(document.getElementById('inp-poitrine').value)||null;
+  const biceps = parseFloat(document.getElementById('inp-biceps').value)||null;
+  const detente = parseFloat(document.getElementById('inp-detente').value)||null;
+  if (!poids || isNaN(poids)) { toast('Entre ton poids d\'abord !'); return; }
+  state.mesures.push({ date, poids, taille, hanches, poitrine, biceps, detente });
+  state.mesures.sort((a,b) => a.date.localeCompare(b.date));
+  saveState();
+  // clear
+  ['inp-poids','inp-taille','inp-hanches','inp-poitrine','inp-biceps','inp-detente'].forEach(id => document.getElementById(id).value='');
+  toast('Entrée enregistrée ✓');
+  renderSuivi();
+  renderHome();
+}
+
+function renderSuivi() {
+  document.getElementById('inp-date').value = new Date().toISOString().split('T')[0];
+  renderWeightChart();
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  const mesures = [...state.mesures].reverse();
+  if (!mesures.length) {
+    list.innerHTML = `<div class="empty"><div class="empty-icon">📏</div><div class="empty-text">Aucune mesure pour l'instant</div></div>`;
+    return;
+  }
+  list.innerHTML = mesures.map((m,i) => {
+    const prev = mesures[i+1];
+    let delta = '';
+    if (prev && prev.poids) {
+      const d = (m.poids - prev.poids).toFixed(1);
+      const cls = d>0?'neg':'pos';
+      delta = `<span class="stat-delta ${cls}" style="font-size:11px">${d>0?'+':''}${d}kg</span>`;
+    }
+    const extras = [
+      m.taille ? `T:${m.taille}` : null,
+      m.detente ? `🦘${m.detente}cm` : null,
+    ].filter(Boolean).join(' · ');
+    return `<div class="history-item">
+      <div>
+        <div class="history-date">${new Date(m.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}</div>
+        ${extras ? `<div style="font-size:11px;color:var(--text3);margin-top:2px">${extras}</div>` : ''}
+      </div>
+      <div style="text-align:right">
+        <div class="history-val">${m.poids}<span> kg</span></div>
+        ${delta}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderWeightChart() {
+  const canvas = document.getElementById('weightChart');
+  const ctx = canvas.getContext('2d');
+  const mesures = state.mesures;
+  const W = canvas.offsetWidth || 300;
+  const H = 120;
+  canvas.width = W * window.devicePixelRatio;
+  canvas.height = H * window.devicePixelRatio;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  ctx.clearRect(0,0,W,H);
+  if (mesures.length < 2) {
+    ctx.fillStyle = '#a09d96';
+    ctx.font = '13px DM Sans, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Au moins 2 entrées pour afficher la courbe', W/2, H/2);
+    return;
+  }
+  const vals = mesures.map(m => m.poids);
+  const min = Math.min(...vals) - 1;
+  const max = Math.max(...vals) + 1;
+  const pad = { l:10, r:10, t:10, b:24 };
+  const gW = W - pad.l - pad.r;
+  const gH = H - pad.t - pad.b;
+  const toX = i => pad.l + (i / (vals.length-1)) * gW;
+  const toY = v => pad.t + (1 - (v-min)/(max-min)) * gH;
+  // Grid
+  ctx.strokeStyle = '#e8e6e0'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.l,pad.t+gH); ctx.lineTo(pad.l+gW,pad.t+gH); ctx.stroke();
+  // Line
+  ctx.beginPath(); ctx.strokeStyle = '#1a1916'; ctx.lineWidth = 2; ctx.lineJoin='round';
+  vals.forEach((v,i) => i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)));
+  ctx.stroke();
+  // Fill
+  ctx.beginPath(); ctx.fillStyle='rgba(26,25,22,.06)';
+  vals.forEach((v,i) => i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)));
+  ctx.lineTo(toX(vals.length-1),pad.t+gH); ctx.lineTo(pad.l,pad.t+gH); ctx.fill();
+  // Dots
+  vals.forEach((v,i) => {
+    ctx.beginPath(); ctx.fillStyle='#1a1916';
+    ctx.arc(toX(i),toY(v),3,0,Math.PI*2); ctx.fill();
+  });
+  // Labels
+  ctx.fillStyle='#6b6860'; ctx.font='10px DM Mono, monospace'; ctx.textAlign='center';
+  mesures.forEach((m,i) => {
+    if (i===0||i===mesures.length-1||(mesures.length>4&&i%Math.ceil(mesures.length/4)===0)) {
+      const d = new Date(m.date);
+      ctx.fillText(`${d.getDate()}/${d.getMonth()+1}`, toX(i), H-6);
+    }
+  });
+}
+
+// ============ PWA ============
+const MANIFEST = {
+  name:'AirTrack — Programme Sport',
+  short_name:'AirTrack',
+  start_url:'.',
+  display:'standalone',
+  background_color:'#f8f7f4',
+  theme_color:'#1a1916',
+  icons:[{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="40" fill="%231a1916"/><text y="130" x="96" text-anchor="middle" font-size="110" font-family="sans-serif">🦅</text></svg>',sizes:'192x192',type:'image/svg+xml'}]
+};
+const manifestBlob = new Blob([JSON.stringify(MANIFEST)],{type:'application/json'});
+const manifestURL = URL.createObjectURL(manifestBlob);
+const link = document.createElement('link');
+link.rel='manifest'; link.href=manifestURL;
+document.head.appendChild(link);
+
+// Service Worker inline
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    self.addEventListener('install', e => self.skipWaiting());
+    self.addEventListener('activate', e => clients.claim());
+    self.addEventListener('fetch', e => {
+      if (e.request.url.includes('fonts.googleapis') || e.request.url.includes('fonts.gstatic')) {
+        e.respondWith(caches.open('airtrack-fonts').then(c => c.match(e.request).then(r => r || fetch(e.request).then(res => { c.put(e.request,res.clone()); return res; }))));
+      }
+    });
+  `;
+  const swBlob = new Blob([swCode],{type:'application/javascript'});
+  const swURL = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swURL);
+}
+
+// ============ INIT ============
+function init() {
+  loadState();
+  const todayParity = getCurrentWeekParity();
+  currentParity = todayParity === 'impaire' ? 1 : 0;
+  // Init date input
+  document.getElementById('inp-date').value = new Date().toISOString().split('T')[0];
+  renderHome();
+  renderPlanning();
+}
+
+init();
+</script>
+</body>
+</html>
