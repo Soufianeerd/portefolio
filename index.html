@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soufiane EL RHADI | MIAGE • Business Analyst • Data • Dev Web</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="glow-orb" style="top: -10%; left: -5%; background: #6366f1;"></div>
+    <div class="glow-orb" style="bottom: -10%; right: -5%; background: #ec4899;"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="text-gradient">S. EL RHADI</span>
+            </div>
+            <div class="nav-links desktop-menu">
+                <a href="#about" class="nav-link">À Propos</a>
+                <a href="#skills" class="nav-link">Compétences</a>
+                <a href="#projects" class="nav-link">Projets</a>
+                <a href="#templates" class="nav-link">Templates</a>
+                <a href="#contact" class="nav-link btn-primary">Me Contacter</a>
+            </div>
+            <button class="mobile-menu-btn" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu glass" id="mobileMenu">
+        <a href="#about" class="nav-link active">À Propos</a>
+        <a href="#skills" class="nav-link">Compétences</a>
+        <a href="#projects" class="nav-link">Projets</a>
+        <a href="#templates" class="nav-link">Templates</a>
+        <a href="#contact" class="nav-link btn-primary">Me Contacter</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <div class="badge glass">
+                    <span class="pulse-dot"></span>
+                    Alternance recherchée • Septembre 2026
+                </div>
+                <h1 class="hero-title">
+                    Analyse, Produit, Data & <br>
+                    <span class="text-gradient">Solutions digitales utiles</span>
+                </h1>
+                <p class="hero-desc">
+                    Étudiant MIAGISTE orienté Business Analyst, gestion de projet SI, automatisation IA,
+                    support applicatif et développement web. J’interviens sur des sujets mêlant compréhension
+                    métier, coordination IT, data et mise en œuvre technique.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary btn-lg">Découvrir mes projets</a>
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-outline btn-lg glass">
+                        <i data-lucide="linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window glass">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <pre><code class="language-js">
+const profile = {
+    name: "Soufiane EL RHADI",
+    role: "Business Analyst / Data / Dev Web",
+    strengths: [
+        "Analyse fonctionnelle",
+        "Automatisation IA",
+        "Support applicatif",
+        "Gestion de projet SI"
+    ],
+    mindset: () => "Comprendre, structurer, améliorer"
+};
+
+profile.build();
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2>À.Propos()</h2>
+                <div class="line"></div>
+            </div>
+            <div class="grid-2">
+                <div class="about-card glass">
+                    <div class="icon-wrapper"><i data-lucide="briefcase"></i></div>
+                    <h3>Expérience Pro</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="date">Nov. 2025 - Aujourd’hui</div>
+                            <strong>Proximus Luxembourg</strong>
+                            <p>Alternant Support Logiciel APSAL/GESALL : analyse, qualification et résolution
+                                d’incidents applicatifs, suivi des anomalies, documentation, procédures, tests et
+                                amélioration continue.</p>
+                        </li>
+                        <li>
+                            <div class="date">Sept. 2024 - Déc. 2024</div>
+                            <strong>Best Western Plus Crystal Hotel</strong>
+                            <p>Réception / Support IT : coordination du planning, mise à jour de la base de données
+                                clients, qualité de service et reporting.</p>
+                        </li>
+                        <li>
+                            <div class="date">Juil. 2022 - Mars 2024</div>
+                            <strong>Amazon</strong>
+                            <p>Operations Technician : gestion des flux, contrôle qualité, respect des SLA et sécurité.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="about-card glass">
+                    <div class="icon-wrapper"><i data-lucide="graduation-cap"></i></div>
+                    <h3>Formation</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="date">Sept. 2023 - Présent</div>
+                            <strong>Parcours MIAGE — IDMC Nancy</strong>
+                            <p>Systèmes d’information, analyse fonctionnelle, gestion de projet, data et développement.
+                            </p>
+                        </li>
+                        <li>
+                            <div class="date">2020 - 2023</div>
+                            <strong>L1/L2 Mathématiques & Informatique</strong>
+                            <p>Faculté des Sciences et Technologies de Nancy.</p>
+                        </li>
+                        <li>
+                            <div class="date">2019 - 2020</div>
+                            <strong>PACES — Médecine</strong>
+                            <p>Université de Nancy.</p>
+                        </li>
+                        <li>
+                            <div class="date">2018 - 2019</div>
+                            <strong>Bac Scientifique spécialité Maths</strong>
+                            <p>Lycée F. Truffaut, Bondoufle.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="section-header">
+                <h2>Compétences</h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category glass">
+                    <h3><i data-lucide="briefcase-business"></i> Fonctionnel</h3>
+                    <div class="tags">
+                        <span class="tag">Recueil de besoins</span>
+                        <span class="tag">Ateliers / Personas</span>
+                        <span class="tag">User Stories</span>
+                        <span class="tag">Conduite du changement</span>
+                        <span class="tag">KPIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass">
+                    <h3><i data-lucide="kanban-square"></i> Gestion de projet</h3>
+                    <div class="tags">
+                        <span class="tag">Agile (Scrum)</span>
+                        <span class="tag">Kanban</span>
+                        <span class="tag">Jira</span>
+                        <span class="tag">Roadmap</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass">
+                    <h3><i data-lucide="server"></i> Technique</h3>
+                    <div class="tags">
+                        <span class="tag">API REST</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">HTML / CSS / JS</span>
+                        <span class="tag">Git / GitHub</span>
+                        <span class="tag">Pack Office / Excel</span>
+                        <span class="tag">Notions COBOL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass">
+                    <h3><i data-lucide="languages"></i> Langues</h3>
+                    <div class="tags">
+                        <span class="tag">Français (natif)</span>
+                        <span class="tag">Anglais (B2)</span>
+                        <span class="tag">Arabe (B1)</span>
+                        <span class="tag">Chinois (A1)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2>Projets_Deployés</h2>
+                <div class="line"></div>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #1f2937, #111827);">
+                        <i data-lucide="car" size="48" style="color: #60a5fa; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Garage 2A</h3>
+                        <p>Site vitrine professionnel pour un garage automobile. Design moderne, réservations, API Maps
+                            intégrée.</p>
+                        <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JS</span><span
+                                class="tag">Prod-Ready</span></div>
+                        <a href="../projects/Garage2A/index.html" class="link-btn">Voir la démo <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #4c1d95, #3b0764);">
+                        <i data-lucide="activity" size="48" style="color: #c084fc; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>AirTrack PWA</h3>
+                        <p>Application de suivi d'entraînement sportif. Air Alert, modules de force, algorithmes de
+                            planning dynamique.</p>
+                        <div class="tags"><span class="tag">JS</span><span class="tag">PWA</span><span
+                                class="tag">Storage</span></div>
+                        <a href="../projects/AirAlert/index.html" class="link-btn">Lancer l'App <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #064e3b, #022c22);">
+                        <i data-lucide="smartphone" size="48" style="color: #34d399; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Salary Calc (iApsal)</h3>
+                        <p>Application cross-platform (Flutter) calculant précisément le net/brut luxembourgeois.
+                            Logique financière.</p>
+                        <div class="tags"><span class="tag">Dart</span><span class="tag">Flutter</span><span
+                                class="tag">FinTech</span></div>
+                        <a href="../projects/salary-calculator-dart/i_apsal_test/build/web/index.html"
+                            class="link-btn">Ouvrir
+                            le Web Build <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #991b1b, #7f1d1d);">
+                        <i data-lucide="utensils" size="48" style="color: #f87171; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>La Rose Restaurant</h3>
+                        <p>Vitrine gastronomique premium. SEO optimisé (JSON-LD), animations, et interface fluide
+                            mobile.</p>
+                        <div class="tags"><span class="tag">UI/UX</span><span class="tag">SEO</span><span
+                                class="tag">JS</span></div>
+                        <a href="../projects/RestaurantLaRose/index.html" class="link-btn">Voir le site <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #b45309, #78350f);">
+                        <i data-lucide="menu-square" size="48" style="color: #fbbf24; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Savor Menu Digital</h3>
+                        <p>Menu interactif et dynamique pour restaurants. Moteur de recherche et filtres de plats
+                            performants.</p>
+                        <div class="tags"><span class="tag">JS Logic</span><span class="tag">DOM API</span></div>
+                        <a href="../projects/restaurant-menu/index.html" class="link-btn">Découvrir <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #0f766e, #134e4a);">
+                        <i data-lucide="heart-pulse" size="48" style="color: #2dd4bf; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Cabinet Dentaire</h3>
+                        <p>Site fonctionnel pour un praticien. Intégration de formulaires, présentation des soins, et
+                            architecture propre.</p>
+                        <div class="tags"><span class="tag">Classic Web</span><span class="tag">CSS Grid</span></div>
+                        <a href="../projects/dental-cabinet/index.html" class="link-btn">Visiter <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #1e40af, #1e3a8a);">
+                        <i data-lucide="list-todo" size="48" style="color: #60a5fa; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Task Master</h3>
+                        <p>Application de gestion de tâches avec persistance locale (LocalStorage), drag & drop en cours
+                            de POC.</p>
+                        <div class="tags"><span class="tag">CRUD</span><span class="tag">JS</span></div>
+                        <a href="../projects/todo-list/index.html" class="link-btn">Tester l'app <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #3f6212, #14532d);">
+                        <i data-lucide="gamepad-2" size="48" style="color: #bef264; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Snake WASM (Python)</h3>
+                        <p>Portage expérimental d'un jeu Snake Python pour s'exécuter côté client dans le navigateur
+                            WebAssembly.</p>
+                        <div class="tags"><span class="tag">Python</span><span class="tag">WebAssembly</span></div>
+                        <a href="../projects/snake_game/index.html" class="link-btn">Jouer <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card glass group">
+                    <div class="card-img" style="background: linear-gradient(135deg, #374151, #1f2937);">
+                        <i data-lucide="calculator" size="48" style="color: #d1d5db; opacity: 0.8"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Glass Calculator</h3>
+                        <p>Calculatrice web implémentant une logique mathématique customisée sans dépendances tierces.
+                        </p>
+                        <div class="tags"><span class="tag">Logique JS</span><span class="tag">Maths</span></div>
+                        <a href="../projects/calculator/index.html" class="link-btn">Calculer <i
+                                data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Templates Section -->
+        <section id="templates" class="section" style="margin-top: 4rem;">
+            <div class="section-header">
+                <h2>Templates_Commerciaux</h2>
+                <div class="line"></div>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Solutions clés-en-main, optimisées pour la vente.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="project-card glass group" style="border-color: #ec4899;">
+                    <div class="card-body">
+                        <div class="badge-mini" style="background: rgba(236,72,153, 0.2); color: #fbcfe8;">Produit SaaS
+                            / Agence</div>
+                        <h3 style="margin-top: 1rem;">Elegant Template</h3>
+                        <p>Thème ultra-minimaliste pour portfolio/agence, typography-driven. Modulable à 100%.</p>
+                        <a href="../templates/elegant-template/index.html" class="link-btn" style="color: #ec4899;">View
+                            Template <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card glass group" style="border-color: #6366f1;">
+                    <div class="card-body">
+                        <div class="badge-mini" style="background: rgba(99,102,241, 0.2); color: #c7d2fe;">Photographes
+                            / Évents</div>
+                        <h3 style="margin-top: 1rem;">ShootEvent Pro</h3>
+                        <p>Générateur de devis embarqué (PDF), galeries optimisées, capture de lead. Parfait pour
+                            freelance.</p>
+                        <a href="../templates/ShootEvent-Template/index.html" class="link-btn"
+                            style="color: #6366f1;">View Template <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="glass" style="padding: 4rem; text-align: center; border-radius: 24px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Prêt à collaborer ?</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
+                    Ouvert pour des missions, alternances RH (Sept 2026) ou du consulting DevOps. Laissez-moi un
+                    message.
+                </p>
+                <a href="mailto:soufiane.erd@gmail.com" class="btn btn-primary btn-lg">
+                    <i data-lucide="mail"></i> Envoyez-moi un email
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass" style="margin-top: 4rem; padding: 2rem; text-align: center;">
+        <p>&copy; 2026 Soufiane EL RHADI. Construit avec passion ☕ et code 💻.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
