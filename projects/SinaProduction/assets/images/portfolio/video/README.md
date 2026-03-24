@@ -1,0 +1,1 @@
+Miniatures pour les vidéos. Nommez le fichier `miniature-1.jpg`. (Pour ajouter une vraie vidéo .mp4, vous devrez modifier la balise <img> en <video> dans index.html).

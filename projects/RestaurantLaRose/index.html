@@ -1,416 +1,1459 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant La Rose Nancy | Cuisine Gastronomique Fait Maison</title>
+    <meta name="description" content="Découvrez La Rose, restaurant gastronomique à Nancy. Profitez d'une cuisine traditionnelle française avec des propositions innovantes, 100% fait maison.">
+    
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:title" content="Restaurant La Rose Nancy | Cuisine Gastronomique Fait Maison">
+    <meta property="og:description" content="Découvrez La Rose, restaurant à Nancy. Cuisine traditionnelle française avec des propositions innovantes, élaborée à partir de produits frais et de saison.">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:url" content="https://www.restaurant-larose-nancy.fr">
+    <meta property="og:site_name" content="Restaurant La Rose">
 
-  <!-- SEO de base → À personnaliser par client -->
-  <title>Restaurant La Rose — Cuisine Gastronomique Française à Nancy</title>
-  <meta name="description" content="Restaurant gastronomique français à Nancy. Cuisine maison avec produits frais et locaux. Réservation en ligne disponible. Ouvert du mardi au dimanche.">
-  <meta name="robots" content="index, follow">
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Rose",
+      "image": "https://www.restaurant-larose-nancy.fr/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "5 Rue Clodion",
+        "addressLocality": "Nancy",
+        "postalCode": "54000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33960131741",
+      "priceRange": "30-40 €",
+      "servesCuisine": "French",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "169"
+      }
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts: Playfair Display + Lato -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. VARIABLES (PALETTE CSS & DESIGN TOKENS) */
+        :root {
+            --rose-pale: #f2c4ce;
+            --rose-vif: #e8637a;
+            --bordeaux: #7b1c34;
+            --creme: #f9f3ee;
+            --or: #c9a84c;
+            --noir-elegant: #1a1014;
+            --gris-doux: #3d2e33;
+            
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 4px;
+        }
 
-  <!-- Open Graph (réseaux sociaux) → À personnaliser -->
-  <meta property="og:title" content="Restaurant La Rose — Gastronomie Française à Nancy">
-  <meta property="og:description" content="Cuisine française raffinée dans une ambiance chaleureuse. Produits locaux, chef passionné, carte des vins sélectionnée.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://votre-domaine.com">
+        /* 2. RESET & BASE */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://votre-domaine.com">
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        body {
+            font-family: var(--font-body);
+            color: var(--noir-elegant);
+            background-color: var(--creme);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        h1, h2, h3, h4, h5, h6, .font-title {
+            font-family: var(--font-title);
+            font-weight: 600;
+        }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 3. UTILITIES & REUSABLE BLOCKS (BEM) */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-4 { margin-top: 4rem; }
+        
+        /* Section Title Block */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--bordeaux);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--or);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-title--left { text-align: left; }
+        .section-title--left::after { margin-left: 0; }
+        .section-title--light { color: var(--rose-pale); }
+
+        /* Button Block */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .btn--primary {
+            background-color: var(--bordeaux);
+            color: var(--creme);
+        }
+
+        .btn--primary:hover {
+            background-color: var(--noir-elegant);
+            color: var(--rose-pale);
+            transform: translateY(-2px);
+        }
+
+        .btn--secondary {
+            background-color: transparent;
+            color: var(--creme);
+            border: 1px solid var(--creme);
+        }
+
+        .btn--secondary:hover {
+            background-color: var(--creme);
+            color: var(--bordeaux);
+            transform: translateY(-2px);
+        }
+
+        /* Badge component */
+        .badge {
+            display: inline-block;
+            background-color: var(--rose-pale);
+            color: var(--bordeaux);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        /* INTERSECTION OBSERVER ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 4. COMPONENTS */
+
+        /* HEADER / NAVIGATION */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(26, 16, 20, 0); /* transparent at top */
+            transition: var(--transition);
+        }
+
+        .header--scrolled {
+            background: rgba(26, 16, 20, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--creme);
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        .nav__toggle {
+            display: block;
+            color: var(--creme);
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        
+        .nav__list {
+            display: none; /* hidden on mobile, handle via mobile-menu */
+        }
+
+        /* MOBILE MENU FULLSCREEN */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: var(--noir-elegant);
+            z-index: 1001;
+            padding: 6rem 2rem 2rem;
+            transition: right 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .mobile-menu--active {
+            right: 0;
+        }
+
+        .mobile-menu__close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--creme);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .mobile-menu__close:hover {
+            color: var(--or);
+        }
+
+        .mobile-menu__link {
+            color: var(--rose-pale);
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            display: block;
+            border-bottom: 1px solid rgba(242, 196, 206, 0.1);
+            padding-bottom: 1rem;
+        }
+        
+        .mobile-menu__link:hover {
+            color: var(--or);
+            padding-left: 10px;
+        }
+
+        /* FLOATING CTA MOBILE */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: calc(100% - 2rem);
+            max-width: 400px;
+            background-color: var(--bordeaux);
+            color: var(--creme);
+            text-align: center;
+            padding: 1rem;
+            border-radius: 50px;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(123, 28, 52, 0.4);
+            z-index: 999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+        }
+        
+        .floating-cta--hidden {
+            transform: translateY(150px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            /* Placeholder background using gradients to mimic dark bordeaux to elegant black */
+            background: linear-gradient(to bottom, rgba(26, 16, 20, 0.6), rgba(26, 16, 20, 0.95)),
+                        linear-gradient(135deg, var(--bordeaux), var(--noir-elegant));
+            color: var(--creme);
+            text-align: center;
+            overflow: hidden;
+            padding-top: 60px; /* Offset for header */
+        }
+        
+        /* Decorative ambient glow behind text */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vmin;
+            height: 80vmin;
+            background: radial-gradient(circle, rgba(123, 28, 52, 0.3) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .hero__monogram {
+            font-family: var(--font-title);
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--rose-pale);
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero__title {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            color: var(--creme);
+        }
+
+        .hero__subtitle {
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            color: var(--or);
+        }
+
+        .hero__slogan {
+            font-size: 1.2rem;
+            font-family: var(--font-title);
+            font-style: italic;
+            margin-bottom: 3rem;
+            color: var(--rose-pale);
+            opacity: 0.9;
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background-color: var(--creme);
+        }
+
+        .about__wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about__content {
+            text-align: center;
+        }
+
+        .about__text {
+            font-size: 1.1rem;
+            color: var(--gris-doux);
+            margin-bottom: 1.5rem;
+        }
+
+        .about__quote {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--bordeaux);
+            font-style: italic;
+            margin: 3rem 0;
+            padding: 2.5rem 2rem;
+            border-top: 1px solid var(--rose-pale);
+            border-bottom: 1px solid var(--rose-pale);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .about__quote::before {
+            content: '“';
+            font-size: 4rem;
+            color: rgba(242, 196, 206, 0.4);
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+        }
+
+        .about__visual {
+            width: 100%;
+            height: 400px;
+            /* Placeholder gradient to mimic an elegant image */
+            background: linear-gradient(135deg, var(--bordeaux), #4a111f);
+            border-radius: 80px 0 80px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rose-pale);
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-style: italic;
+            overflow: hidden;
+        }
+        
+        /* Subtle overlay on the visual */
+        .about__visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,16,20,0.6), transparent);
+        }
+        .about__visual span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* MENU SECTION */
+        .menu {
+            background-color: #fff; /* Pure white contrast for readability */
+        }
+
+        .menu__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu__card {
+            padding: 2.5rem 2rem;
+            background-color: var(--creme);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--rose-pale);
+            transition: var(--transition);
+        }
+        
+        .menu__card:hover {
+            box-shadow: 0 15px 40px rgba(123, 28, 52, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .menu__category {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--bordeaux);
+            margin-bottom: 2.5rem;
+            font-family: var(--font-title);
+        }
+
+        .menu__item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed rgba(61,46,51,0.2);
+            padding-bottom: 1.5rem;
+        }
+
+        .menu__item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .menu__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu__title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            color: var(--noir-elegant);
+            flex: 1;
+            padding-right: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .menu__price {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--or);
+            font-size: 1.2rem;
+        }
+
+        .menu__desc {
+            font-size: 0.95rem;
+            color: var(--gris-doux);
+            font-style: italic;
+        }
+
+        .menu__footer {
+            text-align: center;
+            margin-top: 4rem;
+            font-style: italic;
+            color: var(--gris-doux);
+            font-size: 1rem;
+            position: relative;
+            padding-top: 2rem;
+        }
+        
+        .menu__footer::before {
+            content: '❦';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--or);
+            font-size: 1.5rem;
+        }
+
+        /* COCKTAILS SECTION */
+        .cocktails {
+            background-color: var(--noir-elegant);
+            color: var(--creme);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle decoration inside dark section */
+        .cocktails::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(232, 99, 122, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cocktails__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .cocktail-card {
+            background: linear-gradient(145deg, #2a1b21, #1a1014);
+            border: 1px solid rgba(242, 196, 206, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .cocktail-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(242, 196, 206, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .cocktail-card__visual {
+            height: 220px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-title);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+        
+        /* Electric Blue Signature Image Placelholder */
+        .cocktail-card__visual--blue { 
+            background: linear-gradient(135deg, #093028, #237A57, #0B486B); 
+        }
+        
+        /* Pink Signature Image Placeholder */
+        .cocktail-card__visual--pink { 
+            background: linear-gradient(135deg, var(--bordeaux), var(--rose-vif), #f5a3b2); 
+        }
+
+        .cocktail-card__body {
+            padding: 2rem 1.5rem;
+        }
+
+        .cocktail-card__title {
+            color: var(--or);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cocktails__proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-style: italic;
+            color: var(--rose-pale);
+            font-size: 1rem;
+        }
+
+        /* EVENTS SECTION */
+        .events {
+            background-color: var(--rose-pale);
+            color: var(--bordeaux);
+            text-align: center;
+            position: relative;
+        }
+        
+        .events::after {
+            content: '♩ ♪ ♫ ♬';
+            position: absolute;
+            top: 2rem;
+            right: 10%;
+            font-size: 2rem;
+            color: rgba(123, 28, 52, 0.1);
+            pointer-events: none;
+        }
+
+        .events__title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--bordeaux);
+        }
+
+        .events__text {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.15rem;
+            color: var(--gris-doux);
+        }
+
+        .events__tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .events__tag {
+            background-color: var(--creme);
+            color: var(--bordeaux);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-family: var(--font-title);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .events__tag:hover {
+            background-color: var(--bordeaux);
+            color: var(--creme);
+            transform: translateY(-3px);
+        }
+
+        /* GALLERY SECTION */
+        .gallery {
+            background-color: var(--creme);
+            padding: 1rem 0 6rem 0; /* No top padding to flow nicely from events or other */
+        }
+
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+
+        .gallery__item {
+            position: relative;
+            height: 250px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--creme);
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        /* Overlay blur filter on hover */
+        .gallery__item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.25);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .gallery__item:hover::before {
+            background: rgba(0,0,0,0.5);
+        }
+
+        .gallery__item span {
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+        
+        .gallery__item:hover span {
+            transform: scale(1.05);
+        }
+
+        /* Gradients mimicking photos */
+        .gallery__item--1 { background: linear-gradient(135deg, #a43a4e, #5a1224); }
+        .gallery__item--2 { background: linear-gradient(135deg, #1a1014, #3d2e33); }
+        .gallery__item--3 { background: linear-gradient(135deg, #e3cd83, #a88a38); }
+        .gallery__item--4 { background: linear-gradient(135deg, #e8637a, #993b4f); }
+
+        /* CONTACT & SCHEDULE SECTION */
+        .contact {
+            background-color: var(--noir-elegant);
+            color: var(--creme);
+        }
+
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .info-card {
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+        }
+
+        .info-card__title {
+            font-family: var(--font-title);
+            color: var(--or);
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .schedule__table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule__table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .schedule__table tr:last-child {
+            border-bottom: none;
+        }
+
+        .schedule__table td {
+            padding: 1.2rem 0;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .schedule__table td:last-child {
+            text-align: right;
+            font-weight: 700;
+            color: var(--rose-pale);
+        }
+
+        .details__block {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .details__block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .details__label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .details__text {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .details__link {
+            color: var(--or);
+            font-weight: 700;
+            font-size: 1.5rem;
+            font-family: var(--font-title);
+        }
+        
+        .details__link:hover {
+            color: var(--rose-pale);
+        }
+        
+        .details__action {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--rose-pale);
+            text-decoration: underline;
+            font-size: 1rem;
+        }
+        
+        .details__action:hover {
+            color: var(--creme);
+        }
+
+        .social__links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social__link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid var(--rose-pale);
+            color: var(--rose-pale);
+            font-size: 1.2rem;
+            font-family: var(--font-title);
+            font-style: italic;
+        }
+
+        .social__link:hover {
+            background-color: var(--rose-pale);
+            color: var(--noir-elegant);
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #0b0708;
+            color: rgba(255,255,255,0.5);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer__logo {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--creme);
+            margin-bottom: 1rem;
+            display: block;
+            font-style: italic;
+        }
+
+        .footer__info {
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer__divider {
+            width: 40px;
+            height: 1px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0 auto 2rem;
+        }
+        
+        .footer__credits {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 5. MEDIA QUERIES (DESKTOP) */
+        @media (min-width: 768px) {
+            .hero__actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .hero__title {
+                font-size: 5rem;
+            }
+            
+            .hero__subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about__wrapper {
+                flex-direction: row;
+                gap: 5rem;
+            }
+            
+            .about__visual, .about__content {
+                flex: 1;
+            }
+
+            .about__content {
+                text-align: left;
+            }
+
+            .menu__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .cocktails__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery__item--1 { grid-column: span 2; height: 350px;}
+            .gallery__item--4 { grid-column: span 2; height: 350px;}
+
+            .contact__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 4rem;
+            }
+            
+            /* Remove mobile nav */
+            .nav__toggle {
+                display: none;
+            }
+
+            /* Show desktop nav */
+            .nav__list {
+                display: flex;
+                align-items: center;
+                gap: 2.5rem;
+            }
+
+            .nav__link {
+                color: var(--creme);
+                font-weight: 400;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+                letter-spacing: 1.5px;
+                position: relative;
+            }
+
+            .nav__link::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--rose-pale);
+                transition: width 0.3s ease;
+            }
+
+            .nav__link:hover {
+                color: var(--rose-pale);
+            }
+            
+            .nav__link:hover::after {
+                width: 100%;
+            }
+
+            /* Hide floating CTA on desktop */
+            .floating-cta {
+                display: none !important;
+            }
+
+            /* Gallery Grid 3 columns */
+            .gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 0;
+            }
+            
+            .gallery__item--1 { grid-column: span 1; height: 300px; }
+            .gallery__item--4 { grid-column: span 1; height: 300px; }
+            
+            /* Menu Grid 3 columns */
+            .menu__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- ===== NAVIGATION ===== -->
-  <header class="header">
-    <nav>
-      <div class="nav-container">
-        <a href="index.html" class="logo">
-          <i class="fas fa-utensils"></i>
-          <span>Restaurant La Rose</span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#apropos">À propos</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#temoignages">Avis</a></li>
-          <li><a href="prestations.html">Formules</a></li>
-          <li><a href="#reservation" class="nav-cta">Réserver</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="Menu mobile">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-  </header>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="header">
+        <div class="container nav">
+            <a href="#" class="nav__logo" aria-label="Retour accueil">LR</a>
+            
+            <ul class="nav__list">
+                <li><a href="#about" class="nav__link">Notre Histoire</a></li>
+                <li><a href="#menu" class="nav__link">La Carte</a></li>
+                <li><a href="#cocktails" class="nav__link">Cocktails</a></li>
+                <li><a href="#events" class="nav__link">Événements</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+                <li><a href="tel:+33960131741" class="btn btn--secondary" style="padding: 0.5rem 1.5rem; font-size: 0.85rem; margin-left:1rem;">Réserver</a></li>
+            </ul>
 
-  <!-- ===== HERO ===== -->
-  <section id="accueil" class="section-hero">
-    <div class="hero-content">
-      <div class="section-hero__badge">Restaurant Gastronomique • Nancy</div>
-      <h1 class="section-hero__title">L'Art de la Table Française</h1>
-      <p class="section-hero__subtitle">
-        Cuisine maison raffinée avec des produits frais et locaux,<br>
-        dans une ambiance élégante et chaleureuse au cœur de Nancy.
-      </p>
-      <div class="hero__cta">
-        <a href="#reservation" class="btn btn-primary btn-large">
-          <i class="fas fa-calendar-check"></i> Réserver une table
-        </a>
-        <a href="#menu" class="btn btn-outline btn-large">
-          <i class="fas fa-book-open"></i> Découvrir le menu
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PRÉSENTATION RAPIDE ===== -->
-  <section id="apropos" class="section-about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section__title" style="text-align:left; margin-bottom: var(--spacing-md);">
-            Notre Histoire
-          </h2>
-          <p>
-            Depuis 2015, le Restaurant La Rose vous propose une expérience gastronomique unique 
-            au cœur de Nancy. Notre chef passionné sélectionne chaque jour les meilleurs produits 
-            locaux pour créer des plats traditionnels revisités avec créativité et élégance.
-          </p>
-          <p>
-            Notre ambition : vous faire voyager à travers les saveurs de la France, 
-            dans un cadre chaleureux où chaque détail compte.
-          </p>
-          <div class="about-values fade-up">
-            <div class="value-item">
-              <i class="fas fa-leaf"></i>
-              <span>Produits 100% locaux</span>
-            </div>
-            <div class="value-item">
-              <i class="fas fa-award"></i>
-              <span>Cuisine fait maison</span>
-            </div>
-            <div class="value-item">
-              <i class="fas fa-wine-glass"></i>
-              <span>Carte des vins sélectionnée</span>
-            </div>
-            <div class="value-item">
-              <i class="fas fa-seedling"></i>
-              <span>Circuit court</span>
-            </div>
-          </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Ouvrir le menu">Menu</button>
         </div>
-        <div class="about-image"></div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ===== RÉSUMÉ DES PRESTATIONS / MENU ===== -->
-  <section id="menu" class="section-menu">
-    <div class="container">
-      <h2 class="section__title fade-up">Notre Menu</h2>
-      <div class="menu-grid">
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-fish"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Entrées</h3>
-            <p class="menu-card-description">
-              Saumon fumé maison, salade de chèvre chaud, soupe à l'oignon gratinée, tartare de saumon frais.
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Fermer le menu">✕</button>
+        <a href="#about" class="mobile-menu__link">Notre Histoire</a>
+        <a href="#menu" class="mobile-menu__link">La Carte</a>
+        <a href="#cocktails" class="mobile-menu__link">Cocktails</a>
+        <a href="#events" class="mobile-menu__link">Événements</a>
+        <a href="#contact" class="mobile-menu__link">Contact & Accès</a>
+        
+        <div class="mt-4">
+            <span class="details__label">Réservation</span>
+            <a href="tel:+33960131741" class="details__link">09 60 13 17 41</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero__content fade-in">
+            <div class="hero__monogram">La Rose</div>
+            <h1 class="hero__title">Maison Gastronomique</h1>
+            <p class="hero__subtitle">Nancy, France</p>
+            <p class="hero__slogan">Le vrai goût du fait maison ✨</p>
+            <div class="hero__actions">
+                <a href="tel:+33960131741" class="btn btn--primary">Réserver une table</a>
+                <a href="#menu" class="btn btn--secondary">Découvrir la carte</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about section-padding" id="about">
+        <div class="container about__wrapper">
+            <div class="about__visual fade-in">
+                <span>Ambiance Chaleureuse</span>
+            </div>
+            
+            <div class="about__content fade-in text-center">
+                <h2 class="section-title section-title--left">Notre Histoire</h2>
+                <p class="about__text">Bienvenue chez La Rose, une adresse incontournable nichée au cœur de Nancy. Nous avons créé ce lieu avec une vision simple : allier l'élégance de la cuisine traditionnelle française à des propositions culinaires modernes et audacieuses.</p>
+                <p class="about__text">Dans une atmosphère intimiste et romantique, rythmée par la lueur des bougies et la beauté du marbre, chaque repas devient une véritable expérience unique. Notre promesse ? Une cuisine 100% fait maison, élaborée exclusivement à partir de produits frais et de saison.</p>
+                
+                <blockquote class="about__quote">
+                    Soyez sûrs de vous, soyez fiers de vous, et soyez bienveillants les uns envers les autres.
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu section-padding" id="menu">
+        <div class="container">
+            <h2 class="section-title fade-in">La Carte</h2>
+            
+            <div class="menu__grid">
+                
+                <!-- ENTRIES -->
+                <article class="menu__card fade-in">
+                    <h3 class="menu__category">Entrées</h3>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Burrata crémeuse</h4>
+                            <span class="menu__price">14€</span>
+                        </div>
+                        <p class="menu__desc">Pesto maison et sélection de tomates anciennes</p>
+                    </div>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Tartare de saumon</h4>
+                            <span class="menu__price">16€</span>
+                        </div>
+                        <p class="menu__desc">Agrumes, avocat fondant et tuile croustillante</p>
+                    </div>
+                </article>
+
+                <!-- MAINS -->
+                <article class="menu__card fade-in" style="transition-delay: 0.1s">
+                    <h3 class="menu__category">Plats</h3>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Red Burger</h4>
+                            <span class="menu__price">24€</span>
+                        </div>
+                        <p class="menu__desc">Bœuf maturé, cheddar affiné, bun infusé aux épices, frites maison</p>
+                    </div>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Risotto crémeux</h4>
+                            <span class="menu__price">26€</span>
+                        </div>
+                        <p class="menu__desc">Crémeux aux truffes, éclats de noisettes et huile de basilic</p>
+                    </div>
+                </article>
+
+                <!-- DESSERTS -->
+                <article class="menu__card fade-in" style="transition-delay: 0.2s">
+                    <h3 class="menu__category">Desserts</h3>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Millefeuille aux fruits rouges</h4>
+                            <span class="menu__price">11€</span>
+                        </div>
+                        <p class="menu__desc">Feuilletage inversé, crème légère diplomate</p>
+                    </div>
+                    
+                    <div class="menu__item">
+                        <div class="menu__header">
+                            <h4 class="menu__title">Cheesecake passion</h4>
+                            <span class="menu__price">12€</span>
+                        </div>
+                        <p class="menu__desc">Cœur coulant fruit de la passion, biscuit sablé breton</p>
+                    </div>
+                </article>
+
+            </div>
+            
+            <div class="menu__footer fade-in">
+                <p>La carte est renouvelée régulièrement selon les saisons et les arrivages.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COCKTAILS SECTION -->
+    <section class="cocktails section-padding" id="cocktails">
+        <div class="container text-center fade-in">
+            <span class="badge">Nouveauté</span>
+            <h2 class="section-title section-title--light">Créations Signature</h2>
+            
+            <div class="cocktails__grid mt-4 text-left">
+                <!-- Cocktail 1 -->
+                <article class="cocktail-card">
+                    <div class="cocktail-card__visual cocktail-card__visual--blue">
+                        Création Bleutée
+                    </div>
+                    <div class="cocktail-card__body">
+                        <h4 class="cocktail-card__title">L'Élixir Saphir</h4>
+                        <p class="details__text">Gin infusé au pois papillon, liqueur de fleur de sureau, tonic givré.</p>
+                    </div>
+                </article>
+                
+                <!-- Cocktail 2 -->
+                <article class="cocktail-card">
+                    <div class="cocktail-card__visual cocktail-card__visual--pink">
+                        Plaisir Rosé
+                    </div>
+                    <div class="cocktail-card__body">
+                        <h4 class="cocktail-card__title">La Rose Subtile</h4>
+                        <p class="details__text">Vodka infusée, sirop de rose maison, trait de pamplemousse frais.</p>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="mt-4 cocktails__proof">
+                <span>⭐ 4.9/5 sur Google Reviews</span>
+                <span style="opacity:0.5">-</span>
+                <span>"Excellents cocktails"</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section class="events section-padding" id="events">
+        <div class="container fade-in">
+            <h2 class="events__title font-title">Privatisation & Soirées</h2>
+            <p class="events__text">
+                Profitez d'une atmosphère unique, accompagnée par des musiciens live (saxophone, violon, guitare), pour rendre vos instants mémorables.
             </p>
-            <div class="menu-card-price">12€ – 18€</div>
-          </div>
-        </div>
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-drumstick-bite"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Plats Principaux</h3>
-            <p class="menu-card-description">
-              Confit de canard, filet mignon de porc en croûte, saumon sauce béarnaise, bœuf bourguignon.
-            </p>
-            <div class="menu-card-price">24€ – 38€</div>
-          </div>
-        </div>
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-ice-cream"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Desserts</h3>
-            <p class="menu-card-description">
-              Crème brûlée à la vanille, tarte Tatin tiède, fondant chocolat, île flottante caramel.
-            </p>
-            <div class="menu-card-price">8€ – 12€</div>
-          </div>
-        </div>
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-wine-bottle"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Vins</h3>
-            <p class="menu-card-description">
-              Sélection de vins français : Bourgogne, Bordeaux, Côtes du Rhône — blancs, rouges, rosés.
-            </p>
-            <div class="menu-card-price">25€ – 85€</div>
-          </div>
-        </div>
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-star"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Menu Dégustation</h3>
-            <p class="menu-card-description">
-              5 services avec accord mets-vins — une expérience gastronomique complète et inoubliable.
-            </p>
-            <div class="menu-card-price">65€ / personne</div>
-          </div>
-        </div>
-        <div class="menu-card fade-up">
-          <div class="menu-card-image"><i class="fas fa-users"></i></div>
-          <div class="menu-card-content">
-            <h3 class="menu-card-title">Événements Privés</h3>
-            <p class="menu-card-description">
-              Anniversaires, repas d'affaires, team-building — privatisation possible sur demande.
-            </p>
-            <div class="menu-card-price">Sur devis</div>
-          </div>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top: var(--spacing-xl);">
-        <a href="prestations.html" class="btn btn-primary">
-          <i class="fas fa-book-open"></i> Voir toutes les formules & tarifs
-        </a>
-      </div>
-    </div>
-  </section>
+            
+            <div class="events__tags">
+                <span class="events__tag">Anniversaires</span>
+                <span class="events__tag">Événements d'entreprise</span>
+                <span class="events__tag">Saint-Valentin</span>
+                <span class="events__tag">Nouvel An</span>
+            </div>
 
-  <!-- ===== SECTION CHIFFRES / RÉASSURANCE ===== -->
-  <section class="section-stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item fade-up">
-          <span class="stat__number">8+</span>
-          <div class="stat__label">Ans d'expérience</div>
+            <a href="tel:+33960131741" class="btn btn--primary">Organiser mon événement</a>
         </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">50+</span>
-          <div class="stat__label">Plats signature</div>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">15+</span>
-          <div class="stat__label">Vins sélectionnés</div>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">5 000+</span>
-          <div class="stat__label">Clients satisfaits</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== TÉMOIGNAGES ===== -->
-  <section id="temoignages" class="section-testimonials">
-    <div class="container">
-      <h2 class="section__title fade-up">Ce Que Disent Nos Clients</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "Une expérience gastronomique exceptionnelle ! Les plats sont créatifs et délicieux, 
-            le service est impeccable et l'ambiance chaleureuse. Je reviendrai sans hésiter."
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Marie Dubois</span>
-              <span class="author-location">Nancy — TripAdvisor ⭐⭐⭐⭐⭐</span>
-            </div>
-          </div>
+    <!-- GALLERY SECTION -->
+    <section class="gallery">
+        <!-- Visual placeholders -->
+        <div class="gallery__grid">
+            <div class="gallery__item gallery__item--1 fade-in"><span>Plats Raffinés</span></div>
+            <div class="gallery__item gallery__item--2 fade-in" style="transition-delay: 0.1s"><span>Ambiance Cozy</span></div>
+            <div class="gallery__item gallery__item--3 fade-in" style="transition-delay: 0.2s"><span>Créations Uniques</span></div>
+            <div class="gallery__item gallery__item--4 fade-in" style="transition-delay: 0.3s"><span>Soirées Live</span></div>
         </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "L'ambiance est chaleureuse et la cuisine raffinée. Le menu dégustation 
-            avec accord mets-vins est une véritable découverte. Bravo à l'équipe !"
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Pierre Martin</span>
-              <span class="author-location">Metz — Google ⭐⭐⭐⭐⭐</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "Un restaurant qui sait marquer les esprits. Les produits sont frais, 
-            la présentation soignée et les saveurs uniques. À recommander absolument !"
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Sophie Laurent</span>
-              <span class="author-location">Strasbourg — TripAdvisor ⭐⭐⭐⭐⭐</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== CTA SECONDAIRE ===== -->
-  <section class="section-cta-secondary">
-    <div class="container">
-      <h2 class="cta__title fade-up">Prêt à Vivre une Expérience Gastronomique ?</h2>
-      <p class="cta__subtitle fade-up">Réservez votre table et laissez-vous surprendre par notre cuisine française raffinée.</p>
-      <a href="#reservation" class="btn btn-accent btn-large fade-up">
-        <i class="fas fa-calendar-check"></i> Réserver maintenant
-      </a>
-    </div>
-  </section>
+    <!-- CONTACT & SCHEDULE SECTION -->
+    <section class="contact section-padding" id="contact">
+        <div class="container fade-in">
+            <h2 class="section-title section-title--light">Horaires & Contact</h2>
+            
+            <div class="contact__grid">
+                <!-- Horaires -->
+                <article class="info-card">
+                    <h3 class="info-card__title">Horaires</h3>
+                    <table class="schedule__table">
+                        <tr>
+                            <td>Lundi</td>
+                            <td>Fermé</td>
+                        </tr>
+                        <tr>
+                            <td>Mardi à Vendredi</td>
+                            <td>11h45 – 13h45<br>18h45 – 21h30</td>
+                        </tr>
+                        <tr>
+                            <td>Samedi</td>
+                            <td>11h30 – 13h30<br>18h45 – 22h00</td>
+                        </tr>
+                        <tr>
+                            <td>Dimanche</td>
+                            <td>11h45 – 13h45<br>Fermé le soir</td>
+                        </tr>
+                    </table>
+                </article>
 
-  <!-- ===== SECTION CONTACT / RÉSERVATION ===== -->
-  <section id="reservation" class="section-reservation">
-    <div class="container">
-      <h2 class="section__title fade-up">Réserver une Table</h2>
-      <div class="reservation-form fade-up">
-        <form id="reservationForm" action="https://formspree.io/f/XXXXXXXX" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Nom complet *</label>
-              <input type="text" id="name" name="name" placeholder="ex : Marie Dupont" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Téléphone *</label>
-              <input type="tel" id="phone" name="phone" placeholder="ex : 06 12 34 56 78" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="ex : marie@email.fr" required>
-            </div>
-            <div class="form-group">
-              <label for="date">Date *</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="time">Heure *</label>
-              <select id="time" name="time" required>
-                <option value="">Choisir l'heure</option>
-                <option value="12:00">12h00 — Déjeuner</option>
-                <option value="12:30">12h30 — Déjeuner</option>
-                <option value="13:00">13h00 — Déjeuner</option>
-                <option value="19:00">19h00 — Dîner</option>
-                <option value="19:30">19h30 — Dîner</option>
-                <option value="20:00">20h00 — Dîner</option>
-                <option value="20:30">20h30 — Dîner</option>
-                <option value="21:00">21h00 — Dîner</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="guests">Nombre de convives *</label>
-              <select id="guests" name="guests" required>
-                <option value="">Nombre de personnes</option>
-                <option value="1">1 personne</option>
-                <option value="2">2 personnes</option>
-                <option value="3">3 personnes</option>
-                <option value="4">4 personnes</option>
-                <option value="5">5 personnes</option>
-                <option value="6">6 personnes</option>
-                <option value="7+">7 personnes et plus</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="message">Commentaires (allergies, préférences, occasions spéciales…)</label>
-            <textarea id="message" name="message" rows="4" placeholder="Ex : allergie aux noix, anniversaire, chaise haute nécessaire…"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">
-            <i class="fas fa-calendar-check"></i> Confirmer la réservation
-          </button>
-        </form>
-        <div id="formMessage" class="form-message"></div>
-      </div>
-    </div>
-  </section>
+                <!-- Coordonnées -->
+                <article class="info-card">
+                    <div class="details__block">
+                        <span class="details__label">Réservations</span>
+                        <a href="tel:+33960131741" class="details__link">09 60 13 17 41</a>
+                    </div>
+                    
+                    <div class="details__block">
+                        <span class="details__label">Adresse</span>
+                        <p class="details__text">
+                            <strong>Restaurant La Rose</strong><br>
+                            5 Rue Clodion<br>
+                            54000 Nancy
+                        </p>
+                        <a href="https://maps.google.com/?q=5+Rue+Clodion,+54000+Nancy" target="_blank" rel="noopener noreferrer" class="details__action">Voir sur Google Maps</a>
+                    </div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <i class="fas fa-utensils"></i>
-            <span>Restaurant La Rose</span>
-          </div>
-          <p class="footer-description">
-            Restaurant gastronomique français au cœur de Nancy. Cuisine maison avec des produits frais et locaux.
-          </p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
-          </div>
+                    <div class="details__block">
+                        <span class="details__label">Réseaux Sociaux</span>
+                        <div class="social__links">
+                            <a href="https://instagram.com/restaurant_la_rose_nancy" target="_blank" rel="noopener noreferrer" class="social__link" aria-label="Instagram">IG</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Horaires</h3>
-          <ul class="footer-links">
-            <li><span>Mar–Ven : 12h–14h, 19h–22h</span></li>
-            <li><span>Samedi : 12h–14h, 19h–22h</span></li>
-            <li><span>Dimanche : 12h–14h</span></li>
-            <li><span><strong>Lundi : Fermé</strong></span></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Navigation</h3>
-          <ul class="footer-links">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="prestations.html">Formules & Tarifs</a></li>
-            <li><a href="#temoignages">Avis clients</a></li>
-            <li><a href="#reservation">Réservation</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Contact</h3>
-          <ul class="footer-links">
-            <li><span><i class="fas fa-phone"></i> 03 83 XX XX XX</span></li>
-            <li><span><i class="fas fa-envelope"></i> contact@larose.fr</span></li>
-            <li><span><i class="fas fa-map-marker-alt"></i> 15 Rue Stanislas, Nancy</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Restaurant La Rose. Tous droits réservés. | 
-          <a href="#">Mentions légales</a> | 
-          <a href="#">Politique de confidentialité</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container fade-in">
+            <span class="footer__logo">LR</span>
+            <div class="footer__info">
+                La Rose Restaurant Gastronomique<br>
+                Nancy, France
+            </div>
+            <div class="footer__divider"></div>
+            <div class="footer__credits">
+                <span>Fait avec ❤️ à Nancy</span> | <span>© 2026 La Rose. Tous droits réservés.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE FLOATING CTA -->
+    <a href="tel:+33960131741" class="floating-cta floating-cta--hidden" id="floating-cta">Réserver une table</a>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. STICKY HEADER
+            const header = document.getElementById('header');
+            
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header--scrolled');
+                } else {
+                    header.classList.remove('header--scrolled');
+                }
+            };
+            
+            // Run instantly in case of reload in mid-page
+            handleScroll();
+            window.addEventListener('scroll', handleScroll, { passive: true });
+
+            // 2. MOBILE MENU TOGGLE
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileClose = document.getElementById('mobile-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-menu__link');
+
+            const toggleMenu = () => {
+                mobileMenu.classList.toggle('mobile-menu--active');
+                // Lock body scroll when menu is active
+                document.body.style.overflow = mobileMenu.classList.contains('mobile-menu--active') ? 'hidden' : '';
+            };
+
+            navToggle.addEventListener('click', toggleMenu);
+            mobileClose.addEventListener('click', toggleMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('mobile-menu--active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // 3. FLOATING CTA LOGIC (Mobile only, hidden in hero section)
+            const floatingCTA = document.getElementById('floating-cta');
+            const heroSection = document.getElementById('hero');
+            
+            const handleFloatingCTA = () => {
+                // If we're on desktop, early exit
+                if (window.innerWidth >= 1024) return;
+                
+                // Get bounds of Hero section
+                const heroBounds = heroSection.getBoundingClientRect();
+                
+                // If hero section has passed by 20% of viewport height, show CTA
+                if (heroBounds.bottom < (window.innerHeight * 0.8)) {
+                    floatingCTA.classList.remove('floating-cta--hidden');
+                } else {
+                    floatingCTA.classList.add('floating-cta--hidden');
+                }
+            };
+
+            window.addEventListener('scroll', handleFloatingCTA, { passive: true });
+            window.addEventListener('resize', handleFloatingCTA, { passive: true });
+            
+            // Execute once on load
+            handleFloatingCTA();
+
+            // 4. INTERSECTION OBSERVER BATCH FADE-IN
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1, // Trigger when 10% visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // Handle Orientation Edge cases
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024 && mobileMenu.classList.contains('mobile-menu--active')) {
+                    mobileMenu.classList.remove('mobile-menu--active');
+                    document.body.style.overflow = '';
+                }
+            }, { passive: true });
+        });
+    </script>
 </body>
 </html>
