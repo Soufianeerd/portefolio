@@ -20,11 +20,22 @@ dependencies:
   # Nécessaire pour les traductions Flutter (Material, Cupertino…)
   flutter_localizations:
     sdk: flutter
+  intl: ^0.20.2
+  google_fonts: ^8.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icons/logo_iapsal_nxt.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#6A359C"
+  adaptive_icon_foreground: "lib/assets/icons/logo_iapsal_nxt.png"
 
 flutter:
   uses-material-design: true

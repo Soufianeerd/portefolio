@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/models/salaire.dart';
-import '../core/models/calcul.dart';
+import '../core/salary_calculator.dart';
 
 class ResultScreen extends StatefulWidget {
   final Salaire salaire;
@@ -37,8 +37,8 @@ class _ResultScreenState extends State<ResultScreen> {
       _sliderValue = value.clamp(-1000, 1000);
       _sal.dBrut = _brutDep + _sliderValue;
 
-      final calcul = Calcul();
-      calcul.calculBrutNet(voSalaire: _sal);
+      final calcul = SalaryCalculator();
+      calcul.calculBrutNet(_sal);
     });
   }
   @override
@@ -64,7 +64,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF6366F1).withOpacity(0.3),
+                    color: const Color(0xFF6366F1).withAlpha(76), // ~0.3 opacity
                     blurRadius: 15,
                     offset: const Offset(0, 8),
                   ),
@@ -79,13 +79,13 @@ class _ResultScreenState extends State<ResultScreen> {
                   const SizedBox(height: 8),
                   Text(
                     '${_f(_sal.dNet)} €',
-                    style: const TextStyle(color: Colors.white, fontSize: 42, fontWeight: FontWeight.black),
+                    style: const TextStyle(color: Colors.white, fontSize: 42, fontWeight: FontWeight.w900),
                   ),
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withAlpha(51), // ~0.2 opacity
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -103,7 +103,7 @@ class _ResultScreenState extends State<ResultScreen> {
             Card(
               color: Colors.grey.shade50,
               elevation: 0,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.grey.shade200)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -180,9 +180,9 @@ class _ResultScreenState extends State<ResultScreen> {
               color: Colors.blueGrey,
               children: [
                 _row('Salaire Brut', '${_f(_sal.dBrut)} €'),
-                _row('Charges patronales', '+ ${_f(_sal.partsPatronales())} €'),
+                _row('Charges patronales', '+ ${_f(_sal.partsPtronales())} €'),
                 const Divider(height: 24),
-                _row('COÛT TOTAL ENTREPRISE', '${_f(_sal.coutPatronales())} €', isBold: true, color: Colors.blueGrey.shade900),
+                _row('COÛT TOTAL ENTREPRISE', '${_f(_sal.coutPtronales())} €', isBold: true, color: Colors.blueGrey.shade900),
               ],
             ),
 

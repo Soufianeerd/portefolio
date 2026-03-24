@@ -13,9 +13,9 @@ void main() {
   testWidgets('Home screen loads', (WidgetTester tester) async {
     await tester.pumpWidget(const IApsalApp());
 
-    expect(find.text('iApsal'), findsOneWidget);
-    expect(find.text('Calcul Brut → Net'), findsOneWidget);
-    expect(find.text('Calcul Net → Brut'), findsOneWidget);
+    expect(find.text('i_apsal Simulator'), findsOneWidget);
+    expect(find.text('Brut → Net'), findsOneWidget);
+    expect(find.text('Net → Brut'), findsOneWidget);
   });
 }
 

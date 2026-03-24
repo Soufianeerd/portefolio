@@ -50,7 +50,7 @@ class InfoScreen extends StatelessWidget {
                         SizedBox(width: 8),
                         Text(
                           "PARAMÈTRES SOCIAUX 2025",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.black, color: Colors.indigo, letterSpacing: 1.1),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Colors.indigo, letterSpacing: 1.1),
                         ),
                       ],
                     ),

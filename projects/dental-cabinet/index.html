@@ -1,410 +1,686 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO de base → À personnaliser par client -->
-  <title>[Nom du client] — Cabinet Dentaire à [Ville]</title>
+  <title>[Nom Dr] — Chirurgien-Dentiste à [Ville]</title>
   <meta name="description"
-    content="Cabinet dentaire moderne proposant des soins complets : implantologie, prothèses, blanchiment, orthodontie. Prenez rendez-vous en ligne dès aujourd'hui.">
-  <meta name="robots" content="index, follow">
+    content="Cabinet dentaire Dr [Nom] à Vandœuvre-lès-Nancy. Chirurgien-dentiste conventionné secteur 1. Implantologie, prothèses, soins conservateurs. Rendez-vous sur Doctolib." />
 
-  <!-- Open Graph → À personnaliser -->
-  <meta property="og:title" content="[Nom du client] — Cabinet Dentaire">
-  <meta property="og:description"
-    content="Soins dentaires de qualité avec les dernières technologies. Implantologie, prothèses, blanchiment, orthodontie.">
-  <meta property="og:image"
-    content="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1200&h=630&fit=crop">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://votre-site.com">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://votre-site.com">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
     rel="stylesheet">
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Small overrides for integration */
+    .info-strip {
+      background-color: var(--color-primary);
+      border-top: none;
+    }
+
+    .about-image {
+      background: none;
+    }
+
+    .nav-cta {
+      margin-left: 1rem;
+    }
+
+    .styled-list {
+      list-style: none;
+      padding-left: 0;
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- ===== NAVIGATION ===== -->
+  <!-- 1. NAVIGATION -->
   <header class="header">
-    <nav>
-      <div class="nav-container">
-        <a href="index.html" class="logo">
-          <i class="fas fa-tooth"></i>
-          <span>[Nom du Cabinet]</span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#apropos">Le Cabinet</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#temoignages">Avis</a></li>
-          <li><a href="prestations.html">Tarifs</a></li>
-          <li><a href="#contact" class="nav-cta">Prendre RDV</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="Menu mobile">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-tooth"></i>
+        <span>Dr[Nom]</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu principal">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#soins">Soins</a></li>
+        <li><a href="#cabinet">Cabinet</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <a href="https://www.doctolib.fr/dentiste/vandoeuvre-les-nancy/   -el-omri" target="_blank"
+          rel="noopener noreferrer" class="btn btn-primary nav-cta">Prendre rendez-vous</a>
+      </ul>
+    </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section id="accueil" class="section-hero">
+  <!-- 2. HERO -->
+  <section class="section-hero" id="hero">
     <div class="hero-content">
-      <div class="section-hero__badge">Cabinet Dentaire — [Ville]</div>
-      <h1 class="section-hero__title">Votre Sourire,<br>Notre Expertise</h1>
-      <p class="section-hero__subtitle">
-        Des soins dentaires de qualité dans un environnement moderne et rassurant.<br>
-        Implantologie, prothèses, esthétique dentaire — tout sous le même toit.
-      </p>
-      <div class="hero__cta">
-        <a href="#contact" class="btn btn-primary btn-large">
-          <i class="fas fa-calendar-check"></i> Prendre un rendez-vous
-        </a>
-        <a href="prestations.html" class="btn btn-outline btn-large">
-          <i class="fas fa-list"></i> Nos prestations
-        </a>
+      <span class="section-hero__badge fade-up">Chirurgien-dentiste conventionné · Secteur 1</span>
+      <h1 class="section-hero__title fade-up">Dr [Nom]</h1>
+      <p class="hero__subtitle fade-up">Omnipratique · Implantologie · Esthétique dentaire<br>Le Cabinet Dentaire du
+        Montplaisir vous accueille à Vandœuvre-lès-Nancy pour une prise en charge complète de votre santé
+        bucco-dentaire, dans un cadre moderne et adapté.</p>
+      <div class="hero__cta fade-up">
+        <a href="https://www.doctolib.fr/dentiste/vandoeuvre-les-nancy/   -el-omri" target="_blank"
+          rel="noopener noreferrer" class="btn btn-primary">Prendre rendez-vous</a>
+        <a href="tel:+33372472132" class="btn btn-outline">03 72 47 21 32</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== PRÉSENTATION DU CABINET ===== -->
-  <section id="apropos" class="section-about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section__title" style="text-align:left; margin-bottom:var(--spacing-md);">
-            Le Cabinet
-          </h2>
-          <p>
-            [Nom du Cabinet] est un cabinet dentaire de pointe situé au cœur de [Ville].
-            Nos praticiens expérimentés vous accueillent dans un espace moderne et apaisant,
-            équipé des dernières technologies pour des soins précis et confortables.
-          </p>
-          <p>
-            De la première consultation au suivi post-opératoire, notre équipe vous
-            accompagne avec professionnalisme et bienveillance.
-          </p>
-          <div class="about-values fade-up">
-            <div class="value-item"><i class="fas fa-microscope"></i><span>Équipements haute technologie</span></div>
-            <div class="value-item"><i class="fas fa-shield-virus"></i><span>Hygiène & stérilisation</span></div>
-            <div class="value-item"><i class="fas fa-heart"></i><span>Approche sans douleur</span></div>
-            <div class="value-item"><i class="fas fa-users"></i><span>Équipe pluridisciplinaire</span></div>
-          </div>
-          <div style="margin-top: var(--spacing-lg);">
-            <a href="prestations.html" class="btn btn-outline-dark">
-              <i class="fas fa-stethoscope"></i> Voir toutes nos prestations
-            </a>
-          </div>
+  <!-- 3. INFO STRIP -->
+  <section class="info-strip fade-up">
+    <div class="info-container">
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-map-marker-alt fa-2x"></i></div>
+        <div class="info-text">
+          <span class="info-label">Adresse</span>
+          <span class="info-value">166 Ave. Général Leclerc</span>
         </div>
-        <div class="about-image"></div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="far fa-clock fa-2x"></i></div>
+        <div class="info-text">
+          <span class="info-label">Horaires</span>
+          <span class="info-value">Lun-Ven : 09h-18h30</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-phone fa-2x"></i></div>
+        <div class="info-text">
+          <span class="info-label">Téléphone</span>
+          <a href="tel:+33372472132" class="info-value">03 72 47 21 32</a>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-clipboard-check fa-2x"></i></div>
+        <div class="info-text">
+          <span class="info-label">Conventionnement</span>
+          <span class="info-value">Secteur 1</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== RÉSUMÉ DES SERVICES ===== -->
-  <section id="services" class="section-services">
+  <!-- 4. À PROPOS -->
+  <section class="section" id="apropos">
+    <div class="container about-grid">
+      <div class="about-image fade-up">
+        <img src="assets/docteur.png" alt="Dr     [Nom], Chirurgien-dentiste"
+          style="width:100%; height:auto; display:block;">
+      </div>
+      <div class="about-content fade-up">
+        <h2 class="section__title" style="text-align:left;">Le Praticien</h2>
+        <h3 style="color:var(--color-primary); font-size:1.5rem; margin-bottom:1rem;">Dr [Nom]</h3>
+        <p>
+          Le Dr [Nom] et son équipe vous reçoivent au sein du Cabinet Dentaire de Montplaisir. Le cabinet est équipé
+          de technologies récentes pour assurer votre prise en charge dans les meilleures conditions de confort et de
+          sécurité.
+        </p>
+
+        <div class="about-diplomas">
+          <h4>Diplômes et formations</h4>
+          <ul class="styled-list">
+            <li>Diplôme d'État de Docteur en chirurgie dentaire — Faculté de Nancy</li>
+            <li>Maîtrise en sciences biologiques et médicales</li>
+            <li>C.E.S — Prothèse fixée</li>
+            <li>DU — Implantologie</li>
+          </ul>
+        </div>
+
+        <div class="payment-tags" style="margin-bottom:2rem;">
+          <span
+            style="border-radius:4px; font-weight:600; color:var(--color-text); margin-right:1rem; border:1px solid #ddd; background:#fff;">Français</span>
+          <span
+            style="border-radius:4px; font-weight:600; color:var(--color-text); border:1px solid #ddd; background:#fff;">Anglais</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-stats fade-up">
     <div class="container">
-      <h2 class="section__title fade-up">Nos Spécialités</h2>
+      <div class="stats-grid">
+        <div><span class="stat__number" data-target="15">0</span><span class="stat__label">Années d'expérience</span>
+        </div>
+        <div><span class="stat__number" data-target="2">0</span><span class="stat__label">Salles de soins</span></div>
+        <div><span class="stat__number" data-target="3">0</span><span class="stat__label">Langues parlées</span></div>
+        <div><span class="stat__number" data-target="1">0</span><span class="stat__label">Secteur conventionné</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SOINS -->
+  <section class="section" id="soins" style="background:var(--color-bg);">
+    <div class="container">
+      <h2 class="section__title fade-up">Nos Soins</h2>
+      <p style="text-align:center; max-width:600px; margin:0 auto 3rem;" class="fade-up">Une prise en charge globale
+        pour votre santé bucco-dentaire</p>
       <div class="services-grid">
         <div class="card fade-up">
-          <div class="card__icon"><i class="fas fa-tooth"></i></div>
-          <h3 class="card__title">Implantologie</h3>
-          <p class="card__body">
-            Remplacement durable des dents manquantes par des implants en titane de haute qualité.
-            Esthétique naturelle et confort au quotidien.
-          </p>
-        </div>
-        <div class="card fade-up">
-          <div class="card__icon"><i class="fas fa-smile"></i></div>
-          <h3 class="card__title">Prothèses Dentaires</h3>
-          <p class="card__body">
-            Couronnes, bridges et dentiers sur mesure. Retrouvez un sourire complet
-            et une mastication efficace grâce à nos prothèses de précision.
-          </p>
-        </div>
-        <div class="card fade-up">
-          <div class="card__icon"><i class="fas fa-star"></i></div>
-          <h3 class="card__title">Blanchiment Dentaire</h3>
-          <p class="card__body">
-            Traitement professionnel au cabinet ou kit ambulatoire.
-            Résultat visible dès la première séance, confort maximal.
-          </p>
-        </div>
-        <div class="card fade-up">
-          <div class="card__icon"><i class="fas fa-align-center"></i></div>
-          <h3 class="card__title">Orthodontie</h3>
-          <p class="card__body">
-            Alignement des dents pour enfants et adultes.
-            Gouttières transparentes discrètes ou appareil traditionnel.
-          </p>
-        </div>
-        <div class="card fade-up">
-          <div class="card__icon"><i class="fas fa-spa"></i></div>
-          <h3 class="card__title">Parodontologie</h3>
-          <p class="card__body">
-            Traitement des maladies des gencives. Détartrage, surfaçage,
-            maintien de la santé des tissus de soutien dentaire.
-          </p>
+          <div class="card__icon"><i class="fas fa-shield-heart"></i></div>
+          <h3 class="card__title">Soins conservateurs</h3>
+          <p class="card__body">Traitement des caries, dévitalisations et soins des gencives pour préserver vos dents
+            naturelles.</p>
         </div>
         <div class="card fade-up">
           <div class="card__icon"><i class="fas fa-syringe"></i></div>
-          <h3 class="card__title">Soins Conservateurs</h3>
-          <p class="card__body">
-            Dépistage et traitement des caries, obturations composites esthétiques,
-            soins endodontiques (dévitalisation). Préserver vos dents naturelles.
+          <h3 class="card__title">Implantologie</h3>
+          <p class="card__body">Remplacement des dents absentes par la pose d'implants dentaires et chirurgie guidée.
           </p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-teeth"></i></div>
+          <h3 class="card__title">Prothèses dentaires</h3>
+          <p class="card__body">Réalisation de couronnes et bridges sur mesure, conçus à partir d'une empreinte
+            numérique.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+          <h3 class="card__title">Esthétique dentaire</h3>
+          <p class="card__body">Analyse et réhabilitation du sourire incluant la pose de facettes et l'éclaircissement
+            dentaire.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-hand-holding-medical"></i></div>
+          <h3 class="card__title">Chirurgie dentaire</h3>
+          <p class="card__body">Extractions dentaires (incluant les dents de sagesse) et actes de chirurgie
+            pré-implantaire.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><i class="fas fa-cube"></i></div>
+          <h3 class="card__title">Imagerie 3D Cone Beam</h3>
+          <p class="card__body">Examen radiologique de haute précision pour le diagnostic et la planification des actes
+            chirurgicaux.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 6. CABINET -->
+  <section class="section clinic" id="cabinet" style="background:#fff;">
+    <div class="container clinic-grid">
+      <div class="clinic-content fade-up">
+        <h2 class="section__title" style="text-align:left;">Le Cabinet</h2>
+        <p class="about__description">Plateau technique complet et accès facilité pour une prise en charge sereine de
+          chaque patient.</p>
+        <div class="about-values" style="display:flex; flex-direction:column;">
+          <div class="value-item">
+            <i class="fas fa-layer-group"></i>
+            <div>
+              <h4 style="margin:0; font-size:1rem;">Équipement complet</h4>
+              <p style="margin:0; font-size:0.9rem; color:var(--color-text-light);">2 salles de soins et 1 salle dédiée
+                à la chirurgie et l'implantologie.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-desktop"></i>
+            <div>
+              <h4 style="margin:0; font-size:1rem;">Plateau technique d'imagerie</h4>
+              <p style="margin:0; font-size:0.9rem; color:var(--color-text-light);">Cone Beam 3D et empreintes
+                numériques optiques réalisées sur place.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-wheelchair"></i>
+            <div>
+              <h4 style="margin:0; font-size:1rem;">Accessibilité simplifiée</h4>
+              <p style="margin:0; font-size:0.9rem; color:var(--color-text-light);">Tramway 1 (Montet Octroi), Bus
+                19/17/18, Parking gratuit, accès PMR.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clinic-images fade-up">
+        <div class="clinic-img-wrapper img-1">
+          <img src="assets/salle1.webp" alt="Salle de soin">
+        </div>
+        <div class="clinic-img-wrapper img-2">
+          <img src="assets/cabinet-2.png" alt="Équipement radiologique">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CHIFFRES / RÉASSURANCE ===== -->
-  <section class="section-stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item fade-up">
-          <span class="stat__number">15+</span>
-          <div class="stat__label">Ans d'expérience</div>
+  <!-- 7. TARIFS -->
+  <section class="section" id="tarifs" style="background:var(--color-bg);">
+    <div class="container pricing-grid">
+      <div class="pricing-table-container fade-up">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
+          <h2 class="section__title" style="margin:0;">Honoraires</h2>
+          <span class="badge gold">Nouveaux patients acceptés</span>
         </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">3 500+</span>
-          <div class="stat__label">Patients traités</div>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">98%</span>
-          <div class="stat__label">Satisfaction patient</div>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat__number">6</span>
-          <div class="stat__label">Praticiens spécialisés</div>
-        </div>
+        <table class="pricing-table">
+          <tbody>
+            <tr>
+              <td>Consultation</td>
+              <td class="price">23 €</td>
+            </tr>
+            <tr>
+              <td>Détartrage</td>
+              <td class="price">28,92 €</td>
+            </tr>
+            <tr>
+              <td>Radiographie Cone Beam 3D</td>
+              <td class="price">110 €</td>
+            </tr>
+            <tr>
+              <td>Implant dentaire</td>
+              <td class="price">Sur devis</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.875rem; color:var(--color-text-light); font-style:italic;">Les honoraires peuvent varier
+          selon les actes prescrits ou les exigences particulières. Un devis écrit vous sera remis avant la réalisation
+          de tout traitement prothétique ou acte non remboursé.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== TÉMOIGNAGES ===== -->
-  <section id="temoignages" class="section-testimonials">
-    <div class="container">
-      <h2 class="section__title fade-up">Avis de Nos Patients</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "Je craignais les soins dentaires, mais l'équipe m'a mis à l'aise dès le premier rendez-vous.
-            L'implant est parfait, je ne le sens même pas. Merci !"
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Isabelle M.</span>
-              <span class="author-location">Google Maps ⭐⭐⭐⭐⭐</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "Cabinet moderne, personnel attentionné et praticiens très professionnels.
-            Mon blanchiment est impeccable. Je recommande à tous."
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Thomas B.</span>
-              <span class="author-location">Doctolib ⭐⭐⭐⭐⭐</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial__stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testimonial__text">
-            "Suivi orthodontique excellent pour ma fille. Les gouttières sont discrètes
-            et le résultat après 18 mois est remarquable. Très satisfaits."
-          </p>
-          <div class="testimonial__author">
-            <div class="author-avatar"></div>
-            <div>
-              <span class="author-name">Sylvie V.</span>
-              <span class="author-location">Google Maps ⭐⭐⭐⭐⭐</span>
-            </div>
+      <div class="reimbursement-box fade-up">
+        <h3 class="box-title">Remboursement & Paiement</h3>
+        <ul class="reimbursement-list">
+          <li><strong>Secteur 1</strong> : Praticien conventionné</li>
+          <li><strong>Carte Vitale</strong> : Acceptée, mise à jour au cabinet</li>
+          <li><strong>Tiers payant</strong> : Pratiqué sur la part obligatoire (Sécurité Sociale), sous conditions</li>
+        </ul>
+        <div style="margin-top:2rem;">
+          <span style="font-size:0.875rem; color:rgba(255,255,255,0.7);">Moyens de paiement acceptés :</span>
+          <div class="payment-tags">
+            <span>Carte bancaire</span>
+            <span>Chèques</span>
+            <span>Espèces</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA SECONDAIRE ===== -->
-  <section class="section-cta-secondary">
-    <div class="container">
-      <h2 class="cta__title fade-up">Prenez Soin de Votre Sourire</h2>
-      <p class="cta__subtitle fade-up">Un premier rendez-vous de bilan dentaire complet — sans attente.</p>
-      <a href="#contact" class="btn btn-outline btn-large fade-up" style="border-color:white; color:white;">
-        <i class="fas fa-calendar-check"></i> Prendre rendez-vous
-      </a>
-    </div>
-  </section>
+  <!-- 8. FAQ -->
+  <section class="section" id="faq" style="background:#fff;">
+    <div class="container faq-container">
+      <h2 class="section__title fade-up">Questions fréquentes</h2>
+      <p style="text-align:center; margin-bottom:3rem;" class="fade-up">Pour vous aider à venir sereinement au cabinet
+      </p>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="section-contact">
-    <div class="container">
-      <h2 class="section__title fade-up">Prendre Rendez-vous</h2>
-      <div class="contact-grid">
-        <div class="contact-info fade-up">
-          <h3 style="margin-bottom:var(--spacing-md);">Coordonnées</h3>
-          <p>Disponibles du lundi au vendredi. Urgences dentaires prises en charge le jour même.</p>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <strong>Téléphone</strong><br>
-              <span>+33 X XX XX XX XX</span>
-            </div>
+      <div class="faq-accordion fade-up">
+        <!-- Re-use the exact 8 questions from dr-el-omri -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Est-ce douloureux ?</span><span
+              class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Nous mettons tout en œuvre pour assurer votre confort. Les interventions,
+              même minimes, peuvent être réalisées sous anesthésie locale afin de prévenir toute sensibilité et vous
+              garantir un soin en toute sérénité.</div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <strong>Email</strong><br>
-              <span>contact@cabinet-dentaire.fr</span>
-            </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Comment se déroule une première consultation
+              ?</span><span class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">La première consultation est un bilan complet. Le Dr [Nom] procède à un
+              examen clinique approfondi, souvent complété par une radiographie panoramique. Nous discutons de votre
+              santé générale et de vos attentes avant d'établir un plan de traitement adéquat.</div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <strong>Adresse</strong><br>
-              <span>[N° Rue], [Ville] [Code Postal]</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-clock"></i>
-            <div>
-              <strong>Horaires</strong><br>
-              <span>Lun-Ven : 9h–12h et 14h–19h</span>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Combien de temps dure la pose d'un implant
+              ?</span><span class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">La phase chirurgicale de pose d'un implant dure généralement entre 45
+              minutes et 1 heure par implant. L'intervention est réalisée sous anesthésie locale. Le temps de
+              cicatrisation (ostéointégration) varie ensuite de 2 à 4 mois avant la pose de la prothèse définitive.
             </div>
           </div>
         </div>
-        <div class="contact-form fade-up">
-          <form id="contactForm" action="https://formspree.io/f/XXXXXXXX" method="POST">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Nom complet *</label>
-                <input type="text" id="name" name="name" placeholder="Prénom Nom" required>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Puis-je venir en urgence sans RDV ?</span><span
+              class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Afin de limiter votre attente, il est impératif de nous contacter par
+              téléphone avant de vous déplacer. Nous nous efforçons d'aménager des créneaux quotidiens pour recevoir les
+              urgences dentaires dans les meilleurs délais.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Comment sont remboursés les soins dentaires
+              ?</span><span class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Le cabinet est conventionné Secteur 1. Les soins conservateurs (caries,
+              détartrage) sont pris en charge à 70% par la Sécurité Sociale, le reste par votre mutuelle. Pour les
+              prothèses et les actes non remboursables (implants), un devis détaillé vous est systématiquement remis.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Quelles sont les garanties sur les prothèses
+              ?</span><span class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Nos prothèses dentaires sont réalisées par des laboratoires partenaires
+              qualifiés et bénéficient d'une traçabilité. Elles sont conçues pour durer, à condition de maintenir une
+              hygiène rigoureuse et de réaliser des visites annuelles.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>À partir de quel âge les enfants sont-ils acceptés
+              ?</span><span class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Nous recevons les enfants avec plaisir. Nous recommandons une première
+              visite dès l'âge de 3 ou 4 ans, afin de familiariser l'enfant à l'environnement du cabinet, dépister
+              d'éventuelles anomalies précoce, et donner des conseils d'hygiène.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false"><span>Comment préparer ma première visite ?</span><span
+              class="icon-toggle"></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Munissez-vous de votre Carte Vitale à jour, d'une pièce d'identité, et de
+              l'ordonnance de vos traitements médicaux en cours. Si vous possédez des radiographies récentes, pensez à
+              les apporter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. BLOG -->
+  <section class="section" id="blog" style="background:var(--color-bg);">
+    <div class="container">
+      <h2 class="section__title fade-up">Conseils & Prévention</h2>
+      <p style="text-align:center; margin-bottom:2rem;" class="fade-up">Ressources d'information pour la santé de votre
+        sourire.</p>
+
+      <div class="blog-filters fade-up">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="prevention">Prévention</button>
+        <button class="filter-btn" data-filter="soins">Soins</button>
+        <button class="filter-btn" data-filter="alimentation">Alimentation</button>
+        <button class="filter-btn" data-filter="esthetique">Esthétique</button>
+      </div>
+
+      <div class="blog-grid" id="blogGrid">
+        <article class="blog-card fade-up" data-category="prevention">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Prévention</span>
+                <h3 class="blog-title">Comment bien se brosser les dents ?</h3>
+                <p class="blog-excerpt">Un brossage efficace est essentiel pour prévenir l'apparition de caries et
+                  protéger l'émail de vos dents au quotidien...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
               </div>
-              <div class="form-group">
-                <label for="phone">Téléphone *</label>
-                <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX" required>
+            </div>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Bonnes pratiques</h3>
+                <p class="blog-excerpt">Brossez vos dents 2 fois par jour pendant 2 minutes avec un dentifrice fluoré.
+                  Utilisez du fil dentaire ou des brossettes interdentaires pour nettoyer les espaces inaccessibles à la
+                  brosse. Un brossage régulier limite la formation de tartre.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
               </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="vous@email.fr" required>
+          </div>
+        </article>
+
+        <article class="blog-card fade-up" data-category="alimentation">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Alimentation</span>
+                <h3 class="blog-title">Alimentation et santé bucco-dentaire</h3>
+                <p class="blog-excerpt">Les habitudes alimentaires influencent grandement la santé des dents et des
+                  gencives. Découvrez les aliments à privilégier...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="service">Service souhaité</label>
-              <select id="service" name="service">
-                <option value="">Choisir un service</option>
-                <option value="bilan">Bilan dentaire (1ère visite)</option>
-                <option value="implant">Implantologie</option>
-                <option value="prothese">Prothèse dentaire</option>
-                <option value="blanchiment">Blanchiment</option>
-                <option value="orthodontie">Orthodontie</option>
-                <option value="paro">Parodontologie</option>
-                <option value="autre">Autre soin</option>
-              </select>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Conseils diététiques</h3>
+                <p class="blog-excerpt">Réduisez le grignotage et limitez les aliments sucrés et acides qui favorisent
+                  les caries. Privilégiez l'eau et les aliments riches en calcium (fromages) et en vitamines pour
+                  renforcer et protéger votre émail dentaire.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" rows="4" placeholder="Décrivez votre demande ou symptôme..."
-                required></textarea>
+          </div>
+        </article>
+
+        <article class="blog-card fade-up" data-category="soins">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Soins</span>
+                <h3 class="blog-title">Tout savoir sur l'implant dentaire</h3>
+                <p class="blog-excerpt">L'implant dentaire est une racine artificielle permettant de remplacer une dent
+                  extraite tout en préservant l'os de la mâchoire...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <i class="fas fa-paper-plane"></i> Envoyer ma demande
-            </button>
-          </form>
-          <div id="formMessage" class="form-message"></div>
-        </div>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Le fonctionnement</h3>
+                <p class="blog-excerpt">Un implant est une petite vis en titane insérée dans l'os. Après une période de
+                  cicatrisation (ostéointégration), on y fixe une couronne sur mesure pour un rendu esthétique et
+                  fonctionnel optimal, imitant parfaitement une dent naturelle.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card fade-up" data-category="soins">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Soins</span>
+                <h3 class="blog-title">Quand consulter un dentiste en urgence ?</h3>
+                <p class="blog-excerpt">Traumatisme, douleur aiguë, ou infection : quels sont les signes qui nécessitent
+                  une consultation en urgence au cabinet...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
+              </div>
+            </div>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Les signes d'alerte</h3>
+                <p class="blog-excerpt">Contactez-nous immédiatement en cas de douleur pulsatile l'empêchant de dormir,
+                  d'abcès dentaire (gonflement de la joue ou de la gencive), de saignement abondant suite à une
+                  chirurgie, ou de dent expulsée ou cassée après un choc.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card fade-up" data-category="esthetique">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Esthétique</span>
+                <h3 class="blog-title">Blanchiment dentaire : ce qu'il faut savoir</h3>
+                <p class="blog-excerpt">Les techniques d'éclaircissement dentaire permettent de redonner de l'éclat à
+                  votre sourire. Découvrons ensemble les méthodes...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
+              </div>
+            </div>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Méthodes sûres</h3>
+                <p class="blog-excerpt">L'éclaircissement professionnel se réalise au fauteuil ou à l'aide de gouttières
+                  sur mesure à domicile. Le praticien utilise un gel à base de peroxyde strictement dosé pour éclaircir
+                  l'émail de manière sécurisée et durable, sans altérer la dent.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card fade-up" data-category="soins">
+          <div class="blog-card-inner">
+            <div class="blog-card-front">
+              <div class="blog-card-content">
+                <span class="blog-tag">Soins</span>
+                <h3 class="blog-title">Les dents de sagesse : extraction nécessaire ?</h3>
+                <p class="blog-excerpt">Les troisièmes molaires peuvent parfois manquer de place ou causer des
+                  infections. Quand est-il indispensable de les extraire...</p>
+                <a href="#" class="blog-link">Lire la suite <span class="arrow">→</span></a>
+              </div>
+            </div>
+            <div class="blog-card-back">
+              <div class="blog-card-content">
+                <h3 class="blog-title">Indications chirurgicales</h3>
+                <p class="blog-excerpt">L'extraction est vivement recommandée si les dents de sagesse sont sévèrement
+                  cariées, causent des inflammations répétitives de la gencive (péricoronarite) ou risquent d'abîmer et
+                  de déplacer les dents adjacentes par manque d'espace.</p>
+                <a href="#" class="blog-link-back"><span class="arrow">←</span> Retour</a>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- 10. CONTACT -->
+  <section class="section" id="contact" style="background:#fff;">
+    <div class="container contact-grid">
+      <div class="contact-info fade-up">
+        <h2 class="section__title" style="text-align:left;">Nous contacter</h2>
+        <p style="color:var(--color-text-light); font-size:1.125rem;">N'hésitez pas à nous envoyer un message pour tout
+          renseignement. <strong>Pour une urgence vitale, composez le 15.</strong></p>
+
+        <div
+          style="background-color:rgba(211, 47, 47, 0.1); border-left:4px solid var(--color-error); padding:1rem; border-radius:0 8px 8px 0; font-size:0.9rem; margin-bottom:2rem;">
+          <p style="margin:0;">⚠️ <strong>Ce formulaire ne remplace pas la prise de RDV.</strong> Pour un rendez-vous,
+            privilégiez Doctolib.</p>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact__icon"><i class="fas fa-calendar-check"></i></div>
+          <div>
+            <h4 style="margin:0;">Doctolib</h4>
+            <a href="https://www.doctolib.fr/dentiste/vandoeuvre-les-nancy/   -el-omri" target="_blank"
+              rel="noopener noreferrer">Rendez-vous en ligne</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact__icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4 style="margin:0;">Téléphone</h4>
+            <a href="tel:+33372472132">03 72 47 21 32</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <form id="contactForm" novalidate>
+          <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div>
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" name="prenom" required>
+            </div>
+            <div>
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone">
+          </div>
+          <div class="form-group">
+            <label for="motif">Motif de contact *</label>
+            <select id="motif" name="motif" required>
+              <option value="" disabled selected>Sélectionnez un motif...</option>
+              <option value="premiere">Première consultation</option>
+              <option value="urgence">Urgence</option>
+              <option value="renseignements">Renseignements</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:1.5rem;">
+            <input type="checkbox" id="rgpd" name="rgpd" required style="width:auto; margin-top:0.25rem;">
+            <label for="rgpd" style="font-size:0.85rem; color:var(--color-text-light);">J'accepte que mes données soient
+              utilisées pour me recontacter.*</label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer la demande</button>
+          <div class="form-message" id="formMessage"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <i class="fas fa-tooth"></i>
-            <span>[Nom du Cabinet]</span>
-          </div>
-          <p class="footer-description">
-            Cabinet dentaire moderne à [Ville]. Soins de qualité dans un environnement rassurant pour toute la famille.
-          </p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Doctolib"><i class="fas fa-calendar-check"></i></a>
-          </div>
+    <div class="container footer-content fade-up">
+      <div>
+        <div class="footer-logo">
+          <i class="fas fa-tooth"></i> Dr [Nom]
         </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Horaires</h3>
-          <ul class="footer-links">
-            <li><span>Lun–Ven : 9h–12h, 14h–19h</span></li>
-            <li><span>Samedi : 9h–12h</span></li>
-            <li><span><strong>Dimanche : Fermé</strong></span></li>
-            <li><span><i class="fas fa-exclamation-triangle"></i> Urgences : même jour</span></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Navigation</h3>
-          <ul class="footer-links">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#services">Nos services</a></li>
-            <li><a href="prestations.html">Tarifs & Formules</a></li>
-            <li><a href="#temoignages">Avis patients</a></li>
-            <li><a href="#contact">Rendez-vous</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="footer-title">Contact</h3>
-          <ul class="footer-links">
-            <li><span><i class="fas fa-phone"></i> +33 X XX XX XX XX</span></li>
-            <li><span><i class="fas fa-envelope"></i> contact@cabinet.fr</span></li>
-            <li><span><i class="fas fa-map-marker-alt"></i> [Adresse], [Ville]</span></li>
-          </ul>
-        </div>
+        <p class="footer-description">Chirurgien-dentiste</p>
+        <p style="font-size:0.85rem; opacity:0.7;">Inscrit au tableau de l'Ordre des chirurgiens-dentistes de
+          Meurthe-et-Moselle.</p>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 [Nom du Cabinet]. Tous droits réservés. |
-          <a href="#">Mentions légales</a> |
-          <a href="#">Politique de confidentialité</a>
-        </p>
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#soins">Soins pratiqués</a></li>
+          <li><a href="#tarifs">Honoraires</a></li>
+          <li><a href="#faq">Questions fréquentes</a></li>
+          <li><a href="#blog">Conseils santé</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Coordonnées</h4>
+        <p style="font-size:0.9rem; margin-bottom:0.5rem; opacity:0.8;">Cabinet Dentaire de Montplaisir<br>166 Ave du
+          Général Leclerc<br>54500 Vandœuvre-lès-Nancy</p>
+        <a href="tel:+33372472132" style="font-size:1.1rem; color:var(--color-primary); font-weight:600;">03 72 47 21
+          32</a>
+        <br><br>
+        <a href="https://www.doctolib.fr/dentiste/vandoeuvre-les-nancy/   -el-omri" target="_blank"
+          rel="noopener noreferrer"
+          style="background:#fff; color:var(--color-text); padding:0.5rem 1rem; border-radius:4px; font-size:0.85rem; font-weight:600; text-decoration:none;">Rendez-vous
+          Doctolib</a>
+      </div>
+      <div>
+        <h4 class="footer-title">Informations</h4>
+        <p class="deonto-text">Conformément à l'article R.4127-215 du Code de la santé publique et au Code de
+          déontologie des chirurgiens-dentistes, ce site se limite à la présentation d'informations objectives. Aucune
+          publicité n'y figure.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container"
+        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <span>© 2026 Cabinet Dentaire de Montplaisir. Tous droits réservés.</span>
+        <span>En cas d'urgence hors horaires, contactez le <strong
+            style="color:var(--color-primary); font-size:1rem;">15</strong> ou l'hôpital de Nancy.</span>
       </div>
     </div>
   </footer>
 
-  <!-- Script -->
+  <!-- Scripts -->
+  <script src="js/faq.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/blog.js"></script>
   <script src="script.js"></script>
 </body>
 

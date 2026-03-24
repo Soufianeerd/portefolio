@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/models/salaire.dart';
-import '../core/models/calcul.dart';
-import '../utiles/extensions.dart';
+import '../core/salary_calculator.dart';
+// Removed extension since standard dart double.tryParse replaces it.
 
 class BrutNetScreen extends StatefulWidget {
   const BrutNetScreen({super.key});
@@ -87,9 +87,7 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
 
   void _changeYear(int delta) => _initAnnee(_annee + delta);
 
-  /// Convertit le texte du controller en double
-  /// Utilise l'extension doubleValue qui gère . et , comme Swift
-  double _parse(TextEditingController c) => c.text.doubleValue;
+  double _parse(TextEditingController c) => double.tryParse(c.text.replaceAll(',', '.')) ?? 0.0;
 
   Future<void> _showInfo(String msg) async {
     await showDialog<void>(
@@ -119,7 +117,7 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
     salaire.dBrut = _parse(_brutCtrl);
     salaire.iclasse = _classeImpots;
     salaire.bCalculCI = _bCalculCI;
-    salaire.bCalculCIE = _bCalculCIE;
+    // salaire.bCalculCIE n'existe plus dans le modèle
     salaire.bCalculCIM = _bCalculCIM;
     salaire.swTxImpots = _swTxImpots;
     salaire.dTxImpot = _parse(_txImpotsCtrl);
@@ -132,8 +130,8 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
     salaire.dTxASAC = _parse(_txAACtrl);
     if (salaire.dTxASAC == 0) salaire.dTxASAC = 0.75;
 
-    final calcul = Calcul();
-    final ok = calcul.calculBrutNet(voSalaire: salaire);
+    final calcul = SalaryCalculator();
+    final ok = calcul.calculBrutNet(salaire);
 
     if (ok) {
       Navigator.of(context).pushNamed('/result', arguments: salaire);
@@ -151,50 +149,63 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 8),
             // --- Carte Configuration (Année, Mois) ---
             _buildCard(
-              title: 'Configuration',
-              icon: Icons.settings,
-              color: Colors.blueGrey,
+              title: 'Configuration Fiscale',
+              icon: Icons.tune,
+              color: const Color(0xFF6A359C),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Année fiscale : ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey.shade700)),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.remove_circle_outline),
-                          onPressed: () => _changeYear(-1),
-                        ),
-                        Text('$_annee', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                        IconButton(
-                          icon: const Icon(Icons.add_circle_outline),
-                          onPressed: () => _changeYear(1),
-                        ),
-                      ],
+                    Text('Année', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.grey.shade700)),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF9FAFB),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.grey.shade200),
+                      ),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.remove, size: 20),
+                            color: const Color(0xFF6A359C),
+                            onPressed: () => _changeYear(-1),
+                          ),
+                          Text('$_annee', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                          IconButton(
+                            icon: const Icon(Icons.add, size: 20),
+                            color: const Color(0xFF6A359C),
+                            onPressed: () => _changeYear(1),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Mois calcul : ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey.shade700)),
-                    DropdownButtonHideUnderline(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                    Text('Mois calcul', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.grey.shade700)),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF9FAFB),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.grey.shade200),
+                      ),
+                      child: DropdownButtonHideUnderline(
                         child: DropdownButton<int>(
                           value: _moisCalcul,
+                          style: const TextStyle(color: Color(0xFF1F2937), fontWeight: FontWeight.w600, fontSize: 14),
+                          icon: const Icon(Icons.keyboard_arrow_down, color: Color(0xFF6A359C)),
                           items: const [
-                            DropdownMenuItem(value: 1, child: Text('Janvier (1)')),
-                            DropdownMenuItem(value: 4, child: Text('Avril (4)')),
-                            DropdownMenuItem(value: 5, child: Text('Mai (5)')),
-                            DropdownMenuItem(value: 9, child: Text('Septembre (9)')),
+                            DropdownMenuItem(value: 1, child: Text('Janvier')),
+                            DropdownMenuItem(value: 4, child: Text('Avril')),
+                            DropdownMenuItem(value: 5, child: Text('Mai')),
+                            DropdownMenuItem(value: 9, child: Text('Septembre')),
                           ],
                           onChanged: (_annee >= 2024 && _annee <= 2026)
                               ? null
@@ -210,26 +221,31 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
             // --- Carte Salaire & Déductions ---
             _buildCard(
               title: 'Salaire & Déductions',
-              icon: Icons.payments_outlined,
-              color: Colors.indigo,
+              icon: Icons.account_balance_wallet_outlined,
+              color: const Color(0xFF00A2D3),
               children: [
                 TextField(
                   controller: _brutCtrl,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
-                  decoration: const InputDecoration(
-                    labelText: 'Salaire brut mensuel (€)',
-                    prefixIcon: Icon(Icons.euro),
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Color(0xFF00A2D3)),
+                  decoration: InputDecoration(
+                    labelText: 'Salaire brut mensuel',
+                    prefixIcon: const Icon(Icons.euro, color: Color(0xFF00A2D3)),
+                    fillColor: const Color(0xFF00A2D3).withOpacity(0.05),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Color(0xFF00A2D3), width: 2),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
                       child: TextField(
                         controller: _hmcCtrl,
                         keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                        decoration: const InputDecoration(labelText: 'HMC', prefixIcon: Icon(Icons.hourglass_empty)),
+                        decoration: const InputDecoration(labelText: 'HMC', prefixIcon: Icon(Icons.access_time)),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -242,11 +258,11 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
                 TextField(
                   controller: _dedCtrl,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(labelText: 'Déductions (Frais, etc.)', prefixIcon: Icon(Icons.remove_circle_outline)),
+                  decoration: const InputDecoration(labelText: 'Déductions', prefixIcon: Icon(Icons.money_off)),
                 ),
               ],
             ),
@@ -255,9 +271,10 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
             _buildCard(
               title: 'Fiscalité & Crédits',
               icon: Icons.account_balance,
-              color: Colors.deepOrange,
+              color: const Color(0xFFE84C3D), // Un orange/rouge doux pour trancher
               children: [
-                const Text('Classe d\'impôt', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Classe d\'impôt', style: TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 8),
                 DropdownButtonFormField<int>(
                   value: [100, 200, 300, 400].contains(_classeImpots) ? _classeImpots : 100,
                   decoration: const InputDecoration(prefixIcon: Icon(Icons.people_outline)),
@@ -269,55 +286,75 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
                   ],
                   onChanged: (v) => setState(() => _classeImpots = v ?? _classeImpots),
                 ),
-                const SizedBox(height: 12),
-                SwitchListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Taux d\'impôt personnalisé (%)'),
-                  subtitle: Text(_swTxImpots ? 'Saisie manuelle du taux' : 'Calculé selon barèmes officiels', style: const TextStyle(fontSize: 12)),
-                  value: _swTxImpots,
-                  onChanged: (v) => setState(() => _swTxImpots = v),
-                ),
-                if (_swTxImpots)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: TextField(
-                      controller: _txImpotsCtrl,
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                      decoration: const InputDecoration(labelText: 'Taux direct en %', prefixIcon: Icon(Icons.percent)),
-                    ),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade50,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.grey.shade200),
                   ),
-                const SizedBox(height: 12),
-                const Divider(),
-                const Text('Crédits d\'impôts applicables', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Column(
+                    children: [
+                      SwitchListTile(
+                        contentPadding: EdgeInsets.zero,
+                        activeColor: const Color(0xFF6A359C),
+                        title: const Text('Taux d\'impôt personnalisé (%)', style: TextStyle(fontWeight: FontWeight.w600)),
+                        subtitle: Text(_swTxImpots ? 'Saisie manuelle' : 'Calcul automatique', style: const TextStyle(fontSize: 12)),
+                        value: _swTxImpots,
+                        onChanged: (v) => setState(() => _swTxImpots = v),
+                      ),
+                      if (_swTxImpots)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: TextField(
+                            controller: _txImpotsCtrl,
+                            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            decoration: const InputDecoration(labelText: 'Taux direct en %', prefixIcon: Icon(Icons.percent)),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text('Crédits d\'impôts applicables', style: TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 8),
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
+                  activeColor: const Color(0xFF6A359C),
                   title: const Text('Crédit Impôt (CISSM/CI)'),
                   value: _bCalculCI,
                   onChanged: (v) => setState(() => _bCalculCI = v ?? false),
+                  controlAffinity: ListTileControlAffinity.leading,
                 ),
                 if (_annee <= 2023)
                   CheckboxListTile(
                     contentPadding: EdgeInsets.zero,
+                    activeColor: const Color(0xFF6A359C),
                     title: const Text('CIE (Énergie)'),
                     value: _bCalculCIE,
                     onChanged: (v) => setState(() => _bCalculCIE = v ?? false),
+                    controlAffinity: ListTileControlAffinity.leading,
                   ),
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
+                  activeColor: const Color(0xFF6A359C),
                   title: const Text('CIM (Mobilité)'),
                   value: _bCalculCIM,
                   onChanged: (v) => setState(() => _bCalculCIM = v ?? false),
+                  controlAffinity: ListTileControlAffinity.leading,
                 ),
               ],
             ),
 
             // --- Carte Charges Patronales ---
             _buildCard(
-              title: 'Charges Patronales (Employeur)',
+              title: 'Charges Patronales',
               icon: Icons.business,
               color: Colors.blueGrey,
               children: [
-                const Text('Classe de Mutualité', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Classe de Mutualité', style: TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 8),
                 DropdownButtonFormField<int>(
                   value: [0, 1, 2, 3].contains(_classeMutu) ? _classeMutu : 0,
                   items: const [
@@ -335,7 +372,7 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Bonus/Risque', style: TextStyle(fontWeight: FontWeight.bold)),
+                          const Text('Bonus/Risque', style: TextStyle(fontWeight: FontWeight.w600)),
                           const SizedBox(height: 8),
                           DropdownButtonFormField<int>(
                             value: [1, 2, 3, 4].contains(_classeBonus) ? _classeBonus : 1,
@@ -355,12 +392,12 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Taux AA (%)', style: TextStyle(fontWeight: FontWeight.bold)),
+                          const Text('Taux AA (%)', style: TextStyle(fontWeight: FontWeight.w600)),
                           const SizedBox(height: 8),
                           TextField(
                             controller: _txAACtrl,
                             keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                            decoration: const InputDecoration(contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+                            decoration: const InputDecoration(contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 18)),
                           ),
                         ],
                       ),
@@ -368,35 +405,53 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
                   ],
                 ),
                 const SizedBox(height: 16),
+                const Text('Taux Santé Travail (SAT)', style: TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 8),
                 TextField(
                   controller: _txSTCtrl,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(labelText: 'Taux Santé Travail (SAT)', prefixIcon: Icon(Icons.health_and_safety_outlined)),
+                  decoration: const InputDecoration(prefixIcon: Icon(Icons.health_and_safety_outlined)),
                 ),
               ],
             ),
 
             const SizedBox(height: 24),
             // --- Bouton Calculer ---
-            ElevatedButton(
-              onPressed: _onCalculer,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6366F1),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                   Icon(Icons.analytics_outlined),
-                   SizedBox(width: 12),
-                   Text('GÉNÉRER LA SIMULATION'),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF6A359C), Color(0xFF00A2D3)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF6A359C).withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
                 ],
               ),
+              child: ElevatedButton(
+                onPressed: _onCalculer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     Icon(Icons.analytics_outlined, size: 24),
+                     SizedBox(width: 12),
+                     Text('GÉNÉRER LA SIMULATION', style: TextStyle(fontSize: 16, letterSpacing: 1.2)),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -409,25 +464,45 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
     required Color color,
     required List<Widget> children,
   }) {
-    return Card(
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.02),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(icon, color: color, size: 20),
-                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(icon, color: color, size: 22),
+                ),
+                const SizedBox(width: 14),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: color),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: color),
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Divider(color: Colors.grey.shade100, thickness: 1.5),
             ),
             ...children,
           ],
@@ -435,5 +510,4 @@ class _BrutNetScreenState extends State<BrutNetScreen> {
       ),
     );
   }
-}
 }

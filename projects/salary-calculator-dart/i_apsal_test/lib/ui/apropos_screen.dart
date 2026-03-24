@@ -66,7 +66,7 @@ class AproposScreen extends StatelessWidget {
 
             
               Image.asset(
-                'lib/assets/icons/logo_Proximus.png',
+                'lib/assets/icons/logo_proximus_nxt.png',
                 width: 240,
                 fit: BoxFit.contain,
               ),

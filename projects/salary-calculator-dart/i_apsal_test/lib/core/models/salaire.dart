@@ -1,124 +1,118 @@
+/// Modèle de données représentant un salaire avec tous ses paramètres de calcul
+/// et les montants de cotisations/impôts qui en découlent.
 class Salaire {
-  int iAnnee = -1;
-  int iMois = -1;
-  double dHMC = 0;
-  int iCotis = -1;
-  double dBrut = 0;
-  double dNet = 0;
-  double dAvNat = 0;
-  double dDeduc = 0;
-  int iclasse = -1;
-  double dimposable = 0;
-  int iTxImpot = -1;
-  bool swTxImpots = false;
-  double dTxImpot = 0;
-  bool bCalculCI = false;
-  bool _bCalculCIE = false;
-  bool bCalculCIM = false;
+  // Paramètres d'entrée
+  int iAnnee;
+  int iMois;
+  double dHMC; // Heures Mensuelles Contractuelles
+  double dBrut; // Salaire brut
+  double dAvNat; // Avantages en nature
+  double dDeduc; // Déductions
+  int iclasse; // Classe d'impôt (100, 200, 300)
+  int iMutualite; // Classe de mutualité (1, 2, 3, 4)
+  int iBonus;
+  
+  // Options de calcul
+  int iCotis;
+  bool swTxImpots; // Activer un taux d'impôt personnalisé
+  double dTxImpot; // Taux d'impôt personnalisé
+  int iTxImpot;
+  bool bCalculCI; // Calculer le Crédit d'Impôt (CI)
+  bool bCalculCIM; // Calculer le Crédit d'Impôt Monoparental (CIM)
 
-  bool get bCalculCIE => _bCalculCIE;
-  set bCalculCIE(bool value) {
-    _bCalculCIE = value;
-  }
-  int iMutualite = 0; // 0=Mutu1, 1=Mutu2, 2=Mutu3, 3=Mutu4 (conforme Swift)
-  double dTxSAT = 0;
-  double dTxASAC = 0;
-  int iBonus = 1;
-  double dTxCMP = 0;
+  // Variables intermédiaires et de résultat
+  double dNet;
+  double dimposable; // Montant imposable
+  
+  // Taux applicables
+  double dTxSAT;
+  double dTxASAC;
+  double dTxCMP;
+  
+  // Cotisations salariales
+  double dCotisCMS; // Caisse Maladie Santé
+  double dCotisCME; // Caisse Maladie Espèces
+  double dCotisCMP; // Caisse Maladie Pension
+  double dCotisSurprime;
+  double dCotisDep; // Cotisation Dépendance
+  
+  // Cotisations patronales
+  double dCotisSecuPatr;
+  double dCotisMutuPatr;
+  double dCotisASACPatr; // Assurance Accident
+  double dCotisSATPatr; // Santé au travail
+  double dCoutTotPatr; // Coût total employeur
+  
+  // Impôts et crédits
+  double dImpot;
+  double dImpotEQBT;
+  double dCI; // Crédit d'Impôt
+  double dCIM; // Crédit d'Impôt Monoparental
+  double dCICO2; // Crédit d'Impôt CO2
+  double dCIC; // Crédit d'Impôt Conjoncture
+  double dCIE; // Crédit d'Impôt Énergie
+  double dCISSM; // Crédit d'Impôt Salaire Social Minimum
 
-  double dCotisCMS = 0;
-  double dCotisCME = 0;
-  double dCotisCMP = 0;
-  double dCotisSurprime = 0;
-  double dCotisDep = 0;
+  Salaire({
+    this.iAnnee = -1,
+    this.iMois = -1,
+    this.dHMC = 0,
+    this.dBrut = 0,
+    this.dAvNat = 0,
+    this.dDeduc = 0,
+    this.iclasse = -1,
+    this.iMutualite = 1,
+    this.iBonus = 1,
+    this.iCotis = -1,
+    this.swTxImpots = false,
+    this.dTxImpot = 0,
+    this.iTxImpot = -1,
+    this.bCalculCI = false,
+    this.bCalculCIM = false,
+    this.dNet = 0,
+    this.dimposable = 0,
+    this.dTxSAT = 0,
+    this.dTxASAC = 0,
+    this.dTxCMP = 0,
+    this.dCotisCMS = 0,
+    this.dCotisCME = 0,
+    this.dCotisCMP = 0,
+    this.dCotisSurprime = 0,
+    this.dCotisDep = 0,
+    this.dCotisSecuPatr = 0,
+    this.dCotisMutuPatr = 0,
+    this.dCotisASACPatr = 0,
+    this.dCotisSATPatr = 0,
+    this.dCoutTotPatr = 0,
+    this.dImpot = 0,
+    this.dImpotEQBT = 0,
+    this.dCI = 0,
+    this.dCIM = 0,
+    this.dCICO2 = 0,
+    this.dCIC = 0,
+    this.dCIE = 0,
+    this.dCISSM = 0,
+  });
 
-  double dCotisSecuPatr = 0;
-  double dCotisMutuPatr = 0;
-  double dCotisASACPatr = 0;
-  double dCotisSATPatr = 0;
-  double dCoutTotPatr = 0;
-
-  double dImpot = 0;
-  double dImpotEQBT = 0;
-  double dCI = 0;
-  double dCIM = 0;
-  double dCICO2 = 0;
-  double dCIC = 0;
-  double dCIE = 0;
-  double dCISSM = 0;
-
-  Salaire() {
-    iAnnee = -1;
-    dHMC = 0;
-    dimposable = 0;
-    iclasse = -1;
-    iMutualite = 0;
-    iBonus = 1;
-    dBrut = 0;
-    dAvNat = 0;
-    dDeduc = 0;
-    dCI = 0;
-    dCICO2 = 0;
-    dCIE = 0;
-    dCIC = 0;
-    dCISSM = 0;
-    dCIM = 0;
-    _bCalculCIE = false;
-    dNet = 0;
-    dCotisCMS = 0;
-    dCotisCME = 0;
-    dTxCMP = 0;
-    dCotisCMP = 0;
-    dCotisSurprime = 0;
-    dCotisDep = 0;
-    dImpot = 0;
-    dTxImpot = 0;
-    swTxImpots = false;
-    dImpotEQBT = 0;
-    dCotisSecuPatr = 0;
-    dCotisMutuPatr = 0;
-    dCotisASACPatr = 0;
-    dCotisSATPatr = 0;
-    dTxSAT = 0;
-    dTxASAC = 0;
-    dCoutTotPatr = 0;
-    iCotis = -1;
-    iTxImpot = -1;
-    bCalculCI = false;
-    bCalculCIM = false;
-  }
-
-  /// Retourne le brut total (incl. avantages en nature)
+  /// Retourne le total brut (Brut + Avantages en nature)
   double totalBrut() {
     return dBrut + dAvNat;
   }
 
-  /// Parts salariales
+  /// Retourne le total des parts salariales (CMS, CME, CMP)
   double partsTrav() {
     return dCotisCMS + dCotisCME + dCotisCMP;
   }
 
-  /// Parts patronales (cotisations à la charge de l'employeur)
-  /// = Parts salariales + SAT + ASAC + Mutualité
-  /// Conforme à PartsPtronales() Swift
-  double partsPatronales() {
-    return dCotisCMS +
-        dCotisCME +
-        dCotisCMP +
-        dCotisMutuPatr +
-        dCotisASACPatr +
-        dCotisSATPatr;
+  /// Retourne le total des parts patronales (Sécu, Mutualité, Accident, Santé)
+  /// Note: Le code original Swift inclut les parts salariales dans cette méthode, 
+  /// ce qui semble être une erreur conceptuelle mais nous reproduisons le comportement
+  double partsPtronales() {
+    return dCotisCMS + dCotisCME + dCotisCMP + dCotisSecuPatr + dCotisMutuPatr + dCotisASACPatr + dCotisSATPatr;
   }
 
-  /// Coût total employeur (brut + cotisations patronales)
-  /// Conforme à CoutPtronales() Swift
-  double coutPatronales() {
-    return dBrut +
-        dCotisCMS +
-        dCotisCME +
-        dCotisCMP +
-        dCotisMutuPatr +
-        dCotisASACPatr +
-        dCotisSATPatr;
+  /// Retourne le coût total pour le patron (Brut + Cotisations Patronales)
+  double coutPtronales() {
+    return dBrut + dCotisCMS + dCotisCME + dCotisCMP + dCotisSecuPatr + dCotisMutuPatr + dCotisASACPatr + dCotisSATPatr;
   }
 }

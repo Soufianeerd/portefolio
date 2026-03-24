@@ -58,9 +58,9 @@ void main() {
     // SAT=0.11%→3.85 | ASAC=0.70%→24.50 | Mutu1=0.70%→24.50
     // Parts patronales = CMS+CME+CMP + SAT+ASAC+Mutu = 404.25 + 52.85 = 457.10
     test('Cotisations patronales (logique Swift) = 457.10',
-        () => expect(s.partsPatronales(), equals(457.10)));
+        () => expect(s.partsPtronales(), equals(457.10)));
     test('Coût total employeur (logique Swift) = 3957.10',
-        () => expect(s.coutPatronales(), equals(3957.10)));
+        () => expect(s.coutPtronales(), equals(3957.10)));
 
     // ---- Parts patronales détaillées ----
     test('SAT patronal = 3.85', () => expect(s.dCotisSATPatr, equals(3.85)));
