@@ -1,1 +1,0 @@
-Icône ou illustration événement

@@ -1,1 +1,0 @@
-Logo du site (format .png transparent recommandé). Nommez le fichier `logo-sina.png` pour remplacer le texte/logo par défaut.

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage 2A - Carte Grise et Mécanique en Ligne</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- Stripe.js v3 (Payment frontend API) -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <!-- 1. NAVIGATION -->
+    <nav class="nav-bar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">GARAGE 2A</a>
+            <div class="nav-links">
+                <a href="#simulateur">Carte Grise</a>
+                <a href="#garage">Services</a>
+                <a href="#code-route">Code de la route</a>
+                <a href="#contact">Contact</a>
+                <a href="tel:0383211002" class="btn btn-primary" style="margin-left: 20px;">📞 Vite un RDV</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO : Simulateur Carte Grise -->
+    <section class="hero" id="hero">
+        <div class="hero-left">
+            <h1 style="font-size: 3rem; margin-bottom: 20px; line-height: 1.1;">Vos démarches Carte Grise sans stress.
+            </h1>
+            <p class="mb-4 mt-4" style="font-size: 1.2rem; color: var(--c-muted);">Calculez le prix de votre certificat
+                d'immatriculation en 3 clics et déposez votre dossier 100% en ligne. Accueil officiel habilité par le
+                Ministère de l'Intérieur.</p>
+            <a href="#simulateur" class="btn btn-primary"
+                onclick="window.scrollTo(0, document.getElementById('form-simulateur').offsetTop - 100);">Calculer ma
+                carte grise</a>
+            <a href="#garage" class="btn btn-outline" style="margin-left: 10px;">Nos services mécaniques</a>
+        </div>
+
+        <div class="hero-right" id="simulateur">
+            <!-- Simulateur Block -->
+            <div class="card" style="border-top: 4px solid var(--c-red);">
+                <h3 style="font-size:1.5rem; margin-bottom: 20px;">Estimer le prix</h3>
+                <form id="form-simulateur" class="text-left" style="text-align: left;">
+                    <div class="sim-form-group">
+                        <label for="sim-demarche">Démarche</label>
+                        <select id="sim-demarche" class="sim-form-input" required>
+                            <option value="occasion_fr">Changement de propriétaire (Occasion France)</option>
+                            <option value="occasion_import">Immatriculation véhicule étranger</option>
+                            <option value="duplicata">Duplicata (perte/vol)</option>
+                            <option value="changement_adresse">Changement de domicile</option>
+                        </select>
+                    </div>
+                    <div class="grid-3" style="gap:15px; grid-template-columns: 1fr 1fr 1fr;">
+                        <div class="sim-form-group">
+                            <label for="sim-dept">Département</label>
+                            <input type="text" id="sim-dept" class="sim-form-input" value="54" placeholder="54"
+                                required>
+                        </div>
+                        <div class="sim-form-group">
+                            <label for="sim-cv">Chevaux (CV)</label>
+                            <input type="number" id="sim-cv" class="sim-form-input" value="5" min="1" required>
+                        </div>
+                        <div class="sim-form-group">
+                            <label for="sim-annee">Année</label>
+                            <input type="number" id="sim-annee" class="sim-form-input" value="2018" placeholder="2018"
+                                required>
+                        </div>
+                    </div>
+                    <div class="sim-form-group">
+                        <label for="sim-energie">Énergie</label>
+                        <select id="sim-energie" class="sim-form-input" required>
+                            <option value="thermique">Thermique (Essence/Diesel)</option>
+                            <option value="hybride">Hybride</option>
+                            <option value="electrique">Électrique (Exonéré)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4"
+                        style="width: 100%; font-size:1.1rem; padding: 15px;">Calculer le tarif officiel</button>
+                    <p class="text-center mt-4" style="font-size: 0.8rem; color: var(--c-muted);">*Calcul basé sur les
+                        grilles tarifaires régionales (ANTS) 2025.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TICKER PROMO -->
+    <div class="ticker" id="ticker">
+        <p>🚗 CARTE GRISE EXPRESS EN LIGNE • 🔧 RÉPARATION MÉCANIQUE GÉNÉRALE GARAGE 2A • 🛠️ CARROSSERIE & PEINTURE A+
+            GLASS • 📖 CODE DE LA ROUTE AUTO/MOTO/BATEAU • 📱 PRISE DE RDV PAR TÉLÉPHONE • 🥇 GARAGE AGRÉÉ 4.9/5 GOOGLE
+        </p>
+    </div>
+
+    <!-- 4. TUNNEL DE COMMANDE COMPLET (Caché sans calcul) -->
+    <section class="section-padding container" id="commande">
+
+        <!-- ================= ÉTAPE 1 : Récap Tarif ================= -->
+        <div id="etape-1" class="card" style="max-width: 600px; margin: 0 auto; border: 2px solid var(--c-gold);">
+            <h2 class="mb-4">✅ Récapitulatif de votre démarche</h2>
+            <h4 id="res-label" style="color: var(--c-muted); margin-bottom: 25px; font-weight: 500;">-</h4>
+
+            <div
+                style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--c-border); padding: 15px 0;">
+                <span>Taxe régionale (Y1)</span>
+                <strong id="res-taxeRegionale">- €</strong>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--c-border); padding: 15px 0;">
+                <span>Frais légaux fixes (ANTS)</span>
+                <strong id="res-fraisFixes">- €</strong>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--c-border); padding: 15px 0;">
+                <span>Frais d'accompagnement (Garage 2A)</span>
+                <strong id="res-fraisService">- €</strong>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; padding: 25px 0; font-family: var(--font-display); font-size: 2rem; color: var(--c-red);">
+                <strong>TOTAL TTC</strong>
+                <strong id="res-totalTTC">- €</strong>
+            </div>
+
+            <div class="mt-4" style="display: flex; gap: 15px;">
+                <button class="btn btn-primary" id="btn-demarrer-demarche" style="flex:1;">📄 Finaliser 100% en
+                    ligne</button>
+                <a href="tel:0383211002" class="btn btn-outline" title="Besoin d'aide ?">📞 FAQ</a>
+            </div>
+        </div>
+
+        <!-- ================= ÉTAPE 2 : Informations Client ================= -->
+        <div id="etape-2" class="card"
+            style="max-width: 600px; margin: 0 auto; display: none; text-align: left; padding: 40px;">
+            <h2 class="mb-4">Dossier Titulaire</h2>
+            <form id="form-dossier">
+                <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="sim-form-group">
+                        <label>Nom de naissance*</label>
+                        <input type="text" name="nom" class="sim-form-input" required>
+                    </div>
+                    <div class="sim-form-group">
+                        <label>Prénom*</label>
+                        <input type="text" name="prenom" class="sim-form-input" required>
+                    </div>
+                </div>
+                <div class="sim-form-group">
+                    <label>E-mail valide*</label>
+                    <input type="email" name="email" class="sim-form-input" required>
+                </div>
+                <div class="sim-form-group">
+                    <label>Numéro de téléphone*</label>
+                    <input type="tel" name="telephone" class="sim-form-input" placeholder="06..." required>
+                </div>
+                <div class="sim-form-group">
+                    <label>Immatriculation du véhicule</label>
+                    <input type="text" name="immatriculation" class="sim-form-input" placeholder="AB-123-CD">
+                </div>
+
+                <hr style="border:none; border-top:1px solid var(--c-border); margin: 30px 0;">
+
+                <h3 class="mb-4">Vos justificatifs numérisés</h3>
+                <p style="font-size: 0.95rem; color: var(--c-muted); margin-bottom: 20px;">
+                    💡 En fonction de votre démarche, veuillez fournir : <br>
+                    • Pièce d'identité lisible (recto/verso)<br>
+                    • Justificatif de domicile récent (-3 mois)<br>
+                    • Certificat de cession & contrôle technique (si applicable)
+                </p>
+                <div
+                    style="border: 2px dashed var(--c-border); padding: 20px; border-radius: var(--r-md); background: var(--c-bg-light); margin-bottom: 30px; text-align:center;">
+                    <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg" class="sim-form-input"
+                        style="border:none; background:transparent;">
+                    <p style="font-size: 0.8rem; color:var(--c-muted); margin-top:5px;">Max 5MB par fichier.</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <button type="button" class="btn btn-outline" id="btn-retour-etape2">← Revoir le tarif</button>
+                    <button type="submit" class="btn btn-primary" id="btn-dossier-submit">Aller au paiement sécurisé
+                        →</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ================= ÉTAPE 3 : Paiement Stripe ================= -->
+        <div id="etape-3" class="card"
+            style="max-width: 600px; margin: 0 auto; display: none; text-align: left; padding: 40px;">
+            <h2 class="mb-4">Paiement Sécurisé</h2>
+            <div
+                style="background: var(--c-bg-light); padding: 20px; border-radius: var(--r-md); margin-bottom: 30px; display: flex; align-items:flex-start; gap: 15px;">
+                <span style="font-size:2rem;">🔒</span>
+                <div>
+                    <strong>Paiement Stripe AES-256</strong>
+                    <p style="font-size: 0.9rem; margin-top:5px; color:var(--c-muted);">Vos données sont chiffrées de
+                        bout en bout. Nous n'avons jamais accès à vos numéros de carte bancaire.</p>
+                </div>
+            </div>
+
+            <div id="stripe-card-element"
+                style="padding: 18px; border: 1px solid var(--c-border); border-radius: var(--r-md); margin-bottom: 30px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.02)">
+                <!-- Stripe Card UI Element (Injected via JS) -->
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btn-payer" onclick="window.payerCG()"
+                style="width: 100%; padding: 18px; font-size:1.1rem; border-radius:30px;">
+                💳 Payer en toute sécurité →
+            </button>
+        </div>
+
+        <!-- ================= ÉTAPE 4 : Confirmation Réussite ================= -->
+        <div id="etape-sucess" class="card text-center"
+            style="max-width: 600px; margin: 0 auto; display: none; padding: 50px 30px;">
+        </div>
+
+    </section>
+
+    <!-- 5. SERVICES MECANIQUE (Garage 2A) -->
+    <section class="section-padding container text-center" id="garage">
+        <h2 class="mb-4">Pôle Mécanique & Pare-brise Garage 2A</h2>
+        <p style="color:var(--c-muted); max-width:600px; margin:0 auto 40px;">Expert en réparation automobile, centre
+            agréé A+ Glass pour tous vos remplacements de vitrage. Franchise remboursée selon conditions.</p>
+
+        <div class="grid-3">
+            <div class="card">
+                <div style="font-size:3rem; margin-bottom:15px;">🔧</div>
+                <h3>Révision complète</h3>
+                <p>Vidange, filtres, plaquettes de freins, recherche de pannes électroniques.</p>
+            </div>
+            <div class="card" style="border: 2px solid var(--c-gold);">
+                <div style="font-size:3rem; margin-bottom:15px;">🚙</div>
+                <h3>Franchise A+ Glass</h3>
+                <p>Jusqu'à 150€ de franchise remboursée sur vos remplacements de pare-brise.</p>
+            </div>
+            <div class="card">
+                <div style="font-size:3rem; margin-bottom:15px;">⚙️</div>
+                <h3>Pneumatiques</h3>
+                <p>Montage, équilibrage 3D, nettoyage jantes complet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CODE DE LA ROUTE (Partenaire Bureau Veritas) -->
+    <section class="section-padding text-center" id="code-route"
+        style="background:var(--c-surface); border-top: 1px solid var(--c-border);">
+        <div class="container">
+            <h2 class="mb-4">Nouveau : Objectif Code de la Route</h2>
+            <p style="max-width:700px; margin:0 auto; font-size:1.1rem;">Sessions d'examen officielles agrées par l'État
+                via Code'n Go (Bureau Veritas). Inscription en 5 minutes sur internet. Présentez-vous librement avec
+                votre pièce d'identité et votre convocation dans nos locaux aménagés.</p>
+
+            <div class="code-grid" style="margin-top: 50px;">
+                <a href="https://codengo.bureauveritas.fr/" target="_blank" rel="noopener" class="code-card">
+                    <span style="font-size:2rem; margin-bottom:10px;">🚗🏍️</span>
+                    Code Auto (B) / Moto (A1/A2)
+                    <span>Réserver ma session (30€) →</span>
+                </a>
+                <a href="https://codengo.bureauveritas.fr/" target="_blank" rel="noopener" class="code-card">
+                    <span style="font-size:2rem; margin-bottom:10px;">⛵🌊</span>
+                    Code Bateau (Côtier / Fluvial)
+                    <span>Inscription candidat libre →</span>
+                </a>
+                <div class="code-card" style="background: var(--c-bg-light); border-color:var(--c-muted);">
+                    <span style="font-size:2rem; margin-bottom:10px;">🚁🏭</span>
+                    Brevet Télé-pilote de Drone
+                    <span style="color:var(--c-muted);">Informations en centre 📞</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT ET LOCALISATION -->
+    <section class="section-padding container text-center" id="contact">
+        <h2 class="mb-4">Informations Pratiques</h2>
+        <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap:50px;">
+            <div class="text-left">
+                <h3>Adresse Garage 2A</h3>
+                <p style="margin: 10px 0 20px;">15 Rue de Nancy<br>54210 Saint-Nicolas-de-Port<br>Meurthe-et-Moselle
+                    (54)</p>
+
+                <h3>Contacts</h3>
+                <p>Téléphone : <a href="tel:0383211002" style="color:var(--c-red); font-weight:bold;">03 83 46 80
+                        80</a><br>Email : garage2a.nancy@gmail.com</p>
+
+                <h3 style="margin-top: 20px;">Horaires</h3>
+                <ul>
+                    <li><strong>Lun - Ven:</strong> 08h30 - 12h00 | 14h00 - 18h30</li>
+                    <li><strong>Samedi:</strong> 09h00 - 12h00 (Service CG & Code uniquement)</li>
+                    <li><strong>Dimanche:</strong> Fermé</li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <!-- Zone Iframe Google Maps dynamique -->
+                <div
+                    style="background:#eee; height:300px; width:100%; border-radius:var(--r-md); overflow:hidden; display:flex; border: 1px solid var(--c-border);">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.5459392215!2d6.3023419!3d48.6293679!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794a3a6b5c3b9ab%3A0x6bba46c5a3d0cbdf!2s15%20Rue%20de%20Nancy%2C%2054210%20Saint-Nicolas-de-Port!5e0!3m2!1sfr!2sfr"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background:var(--c-bg); color:white; padding:40px 0; text-align:center;">
+        <div class="container">
+            <h3 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:20px;">GARAGE 2A</h3>
+            <p style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Service habilité SIV - Réparation multi-marques -
+                Agréments Qualité</p>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:20px 0;">
+            <p style="color:rgba(255,255,255,0.4); font-size:0.8rem;">&copy; 2025 Garage 2A - Conception Architecture
+                MVP par Antigravity - Tous droits réservés. Mentions Légales | CGV | Politique de Confidentialité</p>
+        </div>
+    </footer>
+
+    <!-- Scripts Logiques JS du frontend MVC -->
+    <script src="assets/js/simulateur.js"></script>
+    <script src="assets/js/formulaire.js"></script>
+    <script src="assets/js/paiement.js"></script>
+</body>
+
+</html>

@@ -1,1 +1,0 @@
-Photos de la catégorie Portrait. Remplacez ou ajoutez `photo-1.jpg`, etc.

@@ -1,1 +1,0 @@
-Photo de couverture principale. Nommez le fichier `hero-bg.jpg` pour qu'il s'affiche automatiquement (ou modifiez index.html).

@@ -1,0 +1,73 @@
+// schema.prisma
+// Schéma de Base de données PostgreSQL pour Garage 2A via Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modèle principal de dossier "Carte Grise" ou "Demande Client"
+model Demande {
+  id              String      @id @default(cuid())
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  // 1. Infos client
+  nom             String
+  prenom          String
+  email           String
+  telephone       String
+  immatriculation String?
+
+  // 2. Métadonnées du Véhicule / Démarche
+  typeDemarche    String      // Ex: "occasion_fr", "duplicata", "neuf"
+  departement     String
+  cv              Int
+  energie         String
+  annee           Int
+
+  // 3. Montants calculés
+  taxeRegionale   Decimal     @db.Decimal(10, 2)
+  totalTaxes      Decimal     @db.Decimal(10, 2)
+  totalTTC        Decimal     @db.Decimal(10, 2)
+
+  // Liaisons (Documents)
+  documents       Document[]
+
+  // 4. Informations de paiement Stripe
+  stripeIntentId  String?     @unique
+  paiementStatut  String      @default("en_attente") // "en_attente" | "paye" | "echoue" | "rembourse"
+  paiementDate    DateTime?
+
+  // 5. Administration
+  statutDossier   String      @default("recu") // "recu" | "documents_manquants" | "en_cours_ants" | "termine"
+
+  // 6. Rendez-vous physiques optionnels
+  rdvDate         DateTime?
+  rdvConfirme     Boolean     @default(false)
+}
+
+// Table de liaison des justificatifs (Hébergés sur Cloudinary privé)
+model Document {
+  id          String   @id @default(cuid())
+  demandeId   String
+  demande     Demande  @relation(fields: [demandeId], references: [id], onDelete: Cascade)
+  
+  type        String   // "cni", "justif_domicile", "cession", "ct", "permis"
+  url         String   // URL Cloudinary signée privée
+  publicId    String   // Identifiant de référence côté Cloudinary (ex: pour la suppression)
+  uploadedAt  DateTime @default(now())
+}
+
+// Gestion libre des créneaux
+model Creneau {
+  id          String   @id @default(cuid())
+  date        DateTime
+  duree       Int      @default(30) // durée en minutes
+  disponible  Boolean  @default(true)
+  demandeId   String?  // nullable
+}

@@ -1,1 +1,0 @@
-Photo de présentation (portrait). Nommez le fichier `portrait-yassine.jpg`. Vous pouvez utiliser un .png sans fond si désiré.

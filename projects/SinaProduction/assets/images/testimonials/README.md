@@ -1,1 +1,0 @@
-Photos de profil des clients pour les témoignages. Nommez le fichier `client-1.jpg`.

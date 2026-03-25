@@ -1,0 +1,235 @@
+/* frontend/assets/css/main.css */
+:root {
+  /* Couleurs */
+  --c-bg:        #0d0d0f;
+  --c-bg-light:  #f5f4f0;
+  --c-surface:   #ffffff;
+  --c-red:       #e63030;
+  --c-red-dark:  #b32020;
+  --c-red-light: #ff4444;
+  --c-green:     #1a8a4a;
+  --c-green-bg:  #f0faf5;
+  --c-gold:      #c9952a;
+  --c-text:      #0d0d0f;
+  --c-muted:     #6b6860;
+  --c-border:    #e8e6e0;
+
+  /* Typographie */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Spacing */
+  --sp-xs: 8px;   --sp-sm: 16px;
+  --sp-md: 24px;  --sp-lg: 48px;
+  --sp-xl: 80px;
+
+  /* Effets */
+  --r-sm: 8px;   --r-md: 12px;  --r-lg: 20px;
+  --sh-sm: 0 2px 12px rgba(0,0,0,0.06);
+  --sh-md: 0 4px 24px rgba(0,0,0,0.10);
+  --sh-lg: 0 12px 48px rgba(0,0,0,0.16);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--c-bg-light);
+    color: var(--c-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--sp-md);
+}
+
+.section-padding {
+    padding: var(--sp-xl) 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--c-red);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--c-red-dark);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--c-border);
+    color: var(--c-text);
+}
+
+.btn-outline:hover {
+    border-color: var(--c-text);
+}
+
+/* Navigation */
+.nav-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: var(--c-bg);
+    color: white;
+    padding: var(--sp-sm) 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: var(--sp-md);
+}
+
+/* Sections */
+.hero {
+    margin-top: 80px; /* offset nav */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-lg);
+    background-color: var(--c-surface);
+    padding: var(--sp-xl) var(--sp-md);
+    border-bottom: 1px solid var(--c-border);
+}
+
+.ticker {
+    background-color: var(--c-red);
+    color: white;
+    padding: var(--sp-xs) 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker p {
+    display: inline-block;
+    animation: ticker-scroll 15s linear infinite;
+    font-weight: bold;
+}
+
+@keyframes ticker-scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Grids */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-md);
+}
+
+.card {
+    background: var(--c-surface);
+    border-radius: var(--r-md);
+    padding: var(--sp-md);
+    box-shadow: var(--sh-sm);
+    text-align: center;
+    border: 1px solid var(--c-border);
+}
+
+/* Form & Simulator */
+.sim-form-group {
+    margin-bottom: var(--sp-sm);
+}
+.sim-form-group label {
+    display: block;
+    margin-bottom: var(--sp-xs);
+    font-weight: 500;
+}
+.sim-form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-sm);
+    font-family: var(--font-body);
+}
+
+#commande {
+    display: none; /* Caché par défaut, affiché par JS */
+}
+
+/* Utils */
+.text-center { text-align: center; }
+.mt-4 { margin-top: var(--sp-md); }
+.mb-4 { margin-bottom: var(--sp-md); }
+
+/* Code de la route / Bureau Veritas specific styling */
+.code-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--sp-md);
+    margin-top: var(--sp-md);
+}
+.code-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    padding: var(--sp-md);
+    text-decoration: none;
+    color: var(--c-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.code-card:hover {
+    box-shadow: var(--sh-md);
+    border-color: var(--c-red);
+}
+.code-card span {
+    display: block;
+    font-weight: 400;
+    color: var(--c-red);
+    margin-top: var(--sp-xs);
+}
