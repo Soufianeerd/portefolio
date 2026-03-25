@@ -1,0 +1,1 @@
+Photos de la catégorie Corporate. Remplacez ou ajoutez `photo-1.jpg`, etc.

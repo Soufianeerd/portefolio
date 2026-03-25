@@ -1,0 +1,1 @@
+Photos de la catégorie Mariage. Remplacez ou ajoutez `photo-1.jpg`, `photo-2.jpg`, etc.

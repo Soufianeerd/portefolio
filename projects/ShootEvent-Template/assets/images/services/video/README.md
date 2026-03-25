@@ -1,0 +1,1 @@
+Icône ou illustration vidéo
