@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Espace | Kartell Nancy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <style>
+        body { background: #FFFFFF; color: #1A1A1A; }
+        
+        .client-header {
+            padding-block: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 4rem;
+        }
+        .account-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        /* Nav Compte */
+        .account-nav { display: flex; flex-direction: column; gap: 8px; }
+        .account-nav__link {
+            padding: 14px 20px;
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--color-muted);
+            border: 1px solid transparent;
+            transition: all .3s;
+        }
+        .account-nav__link:hover, .account-nav__link.active {
+            color: var(--color-text);
+            border-color: var(--color-border);
+            background: #F9F9F9;
+        }
+        .account-nav__link i { margin-right: 12px; width: 16px; opacity: .5; }
+
+        /* Welcome Section */
+        .welcome-hero {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #EEE;
+        }
+        .welcome-hero__title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .welcome-hero__subtitle {
+            color: var(--color-muted);
+            font-size: 1rem;
+        }
+
+        /* Cards Table */
+        .order-card {
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 2rem;
+        }
+        .order-card__info h4 { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 4px; }
+        .order-card__info p { font-size: .8rem; color: var(--color-muted); }
+        .order-card__price { font-weight: 700; font-size: 1.1rem; }
+        
+        /* Karchitect Project */
+        .kproject-box {
+            background: var(--color-dark);
+            color: white;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .kproject-box::before {
+            content: 'K';
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-family: var(--font-serif);
+            font-size: 15rem;
+            font-weight: 700;
+            color: rgba(212,168,67,.05);
+            pointer-events: none;
+        }
+        .kproject-badge {
+            display: inline-block;
+            background: var(--color-gold);
+            color: black;
+            font-size: .6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            letter-spacing: .15em;
+            margin-bottom: 1.5rem;
+        }
+        .kproject-title { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 1rem; }
+        .kproject-desc { color: rgba(255,255,255,.5); font-size: .9rem; max-width: 50ch; margin-bottom: 2rem; }
+
+        /* Login Simulation */
+        #clientLoginOverlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .client-login-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            text-align: center;
+        }
+        .client-login-container h1 {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: .1em;
+        }
+        .client-login-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #DDD;
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color .3s;
+        }
+        .client-login-input:focus { border-color: var(--color-text); }
+        .client-login-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-text);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+        .client-login-switch { font-size: .85rem; color: var(--color-muted); }
+        .client-login-switch a { color: var(--color-text); font-weight: 600; }
+
+        @media (max-width: 900px) {
+            .account-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .order-card { grid-template-columns: 1fr auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Simulation -->
+    <div id="clientLoginOverlay">
+        <div class="client-login-container">
+            <h2 style="font-size:.7rem; text-transform:uppercase; letter-spacing:.3em; color:var(--color-gold); margin-bottom:1rem;">Kartell Nancy</h2>
+            <h1>Mon Espace Privé</h1>
+            <input type="email" class="client-login-input" placeholder="Adresse e-mail" value="client@exemple.fr">
+            <input type="password" class="client-login-input" placeholder="Mot de passe" value="••••••••">
+            <button class="client-login-btn" onclick="document.getElementById('clientLoginOverlay').style.display='none'">Se connecter</button>
+            <p class="client-login-switch">Pas encore de compte ? <a href="javascript:void(0)">Inscrivez-vous</a></p>
+            <p style="margin-top:3rem; font-size:.8rem;"><a href="index.html" style="color:var(--color-muted); text-decoration:none;">&larr; Retour à l'accueil</a></p>
+        </div>
+    </div>
+
+    <!-- Header Lite -->
+    <header class="client-header">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.html" class="header__logo" style="flex-direction:row; align-items:baseline; gap:10px;">
+                <span style="font-family:'Playfair Display',serif; font-size:1.8rem; color:#E30613; font-weight:700; letter-spacing:.15em;">KARTELL</span>
+                <span style="font-size:9px; color:#A0A0A0; letter-spacing:.1em; text-transform:lowercase; font-variant:small-caps;">by Intemporel</span>
+            </a>
+            <div style="display:flex; gap:2rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.1em;">
+                <a href="index.html" class="footer__link">Boutique</a>
+                <a href="index.html#karchitect" class="footer__link">Karchitect</a>
+                <a href="index.html" class="footer__link" style="color:var(--color-red); font-weight:600;">Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="account-grid">
+            <!-- Navigation -->
+            <aside class="account-nav">
+                <a href="javascript:void(0)" class="account-nav__link active"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="javascript:void(0)" class="account-nav__link"><i class="fas fa-shopping-bag"></i> Mes Commandes</a>
+                <a href="javascript:void(0)" class="account-nav__link"><i class="fas fa-pen-nib"></i> Mon Projet Karchitect</a>
+                <a href="javascript:void(0)" class="account-nav__link"><i class="fas fa-heart"></i> Ma Liste d'Envies</a>
+                <a href="javascript:void(0)" class="account-nav__link"><i class="fas fa-cog"></i> Paramètres</a>
+            </aside>
+
+            <!-- Main Account Area -->
+            <main class="account-content">
+                <div class="welcome-hero">
+                    <h2 class="welcome-hero__title">Bonjour, Client</h2>
+                    <p class="welcome-hero__subtitle">Bienvenue dans votre espace Kartell Nancy. Suivez vos commandes et vos projets d'aménagement.</p>
+                </div>
+
+                <!-- Last Order Summary -->
+                <section style="margin-bottom:4rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem;">
+                        <h3 style="font-family:var(--font-serif); font-size:1.5rem;">Dernière Commande</h3>
+                        <a href="javascript:void(0)" style="font-size:.75rem; color:var(--color-gold); font-weight:600; text-transform:uppercase;">Voir tout &rarr;</a>
+                    </div>
+                    <div class="order-card">
+                        <div class="order-card__info">
+                            <h4>Commande #KT-2026-88</h4>
+                            <p>Passée le 14 Mars 2026 &mdash; 2 articles</p>
+                        </div>
+                        <div class="order-card__status">
+                            <span class="status-badge status--stock">En cours de livraison</span>
+                        </div>
+                        <div class="order-card__price">990,00 €</div>
+                        <a href="javascript:void(0)" class="btn-premium" style="padding:10px 20px; font-size:.6rem;">Suivre</a>
+                    </div>
+                </section>
+
+                <!-- Karchitect Project -->
+                <section class="kproject-box">
+                    <span class="kproject-badge">Projet Actif</span>
+                    <h3 class="kproject-title">Résidence Saint-Nicolas</h3>
+                    <p class="kproject-desc">Votre projet d'aménagement pour le salon et la salle à manger est en cours de finalisation par notre architecte conseil.</p>
+                    <div style="display:flex; gap:3rem; margin-bottom:2.5rem;">
+                        <div>
+                            <p style="font-size:.65rem; color:rgba(255,255,255,.3); text-transform:uppercase; margin-bottom:4px;">Statut</p>
+                            <p style="font-size:.9rem; color:var(--color-gold);">Phase : Rendu conceptuel</p>
+                        </div>
+                        <div>
+                            <p style="font-size:.65rem; color:rgba(255,255,255,.3); text-transform:uppercase; margin-bottom:4px;">Architecte</p>
+                            <p style="font-size:.9rem;">M. François L.</p>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-premium" style="border-color:white; color:white;">Accéder au dossier</a>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer Lite -->
+    <footer style="padding-block:3rem; border-top:1px solid #EEE; text-align:center;">
+        <p style="font-size:.7rem; color:var(--color-muted); text-transform:uppercase; letter-spacing:.1em;">&copy; 2026 Kartell Nancy &mdash; Espace Client S&eacute;curis&eacute;</p>
+    </footer>
+
+</body>
+</html>

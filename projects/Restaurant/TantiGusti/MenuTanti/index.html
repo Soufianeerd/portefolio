@@ -1,0 +1,643 @@
+<!-- ============================================================
+   TANTI GUSTI II — PAGE D'ACCUEIL
+   Fichier : index.html
+   Rôle    : Structure de la page d'accueil.
+   ============================================================
+
+   📁 IMAGES À MODIFIER ICI
+   ─────────────────────────────────────────────────────────────
+   • HERO          → assets/hero.webp
+   • À PROPOS      → assets/cuisto.webp
+   • INCONTOURNABLE 1 → assets/plat-1.webp
+   • INCONTOURNABLE 2 → assets/plat-2.webp
+   • INCONTOURNABLE 3 → assets/plat-3.webp
+   • INCONTOURNABLE 4 → assets/plat-4.webp
+
+   Pour changer une photo :
+   1. Mettez votre image dans le dossier assets/
+   2. Remplacez le nom du fichier dans le src="..." correspondant
+      OU remplacez directement le fichier existant.
+
+   ✏️  INFORMATIONS À MODIFIER
+   ─────────────────────────────────────────────────────────────
+   • Nom du restaurant : cherchez "TANTI GUSTI II" et modifiez
+   • Téléphone        : cherchez "03 72 91 78 80" et modifiez
+   • Adresse          : cherchez "3 Rue de Bonsecours"
+   • Instagram        : cherchez "@tanti_gustiii"
+   • Horaires         : cherchez <section class="horaires-section">
+   ============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ Titre de l'onglet navigateur -->
+  <title>TANTI GUSTI II — Pizzeria & Sandwicherie à Nancy</title>
+
+  <!-- ✏️ Description pour les moteurs de recherche -->
+  <meta name="description"
+    content="TANTI GUSTI II, pizzeria et sandwicherie premium à Nancy. Pizzas artisanales, sandwichs généreux, chaussons, texmex. Ouvert jusqu'à 02h.">
+
+  <!-- OpenGraph / Social Media -->
+  <meta property="og:title" content="TANTI GUSTI II — Pizzeria & Sandwicherie à Nancy">
+  <meta property="og:description"
+    content="Découvrez une adresse gourmande au cœur de Nancy. Pizzas au four napolitain et sandwichs signature.">
+  <meta property="og:image" content="assets/hero.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tanti-gusti-nancy.fr/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Polices (preconnect = connexion anticipée, réduit la latence) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Préchargement de l'image hero (visible immédiatement) -->
+  <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high">
+
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="style.css"> <!-- Design global -->
+  <link rel="stylesheet" href="index.css"> <!-- Styles de cette page -->
+</head>
+
+<body>
+
+  <!-- ============================================================
+     NAVBAR — Barre de navigation fixe en haut
+     ─────────────────────────────────────────────────────────────
+     ✏️  Pour changer le nom du restaurant dans la navbar :
+         modifiez le texte dans <a class="nav-logo">
+     ✏️  Pour ajouter/supprimer un lien : modifiez les <li> dans <ul class="nav-links">
+     ✏️  Pour changer le bouton "Voir la carte" : modifiez le <a class="btn btn-or nav-cta">
+     ============================================================ -->
+  <header class="navbar" id="navbar">
+    <!-- Logo texte à gauche -->
+    <a href="index.html" class="nav-logo" aria-label="TANTI GUSTI II - Retour à l'accueil">TANTI GUSTI II</a>
+
+    <!-- Liens de navigation (desktop) -->
+    <nav aria-label="Menu principal">
+      <ul class="nav-links" role="list">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#specialites">Spécialités</a></li>
+        <li><a href="#horaires">Horaires</a></li>
+        <li><a href="#contact">Accès</a></li>
+      </ul>
+    </nav>
+
+    <!-- Bouton CTA à droite (desktop) -->
+    <a href="menu.html" class="btn btn-or nav-cta" aria-label="Consulter notre menu complet">Voir la carte</a>
+
+    <!-- Hamburger mobile (3 traits) — géré par script.js -->
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Fond semi-transparent derrière le drawer mobile (cliquer pour fermer) -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <!-- ============================================================
+     MENU MOBILE (Drawer qui s'ouvre depuis la droite)
+     ✏️  Modifiez les liens ici pour le menu mobile.
+         Ces liens doivent correspondre à ceux de la navbar desktop.
+     ============================================================ -->
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu mobile">
+    <a href="#about" onclick="closeDrawer()">À propos</a>
+    <a href="#specialites" onclick="closeDrawer()">Spécialités</a>
+    <a href="#horaires" onclick="closeDrawer()">Horaires</a>
+    <a href="#contact" onclick="closeDrawer()">Accès</a>
+    <!-- Bouton carte dans le menu mobile -->
+    <a href="menu.html" class="btn btn-or" style="margin-top:12px" aria-label="Ouvrir le menu complet">Voir la carte</a>
+  </nav>
+
+
+  <main>
+
+    <!-- ============================================================
+       HERO — Section plein écran d'accueil
+       ─────────────────────────────────────────────────────────────
+       📁 IMAGE HERO : src="assets/hero.webp"
+       ✏️  Changez "hero.webp" par votre photo (même dossier).
+
+       ✏️  Pour modifier le texte :
+           - Titre        → dans le <h1>
+           - Sous-titre   → dans <span class="eyebrow">
+           - Description → dans <p class="hero-desc">
+           - Bouton 1    → href du premier <a class="btn btn-or">
+           - Bouton 2    → href et texte du deuxième bouton
+       ============================================================ -->
+    <section class="hero">
+
+      <!-- Fond photo du hero -->
+      <div class="hero-bg">
+        <!-- 📁 PHOTO HERO — Changez "hero.webp" pour changer la photo -->
+        <img src="assets/hero.webp" alt="Pizza artisanale et sandwich Vosgien, TANTI GUSTI II" loading="eager"
+          decoding="async">
+      </div>
+
+      <!-- Contenu texte -->
+      <div class="hero-content">
+        <!-- Petit label au-dessus du titre -->
+        <span class="eyebrow" data-anim>Pizzeria - Sandwicherie — Nancy</span>
+
+        <!-- ✏️ Titre principal -->
+        <h1 data-anim data-anim-delay="1">
+          TANTI<br><em>GUSTI II</em> <!-- <em> = texte en italique doré clair -->
+        </h1>
+
+        <!-- ✏️ Description courte -->
+        <p class="hero-desc" data-anim data-anim-delay="2">
+          Pizzas artisanales, sandwichs généreux et saveurs gourmandes préparés
+          avec soin, tous les soirs jusqu'à 2h du matin.
+        </p>
+
+        <!-- Boutons d'action -->
+        <div class="hero-cta" data-anim data-anim-delay="3">
+          <!-- Bouton 1 : lien vers la carte -->
+          <a href="menu.html" class="btn btn-or" aria-label="Découvrir notre carte gastronomique">Voir la carte</a>
+
+          <!-- ✏️ Bouton 2 : numéro de téléphone -->
+          <a href="tel:0372917880" class="btn btn-outline">📞 03 72 91 78 80</a>
+        </div>
+      </div>
+
+      <!-- Flèche de scroll animée (indicateur visuel) -->
+      <div class="hero-scroll" aria-hidden="true">
+        <span>Découvrir</span>
+        <svg viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+       RIBBON — Bandeau défilant de confiance
+       ─────────────────────────────────────────────────────────────
+       ✏️  Pour changer les textes : modifiez les <span> ci-dessous.
+           Chaque <span> est un argument qui défile.
+           ATTENTION : le même texte doit être dupliqué (2× le même
+           bloc ribbon-track) pour que l'animation boucle sans saut.
+       ============================================================ -->
+    <div class="ribbon" aria-hidden="true">
+      <div class="ribbon-track">
+        <!-- Bloc 1 (à dupliquer identiquement dans le Bloc 2) -->
+        <span>Produits frais</span>
+        <span>Préparations maison</span>
+        <span>HALAL</span>
+        <span>Service midi - soir</span>
+        <span>Ouvert jusqu'à 02h00</span>
+        <span>Nancy centre</span>
+        <span>4,6 / 5 sur Google</span>
+        <!-- Bloc 2 (identique au Bloc 1 pour la boucle infinie) -->
+        <span>Produits frais</span>
+        <span>Préparations maison</span>
+        <span>HALAL</span>
+        <span>Service midi - soir</span>
+        <span>Ouvert jusqu'à 02h00</span>
+        <span>Nancy centre</span>
+        <span>4,6 / 5 sur Google</span>
+      </div>
+    </div>
+
+
+    <!-- ============================================================
+       SECTION À PROPOS
+       ─────────────────────────────────────────────────────────────
+       📁 IMAGE : src="assets/cuisto.webp"
+       ✏️  Changez "cuisto.webp" pour changer la photo.
+
+       ✏️  Pour modifier :
+           - Titre          → le <h2>
+           - Sous-titre     → <span class="eyebrow">
+           - Texte          → le <p> (description du restaurant)
+           - Points clés    → les 3 blocs <div class="about-point">
+           - Vignette note  → <div class="about-tag"> (note + avis)
+           - Boutons        → les 2 <a> dans .about-cta
+       ============================================================ -->
+    <section class="about-section" id="about">
+      <div class="about-grid">
+
+        <!-- Colonne gauche : Section Photos Overlap -->
+        <div class="about-imgs" data-anim>
+          <!-- Photo principale (grande, en haut à gauche) -->
+          <div class="about-img-main">
+            <img src="assets/cuisto.webp" alt="Ambiance chaleureuse TANTI GUSTI II" loading="lazy">
+          </div>
+          <!-- Photo secondaire (petite, en bas à droite, en surimpression) -->
+          <div class="about-img-accent">
+            <img src="assets/four.webp" alt="Four Napolitain traditionnel" loading="lazy">
+          </div>
+
+          <!-- Vignette flottante (Notes Google) 
+          <div class="about-tag">
+            <strong>4,6★</strong>
+            +265 avis Google
+          </div>-->
+        </div>
+
+        <!-- Colonne droite : Texte -->
+        <div data-anim data-anim-delay="1">
+          <!-- ✏️ Label au-dessus du titre -->
+          <span class="eyebrow">Notre histoire</span>
+
+          <!-- ✏️ Titre de la section -->
+          <h2>Une adresse gourmande<br>au cœur de <em>Nancy</em></h2>
+
+          <!-- Trait décoratif doré -->
+          <div class="gold-line"></div>
+
+          <!-- ✏️ Description du restaurant -->
+          <p>
+            TANTI GUSTI II vous invite à une expérience authentique où la tradition rencontre
+            la gourmandise. Au cœur de notre cuisine, notre <strong>véritable four Napolitain</strong>
+            sublime nos pizzas artisanales, leur offrant une cuisson de caractère et des saveurs inégalées.
+            Découvrez une carte généreuse, des pizzas, sandwichs signature et des chaussons gratinés,
+            préparés chaque jour avec passion et des produits frais.
+          </p>
+
+          <!-- Points clés (3 arguments) -->
+          <!-- ✏️ Pour modifier un point : changez l'emoji, le titre <strong> et la description <p> -->
+          <div class="about-points">
+
+            <div class="about-point">
+              <div class="about-point-icon"></div> <!-- ✏️ Emoji icône -->
+              <div class="about-point-text">
+                <strong>Pizzas artisanales</strong> <!-- ✏️ Titre du point -->
+                <p>Base tomate ou crème, garnitures généreuses, pâte maison.</p>
+              </div>
+            </div>
+
+            <div class="about-point">
+              <div class="about-point-icon"></div>
+              <div class="about-point-text">
+                <strong>Sandwichs signature</strong>
+                <p>Steak frais, ingrédients de qualité, recettes originales.</p>
+              </div>
+            </div>
+
+            <div class="about-point">
+              <div class="about-point-icon"></div>
+              <div class="about-point-text">
+                <strong>Produits halal</strong>
+              </div>
+            </div>
+
+            <div class="about-point">
+              <div class="about-point-icon"></div>
+              <div class="about-point-text">
+                <strong>Ouvert jusqu'à 02h du matin</strong>
+                <p>Midi et soir, 7 jours sur 7 selon les horaires.</p>
+              </div>
+            </div>
+
+          </div><!-- /about-points -->
+
+          <!-- Boutons -->
+          <div class="about-cta">
+            <a href="menu.html" class="btn btn-or" aria-label="Voir notre menu de spécialités">Parcourir la carte</a>
+            <a href="tel:0372917880" class="btn btn-outline"
+              aria-label="Appeler le restaurant au 03 72 91 78 80">Appeler</a>
+          </div>
+        </div>
+
+      </div><!-- /about-grid -->
+    </section>
+
+
+    <!-- ============================================================
+       SECTION INCONTOURNABLES (4 spécialités)
+       ─────────────────────────────────────────────────────────────
+       📁 IMAGES :
+         Carte 1 → src="assets/plat-1.webp"  (Pizza Tanti Gusti)
+         Carte 2 → src="assets/plat-2.webp"  (Sandwich Vosgien)
+         Carte 3 → src="assets/plat-3.webp"  (Chausson Gratiné)
+         Carte 4 → src="assets/plat-4.webp"  (Wings Texmex)
+       ✏️  Pour changer une photo : remplacez le fichier dans assets/
+           OU changez le src="..." dans chaque <article>.
+
+       ✏️  Pour modifier un plat :
+         - Badge       → <span class="badge-chef"> ou <span class="badge-new">
+         - Catégorie   → <span class="spec-card-cat">
+         - Nom         → <p class="spec-card-name">
+         - Description → <p class="spec-card-desc">
+         - Prix        → <span class="spec-card-price">
+       ============================================================ -->
+    <section class="specialites-section" id="specialites">
+
+      <!-- Titre de la section -->
+      <div class="container">
+        <div class="section-header" data-anim>
+          <span class="eyebrow">Nos incontournables</span>
+          <h2>Une carte pensée<br>avec soin</h2>
+          <div class="gold-line"></div>
+        </div>
+      </div>
+
+      <!-- Grille 2×2 de spécialités -->
+      <div class="specialites-grid">
+
+        <!-- ─── CARTE 1 : Pizza Signature ─── -->
+        <a href="menu.html#pizzas-tomate" class="spec-card">
+          <div class="spec-card-img">
+            <!-- 📁 PHOTO PLAT 1 — Changez "plat-1.webp" -->
+            <img src="assets/plat-1.webp" alt="Pizza Tanti Gusti — burrata, salami, champignons" loading="lazy">
+          </div>
+          <!-- ✏️ Badge (supprimez la ligne si pas besoin) -->
+          <span class="badge-chef">Chef's Choice</span>
+          <div class="spec-card-info">
+            <span class="spec-card-cat">Pizza Signature</span> <!-- ✏️ Catégorie -->
+            <p class="spec-card-name">Tanti Gusti</p> <!-- ✏️ Nom -->
+            <span class="spec-card-price" aria-label="Prix à partir de 14 euros">À partir de 14,00€</span>
+            <!-- ✏️ Prix -->
+          </div>
+        </a>
+
+        <!-- ─── CARTE 2 : Sandwich Spécial (grande carte) ─── -->
+        <a href="menu.html#sandwichs-speciaux" class="spec-card">
+          <div class="spec-card-img">
+            <!-- 📁 PHOTO PLAT 2 — Changez "plat-2.webp" -->
+            <img src="assets/plat-2.webp" alt="Sandwich Vosgien — steak frais, munster, champignons" loading="lazy">
+          </div>
+          <span class="badge-new">Nouveau favori</span>
+          <div class="spec-card-info">
+            <span class="spec-card-cat">Sandwich Spécial</span>
+            <p class="spec-card-name">Le Vosgien</p>
+            <span class="spec-card-price">Seul 10,00€ · Menu 12,00€</span>
+          </div>
+        </a>
+
+        <!-- ─── CARTE 3 : Chausson Gratiné ─── -->
+        <a href="menu.html#chaussons" class="spec-card">
+          <div class="spec-card-img">
+            <!-- 📁 PHOTO PLAT 3 — Changez "plat-3.webp" -->
+            <img src="assets/plat-3.webp" alt="Chausson gratiné — poulet curry, frites" loading="lazy">
+          </div>
+          <div class="spec-card-info">
+            <span class="spec-card-cat">Chausson</span>
+            <p class="spec-card-name">Chausson Gratiné</p>
+            <span class="spec-card-price">À partir de 10,00€</span>
+          </div>
+        </a>
+
+        <!-- ─── CARTE 4 : Desserts ─── -->
+        <a href="menu.html#desserts" class="spec-card">
+          <div class="spec-card-img">
+            <!-- 📁 PHOTO PLAT 4 — Changez "plat-4.webp" -->
+            <img src="assets/plat-4.webp" alt="Wings et nuggets croustillants" loading="lazy">
+          </div>
+          <div class="spec-card-info">
+            <span class="spec-card-cat">Desserts</span>
+            <p class="spec-card-name">Desserts</p>
+          </div>
+        </a>
+
+      </div><!-- /specialites-grid -->
+
+      <!-- Bouton "Voir toute la carte" centré -->
+      <div class="specialites-cta" data-anim>
+        <a href="menu.html" class="btn btn-or" aria-label="Consulter l'intégralité de notre carte">Découvrir toute la
+          carte</a>
+      </div>
+
+    </section><!-- /specialites -->
+
+
+    <!-- ============================================================
+       SECTION HORAIRES
+       ─────────────────────────────────────────────────────────────
+       ✏️  Pour modifier les horaires :
+           - Changez le texte dans .heure-jour (nom du jour)
+           - Changez le texte dans .heure-slot (les créneaux)
+       ✏️  Pour ajouter un jour : dupliquez un bloc .heure-card
+       ✏️  Pour supprimer un jour : supprimez un bloc .heure-card
+       ============================================================ -->
+    <section class="horaires-section section" id="horaires">
+      <div class="container">
+
+        <!-- En-tête de section -->
+        <div class="section-header center" data-anim>
+          <span class="eyebrow">Quand nous retrouver ?</span>
+          <h2>Nos horaires</h2>
+          <div class="gold-line center"></div>
+        </div>
+
+        <!-- Grille des jours -->
+        <div class="horaires-grid">
+
+          <!-- ✏️ Modifiez chaque .heure-jour et .heure-slot -->
+          <div class="heure-card" data-anim data-anim-delay="1">
+            <div class="heure-jour">Lundi</div>
+            <div class="heure-slot">11:30 – 14:00<br>18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="1">
+            <div class="heure-jour">Mardi</div>
+            <div class="heure-slot">11:30 – 14:00<br>18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="2">
+            <div class="heure-jour">Mercredi</div>
+            <div class="heure-slot">11:30 – 14:00<br>18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="2">
+            <div class="heure-jour">Jeudi</div>
+            <div class="heure-slot">11:30 – 14:00<br>18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="3">
+            <div class="heure-jour">Vendredi</div>
+            <div class="heure-slot">11:30 – 14:00<br>18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="3">
+            <div class="heure-jour">Samedi</div>
+            <div class="heure-slot">18:30 – 02:00</div>
+          </div>
+
+          <div class="heure-card" data-anim data-anim-delay="4">
+            <div class="heure-jour">Dimanche</div>
+            <div class="heure-slot">18:30 – 02:00</div>
+          </div>
+
+        </div><!-- /horaires-grid -->
+      </div>
+    </section><!-- /horaires -->
+
+
+    <!-- ============================================================
+       SECTION CONTACT / ACCÈS
+       ─────────────────────────────────────────────────────────────
+       ✏️  Pour modifier l'adresse, le téléphone ou Instagram :
+           cherchez et remplacez les textes ci-dessous.
+       ✏️  Pour changer la carte Google Maps :
+           remplacez le src="..." de l'<iframe> par votre lien
+           Google Maps (Partager > Intégrer une carte).
+       ============================================================ -->
+    <section class="contact-section section" id="contact">
+      <div class="container">
+
+        <!-- En-tête -->
+        <div class="section-header" data-anim>
+          <span class="eyebrow">Venez nous rendre visite</span>
+          <h2>Nous trouver</h2>
+          <div class="gold-line"></div>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Colonne gauche : infos de contact -->
+          <div class="contact-block" data-anim>
+
+            <!-- ✏️ ADRESSE -->
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📍</div>
+              <div class="contact-item-text">
+                <p>Adresse</p>
+                <!-- ✏️ Modifiez l'adresse ici et dans le href -->
+                <a href="https://www.google.com/maps/dir/?api=1&destination=3+Rue+de+Bonsecours,+54000+Nancy"
+                  target="_blank" rel="noopener">
+                  <strong>3 Rue de Bonsecours<br>54000 Nancy</strong>
+                </a>
+              </div>
+            </div>
+
+            <!-- ✏️ TÉLÉPHONE -->
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📞</div>
+              <div class="contact-item-text">
+                <p>Téléphone</p>
+                <!-- ✏️ Modifiez l'href tel: et le texte affiché -->
+                <a href="tel:0372917880"><strong>03 72 91 78 80</strong></a>
+              </div>
+            </div>
+
+            <!-- ✏️ INSTAGRAM -->
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📸</div>
+              <div class="contact-item-text">
+                <p>Instagram</p>
+                <a href="https://www.instagram.com/tanti_gustiii/" target="_blank" rel="noopener"
+                  aria-label="Suivez-nous sur Instagram (nouvel onglet)">
+                  <strong>@tanti_gustiii</strong>
+                </a>
+              </div>
+            </div>
+
+            <!-- ✏️ TIKTOK -->
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📱</div>
+              <div class="contact-item-text">
+                <p>TikTok</p>
+                <a href="https://www.tiktok.com/@tantigusti2" target="_blank" rel="noopener"
+                  aria-label="Suivez-nous sur TikTok (nouvel onglet)">
+                  <strong>@tantigusti2</strong>
+                </a>
+              </div>
+            </div>
+
+            <!-- Bouton itinéraire -->
+            <div class="contact-cta">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=3+Rue+de+Bonsecours,+54000+Nancy"
+                target="_blank" rel="noopener" class="btn btn-or">
+                Obtenir l'itinéraire
+              </a>
+            </div>
+
+          </div><!-- /contact-block -->
+
+          <!-- Colonne droite : Carte Google Maps -->
+          <div class="map-wrapper" data-anim data-anim-delay="1">
+            <!-- ✏️ GOOGLE MAPS IFRAME
+               Pour changer la carte :
+               1. Allez sur Google Maps
+               2. Recherchez votre adresse
+               3. Cliquez "Partager" > "Intégrer une carte"
+               4. Copiez le src="..." et collez-le ici -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.5!2d6.183!3d48.693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47946090b7b3e5a5%3A0x1!2s3+Rue+de+Bonsecours%2C+54000+Nancy!5e0!3m2!1sfr!2sfr!4v1"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Localisation TANTI GUSTI II — 3 Rue de Bonsecours, Nancy">
+            </iframe>
+            <!-- Badge "Ouvert ce soir" (supprimez si vous ne voulez pas l'afficher) -->
+            <div class="open-badge">Ouvert ce soir</div>
+          </div>
+
+        </div><!-- /contact-grid -->
+      </div>
+    </section><!-- /contact -->
+
+  </main>
+
+
+  <!-- ============================================================
+     FOOTER
+     ─────────────────────────────────────────────────────────────
+     ✏️  Pour modifier le footer :
+         - Nom du restaurant → .footer-logo
+         - Slogan            → .footer-tagline
+         - Description       → le <p> dans la première colonne
+         - Liens navigation  → les <a> dans la 2ème colonne
+         - Coordonnées       → les <p> et <a> dans la 3ème colonne
+         - Copyright         → .footer-copy
+     ============================================================ -->
+  <footer class="footer">
+
+    <!-- Grille 3 colonnes : description | nav | contacts -->
+    <div class="footer-grid">
+
+      <!-- Colonne 1 : Logo + Description -->
+      <div>
+        <!-- ✏️ Nom dans le footer -->
+        <p class="footer-logo">TANTI GUSTI II</p>
+        <!-- ✏️ Slogan -->
+        <p class="footer-tagline">Pizzeria - Sandwicherie — Nancy</p>
+        <div class="gold-line"></div>
+        <!-- ✏️ Courte description -->
+        <p style="font-size:0.82rem;opacity:.6;max-width:36ch;line-height:1.7">
+          Une adresse conviviale au cœur de Nancy, pour se retrouver autour
+          de bonnes saveurs du midi au soir.
+        </p>
+      </div>
+
+      <!-- Colonne 2 : Navigation -->
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="#about">À propos</a>
+        <a href="#specialites">Spécialités</a>
+        <a href="#horaires">Horaires</a>
+        <a href="#contact">Accès</a>
+        <a href="menu.html">La carte</a>
+      </div>
+
+      <!-- Colonne 3 : Coordonnées -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <!-- ✏️ Adresse -->
+        <p>3 Rue de Bonsecours<br>54000 Nancy</p>
+        <!-- ✏️ Téléphone -->
+        <a href="tel:0372917880">03 72 91 78 80</a>
+        <a href="https://www.instagram.com/tanti_gustiii/" target="_blank" rel="noopener">@tanti_gustiii</a>
+        <a href="https://www.tiktok.com/@tantigusti2" target="_blank" rel="noopener">@tantigusti2</a>
+      </div>
+
+    </div><!-- /footer-grid -->
+
+    <!-- Barre du bas : copyright + bouton -->
+    <div class="footer-bottom">
+      <!-- ✏️ Texte copyright -->
+      <p class="footer-copy">© 2026 TANTI GUSTI II. Tous droits réservés.</p>
+      <a href="menu.html" class="btn btn-outline" style="font-size:0.68rem;padding:10px 22px">
+        Voir la carte
+      </a>
+    </div>
+
+  </footer>
+
+  <!-- Script JavaScript (animations, navbar, menu mobile) -->
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#F9F7F2" />
+  <title>Livre d'Or Audio — Soufiane & Salma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — Quiet Luxury
+       Palette : Crème + Bordeaux (identique au faire-part)
+       ═══════════════════════════════════════════ */
+    :root {
+      --cream:      #F9F7F2;
+      --cream-dark: #F0EBE3;
+      --cream-mid:  #EDE8DF;
+      --bordeaux:   #5D262C;
+      --bordeaux-lt:#7a3339;
+      --bordeaux-pale: #f0e8e8;
+      --ink:        #2d1214;
+      --muted:      #9a7c7e;
+      --success:    #3d7a5c;
+      --success-bg: #edf6f0;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Montserrat', system-ui, sans-serif;
+
+      --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+      --t:          0.35s;
+      --radius:     3px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1.5rem 2rem;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid rgba(93,38,44,0.08);
+      margin-bottom: 2.5rem;
+    }
+    .header__ornament {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      opacity: 0.5;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+    .header__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .header__title em {
+      font-style: italic;
+      color: var(--bordeaux);
+    }
+    .header__subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── CARD (conteneur des étapes) ── */
+    .card {
+      background: var(--cream);
+      border: 1px solid rgba(93,38,44,0.1);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      flex: 1;
+    }
+
+    /* ── ÉTAPES ── */
+    .step {
+      display: none;
+      animation: stepIn 0.35s var(--ease) both;
+    }
+    .step.active { display: block; }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Indicateur d'étapes */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .step-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(93,38,44,0.15);
+      transition: var(--t) var(--ease);
+    }
+    .step-dot.done  { background: var(--bordeaux); opacity: 0.4; }
+    .step-dot.current { background: var(--bordeaux); transform: scale(1.5); }
+
+    /* ── LABELS & TITRES D'ÉTAPE ── */
+    .step-label {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .step-desc {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── INPUTS ── */
+    .field { margin-bottom: 1.5rem; }
+    .field__label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 0.55rem;
+    }
+    .field__input {
+      width: 100%;
+      background: var(--cream-dark);
+      border: 1px solid rgba(93,38,44,0.13);
+      border-radius: var(--radius);
+      padding: 0.9rem 1.1rem;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--ink);
+      transition: var(--t) var(--ease);
+      -webkit-appearance: none;
+      outline: none;
+    }
+    .field__input::placeholder { color: rgba(58,26,29,0.3); }
+    .field__input:focus {
+      border-color: var(--bordeaux);
+      box-shadow: 0 0 0 3px rgba(93,38,44,0.07);
+      background: var(--cream);
+    }
+    .field__input.error { border-color: #c0392b; }
+
+    /* ── BOUTONS ── */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--t) var(--ease);
+      margin-bottom: 0.75rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .btn--primary {
+      background: var(--bordeaux);
+      color: var(--cream);
+    }
+    .btn--primary:not(:disabled):hover {
+      background: var(--bordeaux-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(93,38,44,0.22);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--bordeaux);
+      border: 1px solid rgba(93,38,44,0.22);
+    }
+    .btn--outline:not(:disabled):hover {
+      background: var(--bordeaux-pale);
+      border-color: var(--bordeaux);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(93,38,44,0.1);
+      font-size: 0.62rem;
+    }
+
+    .btn__icon { font-size: 1rem; line-height: 1; }
+
+    /* ── ZONE D'ENREGISTREMENT ── */
+    .record-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    /* Bouton micro principal */
+    .mic-btn {
+      position: relative;
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--t) var(--ease-spring);
+      -webkit-tap-highlight-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    .mic-btn--idle {
+      background: var(--bordeaux);
+      box-shadow: 0 4px 16px rgba(93,38,44,0.3), 0 0 0 0 rgba(93,38,44,0);
+    }
+    .mic-btn--idle:hover {
+      transform: scale(1.06);
+      box-shadow: 0 8px 28px rgba(93,38,44,0.35), 0 0 0 0 rgba(93,38,44,0);
+    }
+    .mic-btn--recording {
+      background: #c0392b;
+      animation: micPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes micPulse {
+      0%   { box-shadow: 0 4px 16px rgba(192,57,43,0.4), 0 0 0 0   rgba(192,57,43,0.25); }
+      70%  { box-shadow: 0 4px 16px rgba(192,57,43,0.4), 0 0 0 18px rgba(192,57,43,0); }
+      100% { box-shadow: 0 4px 16px rgba(192,57,43,0.4), 0 0 0 0   rgba(192,57,43,0); }
+    }
+    .mic-icon {
+      font-size: 2rem;
+      color: var(--cream);
+      position: relative; z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Timer */
+    .timer-display {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .timer-display.recording { color: #c0392b; }
+
+    .timer-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Barre de progression */
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      background: rgba(93,38,44,0.08);
+      border-radius: 1px;
+      margin: 1.25rem 0;
+      overflow: hidden;
+    }
+    .progress-bar__fill {
+      height: 100%;
+      background: var(--bordeaux);
+      border-radius: 1px;
+      width: 0%;
+      transition: width 1s linear;
+    }
+    .progress-bar__fill.recording { background: #c0392b; }
+
+    /* Label durée max */
+    .duration-hint {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      color: rgba(93,38,44,0.35);
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    /* ── VISUALISEUR AUDIO (ondes) ── */
+    .waveform {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      height: 36px;
+      margin: 0.75rem 0;
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+    }
+    .waveform.active { opacity: 1; }
+    .wave-bar {
+      width: 3px;
+      border-radius: 2px;
+      background: #c0392b;
+      height: 8px;
+      transition: height 0.1s ease;
+    }
+
+    /* ── LECTEUR AUDIO (prévisualisation) ── */
+    .audio-preview {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+    .audio-preview__label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    audio {
+      width: 100%;
+      border-radius: var(--radius);
+      height: 44px;
+    }
+    /* Style minimal audio player */
+    audio::-webkit-media-controls-panel { background: var(--cream-dark); }
+
+    /* Récapitulatif du message */
+    .preview-meta {
+      background: var(--cream-dark);
+      border: 1px solid rgba(93,38,44,0.08);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .preview-meta__icon { font-size: 1.4rem; }
+    .preview-meta__info { flex: 1; }
+    .preview-meta__name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .preview-meta__dur {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ÉTAT DE CHARGEMENT ── */
+    .loading-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 0;
+    }
+    .loading-state.visible { display: flex; }
+
+    .spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(93,38,44,0.12);
+      border-top-color: var(--bordeaux);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1.25rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SUCCÈS ── */
+    .success-state { text-align: center; padding: 1.5rem 0; }
+    .success-ornament {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .success-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 300;
+      color: var(--bordeaux);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .success-text {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .success-divider {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin: 1.5rem auto;
+      max-width: 160px;
+    }
+    .success-divider__line { flex: 1; height: 1px; background: rgba(93,38,44,0.12); }
+    .success-divider__gem  { font-size: 0.55rem; color: var(--bordeaux); opacity: 0.4; }
+
+    /* ── ALERTE / ERREUR ── */
+    .alert {
+      display: none;
+      background: #fff0f0;
+      border: 1px solid rgba(192,57,43,0.18);
+      border-radius: var(--radius);
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: #8b1f1f;
+      line-height: 1.5;
+      animation: stepIn 0.3s var(--ease) both;
+    }
+    .alert.visible { display: block; }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 2rem 0 0;
+      margin-top: auto;
+    }
+    .footer-text {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(58,26,29,0.2);
+    }
+
+    /* ── PERMISSION INFO ── */
+    .permission-info {
+      background: var(--cream-mid);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .permission-info__icon { font-size: 1.1rem; flex-shrink: 0; }
+    .permission-info__text {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page">
+
+    <!-- ── EN-TÊTE ── -->
+    <header class="page-header">
+      <span class="header__ornament">✦ Mariage ✦</span>
+      <h1 class="header__title">Livre d'Or<br><em>Audio</em></h1>
+      <!-- [EDIT] Noms des mariés -->
+      <p class="header__subtitle">Soufiane &amp; Salma · 23 Oct. 2026</p>
+    </header>
+
+    <!-- ── CARTE PRINCIPALE ── -->
+    <div class="card">
+
+      <!-- Barre d'erreur globale -->
+      <div class="alert" id="alertBox" role="alert"></div>
+
+      <!-- ──────────────────────────────────────────
+           ÉTAPE 1 — Prénom
+           ────────────────────────────────────────── -->
+      <div class="step active" id="step1">
+
+        <!-- Indicateur de progression -->
+        <div class="step-indicator">
+          <div class="step-dot current"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <span class="step-label">Étape 1 / 3</span>
+        <h2 class="step-title">Votre prénom</h2>
+        <p class="step-desc">
+          Laissez un message vocal aux mariés. Il suffit de vous présenter et de leur dire quelques mots du cœur.
+        </p>
+
+        <div class="field">
+          <label class="field__label" for="nameInput">Votre prénom</label>
+          <!-- [EDIT] placeholder du champ prénom -->
+          <input
+            class="field__input"
+            type="text"
+            id="nameInput"
+            name="prenom"
+            placeholder="Ex : Sarah"
+            maxlength="50"
+            autocomplete="given-name"
+            autocorrect="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="relationInput">Vous êtes… <span style="opacity:.5;font-weight:300;letter-spacing:0;text-transform:none">(optionnel)</span></label>
+          <input
+            class="field__input"
+            type="text"
+            id="relationInput"
+            name="relation"
+            placeholder="Ex : Ami de Soufiane, Cousine de Salma…"
+            maxlength="80"
+          />
+        </div>
+
+        <button class="btn btn--primary" id="btnGoRecord" onclick="goToRecord()">
+          <span class="btn__icon">🎤</span>
+          Continuer vers l'enregistrement
+        </button>
+
+        <div class="permission-info">
+          <span class="permission-info__icon">ℹ️</span>
+          <p class="permission-info__text">
+            Votre navigateur vous demandera d'autoriser l'accès au microphone. Appuyez sur <strong>Autoriser</strong> pour enregistrer votre message.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ──────────────────────────────────────────
+           ÉTAPE 2 — Enregistrement
+           ────────────────────────────────────────── -->
+      <div class="step" id="step2">
+
+        <div class="step-indicator">
+          <div class="step-dot done"></div>
+          <div class="step-dot current"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <span class="step-label">Étape 2 / 3</span>
+        <h2 class="step-title" id="recordingTitle">Prêt à enregistrer</h2>
+        <p class="step-desc" id="recordingDesc">
+          Appuyez sur le micro pour commencer. Parlez normalement, le son sera enregistré directement.
+        </p>
+
+        <div class="record-zone">
+
+          <!-- Bouton micro principal -->
+          <button class="mic-btn mic-btn--idle" id="micBtn" onclick="toggleRecording()" aria-label="Démarrer l'enregistrement">
+            <span class="mic-icon" id="micIcon">🎙️</span>
+          </button>
+
+          <!-- Affichage du temps -->
+          <div class="timer-label" id="timerLabel">Appuyez pour commencer</div>
+          <div class="timer-display" id="timerDisplay">00:00</div>
+
+          <!-- Visualiseur (barres animées pendant l'enregistrement) -->
+          <div class="waveform" id="waveform">
+            <div class="wave-bar" id="w1"></div>
+            <div class="wave-bar" id="w2"></div>
+            <div class="wave-bar" id="w3"></div>
+            <div class="wave-bar" id="w4"></div>
+            <div class="wave-bar" id="w5"></div>
+            <div class="wave-bar" id="w6"></div>
+            <div class="wave-bar" id="w7"></div>
+            <div class="wave-bar" id="w8"></div>
+            <div class="wave-bar" id="w9"></div>
+          </div>
+
+          <!-- Barre de progression -->
+          <div class="progress-bar">
+            <div class="progress-bar__fill" id="progressFill"></div>
+          </div>
+
+          <!-- [EDIT] Durée max affichée (la vraie limite est dans le JS : MAX_DURATION) -->
+          <p class="duration-hint">Durée maximale : 60 secondes</p>
+
+        </div>
+
+        <!-- Bouton arrêt (visible uniquement en cours d'enregistrement) -->
+        <button class="btn btn--outline" id="btnStopRecord" onclick="stopRecording()" style="display:none">
+          <span class="btn__icon">⏹️</span>
+          Arrêter &amp; écouter
+        </button>
+
+        <button class="btn btn--ghost" onclick="backToStep1()">
+          ← Modifier mon prénom
+        </button>
+
+      </div>
+
+      <!-- ──────────────────────────────────────────
+           ÉTAPE 3 — Prévisualisation
+           ────────────────────────────────────────── -->
+      <div class="step" id="step3">
+
+        <div class="step-indicator">
+          <div class="step-dot done"></div>
+          <div class="step-dot done"></div>
+          <div class="step-dot current"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <span class="step-label">Étape 3 / 3</span>
+        <h2 class="step-title">Écouter &amp; envoyer</h2>
+        <p class="step-desc">Réécoutez votre message avant de l'envoyer aux mariés.</p>
+
+        <!-- Récapitulatif -->
+        <div class="preview-meta">
+          <span class="preview-meta__icon">🎙️</span>
+          <div class="preview-meta__info">
+            <p class="preview-meta__name" id="previewName">—</p>
+            <p class="preview-meta__dur" id="previewDur">—</p>
+          </div>
+        </div>
+
+        <!-- Lecteur audio -->
+        <div class="audio-preview">
+          <span class="audio-preview__label">Votre message</span>
+          <audio id="audioPlayer" controls preload="metadata"></audio>
+        </div>
+
+        <!-- Actions -->
+        <button class="btn btn--primary" id="btnSend" onclick="sendAudio()">
+          <span class="btn__icon">✉️</span>
+          Envoyer aux mariés
+        </button>
+        <button class="btn btn--ghost" onclick="reRecord()">
+          <span class="btn__icon">🔄</span>
+          Réenregistrer
+        </button>
+
+      </div>
+
+      <!-- ──────────────────────────────────────────
+           ÉTAT DE CHARGEMENT
+           ────────────────────────────────────────── -->
+      <div class="loading-state" id="loadingState">
+        <div class="spinner"></div>
+        <p class="loading-text">Envoi en cours…</p>
+      </div>
+
+      <!-- ──────────────────────────────────────────
+           ÉTAPE 4 — Confirmation de succès
+           ────────────────────────────────────────── -->
+      <div class="step" id="step4">
+        <div class="success-state">
+          <span class="success-ornament">✦</span>
+          <h2 class="success-title">Message bien reçu&nbsp;!</h2>
+          <div class="success-divider">
+            <span class="success-divider__line"></span>
+            <span class="success-divider__gem">✦</span>
+            <span class="success-divider__line"></span>
+          </div>
+          <!-- [EDIT] Message de confirmation -->
+          <p class="success-text">
+            Merci pour ce cadeau précieux.<br>
+            Soufiane et Salma seront touchés<br>
+            d'entendre vos mots.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /.card -->
+
+    <!-- ── FOOTER ── -->
+    <footer class="page-footer">
+      <!-- [EDIT] Texte de bas de page -->
+      <p class="footer-text">Soufiane &amp; Salma · 23 octobre 2026</p>
+    </footer>
+
+  </main>
+
+  <script>
+  /* ═══════════════════════════════════════════════════════
+     CONFIGURATION
+     ═══════════════════════════════════════════════════════
+     [EDIT] Collez ici l'URL de votre Google Apps Script
+     (même procédure que pour le formulaire RSVP du faire-part)
+     → script.google.com → Déployer → Application Web → Copier URL  */
+  const CONFIG = {
+    API_URL:      'https://script.google.com/macros/s/AKfycbwHwrlR5Cg2wNZGlQ0qkX4WjVvI52FZuzDzO0SaDC-4bUpmWwc4YLNfbpuJbaSp9rc/exec', // ⚠️ À CHANGER
+    MAX_DURATION: 60,   // [EDIT] Durée max en secondes
+    AUDIO_BITRATE: 64000 // 64 kbps — bon compromis qualité/taille
+  };
+
+  /* ═══════════════════════════════════════════════════════
+     ÉTAT DE L'APPLICATION
+     ═══════════════════════════════════════════════════════ */
+  const state = {
+    userName:        '',
+    userRelation:    '',
+    mediaRecorder:   null,
+    audioChunks:     [],
+    audioBlob:       null,
+    audioMimeType:   '',
+    timerInterval:   null,
+    waveInterval:    null,
+    elapsedSeconds:  0,
+    isRecording:     false,
+    stream:          null,
+    analyser:        null,
+    audioCtx:        null
+  };
+
+  /* ═══════════════════════════════════════════════════════
+     UTILITAIRES
+     ═══════════════════════════════════════════════════════ */
+
+  function showAlert(msg) {
+    const box = document.getElementById('alertBox');
+    box.textContent = msg;
+    box.classList.add('visible');
+    setTimeout(() => box.classList.remove('visible'), 6000);
+  }
+
+  function hideAlert() {
+    document.getElementById('alertBox').classList.remove('visible');
+  }
+
+  function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('loadingState').classList.remove('visible');
+  }
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ÉTAPE 1 — Validation du prénom
+     ═══════════════════════════════════════════════════════ */
+  function goToRecord() {
+    const nameInput = document.getElementById('nameInput');
+    const relInput  = document.getElementById('relationInput');
+
+    state.userName     = nameInput.value.trim();
+    state.userRelation = relInput.value.trim();
+
+    if (!state.userName) {
+      nameInput.classList.add('error');
+      showAlert('Veuillez entrer votre prénom avant de continuer.');
+      nameInput.focus();
+      return;
+    }
+    nameInput.classList.remove('error');
+    hideAlert();
+    showStep('step2');
+  }
+
+  function backToStep1() {
+    stopRecording();
+    showStep('step1');
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ÉTAPE 2 — Enregistrement
+     ═══════════════════════════════════════════════════════ */
+
+  /* Détecter le meilleur format supporté
+     — WebM sur Chrome/Android, MP4/M4A sur Safari/iOS */
+  function getBestMimeType() {
+    const types = [
+      'audio/webm;codecs=opus',
+      'audio/webm',
+      'audio/mp4',
+      'audio/ogg;codecs=opus',
+      'audio/ogg'
+    ];
+    for (const type of types) {
+      if (MediaRecorder.isTypeSupported(type)) return type;
+    }
+    return ''; // navigateur choisit
+  }
+
+  async function toggleRecording() {
+    if (state.isRecording) {
+      stopRecording();
+    } else {
+      await startRecording();
+    }
+  }
+
+  async function startRecording() {
+    hideAlert();
+
+    // Demande de permission microphone
+    try {
+      state.stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          sampleRate: 44100
+        }
+      });
+    } catch (err) {
+      if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+        showAlert('Accès au microphone refusé. Allez dans les réglages de votre navigateur et autorisez le micro pour ce site.');
+      } else if (err.name === 'NotFoundError') {
+        showAlert('Aucun microphone trouvé sur cet appareil.');
+      } else {
+        showAlert('Impossible d\'accéder au microphone. Essayez de recharger la page.');
+      }
+      console.error('Micro error:', err);
+      return;
+    }
+
+    // Configurer l'analyseur pour le visualiseur (ondes)
+    try {
+      state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      state.analyser = state.audioCtx.createAnalyser();
+      state.analyser.fftSize = 32;
+      const source = state.audioCtx.createMediaStreamSource(state.stream);
+      source.connect(state.analyser);
+    } catch (e) {
+      // L'analyseur est optionnel, on continue sans
+    }
+
+    // Démarrer MediaRecorder
+    state.audioMimeType = getBestMimeType();
+    const options = {};
+    if (state.audioMimeType) options.mimeType = state.audioMimeType;
+    if (CONFIG.AUDIO_BITRATE) options.audioBitsPerSecond = CONFIG.AUDIO_BITRATE;
+
+    state.audioChunks  = [];
+    state.mediaRecorder = new MediaRecorder(state.stream, options);
+
+    state.mediaRecorder.ondataavailable = e => {
+      if (e.data && e.data.size > 0) state.audioChunks.push(e.data);
+    };
+
+    state.mediaRecorder.onstop = () => {
+      state.audioBlob = new Blob(state.audioChunks, {
+        type: state.audioMimeType || 'audio/webm'
+      });
+      const url = URL.createObjectURL(state.audioBlob);
+      document.getElementById('audioPlayer').src = url;
+
+      // Mettre à jour le récap
+      document.getElementById('previewName').textContent =
+        state.userRelation
+          ? `${state.userName} — ${state.userRelation}`
+          : state.userName;
+      document.getElementById('previewDur').textContent =
+        `Durée : ${formatTime(state.elapsedSeconds)}`;
+
+      // Libérer le micro
+      if (state.stream) {
+        state.stream.getTracks().forEach(t => t.stop());
+        state.stream = null;
+      }
+      if (state.audioCtx) {
+        state.audioCtx.close().catch(() => {});
+        state.audioCtx = null;
+      }
+
+      goToPreview();
+    };
+
+    state.mediaRecorder.start(250); // chunks toutes les 250ms
+    state.isRecording   = true;
+    state.elapsedSeconds = 0;
+
+    // UI : mode enregistrement
+    const micBtn = document.getElementById('micBtn');
+    micBtn.classList.remove('mic-btn--idle');
+    micBtn.classList.add('mic-btn--recording');
+    micBtn.setAttribute('aria-label', 'Arrêter l\'enregistrement');
+    document.getElementById('micIcon').textContent = '⏹️';
+    document.getElementById('timerLabel').textContent = 'Enregistrement en cours…';
+    document.getElementById('timerDisplay').classList.add('recording');
+    document.getElementById('btnStopRecord').style.display = 'flex';
+    document.getElementById('waveform').classList.add('active');
+    document.getElementById('progressFill').classList.add('recording');
+
+    document.getElementById('recordingTitle').textContent = 'En cours…';
+    document.getElementById('recordingDesc').textContent  =
+      'Parlez naturellement. Appuyez sur ⏹️ ou sur le bouton ci-dessous quand vous avez terminé.';
+
+    // Timer
+    startTimer();
+    startWaveAnimator();
+  }
+
+  function stopRecording() {
+    if (!state.isRecording) return;
+    state.isRecording = false;
+
+    clearInterval(state.timerInterval);
+    clearInterval(state.waveInterval);
+
+    if (state.mediaRecorder && state.mediaRecorder.state !== 'inactive') {
+      state.mediaRecorder.stop(); // → déclenche onstop
+    }
+
+    // Reset UI
+    const micBtn = document.getElementById('micBtn');
+    micBtn.classList.remove('mic-btn--recording');
+    micBtn.classList.add('mic-btn--idle');
+    document.getElementById('micIcon').textContent = '🎙️';
+    document.getElementById('timerLabel').textContent = 'Appuyez pour commencer';
+    document.getElementById('timerDisplay').classList.remove('recording');
+    document.getElementById('btnStopRecord').style.display = 'none';
+    document.getElementById('waveform').classList.remove('active');
+    document.getElementById('progressFill').classList.remove('recording');
+  }
+
+  /* Timer */
+  function startTimer() {
+    state.timerInterval = setInterval(() => {
+      state.elapsedSeconds++;
+      document.getElementById('timerDisplay').textContent = formatTime(state.elapsedSeconds);
+
+      // Progression
+      const pct = (state.elapsedSeconds / CONFIG.MAX_DURATION) * 100;
+      document.getElementById('progressFill').style.width = Math.min(pct, 100) + '%';
+
+      // Arrêt automatique
+      if (state.elapsedSeconds >= CONFIG.MAX_DURATION) {
+        stopRecording();
+      }
+    }, 1000);
+  }
+
+  /* Visualiseur de barres (simule les ondes) */
+  function startWaveAnimator() {
+    const bars = document.querySelectorAll('.wave-bar');
+    const analyser = state.analyser;
+
+    if (analyser) {
+      // Visualiseur réel basé sur l'audio
+      const dataArray = new Uint8Array(analyser.frequencyBinCount);
+      state.waveInterval = setInterval(() => {
+        analyser.getByteFrequencyData(dataArray);
+        bars.forEach((bar, i) => {
+          const val = dataArray[i * 2] || 0;
+          const h = Math.max(4, Math.min(36, val / 4));
+          bar.style.height = h + 'px';
+        });
+      }, 80);
+    } else {
+      // Visualiseur simulé (fallback)
+      state.waveInterval = setInterval(() => {
+        bars.forEach(bar => {
+          const h = 4 + Math.random() * 28;
+          bar.style.height = h + 'px';
+        });
+      }, 120);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ÉTAPE 3 — Prévisualisation
+     ═══════════════════════════════════════════════════════ */
+  function goToPreview() {
+    showStep('step3');
+  }
+
+  function reRecord() {
+    state.audioBlob    = null;
+    state.audioChunks  = [];
+    state.elapsedSeconds = 0;
+    document.getElementById('timerDisplay').textContent = '00:00';
+    document.getElementById('progressFill').style.width = '0%';
+    document.getElementById('recordingTitle').textContent = 'Prêt à enregistrer';
+    document.getElementById('recordingDesc').textContent  =
+      'Appuyez sur le micro pour commencer. Parlez normalement.';
+    showStep('step2');
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ÉTAPE 4 — Envoi vers Google Drive via Apps Script
+     ═══════════════════════════════════════════════════════
+     Même principe que le formulaire RSVP du faire-part :
+     - L'audio est converti en base64
+     - Envoyé en JSON à Google Apps Script (no-cors)
+     - Apps Script sauvegarde dans Drive + logge dans Sheets
+
+     [EDIT] CONFIG.API_URL = URL de votre Apps Script     */
+
+  /* Convertir un Blob audio en chaîne base64 */
+  function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // reader.result = "data:audio/webm;base64,XXXXX"
+        // On extrait uniquement la partie base64 (après la virgule)
+        const base64 = reader.result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  async function sendAudio() {
+    if (!state.audioBlob) {
+      showAlert('Aucun audio à envoyer. Veuillez enregistrer un message.');
+      return;
+    }
+
+    // Cacher step3, afficher loader
+    document.getElementById('step3').classList.remove('active');
+    document.getElementById('loadingState').classList.add('visible');
+
+    // Nom du fichier : timestamp_prenom_relation.extension
+    const ext      = state.audioMimeType.includes('mp4') ? 'm4a'
+                   : state.audioMimeType.includes('ogg') ? 'ogg'
+                   : 'webm';
+    const safe     = v => v.replace(/[^a-zA-Z0-9À-öø-ÿ]/g, '_').slice(0, 40);
+    const namePart = safe(state.userName);
+    const relPart  = state.userRelation ? '_' + safe(state.userRelation) : '';
+    const fileName = `${Date.now()}_${namePart}${relPart}.${ext}`;
+
+    try {
+      // 1. Convertir le blob audio en base64
+      const base64Audio = await blobToBase64(state.audioBlob);
+
+      // 2. Construire la payload JSON
+      const payload = {
+        audio:    base64Audio,                         // fichier encodé en base64
+        mimeType: state.audioMimeType || 'audio/webm', // type MIME pour Apps Script
+        filename: fileName,                            // nom du fichier dans Drive
+        name:     state.userName,                      // prénom de l'invité
+        relation: state.userRelation,                  // relation (optionnel)
+        duration: state.elapsedSeconds                 // durée en secondes
+      };
+
+      // 3. Envoi vers Google Apps Script
+      //    mode 'no-cors' = même méthode que le formulaire RSVP
+      //    La réponse est opaque, on considère l'envoi réussi si pas d'exception réseau
+      await fetch(CONFIG.API_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body:    JSON.stringify(payload)
+      });
+
+      document.getElementById('loadingState').classList.remove('visible');
+      showStep('step4');
+
+    } catch (err) {
+      console.error('Send error:', err);
+      document.getElementById('loadingState').classList.remove('visible');
+      showStep('step3');
+      showAlert('Erreur lors de l\'envoi. Vérifiez votre connexion et réessayez.');
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ENTRÉE — touches clavier
+     ═══════════════════════════════════════════════════════ */
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); goToRecord(); }
+  });
+  document.getElementById('nameInput').addEventListener('input', () => {
+    document.getElementById('nameInput').classList.remove('error');
+  });
+  </script>
+
+</body>
+</html>

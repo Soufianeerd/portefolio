@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  FICHIER : menu.html                                            ║
+  ║  RÔLE    : Page "La Carte" du restaurant Maddak                 ║
+  ║  LIENS   : → style.css  (design system global)                  ║
+  ║            → menu.css   (styles propres à la carte)             ║
+  ║  STRUCTURE :                                                    ║
+  ║    <nav>          Navbar (identique à index.html)               ║
+  ║    <header>       Photo de couverture + titre                   ║
+  ║    <div.cat-nav>  Barre de catégories sticky (onglets)          ║
+  ║    <main>         Les 5 sections de catégories                  ║
+  ║      #sec-smash     → Smash Burgers                             ║
+  ║      #sec-gourmet   → Burgers Gourmets                          ║
+  ║      #sec-assiettes → Assiettes                                 ║
+  ║      #sec-desserts  → Desserts Maison                           ║
+  ║      #sec-boissons  → Boissons                                  ║
+  ║    <footer>       (identique à index.html)                      ║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║  AJOUTER UN PLAT : copier un bloc <article class="item-card">   ║
+  ║  et coller dans la bonne section. Changer id, nom, prix, desc.  ║
+  ║  SUPPRIMER UN PLAT : supprimer l'<article> entier               ║
+  ║  Les grilles .items-grid s'auto-ajustent (auto-fill minmax)      ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notre Carte — Maddak Restaurant Nancy</title>
+    <meta name="description"
+        content="Carte complète du restaurant Maddak à Nancy : Smash Burgers, Burgers Gourmets, Assiettes, Desserts et Boissons. Viandes halal certifiées AVS." />
+    <meta name="theme-color" content="#121212" />
+    <!-- style.css chargé en premier (design system commun) -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- menu.css chargé en second (styles propres à la carte) -->
+    <link rel="stylesheet" href="menu.css" />
+</head>
+
+<!-- La classe .menu-page sur body permet à menu.css de cibler
+     uniquement cette page sans affecter index.html -->
+
+<body class="menu-page">
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ NAVBAR (identique à index.html, à synchroniser si besoin)
+         ▌ → changer un lien : modifier le texte dans <a href="...">
+         ═══════════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-logo">MADDAK</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#horaires">Horaires</a></li>
+                <li><a href="index.html#acces">Accès</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- ▌ FIN NAVBAR ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ HEADER (photo de couverture avec titre "Notre Carte")
+         ▌ → changer la photo : remplace assets/smash_burger.jpg
+         ▌ → changer le titre : modifie le <h1 class="menu-header-title">
+         ▌ → changer le sous-titre : modifie .menu-header-sub
+         ═══════════════════════════════════════════════════════════ -->
+    <header class="menu-header">
+        <!-- Photo de fond avec overlay sombre -->
+        <div class="menu-header-bg">
+            <img src="assets/smash_burger.jpg" alt="Burger Maddak" id="menuHeroImg" loading="eager"
+                class="menu-header-img" />
+            <div class="menu-header-overlay"></div>
+        </div>
+        <!-- Texte centré en bas du header -->
+        <div class="container menu-header-content">
+            <span class="eyebrow">Restaurant Maddak — Nancy</span>
+            <h1 class="menu-header-title">Notre Carte</h1>
+            <p class="menu-header-sub">Fait Maison &nbsp;·&nbsp; Produits Frais &nbsp;·&nbsp; Viandes Halal</p>
+        </div>
+    </header>
+    <!-- ▌ FIN HEADER ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ BARRE DE CATÉGORIES (sticky / onglets)
+         ▌ Cette barre reste collée juste sous la navbar quand on scrolle.
+         ▌ Chaque bouton .cat-btn a un attribut data-cat="..."
+         ▌ qui correspond à l'ID de section "#sec-...".
+         ▌ → ajouter une catégorie :
+         ▌   1. Ajouter un <button data-cat="ma-cat" id="btn-ma-cat">
+         ▌   2. Créer la section correspondante <section id="sec-ma-cat">
+         ▌ → renommer une catégorie : changer le texte dans le bouton
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="cat-nav" id="catNav" role="navigation" aria-label="Catégories du menu">
+        <div class="cat-nav-inner container">
+            <!-- .active = catégorie affichée par défaut (la première) -->
+            <button class="cat-btn active" data-cat="smash" id="btn-smash">Smash</button>
+            <button class="cat-btn" data-cat="gourmet" id="btn-gourmet">Burgers</button>
+            <button class="cat-btn" data-cat="phillys" id="btn-phillys">Philly's</button>
+            <button class="cat-btn" data-cat="assiettes" id="btn-assiettes">Assiettes</button>
+            <button class="cat-btn" data-cat="bowls" id="btn-bowls">Bowls</button>
+            <button class="cat-btn" data-cat="salades" id="btn-salades">Salades</button>
+            <button class="cat-btn" data-cat="snacks" id="btn-snacks">Snacks</button>
+            <button class="cat-btn" data-cat="enfant" id="btn-enfant">Kids</button>
+            <button class="cat-btn" data-cat="desserts" id="btn-desserts">Desserts</button>
+            <button class="cat-btn" data-cat="boissons" id="btn-boissons">Boissons</button>
+        </div>
+    </div>
+    <!-- ▌ FIN BARRE DE CATÉGORIES ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ CONTENU PRINCIPAL — Toutes les sections de plats
+         ▌ Chaque .cat-section est cachée par défaut (display:none).
+         ▌ La classe .active (ajoutée par JS) affiche la section.
+         ═══════════════════════════════════════════════════════════ -->
+    <main class="menu-main">
+        <div class="container">
+
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 1 : SMASH BURGERS
+                 ▌ .active → affiché par défaut au chargement de la page
+                 ▌ aria-labelledby → accessibilité (lie la section à son titre)
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section active" id="sec-smash" aria-labelledby="h2-smash">
+
+                <!-- En-tête de section (titre + emoji décoratif) -->
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-smash">Smash Burgers</span>
+                        <h2 class="cat-title">Smash Burgers</h2>
+                        <!-- .cat-note : petite note sous le titre (ex: accompagnements inclus) -->
+                        <p class="cat-note">Tous servis avec frites maison</p>
+                    </div>
+                    <!-- .cat-deco : emoji géant décoratif (caché sur petit mobile) -->
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <!-- ── Grille de plats ────────────────────────────────
+                     .items-grid : grille auto-adaptable (auto-fill minmax 290px)
+                     → ajouter un plat : copier un .item-card et l'insérer ici
+                     → supprimer un plat : supprimer l'<article> entier
+                     → si tu supprimes la moitié des plats, la grille se réajuste
+                ─────────────────────────────────────────────────────── -->
+                <div class="items-grid">
+
+                    <!-- Plat 1 : Cute Cheeseburger -->
+                    <article class="item-card" id="item-cute">
+                        <div class="item-hd">
+                            <h3 class="item-name">Cute Cheeseburger</h3>
+                            <span class="item-price">9,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain brioché · Steak smashé · Cheddar fondu · Sauce maison</p>
+                        <div class="item-tags">
+                            <span class="tag">Halal</span>
+                            <span class="tag">Fait maison</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 2 : Smash Veggie -->
+                    <article class="item-card" id="item-veggie">
+                        <div class="item-hd">
+                            <h3 class="item-name">Smash Veggie</h3>
+                            <span class="item-price">10,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain brioché · Galette végétale smashée · Cheddar · Légumes frais · Sauce
+                            végé</p>
+                        <div class="item-tags">
+                            <span class="tag tag-veggie"> Végétarien</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 3 : Double Cheese -->
+                    <article class="item-card item-card--featured" id="item-double-cheese">
+                        <div class="item-hd">
+                            <h3 class="item-name">Double Cheese</h3>
+                            <span class="item-price">11,50 €</span>
+                        </div>
+                        <p class="item-desc">Pain brioché · Double steak smashé · Double cheddar · Sauce signature</p>
+                        <div class="item-tags">
+                            <span class="tag">Halal</span>
+                            <span class="tag tag-pop">⭐ Populaire</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 4 : Double Cheese & Bacon -->
+                    <article class="item-card item-card--featured" id="item-dbc">
+                        <div class="item-hd">
+                            <h3 class="item-name">Double Cheese et Bacon</h3>
+                            <span class="item-price">12,50 €</span>
+                        </div>
+                        <p class="item-desc">Pain brioché · Double steak smashé · Double cheddar · Bacon halal
+                            croustillant · Sauce BBQ</p>
+                        <div class="item-tags">
+                            <span class="tag">Halal</span>
+                            <span class="tag tag-pop">⭐ Populaire</span>
+                        </div>
+                    </article>
+
+                </div>
+                <!-- ▌ FIN grille Smash Burgers ▌ -->
+
+            </section>
+            <!-- ▌ FIN SECTION SMASH BURGERS ▌ -->
+
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 2 : BURGERS GOURMETS
+                 ▌ (cachée par défaut, affichée quand on clique sur "Gourmets")
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-gourmet" aria-labelledby="h2-gourmet">
+
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-gourmet">Burgers Gourmets</span>
+                        <h2 class="cat-title">Burgers Gourmets</h2>
+                        <p class="cat-note">Pains Farine Label Rouge · Viande hachée fraîche française</p>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid">
+
+                    <!-- Plat NEW : Smash Gourmand -->
+                    <article class="item-card item-card--featured" id="item-smash-gourmand">
+                        <div class="item-hd">
+                            <h3 class="item-name">Smash Gourmand</h3>
+                            <span class="item-price">18,90 €</span>
+                        </div>
+                        <p class="item-desc">Double steak smashé · Cheddar · Ingrédients premium du chef</p>
+                        <div class="item-tags">
+                            <span class="tag tag-sig">✦ Signature</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat NEW : Super Chic ’N Beef -->
+                    <article class="item-card item-card--featured" id="item-chic-beef">
+                        <div class="item-hd">
+                            <h3 class="item-name">Super Chic ’N Beef</h3>
+                            <span class="item-price">18,90 €</span>
+                        </div>
+                        <p class="item-desc">Le mariage parfait du poulet croustillant et du bœuf frais · Ingrédients
+                            gourmets</p>
+                        <div class="item-tags">
+                            <span class="tag tag-pop">⭐ Populaire</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 1 : L'Auvergnat -->
+                    <article class="item-card" id="item-auvergnat">
+                        <div class="item-hd">
+                            <h3 class="item-name">L'Auvergnat</h3>
+                            <span class="item-price">14,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Steak haché frais · Tomme d'Auvergne fondue · Confit
+                            d'oignons · Salade</p>
+                        <div class="item-tags">
+                            <span class="tag tag-label">Label Rouge</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 2 : Cheesy Sweet -->
+                    <article class="item-card" id="item-cheesy-sweet">
+                        <div class="item-hd">
+                            <h3 class="item-name">Cheesy Sweet</h3>
+                            <span class="item-price">13,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Steak haché frais · Triple cheddar · Sauce miel moutarde
+                        </p>
+                        <div class="item-tags">
+                            <span class="tag tag-label">Label Rouge</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 3 : KBO -->
+                    <article class="item-card item-card--featured" id="item-kbo">
+                        <div class="item-hd">
+                            <h3 class="item-name">KBO</h3>
+                            <span class="item-price">15,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Steak haché frais · Oignons caramélisés · Emmental ·
+                            Sauce BBQ fumée</p>
+                        <div class="item-tags">
+                            <span class="tag tag-sig">Signature</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 4 : Super Maddak -->
+                    <article class="item-card item-card--featured" id="item-super-maddak">
+                        <div class="item-hd">
+                            <h3 class="item-name">Super Maddak</h3>
+                            <span class="item-price">15,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Double steak haché frais · Cheddar · Sauce Maddak
+                            exclusive</p>
+                        <div class="item-tags">
+                            <span class="tag tag-sig">Signature</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 5 : Nashville Chicken -->
+                    <article class="item-card" id="item-nashville">
+                        <div class="item-hd">
+                            <h3 class="item-name">Nashville Chicken</h3>
+                            <span class="item-price">14,50 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Filet de poulet croustillant · Sauce Nashville épicée
+                        </p>
+                        <div class="item-tags">
+                            <span class="tag tag-spicy">🌶 Épicé</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 6 : Ground Chicken Avocado -->
+                    <article class="item-card" id="item-ground-chicken">
+                        <div class="item-hd">
+                            <h3 class="item-name">Ground Chicken Avocado</h3>
+                            <span class="item-price">13,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Poulet haché frais · Guacamole maison · Tomate · Laitue
+                        </p>
+                        <div class="item-tags">
+                            <span class="tag tag-label">Label Rouge</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 7 : Master Chèvre -->
+                    <article class="item-card" id="item-chevre">
+                        <div class="item-hd">
+                            <h3 class="item-name">Master Chèvre</h3>
+                            <span class="item-price">13,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Steak haché frais · Fromage de chèvre chaud · Miel ·
+                            Roquette</p>
+                        <div class="item-tags">
+                            <span class="tag tag-label">Label Rouge</span>
+                        </div>
+                    </article>
+
+                    <!-- Plat 8 : Montagnard -->
+                    <article class="item-card" id="item-montagnard">
+                        <div class="item-hd">
+                            <h3 class="item-name">Montagnard</h3>
+                            <span class="item-price">14,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain Label Rouge · Steak haché frais · Reblochon · Lardons halal</p>
+                        <div class="item-tags">
+                            <span class="tag tag-pop">⭐ Populaire</span>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- ── SECTION SUPPLÉMENTS ── -->
+                <div class="coming-soon-block" style="border-style: solid; margin-top: 2rem;">
+                    <p class="coming-soon-title">
+                        <span class="cs-icon">✚</span>
+                        Suppléments Burgers
+                    </p>
+                    <ul class="coming-soon-list">
+                        <li><span>River Cheddar</span><span class="cs-badge"
+                                style="color: var(--gold); font-weight: 600; font-style: normal;">3,00 €</span></li>
+                        <li><span>River Cheddar + Bacon</span><span class="cs-badge"
+                                style="color: var(--gold); font-weight: 600; font-style: normal;">3,50 €</span></li>
+                    </ul>
+                </div>
+                <!-- ▌ FIN grille Gourmets ▌ -->
+
+            </section>
+            <!-- ▌ FIN SECTION GOURMETS ▌ -->
+
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 3 : PHILLY’S (SANDWICHS)
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-phillys" aria-labelledby="h2-phillys">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-phillys">Philly’s</span>
+                        <h2 class="cat-title">Philly’s Sandwichs</h2>
+                        <p class="cat-note">Recettes authentiques et fondantes</p>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid items-grid--wide">
+                    <article class="item-card" id="item-philly-fondant">
+                        <div class="item-hd">
+                            <h3 class="item-name">Le Fondant</h3>
+                            <span class="item-price">10,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain viennois · Émincé de bœuf mariné · Fromage fondu · Oignons grillés</p>
+                        <div class="item-tags"><span class="tag">Halal</span></div>
+                    </article>
+
+                    <article class="item-card" id="item-philly-fermier">
+                        <div class="item-hd">
+                            <h3 class="item-name">Le Fermier</h3>
+                            <span class="item-price">10,90 €</span>
+                        </div>
+                        <p class="item-desc">Pain viennois · Émincé de poulet mariné · Fromage fondu · Champignons</p>
+                        <div class="item-tags"><span class="tag">Halal</span></div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 4 : ASSIETTES
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-assiettes" aria-labelledby="h2-assiettes">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-assiettes">Assiettes</span>
+                        <h2 class="cat-title">Nos Assiettes</h2>
+                        <p class="cat-note">Accompagnements au choix inclus</p>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+                <div class="items-grid items-grid--wide">
+                    <article class="item-card item-card--featured" id="item-veau">
+                        <div class="item-hd">
+                            <h3 class="item-name">Escalope de veau marinée</h3>
+                            <span class="item-price">18,90 €</span>
+                        </div>
+                        <p class="item-desc">Escalope de veau tendre marinée, grillée à la plancha</p>
+                        <div class="item-tags"><span class="tag tag-pop">⭐ Populaire</span></div>
+                    </article>
+                    <article class="item-card" id="item-poulet">
+                        <div class="item-hd">
+                            <h3 class="item-name">Escalope de poulet mariné</h3>
+                            <span class="item-price">16,90 €</span>
+                        </div>
+                        <p class="item-desc">Escalope de poulet marinée aux épices maison</p>
+                    </article>
+                    <article class="item-card" id="item-steak">
+                        <div class="item-hd">
+                            <h3 class="item-name">Steak à cheval x2</h3>
+                            <span class="item-price">15,90 €</span>
+                        </div>
+                        <p class="item-desc">Deux steaks hachés frais français · Œufs au plat</p>
+                    </article>
+                    <!-- Plats à venir désormais intégrés -->
+                    <article class="item-card" id="item-rumsteak">
+                        <div class="item-hd">
+                            <h3 class="item-name">Pavé de Rumsteak</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Viande bovine de qualité · Cuisson selon votre choix</p>
+                    </article>
+                    <article class="item-card" id="item-faux-filet">
+                        <div class="item-hd">
+                            <h3 class="item-name">Faux filet</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Pièce de bœuf tendre et goûteuse</p>
+                    </article>
+                    <article class="item-card" id="item-poulet-gratine">
+                        <div class="item-hd">
+                            <h3 class="item-name">Poulet gratiné</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Escalope de poulet recouverte de fromage fondu</p>
+                    </article>
+                    <article class="item-card" id="item-cordon-bleu">
+                        <div class="item-hd">
+                            <h3 class="item-name">Cordon bleu maison</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Préparé sur place avec du poulet frais et fromage</p>
+                        <div class="item-tags"><span class="tag">Maison</span></div>
+                    </article>
+                    <article class="item-card" id="item-tagliatelles-saumon">
+                        <div class="item-hd">
+                            <h3 class="item-name">Tagliatelles au saumon</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Pâtes fraîches, crème et saumon fumé</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 5 : BOWLS / FRITES SIGNATURE
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-bowls" aria-labelledby="h2-bowls">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-bowls">Bowls</span>
+                        <h2 class="cat-title">Bowls et Frites Signature</h2>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+                <div class="items-grid items-grid--wide">
+                    <article class="item-card" id="item-bowl-poulet">
+                        <div class="item-hd">
+                            <h3 class="item-name">Délice de poulet</h3>
+                            <span class="item-price">9,90 €</span>
+                        </div>
+                        <p class="item-desc">Base de riz ou frites · Poulet mariné · Sauce crémeuse</p>
+                    </article>
+                    <article class="item-card" id="item-bowl-ny">
+                        <div class="item-hd">
+                            <h3 class="item-name">New Yorkaise</h3>
+                            <span class="item-price">9,90 €</span>
+                        </div>
+                        <p class="item-desc">Frites signature · Bœuf émincé · Sauce fromage XXL</p>
+                    </article>
+                </div>
+            </section>
+            <!-- ▌ FIN SECTION ASSIETTES ▌ -->
+
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 6 : SALADES
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-salades" aria-labelledby="h2-salades">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-salades">Salades</span>
+                        <h2 class="cat-title">Fraîcheur et Salades</h2>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid items-grid--wide">
+                    <article class="item-card" id="item-salade-cesar">
+                        <div class="item-hd">
+                            <h3 class="item-name">Suprême César</h3>
+                            <span class="item-price">12,50 €</span>
+                        </div>
+                        <p class="item-desc">Laitue romaine · Poulet croustillant · Grana Padano · Sauce César</p>
+                    </article>
+
+                    <article class="item-card" id="item-salade-chevre">
+                        <div class="item-hd">
+                            <h3 class="item-name">Toasts chèvre chaud</h3>
+                            <span class="item-price">11,90 €</span>
+                        </div>
+                        <p class="item-desc">Mélange de jeunes pousses · Toasts de chèvre miel · Noix</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 7 : ACCOMPAGNEMENTS / SNACKS
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-snacks" aria-labelledby="h2-snacks">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-snacks">Snacks</span>
+                        <h2 class="cat-title">Accompagnements et Snacks</h2>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid">
+                    <article class="item-card" id="item-frites">
+                        <div class="item-hd">
+                            <h3 class="item-name">Frites fraîches</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                        <p class="item-desc">Frites maison découpées chaque jour</p>
+                    </article>
+
+                    <article class="item-card" id="item-patates-douces">
+                        <div class="item-hd">
+                            <h3 class="item-name">Frites de patates douces</h3>
+                            <span class="item-price">4,00 €</span>
+                        </div>
+                        <p class="item-desc">Croustillantes et fondantes</p>
+                    </article>
+
+                    <article class="item-card" id="item-coleslaw">
+                        <div class="item-hd">
+                            <h3 class="item-name">Coleslaw maison</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                        <p class="item-desc">Chou blanc, carottes, sauce crémeuse</p>
+                    </article>
+
+                    <article class="item-card" id="item-crispy-4">
+                        <div class="item-hd">
+                            <h3 class="item-name">Chicken crispy x4</h3>
+                            <span class="item-price">6,00 €</span>
+                        </div>
+                        <p class="item-desc">Aiguillettes de poulet panées maison</p>
+                    </article>
+
+                    <article class="item-card" id="item-crispy-6">
+                        <div class="item-hd">
+                            <h3 class="item-name">Chicken crispy x6</h3>
+                            <span class="item-price">8,00 €</span>
+                        </div>
+                        <p class="item-desc">Format généreux croustillant</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 8 : MENU ENFANT
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-enfant" aria-labelledby="h2-enfant">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-enfant">Kids</span>
+                        <h2 class="cat-title">Menu Enfant</h2>
+                        <p class="cat-note">Inclus : plat + frites + boisson + surprise</p>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid">
+                    <article class="item-card" id="item-kids-burger">
+                        <div class="item-hd">
+                            <h3 class="item-name">Burger (steak/cheddar)</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Petit steak smashé · Cheddar · Ketchup</p>
+                    </article>
+
+                    <article class="item-card" id="item-kids-crispy">
+                        <div class="item-hd">
+                            <h3 class="item-name">Chicken crispy</h3>
+                            <span class="item-price">À venir</span>
+                        </div>
+                        <p class="item-desc">Aiguillettes panées douces</p>
+                    </article>
+
+                    <article class="item-card item-card--featured" id="item-kids-complet">
+                        <div class="item-hd">
+                            <h3 class="item-name">Menu Kids complet</h3>
+                            <span class="item-price">8,50 €</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 9 : DESSERTS
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-desserts" aria-labelledby="h2-desserts">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-desserts">Desserts</span>
+                        <h2 class="cat-title">Desserts Maison</h2>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid">
+                    <article class="item-card" id="item-panna-cotta">
+                        <div class="item-hd">
+                            <h3 class="item-name">Panna cotta</h3>
+                            <span class="item-price">5,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-creme-brulee">
+                        <div class="item-hd">
+                            <h3 class="item-name">Crème brûlée</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card item-card--featured" id="item-tiramisu">
+                        <div class="item-hd">
+                            <h3 class="item-name">Tiramisu</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-cheesecake">
+                        <div class="item-hd">
+                            <h3 class="item-name">Cheesecake</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-verrine">
+                        <div class="item-hd">
+                            <h3 class="item-name">Verrine gourmande</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card item-card--featured" id="item-fondant">
+                        <div class="item-hd">
+                            <h3 class="item-name">Fondant chocolat</h3>
+                            <span class="item-price">7,00 €</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- ▌ FIN SECTION DESSERTS ▌ -->
+
+
+            <!-- ═══════════════════════════════════════════════════
+                 ▌ SECTION 10 : BOISSONS
+                 ═══════════════════════════════════════════════════ -->
+            <section class="cat-section" id="sec-boissons" aria-labelledby="h2-boissons">
+                <div class="cat-section-hd">
+                    <div>
+                        <span class="eyebrow" id="h2-boissons">Boissons</span>
+                        <h2 class="cat-title">Rafraîchissements</h2>
+                    </div>
+                    <span class="cat-deco" aria-hidden="true"></span>
+                </div>
+                <span class="gold-line"></span>
+
+                <div class="items-grid items-grid--wide">
+                    <!-- Sans en-tête pour Mojito/Lassi -->
+                    <article class="item-card" id="item-mojito">
+                        <div class="item-hd">
+                            <h3 class="item-name">Mojito fraise</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-lassi-mangue">
+                        <div class="item-hd">
+                            <h3 class="item-name">Lassi mangue</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-lassi-fraise">
+                        <div class="item-hd">
+                            <h3 class="item-name">Lassi fraise</h3>
+                            <span class="item-price">6,90 €</span>
+                        </div>
+                    </article>
+
+                    <div class="grid-separator">Thé frais</div>
+                    <article class="item-card" id="item-the-hibiscus">
+                        <div class="item-hd">
+                            <h3 class="item-name">Thé glacé hibiscus</h3>
+                            <span class="item-price">4,50 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-the-maison">
+                        <div class="item-hd">
+                            <h3 class="item-name">Thé glacé maison</h3>
+                            <span class="item-price">4,50 €</span>
+                        </div>
+                        <p class="item-desc">Parfums : Pêche / Mangue / Melon / Framboise / Banane</p>
+                    </article>
+
+                    <div class="grid-separator">Limonade &amp; Sodas</div>
+                    <article class="item-card" id="item-limonade">
+                        <div class="item-hd">
+                            <h3 class="item-name">Limonade</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                        <p class="item-desc">Parfums : Citron vert / Orange sanguine / Fruit de la passion</p>
+                    </article>
+                    <article class="item-card" id="item-coca">
+                        <div class="item-hd">
+                            <h3 class="item-name">Coca-Cola / Zéro</h3>
+                            <span class="item-price">3,00 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-coca-cherry">
+                        <div class="item-hd">
+                            <h3 class="item-name">Coca Cherry</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-fanta">
+                        <div class="item-hd">
+                            <h3 class="item-name">Fanta Orange</h3>
+                            <span class="item-price">3,00 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-orangina">
+                        <div class="item-hd">
+                            <h3 class="item-name">Orangina</h3>
+                            <span class="item-price">3,00 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-schweppes">
+                        <div class="item-hd">
+                            <h3 class="item-name">Schweppes</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                    </article>
+
+                    <div class="grid-separator">Infusions &amp; Softs</div>
+                    <article class="item-card" id="item-symples">
+                        <div class="item-hd">
+                            <h3 class="item-name">Symples</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                        <p class="item-desc">Relaxante / Détoxifiante / Énergisante / Menthe / Basilic</p>
+                    </article>
+                    <article class="item-card" id="item-softs">
+                        <div class="item-hd">
+                            <h3 class="item-name">Lipton / Fuzetea / Oasis</h3>
+                            <span class="item-price">3,00 €</span>
+                        </div>
+                    </article>
+
+                    <div class="grid-separator">Jus &amp; Eaux</div>
+                    <article class="item-card" id="item-jus">
+                        <div class="item-hd">
+                            <h3 class="item-name">Jus de fruits</h3>
+                            <span class="item-price">3,50 €</span>
+                        </div>
+                        <p class="item-desc">Pomme / Ananas / Orange / Multifruits / Litchi</p>
+                    </article>
+                    <article class="item-card" id="item-evian">
+                        <div class="item-hd">
+                            <h3 class="item-name">Evian (1L)</h3>
+                            <span class="item-price">4,00 €</span>
+                        </div>
+                    </article>
+                    <article class="item-card" id="item-cristaline">
+                        <div class="item-hd">
+                            <h3 class="item-name">Cristaline</h3>
+                            <span class="item-price">1,50 €</span>
+                        </div>
+                    </article>
+
+                    <div class="grid-separator">Boissons chaudes</div>
+                    <article class="item-card" id="item-boisson-chaude">
+                        <div class="item-hd">
+                            <h3 class="item-name">Café / Infusion</h3>
+                            <span class="item-price">2,00 €</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- ▌ FIN SECTION BOISSONS ▌ -->
+
+
+        </div>
+    </main>
+    <!-- ▌ FIN CONTENU PRINCIPAL ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ FOOTER (identique à index.html)
+         ═══════════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p class="footer-logo">MADDAK</p>
+                    <p>Fait Maison — Nancy</p>
+                </div>
+                <div class="footer-certifs">
+                    <span class="certif-badge">✦ Toutes nos viandes sont strictement certifiées Halal (AVS)</span>
+                    <span class="certif-badge">✦ Viande hachée fraîche et française non congelée</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/maddak_nancy/" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                        @maddak_nancy
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Maddak — 21 Rue Braconnot, 54000 Nancy — 09 52 02 00 99</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ▌ JAVASCRIPT — 3 fonctionnalités : Hamburger, Navbar, Filtre
+         ═══════════════════════════════════════════════════════════ -->
+    <script>
+
+        /* ─────────────────────────────────────────────────────────
+           1. HAMBURGER (identique à index.html)
+        ────────────────────────────────────────────────────────── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            const open = hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', String(open));
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+        // Ferme le menu quand on clique sur un lien (navigue vers une section)
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+
+        /* ─────────────────────────────────────────────────────────
+           2. NAVBAR STICKY (identique à index.html)
+           Seuil abaissé à 60px (header plus petit que le hero)
+        ────────────────────────────────────────────────────────── */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+
+        /* ─────────────────────────────────────────────────────────
+           3. FILTRE PAR CATÉGORIE
+           ─────────────────────────────────────────────────────────
+           Quand un bouton .cat-btn est cliqué :
+           a) Tous les boutons perdent .active, le bouton cliqué la reçoit
+           b) La section affichée (.cat-section.active) reçoit .leaving
+              → animation de sortie (fade-out) via CSS
+              → Après 260ms (durée de l'animation), .active et .leaving
+                sont retirés de la section courante
+           c) Après 100ms (chevauchement léger), la nouvelle section
+              reçoit .active → animation d'entrée (fade-in) via CSS
+
+           RÉSUMÉ DES CLASSES :
+           .cat-section         → section cachée (display:none)
+           .cat-section.active  → section affichée (catFadeIn animation)
+           .cat-section.leaving → section en cours de sortie (catFadeOut)
+
+           ► Pour changer la durée des animations :
+             modifier 260 (sortie), 100 (délai entrée) ici,
+             ET les keyframes catFadeIn/catFadeOut dans menu.css
+        ────────────────────────────────────────────────────────── */
+        const catBtns = document.querySelectorAll('.cat-btn');
+        const catSections = document.querySelectorAll('.cat-section');
+        const menuHeroImg = document.getElementById('menuHeroImg');
+
+        // Mappage des images par catégorie pour le changement dynamique du Hero
+        const catImages = {
+            'smash': 'assets/smash_burger.jpg',
+            'gourmet': 'assets/gourmet_burger.jpg',
+            'phillys': 'assets/smash_burger.jpg',
+            'assiettes': 'assets/assiette.jpg',
+            'bowls': 'assets/bowls.jpg',
+            'salades': 'assets/salade.jpg',
+            'snacks': 'assets/smash_burger.jpg',
+            'enfant': 'assets/enfant.jpg',
+            'desserts': 'assets/dessert.jpg',
+            'boissons': 'assets/boisson.jpg'
+        };
+
+        function showCat(cat) {
+            // 1. Changement de l'image Hero avec effet de fondu
+            if (menuHeroImg && catImages[cat]) {
+                // On ne change que si c'est une image différente
+                if (!menuHeroImg.src.includes(catImages[cat])) {
+                    menuHeroImg.style.opacity = '0'; // Disparition
+                    setTimeout(() => {
+                        menuHeroImg.src = catImages[cat]; // Changement de source
+                        menuHeroImg.style.opacity = '1'; // Apparition
+                    }, 300);
+                }
+            }
+
+            // 2. Gestion des onglets (boutons)
+            catBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+
+            // 3. Gestion des sections de menu
+            const current = document.querySelector('.cat-section.active');
+            const next = document.getElementById('sec-' + cat);
+
+            // Si la cible est déjà affichée ou inexistante, on ne fait rien
+            if (!next || next === current) return;
+
+            if (current) {
+                // Déclenche l'animation de sortie via .leaving
+                current.classList.add('leaving');
+                // Après 260ms (fin de l'animation CSS), on cache la section
+                setTimeout(() => {
+                    current.classList.remove('active', 'leaving');
+                }, 260);
+            }
+
+            // Attend 100ms avant d'afficher la nouvelle section (léger chevauchement)
+            setTimeout(() => {
+                next.classList.add('active'); // Déclenche catFadeIn
+            }, current ? 100 : 0);
+        }
+
+        // Ajoute l'écouteur de clic sur chaque bouton
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                showCat(btn.dataset.cat);
+                // Fait défiler la barre de navigation pour centrer le bouton cliqué
+                // (utile sur mobile quand la barre est scrollable horizontalement)
+                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            });
+        });
+
+
+        /* ─────────────────────────────────────────────────────────
+           4. POSITION DE LA BARRE DE CATÉGORIES
+           La barre .cat-nav a position:sticky.
+           On calcule sa position "top" en fonction de la hauteur
+           réelle de la navbar (qui change avec .scrolled).
+           ► Si tu changes la hauteur de la navbar, ça s'ajuste auto.
+        ────────────────────────────────────────────────────────── */
+        const catNav = document.getElementById('catNav');
+
+        function setCatTop() {
+            // navbar.offsetHeight = hauteur réelle de la navbar en pixels
+            catNav.style.top = navbar.offsetHeight + 'px';
+        }
+
+        setCatTop(); // Applique immédiatement
+        window.addEventListener('resize', setCatTop); // Met à jour si la fenêtre change
+
+    </script>
+</body>
+
+</html>

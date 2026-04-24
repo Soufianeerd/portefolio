@@ -1,0 +1,806 @@
+/* ============================================================
+   TANTI GUSTI II — PAGE D'ACCUEIL
+   Fichier : index.css
+   Rôle    : Styles spécifiques à index.html uniquement.
+             (Hero, Ribbon, À propos, Incontournables, Horaires, Contact)
+   ============================================================
+
+   📁 IMAGES UTILISÉES DANS CE FICHIER
+   ─────────────────────────────────────────────────────────────
+   Aucune image n'est définie ici en CSS.
+   Les images sont dans index.html directement :
+     • Hero photo    → <img src="assets/hero.webp">
+       ✏️  Changez "hero.webp" pour mettre votre photo.
+     • Photo À propos → <img src="assets/cuisto.webp">
+       ✏️  Changez "cuisto.webp" pour mettre votre photo.
+     • Photo four    → <img src="assets/four.webp">
+     • Plat 1 → assets/plat-1.webp  (Pizza Tanti Gusti)
+     • Plat 2 → assets/plat-2.webp  (Sandwich Vosgien)
+     • Plat 3 → assets/plat-3.webp  (Chausson Gratiné)
+     • Plat 4 → assets/plat-4.webp  (Desserts)
+       ✏️  Remplacez chaque fichier dans le dossier assets/
+           par votre propre photo (gardez le même nom de fichier)
+           OU modifiez le src="..." dans index.html.
+   CORRIGÉ : extensions mises à jour .jpg/.png → .webp (format réel des fichiers)
+   ============================================================ */
+
+
+/* ============================================================
+   1. HERO — Section plein écran d'accueil
+   ─────────────────────────────────────────────────────────────
+   📁 IMAGE DU HERO : définie dans index.html
+      <img src="assets/hero.webp"> dans <div class="hero-bg">
+   ✏️  Pour changer la photo du hero : remplacez assets/hero.webp
+       par votre image dans le dossier assets/
+   CORRIGÉ : hero.jpg → hero.webp
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  /* Plein écran (100% de la hauteur du navigateur) */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Conteneur de l'image de fond du hero */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* Couvre tout le hero */
+  z-index: 0;
+}
+
+.hero-bg img {
+  object-position: center 60%;
+  /* ← Recadrage de l'image (haut/bas)
+                                     0% = haut | 50% = centre | 100% = bas */
+}
+
+/* Dégradé sombre sur l'image (pour lisibilité du texte)
+   ✏️  Pour rendre l'image plus visible :
+       diminuez les valeurs 0.88 et 0.60, ex: 0.65 et 0.40
+   ✏️  Pour assombrir : augmentez jusqu'à 0.95 */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+      rgba(14, 13, 11, 0.88) 0%,
+      /* ← Côté gauche (texte) : très sombre */
+      rgba(14, 13, 11, 0.60) 55%,
+      /* ← Centre */
+      rgba(14, 13, 11, 0.30) 100%
+      /* ← Côté droit : plus transparent */
+    );
+}
+
+/* Contenu texte dans le hero (eyebrow, h1, description, boutons) */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  /* ← Largeur max du bloc de texte */
+  padding: 120px 5% 80px;
+  /* ← Espacement : haut, côtés, bas */
+}
+
+.hero-content .eyebrow {
+  margin-bottom: 16px;
+}
+
+.hero-content h1 {
+  font-weight: 900;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.hero-content h1 em {
+  font-style: italic;
+  color: var(--or-clair);
+  /* ← Couleur de "GUSTI II" en italique */
+}
+
+/* Sous-titre du hero (description courte) */
+.hero-desc {
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  color: var(--sable);
+  /* ← Couleur du texte de description */
+  margin-bottom: 36px;
+  max-width: 50ch;
+}
+
+/* Groupe des boutons CTA */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Flèche de scroll en bas du hero */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll span {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-scroll svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--or);
+  stroke-width: 2;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+
+/* ============================================================
+   2. RIBBON — Bandeau défilant de confiance
+   ─────────────────────────────────────────────────────────────
+   ✏️  Pour changer les textes du ruban → index.html
+       Cherchez <div class="ribbon-track">
+       et modifiez le contenu des <span>
+   ✏️  Pour changer la vitesse de défilement : modifiez 45s
+       (moins = plus rapide | plus = plus lent)
+   ✏️  Pour changer la couleur du texte → color: var(--or)
+   ============================================================ */
+.ribbon {
+  background: var(--noir-2);
+  /* ← Fond de la bande */
+  border-top: 1px solid rgba(201, 164, 92, 0.12);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.12);
+  overflow: hidden;
+  padding: 14px 0;
+}
+
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+  /* ← 45s = vitesse de défilement */
+}
+
+.ribbon-track span {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--or);
+  /* ← Couleur des textes du ruban */
+  padding-right: 56px;
+  white-space: nowrap;
+}
+
+.ribbon-track span::after {
+  content: '✦';
+  /* ← Séparateur entre les textes */
+  opacity: 0.45;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* ============================================================
+   3. SECTION À PROPOS
+   ─────────────────────────────────────────────────────────────
+   📁 IMAGES : définies dans index.html
+      <img src="assets/cuisto.webp"> dans .about-img-main
+      <img src="assets/four.webp"> dans .about-img-accent
+   ✏️  Changez "cuisto.webp" ou "four.webp" par votre photo dans assets/
+       OU modifiez le src dans index.html.
+   CORRIGÉ : couverture.png → cuisto.webp / four.webp
+   ============================================================ */
+.about-section {
+  padding: var(--section-py) 5%;
+  background: rgba(21, 19, 17, 0.72);
+  /* ← Fond semi-transparent (laisse voir la texture) */
+  backdrop-filter: blur(1px);
+}
+
+/* Grille 2 colonnes : photo | texte */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* ← 1fr 1fr = 50% / 50% */
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+/* Bloc photos - Layout Premium Overlap (Inspiré de l'exemple) */
+.about-imgs {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60px;
+  /* Espace pour le dépassement bas */
+  margin-bottom: 40px;
+}
+
+/* Photo principale (Grande, Haut-Gauche) */
+.about-img-main {
+  width: 85%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 40px;
+  border: 1px solid rgba(201, 164, 92, 0.4);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.about-img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+/* Photo d'accent (Petite, Bas-Droite, Surimpression) */
+.about-img-accent {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 65%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 40px;
+  border: 1px solid rgba(201, 164, 92, 0.4);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transition: transform 0.6s var(--ease);
+}
+
+.about-img-accent img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+/* Vignette flottante (Discrète, en bas à droite) 
+.about-tag {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 10;                        /* Z-index élevé pour être TOUJOURS au-dessus 
+  background: var(--bois);
+  color: var(--blanc);
+  padding: 12px 18px;                 /* Plus discret 
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.3;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--or);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}*/
+
+.about-tag strong {
+  display: block;
+  font-style: normal;
+  font-size: 1.15rem;
+  /* Taille réduite */
+  color: var(--or-clair);
+}
+
+/* Points clés (3 lignes avec icône) */
+.about-points {
+  margin: 28px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-point {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* Icône carrée à gauche */
+.about-point-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: rgba(201, 164, 92, 0.08);
+  /* ← Fond de l'icône */
+  border: 1px solid rgba(201, 164, 92, 0.2);
+  /* ← Bordure de l'icône */
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+}
+
+.about-point-text p {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+.about-point-text strong {
+  font-size: 0.9rem;
+  color: var(--blanc);
+  font-weight: 500;
+}
+
+/* Boutons en bas de la section à propos */
+.about-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+@media (max-width: 600px) {
+  .about-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+/* ============================================================
+   4. SECTION INCONTOURNABLES (4 spécialités)
+   ─────────────────────────────────────────────────────────────
+   📁 IMAGES : définies dans index.html
+      Cherchez dans <section class="specialites-section">
+      <img src="assets/plat-1.webp">  → Pizza Tanti Gusti
+      <img src="assets/plat-2.webp">  → Sandwich Vosgien
+      <img src="assets/plat-3.webp">  → Chausson Gratiné
+      <img src="assets/plat-4.webp">  → Desserts
+   CORRIGÉ : extensions .jpg → .webp
+   ✏️  Pour changer une photo : remplacez le fichier dans assets/
+       OU changez le src="..." dans index.html.
+
+   ✏️  Pour changer les noms/prix/descriptions des plats :
+       cherchez dans index.html les balises .spec-card-name,
+       .spec-card-desc et .spec-card-price.
+   ============================================================ */
+.specialites-section {
+  padding: var(--section-py) 5%;
+}
+
+/* Grille 2×2 de cartes compactes */
+.specialites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5px;
+  /* ← Jointure fine entre les cartes */
+  max-width: 1400px;
+  /* Limite la largeur sur très grands écrans */
+  margin: 0 auto;
+}
+
+/* Carte individuelle (Format mini-carte cliquable) */
+.spec-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  /* ← Format plus compact (16:9) */
+  cursor: pointer;
+  background: var(--noir-2);
+  display: block;
+  /* Indispensable pour la balise <a> */
+  text-decoration: none;
+  /* Retire le soulignement */
+}
+
+/* On enlève le span 2 pour avoir une grille équilibrée et plus "mini" */
+.spec-card:nth-child(2) {
+  grid-row: auto;
+  aspect-ratio: 16/9;
+}
+
+/* Image avec zoom lent au survol */
+.spec-card-img {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.9s var(--ease);
+}
+
+.spec-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ← L'image remplit la carte sans déformée */
+}
+
+.spec-card:hover .spec-card-img {
+  transform: scale(1.07);
+}
+
+/* Dégradé sombre en bas de la carte (pour lisibilité du texte)
+   ✏️  Pour rendre l'image plus visible : diminuez 0.88 */
+.spec-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14, 13, 11, 0.88) 0%, transparent 60%);
+}
+
+/* Texte en bas de la carte (Ajusté pour mini-cartes) */
+.spec-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 16px 20px 14px;
+  /* ← Padding réduit pour format 16:9 */
+}
+
+/* Petit label catégorie (ex: "Pizza Signature") */
+.spec-card-cat {
+  font-size: 0.58rem;
+  /* ← Légèrement plus petit */
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--or);
+  background: rgba(14, 13, 11, 0.5);
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 4px;
+  /* ← Marge réduite */
+}
+
+.spec-card-name {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  /* ← Plus compact */
+  font-weight: 700;
+  color: var(--blanc);
+  margin-bottom: 4px;
+}
+
+.spec-card-desc {
+  font-size: 0.72rem;
+  opacity: 0.72;
+  margin-bottom: 6px;
+  max-width: unset;
+}
+
+.spec-card-price {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--or-clair);
+  /* ← Couleur du prix */
+  font-style: italic;
+}
+
+/* Badges sur les cartes */
+/* ✏️  "Chef's Choice" en fond doré */
+.badge-chef {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  background: var(--or);
+  /* ← Fond doré du badge */
+  color: var(--noir);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+/* ✏️  "Nouveau/Favori" en fond bois */
+.badge-new {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  background: var(--bois);
+  /* ← Fond bois du badge */
+  color: var(--blanc);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+/* Bouton "Voir toute la carte" centré */
+.specialites-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+
+/* ============================================================
+   5. SECTION HORAIRES
+   ─────────────────────────────────────────────────────────────
+   ✏️  Pour changer les horaires → modifiez dans index.html
+       Cherchez <section class="horaires-section">
+       et modifiez .heure-slot de chaque .heure-card.
+   ✏️  Pour ajouter/supprimer un jour : dupliquez ou supprimez
+       un bloc <div class="heure-card">...</div>
+   ============================================================ */
+.horaires-section {
+  padding: var(--section-py) 5%;
+  background: rgba(15, 14, 12, 0.75);
+  /* ← Semi-transparent (voir texture derrière) */
+  border-top: 1px solid rgba(201, 164, 92, 0.08);
+}
+
+/* Grille des cartes horaires */
+.horaires-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 2px;
+  /* ← Espacement entre cartes horaires */
+  margin-top: 48px;
+}
+
+/* Carte individuelle d'un jour */
+.heure-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 164, 92, 0.08);
+  padding: 28px 20px;
+  text-align: center;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.heure-card:hover {
+  border-color: rgba(201, 164, 92, 0.3);
+  background: rgba(201, 164, 92, 0.04);
+}
+
+.heure-jour {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--or);
+  /* ← Couleur du nom du jour */
+  margin-bottom: 14px;
+}
+
+.heure-slot {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--creme);
+  opacity: 0.8;
+  line-height: 1.8;
+}
+
+.heure-fermé {
+  opacity: 0.35;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+
+/* ============================================================
+   6. SECTION CONTACT / ACCÈS
+   ─────────────────────────────────────────────────────────────
+   ✏️  Pour changer l'adresse, le téléphone ou Instagram :
+       modifiez directement dans index.html
+       Cherchez <section class="contact-section">
+   ✏️  Pour changer la carte Google Maps :
+       remplacez le src="..." de l'<iframe> dans index.html.
+   ============================================================ */
+.contact-section {
+  padding: var(--section-py) 5%;
+}
+
+/* Grille 2 colonnes : infos | carte */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  /* ← 1fr infos | 1.5fr carte (carte plus large) */
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Ligne d'information (icône + texte) */
+.contact-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid rgba(201, 164, 92, 0.25);
+  /* ← Bordure de l'icône */
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  color: var(--or);
+}
+
+.contact-item-text p {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-bottom: 2px;
+  max-width: unset;
+}
+
+.contact-item-text strong {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--blanc);
+}
+
+.contact-item-text a:hover {
+  color: var(--or-clair);
+}
+
+.contact-cta {
+  margin-top: 8px;
+}
+
+/* Conteneur de la carte Google Maps */
+.map-wrapper {
+  aspect-ratio: 16/10;
+  /* ← Format de la carte Maps */
+  background: #111;
+  border: 1px solid rgba(201, 164, 92, 0.1);
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* ✏️  Pour ajouter un filtre (teintes sombres) : décommentez les 2 lignes ci-dessous
+         ATTENTION : ces filtres ralentissent le scroll sur mobile (évitez-les) */
+  /* filter: grayscale(60%) invert(90%) contrast(85%) saturate(0.6); */
+  /* mix-blend-mode: luminosity; */
+}
+
+/* Badge "Ouvert ce soir" en haut de la carte */
+.open-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--noir-2);
+  border: 1px solid rgba(201, 164, 92, 0.3);
+  color: var(--or);
+  padding: 6px 14px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   7. RESPONSIVE — PAGE D'ACCUEIL
+   ─────────────────────────────────────────────────────────────
+   En dessous de 768px (mobile) :
+   - Section À propos : 1 colonne (photo au-dessus, texte dessous)
+   - Section Contact  : 1 colonne (infos au-dessus, carte dessous)
+   - Cards spécialités : 1 colonne (les 4 cards s'empilent)
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 140px 5% 60px;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .hero-desc {
+    margin-inline: auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Empile la photo et le texte */
+  .about-imgs {
+    margin: 40px auto;
+    width: 95%;
+    padding-bottom: 40px;
+  }
+
+  .about-img-main {
+    width: 90%;
+    border-radius: 20px;
+  }
+
+  .about-img-accent {
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    border-radius: 20px;
+  }
+
+  .about-tag {
+    right: 5%;
+    bottom: 65px;
+    z-index: 10;
+    padding: 10px 14px;
+    font-size: 0.7rem;
+    border-radius: 8px;
+  }
+
+  .specialites-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Plus d'espace sur mobile */
+  .spec-card {
+    aspect-ratio: 16/10;
+  }
+
+  .spec-card-info {
+    padding: 24px;
+  }
+
+  .spec-card:nth-child(2) {
+    grid-row: auto;
+    aspect-ratio: 16/10;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Empile infos et carte */
+  .map-wrapper {
+    aspect-ratio: 4/3;
+  }
+}

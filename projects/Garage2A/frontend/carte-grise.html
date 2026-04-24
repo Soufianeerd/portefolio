@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Grise Nancy 54 – Point Auto Services | Simulateur en ligne & Code de la Route</title>
+  <meta name="description"
+    content="Simulateur de prix carte grise officiel pour la région Grand Est (54). Changement de propriétaire, import, duplicata. Centre agréé Code'n Go Bureau Veritas. 63 Rue St Nicolas, Nancy.">
+  <meta name="keywords"
+    content="carte grise Nancy, simulateur carte grise Grand Est, carte grise en ligne 54, code de la route Nancy, Code'n Go Nancy, Bureau Veritas code examen">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://garage2a.fr/carte-grise.html">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    .sim-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .sim-aside {
+      position: sticky;
+      top: 90px;
+    }
+
+    .info-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(230, 126, 34, 0.1);
+      border: 1px solid rgba(230, 126, 34, 0.25);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--c-orange);
+      margin-bottom: 12px;
+    }
+
+    .demo-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .demo-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      transition: border-color 0.2s, transform 0.3s;
+    }
+
+    .demo-card:hover {
+      border-color: rgba(230, 126, 34, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .demo-card .demo-icon {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .demo-card h4 {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: var(--c-white);
+    }
+
+    .demo-card p {
+      font-size: 0.78rem;
+      color: var(--c-muted);
+    }
+
+    /* Etape result */
+    #etape-1 {
+      display: none;
+    }
+
+    #etape-2 {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .sim-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .sim-aside {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .demo-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo" aria-label="Garage 2A - Accueil">
+        <img src="assets/img/logo-g2a.svg" alt="Logo Garage 2A">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Accueil</a>
+        <a href="carte-grise.html" class="active">Carte Grise</a>
+        <a href="#code-route">Code de la Route</a>
+        <a href="garage.html">Garage & Vitrage</a>
+        <a href="garage.html#devis">Devis Atelier</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:0383211002" class="btn btn-primary btn-sm" id="nav-phone-btn">
+          📞 03 83 21 10 02
+        </a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="carte-grise.html">📋 Carte Grise — Nancy</a>
+    <a href="#code-route">📖 Code de la Route</a>
+    <a href="garage.html">🔧 Garage & Vitrage — St-Nicolas</a>
+    <a href="garage.html#devis">📝 Demande de Devis</a>
+    <a href="tel:0383211002" style="color:var(--c-orange); font-weight:700; margin-top:8px;">📞 03 83 21 10 02</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span class="sep">›</span>
+        <span class="current">Point Auto Services — Nancy</span>
+      </div>
+      <div class="animate-in">
+        <div class="address-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          63 Rue St Nicolas, 54000 Nancy — Habilité SIV/ANTS
+        </div>
+        <h1>Carte Grise à <span class="text-orange">Nancy</span></h1>
+        <p style="max-width:580px; margin:16px auto 0; font-size:1.05rem; line-height:1.7;">
+          Simulez le coût de votre démarche en quelques secondes. Certificat d'immatriculation, import, duplicata,
+          changement d'adresse — nos habilités s'occupent de tout.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATEUR SECTION -->
+  <section class="section-padding" id="simulateur">
+    <div class="container">
+      <div class="sim-wrapper">
+
+        <!-- LEFT: informations -->
+        <div class="sim-aside">
+          <span class="section-eyebrow">Simulateur Officiel 2026</span>
+          <h2 style="margin-bottom:16px;">Estimez le prix de votre Carte Grise</h2>
+          <p style="margin-bottom:24px;">
+            Tarifs basés sur la grille tarifaire officielle de toutes les régions de France pour 2026. Sélectionnez
+            votre département pour un calcul instantané, sans engagement.
+          </p>
+
+          <div class="info-pill">✅ Tarifs Nationaux 2026 — 100 Départements</div>
+
+          <div
+            style="background:var(--c-surface); border:1px solid var(--c-border); border-radius:14px; padding:20px; margin-bottom:28px;">
+            <p style="font-size:0.85rem; line-height:1.7; color:rgba(0,0,0,0.65);">
+              <strong style="color:var(--c-orange);">Règles de calcul :</strong><br>
+              • <strong>Taxe régionale (Y1)</strong> = CV × Tarif de votre département<br>
+              • <strong>Abattement 50%</strong> si véhicule > 10 ans<br>
+              • <strong>100% exonéré</strong> si 100% électrique<br>
+              • <strong>Frais fixes ANTS</strong> : 11 € (gestion) + 2,76 € (acheminement)<br>
+              • <strong>Frais de dossier</strong> : 30 € (accompagnement)
+            </p>
+          </div>
+
+          <div id="demos" class="demo-cards">
+            <div class="demo-card">
+              <div class="demo-icon">🚗</div>
+              <h4>Occasion France</h4>
+              <p>Changement de propriétaire</p>
+            </div>
+            <div class="demo-card">
+              <div class="demo-icon">🌍</div>
+              <h4>Import étranger</h4>
+              <p>Véhicule WW / UE</p>
+            </div>
+            <div class="demo-card">
+              <div class="demo-icon">📄</div>
+              <h4>Duplicata</h4>
+              <p>Perte ou vol de carte grise</p>
+            </div>
+            <div class="demo-card">
+              <div class="demo-icon">🏠</div>
+              <h4>Changement adresse</h4>
+              <p>Déménagement</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: simulateur + tunnel -->
+        <div>
+          <!-- Stepper indicator -->
+          <div class="sim-step-indicator animate-in">
+            <div class="step-dot active" id="step-dot-1" title="Étape 1 : Calcul">1</div>
+            <div class="step-line" id="step-line-1"></div>
+            <div class="step-dot" id="step-dot-2" title="Étape 2 : Résultat">2</div>
+            <div class="step-line" id="step-line-2"></div>
+            <div class="step-dot" id="step-dot-3" title="Étape 3 : Dossier">3</div>
+          </div>
+
+          <!-- FORMULAIRE SIMULATEUR -->
+          <div class="sim-card animate-in delay-1" id="sim-form-card">
+            <h3 style="margin-bottom:24px;">Votre démarche</h3>
+            <form id="form-simulateur" novalidate>
+              <div class="sim-grid-container">
+                <div class="form-group full-width">
+                  <label class="form-label" for="sim-demarche">Type de démarche</label>
+                  <select id="sim-demarche" class="form-input" required>
+                    <option value="occasion_fr">Changement de propriétaire (Occasion France)</option>
+                    <option value="occasion_import">Immatriculation véhicule étranger (Import / WW)</option>
+                    <option value="duplicata">Duplicata (perte / vol / détérioration)</option>
+                    <option value="changement_adresse">Changement de domicile</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="sim-dept">Département</label>
+                  <select id="sim-dept" class="form-input" required>
+                    <option value="01">01 - Ain</option>
+                    <option value="02">02 - Aisne</option>
+                    <option value="03">03 - Allier</option>
+                    <option value="04">04 - Alpes-de-Haute-Provence</option>
+                    <option value="05">05 - Hautes-Alpes</option>
+                    <option value="06">06 - Alpes-Maritimes</option>
+                    <option value="07">07 - Ardèche</option>
+                    <option value="08">08 - Ardennes</option>
+                    <option value="09">09 - Ariège</option>
+                    <option value="10">10 - Aube</option>
+                    <option value="11">11 - Aude</option>
+                    <option value="12">12 - Aveyron</option>
+                    <option value="13">13 - Bouches-du-Rhône</option>
+                    <option value="14">14 - Calvados</option>
+                    <option value="15">15 - Cantal</option>
+                    <option value="16">16 - Charente</option>
+                    <option value="17">17 - Charente-Maritime</option>
+                    <option value="18">18 - Cher</option>
+                    <option value="19">19 - Corrèze</option>
+                    <option value="2A">2A - Corse-du-Sud</option>
+                    <option value="2B">2B - Haute-Corse</option>
+                    <option value="21">21 - Côte-d'Or</option>
+                    <option value="22">22 - Côtes-d'Armor</option>
+                    <option value="23">23 - Creuse</option>
+                    <option value="24">24 - Dordogne</option>
+                    <option value="25">25 - Doubs</option>
+                    <option value="26">26 - Drôme</option>
+                    <option value="27">27 - Eure</option>
+                    <option value="28">28 - Eure-et-Loir</option>
+                    <option value="29">29 - Finistère</option>
+                    <option value="30">30 - Gard</option>
+                    <option value="31">31 - Haute-Garonne</option>
+                    <option value="32">32 - Gers</option>
+                    <option value="33">33 - Gironde</option>
+                    <option value="34">34 - Hérault</option>
+                    <option value="35">35 - Ille-et-Vilaine</option>
+                    <option value="36">36 - Indre</option>
+                    <option value="37">37 - Indre-et-Loire</option>
+                    <option value="38">38 - Isère</option>
+                    <option value="39">39 - Jura</option>
+                    <option value="40">40 - Landes</option>
+                    <option value="41">41 - Loir-et-Cher</option>
+                    <option value="42">42 - Loire</option>
+                    <option value="43">43 - Haute-Loire</option>
+                    <option value="44">44 - Loire-Atlantique</option>
+                    <option value="45">45 - Loiret</option>
+                    <option value="46">46 - Lot</option>
+                    <option value="47">47 - Lot-et-Garonne</option>
+                    <option value="48">48 - Lozère</option>
+                    <option value="49">49 - Maine-et-Loire</option>
+                    <option value="50">50 - Manche</option>
+                    <option value="51">51 - Marne</option>
+                    <option value="52">52 - Haute-Marne</option>
+                    <option value="53">53 - Mayenne</option>
+                    <option value="54" selected>54 - Meurthe-et-Moselle</option>
+                    <option value="55">55 - Meuse</option>
+                    <option value="56">56 - Morbihan</option>
+                    <option value="57">57 - Moselle</option>
+                    <option value="58">58 - Nièvre</option>
+                    <option value="59">59 - Nord</option>
+                    <option value="60">60 - Oise</option>
+                    <option value="61">61 - Orne</option>
+                    <option value="62">62 - Pas-de-Calais</option>
+                    <option value="63">63 - Puy-de-Dôme</option>
+                    <option value="64">64 - Pyrénées-Atlantiques</option>
+                    <option value="65">65 - Hautes-Pyrénées</option>
+                    <option value="66">66 - Pyrénées-Orientales</option>
+                    <option value="67">67 - Bas-Rhin</option>
+                    <option value="68">68 - Haut-Rhin</option>
+                    <option value="69">69 - Rhône</option>
+                    <option value="70">70 - Haute-Saône</option>
+                    <option value="71">71 - Saône-et-Loire</option>
+                    <option value="72">72 - Sarthe</option>
+                    <option value="73">73 - Savoie</option>
+                    <option value="74">74 - Haute-Savoie</option>
+                    <option value="75">75 - Paris</option>
+                    <option value="76">76 - Seine-Maritime</option>
+                    <option value="77">77 - Seine-et-Marne</option>
+                    <option value="78">78 - Yvelines</option>
+                    <option value="79">79 - Deux-Sèvres</option>
+                    <option value="80">80 - Somme</option>
+                    <option value="81">81 - Tarn</option>
+                    <option value="82">82 - Tarn-et-Garonne</option>
+                    <option value="83">83 - Var</option>
+                    <option value="84">84 - Vaucluse</option>
+                    <option value="85">85 - Vendée</option>
+                    <option value="86">86 - Vienne</option>
+                    <option value="87">87 - Haute-Vienne</option>
+                    <option value="88">88 - Vosges</option>
+                    <option value="89">89 - Yonne</option>
+                    <option value="90">90 - Territoire de Belfort</option>
+                    <option value="91">91 - Essonne</option>
+                    <option value="92">92 - Hauts-de-Seine</option>
+                    <option value="93">93 - Seine-Saint-Denis</option>
+                    <option value="94">94 - Val-de-Marne</option>
+                    <option value="95">95 - Val-d'Oise</option>
+                    <option value="971">971 - Guadeloupe</option>
+                    <option value="972">972 - Martinique</option>
+                    <option value="973">973 - Guyane</option>
+                    <option value="974">974 - La Réunion</option>
+                    <option value="976">976 - Mayotte</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sim-cv">Puissance (CV)</label>
+                  <input type="number" id="sim-cv" class="form-input" value="6" min="1" max="99" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sim-annee">Année de mise en circulation</label>
+                  <input type="number" id="sim-annee" class="form-input" value="2018" min="1900" max="2100" required>
+                </div>
+
+                <div class="form-group full-width">
+                  <label class="form-label" for="sim-energie">Énergie</label>
+                  <select id="sim-energie" class="form-input" required>
+                    <option value="thermique">Thermique (Essence / Diesel / GPL)</option>
+                    <option value="hybride">Hybride (rechargeable ou non)</option>
+                    <option value="electrique">100% Électrique (Exonéré ✓)</option>
+                  </select>
+                </div>
+              </div>
+
+              <button style="margin-top:24px;" type="submit" class="btn btn-primary btn-lg btn-block" id="btn-calculer">
+                Calculer le tarif officiel →
+              </button>
+              <p style="text-align:center; margin-top:12px; font-size:0.78rem; color:var(--c-muted);">
+                *Estimation basée sur les grilles tarifaires ANTS 2026
+              </p>
+            </form>
+          </div>
+
+          <!-- ÉTAPE 1 : Résultat du calcul -->
+          <div id="etape-1" class="sim-card" style="margin-top:24px; border-color:rgba(230,126,34,0.3);">
+            <h3 style="margin-bottom:8px;">✅ Récapitulatif tarifaire</h3>
+            <p id="res-label" style="color:var(--c-muted); margin-bottom:24px; font-size:0.9rem;">—</p>
+
+            <div class="result-row">
+              <span class="label">Taxe régionale Y1</span>
+              <strong class="value" id="res-taxeRegionale">— €</strong>
+            </div>
+            <div class="result-row" id="res-abatt-row" style="display:none;">
+              <span class="label">Abattement ancienneté (>10 ans)</span>
+              <strong class="value" id="res-abattement" style="color:var(--c-success);">—</strong>
+            </div>
+            <div class="result-row">
+              <span class="label">Frais légaux fixes ANTS</span>
+              <strong class="value" id="res-fraisFixes">13,76 €</strong>
+            </div>
+            <div class="result-row">
+              <span class="label">Frais de dossier Point Auto</span>
+              <strong class="value" id="res-fraisDossier">30,00 €</strong>
+            </div>
+            <div class="result-total">
+              <span class="label">TOTAL TTC</span>
+              <span class="value" id="res-totalTTC">— €</span>
+            </div>
+
+            <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+              <button class="btn btn-primary" id="btn-demarrer-demarche" style="flex:1;">
+                📄 Constituer mon dossier →
+              </button>
+              <a href="tel:0383211002" class="btn btn-outline" title="Besoin d'aide ? Appelez-nous">
+                📞 Aide
+              </a>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 2 : Informations client -->
+          <div id="etape-2" class="sim-card" style="margin-top:24px; text-align:left;">
+            <h3 style="margin-bottom:8px;">📋 Dossier Titulaire</h3>
+            <p style="color:var(--c-muted); margin-bottom:24px; font-size:0.88rem;">Renseignez vos informations pour que
+              notre équipe vous recontacte.</p>
+
+            <form id="form-dossier" novalidate>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">Nom de naissance *</label>
+                  <input type="text" name="nom" class="form-input" placeholder="DUPONT" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Prénom *</label>
+                  <input type="text" name="prenom" class="form-input" placeholder="Marie" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">E-mail *</label>
+                <input type="email" name="email" class="form-input" placeholder="marie.dupont@email.fr" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Téléphone *</label>
+                <input type="tel" name="telephone" class="form-input" placeholder="06 XX XX XX XX" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Immatriculation du véhicule</label>
+                <input type="text" name="immatriculation" class="form-input" placeholder="AB-123-CD ou WW-XX-XX">
+              </div>
+
+              <hr style="border:none; border-top:1px solid var(--c-border); margin:24px 0;">
+
+              <h4 style="margin-bottom:8px;">Pièces justificatives</h4>
+              <p style="font-size:0.82rem; color:var(--c-muted); margin-bottom:16px; line-height:1.6;">
+                Selon votre démarche, munissez-vous de :<br>
+                • Pièce d'identité (recto/verso)<br>
+                • Justificatif de domicile récent (moins de 3 mois)<br>
+                • Certificat de cession + contrôle technique (occasion)<br>
+                • Certificat de conformité CE (import)
+              </p>
+
+              <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Déposer vos fichiers">
+                <div style="font-size:2rem; margin-bottom:8px;">📎</div>
+                <p id="upload-text" style="color:rgba(0,0,0,0.6); font-size:0.88rem;">Glissez vos fichiers ici ou
+                  cliquez pour parcourir</p>
+                <p style="font-size:0.75rem; color:var(--c-muted); margin-top:4px;">PDF, JPG, PNG — 5 Mo max par fichier
+                </p>
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg" aria-label="Sélectionner des fichiers">
+              </div>
+
+              <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline" id="btn-retour-etape2">← Revoir le tarif</button>
+                <button type="submit" class="btn btn-primary" id="btn-dossier-submit" style="flex:1;">
+                  Envoyer ma demande →
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!--
+          ==========================================
+          ÉTAPE 3 : PAIEMENT STRIPE — MIS EN COMMENTAIRE
+          ==========================================
+
+          <div id="etape-3" class="sim-card" style="margin-top:24px; display:none; text-align:left;">
+            <h3 style="margin-bottom:16px;">🔒 Paiement Sécurisé</h3>
+            <div style="background:rgba(39,174,96,0.08); border:1px solid rgba(39,174,96,0.25); border-radius:12px; padding:16px; margin-bottom:24px; display:flex; gap:12px; align-items:flex-start;">
+              <span style="font-size:1.8rem;">🔒</span>
+              <div>
+                <strong>Stripe AES-256</strong>
+                <p style="font-size:0.85rem; color:rgba(0,0,0,0.6); margin-top:4px;">Connexion sécurisée. Vos données bancaires ne transitent jamais par nos serveurs.</p>
+              </div>
+            </div>
+            <div id="stripe-card-element" style="padding:18px; border:1px solid var(--c-border); border-radius:12px; background:white; margin-bottom:24px;"></div>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="btn-payer" onclick="window.payerCG && window.payerCG()">
+              💳 Payer en toute sécurité →
+            </button>
+          </div>
+
+          ==========================================
+          ÉTAPE 4 : CONFIRMATION — MIS EN COMMENTAIRE
+          ==========================================
+
+          <div id="etape-succes" class="sim-card text-center" style="margin-top:24px; display:none; padding:48px 32px;">
+            <div style="font-size:4rem; margin-bottom:20px;">🏆</div>
+            <h2 style="margin-bottom:12px;">Commande confirmée !</h2>
+            <p style="color:rgba(0,0,0,0.65); max-width:400px; margin:0 auto 28px; line-height:1.7;">
+              Votre dossier a été traité avec succès. Votre nouvelle carte grise vous sera envoyée par courrier sous 7 jours ouvrés.
+            </p>
+            <a href="../index.html" class="btn btn-primary">← Retour à l'accueil</a>
+          </div>
+
+          -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE DE LA ROUTE -->
+  <section class="section-padding" id="code-route"
+    style="background:var(--c-surface); border-top:1px solid var(--c-border);">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Partenaire officiel</span>
+        <h2 class="section-title">Code de la Route à Nancy</h2>
+        <p style="margin-bottom:16px;">Sessions d'examen officielles agréées par l'État — Code'n Go par Bureau Veritas.
+          Inscrivez-vous en ligne, passez l'examen dans nos locaux (63 Rue St Nicolas).</p>
+        <div class="bv-badge">
+          <span>🏛️</span>
+          <span>Code'n Go — Bureau Veritas — Centre agréé Nancy</span>
+        </div>
+      </div>
+
+      <div class="code-grid animate-in delay-1">
+
+        <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+          rel="noopener noreferrer" class="code-card clickable" id="code-auto">
+          <div class="code-icon">🚗</div>
+          <h3>Code Auto (B)</h3>
+          <p style="font-size:0.85rem; color:var(--c-muted); max-width:200px;">Permis voiture — Examen ETG officiel sur
+            tablette</p>
+          <span class="cta-link">
+            Réserver ma session
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+          rel="noopener noreferrer" class="code-card clickable" id="code-moto">
+          <div class="code-icon">🏍️</div>
+          <h3>Code Moto (A / A1 / A2)</h3>
+          <p style="font-size:0.85rem; color:var(--c-muted); max-width:200px;">ETG moto — Inscription candidat libre en
+            5 min</p>
+          <span class="cta-link">
+            Réserver ma session
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+          rel="noopener noreferrer" class="code-card clickable" id="code-bateau">
+          <div class="code-icon">⛵</div>
+          <h3>Code Bateau</h3>
+          <p style="font-size:0.85rem; color:var(--c-muted); max-width:200px;">Côtier & Fluvial — Permis plaisance eaux
+            intérieures</p>
+          <span class="cta-link">
+            Réserver ma session
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </span>
+        </a>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+          rel="noopener noreferrer" class="btn btn-primary btn-lg" id="btn-codengo">
+          📅 Réserver mon créneau d'examen →
+        </a>
+        <p style="margin-top:12px; font-size:0.82rem; color:var(--c-muted);">Présentez-vous avec votre convocation et
+          une pièce d'identité</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORAIRES & CONTACT NANCY -->
+  <section class="section-padding" id="contact">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Accès & Horaires</span>
+        <h2 class="section-title">Point Auto Services — Nancy</h2>
+      </div>
+
+      <div class="grid-2 animate-in delay-1" style="gap:40px;">
+        <div>
+          <div class="contact-block" style="margin-bottom:20px;">
+            <h3 style="margin-bottom:16px; font-size:1.1rem;">📍 Adresse</h3>
+            <p style="line-height:1.8; color:rgba(0,0,0,0.75);">
+              63 Rue St Nicolas<br>
+              54000 Nancy<br>
+              Meurthe-et-Moselle (54)
+            </p>
+            <a href="tel:0383211002" class="phone-link" style="margin-top:16px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              03 83 21 10 02
+            </a>
+          </div>
+
+          <!-- Horaires table -->
+          <div class="contact-block">
+            <h3 style="margin-bottom:16px; font-size:1.1rem;">🕐 Horaires</h3>
+            <table class="horaires-table">
+              <thead>
+                <tr>
+                  <th>Jour</th>
+                  <th>Matin</th>
+                  <th>Après-midi</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lundi</td>
+                  <td>09:30 – 12:00</td>
+                  <td>13:00 – 17:00</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Mardi</td>
+                  <td>09:30 – 12:00</td>
+                  <td>13:00 – 17:00</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Mercredi</td>
+                  <td colspan="2" style="color:#e74c3c; font-weight:600;">FERMÉ</td>
+                  <td><span class="tag-open no">Fermé</span></td>
+                </tr>
+                <tr>
+                  <td>Jeudi</td>
+                  <td>09:30 – 12:00</td>
+                  <td>13:00 – 17:00</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Vendredi</td>
+                  <td>09:30 – 12:00</td>
+                  <td>13:00 – 17:00</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Samedi</td>
+                  <td>10:15 – 12:15</td>
+                  <td>13:15 – 17:00</td>
+                  <td><span class="tag-open special">Samedi</span></td>
+                </tr>
+                <tr>
+                  <td>Dimanche</td>
+                  <td colspan="2" style="color:#e74c3c; font-weight:600;">FERMÉ</td>
+                  <td><span class="tag-open no">Fermé</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div>
+          <div class="map-embed animate-in delay-2">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.5!2d6.1792!3d48.6924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794930d780e0a99%3A0x8d90af3f2c3f547b!2s63%20Rue%20Saint-Nicolas%2C%2054000%20Nancy!5e0!3m2!1sfr!2sfr"
+              title="Carte Point Auto Services Nancy" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top:20px;">
+            <a href="https://maps.google.com/?q=63+Rue+St+Nicolas,+54000+Nancy" target="_blank" rel="noopener"
+              class="btn btn-outline btn-block">
+              🗺️ Itinéraire Google Maps →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/img/logo-g2aa.png" alt="Logo G2A">
+          </div>
+          <p>Point Auto Services — Centre habilité SIV/ANTS par le Ministère de l'Intérieur. Partenaire Code'n Go Bureau
+            Veritas.</p>
+          <a href="tel:0383211002"
+            style="color:var(--c-orange); font-weight:700; display:inline-block; margin-top:14px;">📞 03 83 21 10 02</a>
+        </div>
+        <div class="footer-col">
+          <h4>Carte Grise</h4>
+          <a href="#simulateur">Simulateur en ligne</a>
+          <a href="#demos">Changement propriétaire</a>
+          <a href="#demos">Import étranger</a>
+          <a href="#demos">Duplicata</a>
+        </div>
+        <div class="footer-col">
+          <h4>Code de la Route</h4>
+          <a href="#code-route">Code Auto (B)</a>
+          <a href="#code-route">Code Moto (A)</a>
+          <a href="#code-route">Code Bateau</a>
+          <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+            rel="noopener">Réserver un créneau</a>
+        </div>
+        <div class="footer-col">
+          <h4>Liens utiles</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="garage.html">Garage 2A St-Nicolas</a>
+          <a href="https://www.ants.gouv.fr" target="_blank" rel="noopener">ANTS officiel</a>
+          <a href="#">Mentions légales</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Point Auto Services — 63 Rue St Nicolas, 54000 Nancy</span>
+        <span>Habilité SIV · Code'n Go Bureau Veritas · Meurthe-et-Moselle (54)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/simulateur.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,495 @@
+/* ============================================================
+   TANTI GUSTI II — DESIGN SYSTEM GLOBAL
+   Fichier : style.css
+   Rôle    : Styles communs à toutes les pages (couleurs, typo,
+             navbar, boutons, footer, animations).
+   ============================================================
+
+   📁 IMAGES UTILISÉES DANS CE FICHIER
+   ─────────────────────────────────────────────────────────────
+   • assets/texture.webp  → Fond (grain) appliqué sur tout le site
+     Pour changer la texture : remplacez TOUTES les occurrences
+     de 'assets/texture.webp' ci-dessous (3 occurrences).
+
+   🎨 POUR CHANGER UNE COULEUR
+   ─────────────────────────────────────────────────────────────
+   Modifiez les variables dans la section :root ci-dessous.
+   Chaque variable est utilisée partout dans le site.
+   ============================================================ */
+
+
+/* ============================================================
+   1. POLICES DE CARACTÈRES (Google Fonts)
+   ─────────────────────────────────────────────────────────────
+   Playfair Display → utilisée pour les titres (h1, h2, h3)
+   Poppins          → utilisée pour le texte courant et boutons
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* ============================================================
+   2. VARIABLES GLOBALES (Couleurs, Typo, Espacements)
+   ─────────────────────────────────────────────────────────────
+   ✏️  POUR CHANGER UNE COULEUR → modifiez la valeur ici.
+       La couleur se mettra à jour partout dans le site.
+   ============================================================ */
+:root {
+
+  /* --- Couleurs de fond --- */
+  --noir:       #0E0D0B;   /* ◼ Fond principal très sombre */
+  --noir-2:     #151311;   /* ◼ Fond sections alternées */
+
+  /* --- Couleurs d'accent --- */
+  --or:         #C9A45C;   /* 🟡 Or principal → titres, bordures, boutons */
+  --or-clair:   #E3C98B;   /* 🟡 Or clair → hover, accents secondaires */
+  --bois:       #A67C52;   /* 🟤 Brun bois clair → badges, encadrés */
+  --sable:      #D7BE9A;   /* 🟠 Sable chaud → sous-titres, labels */
+
+  /* --- Couleurs de texte --- */
+  --creme:      #F2E7D5;   /* 🟡 Crème → texte courant sur fond sombre */
+  --blanc:      #FAF6F0;   /* ⚪ Blanc chaud → noms des plats, titres de cartes */
+
+  /* --- Polices --- */
+  --font-serif: 'Playfair Display', Georgia, serif;  /* Titres élégants */
+  --font-sans:  'Poppins', system-ui, sans-serif;    /* Corps de texte */
+
+  /* --- Transitions (vitesse des animations hover) --- */
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast:     0.25s var(--ease);   /* Rapide (hover boutons) */
+  --t-slow:     0.7s var(--ease);    /* Lente (apparition sections) */
+
+  /* --- Espacements --- */
+  --section-py: clamp(60px, 8vw, 120px);  /* Padding vertical des sections */
+  --container:  1200px;                    /* Largeur max du contenu */
+}
+
+
+/* ============================================================
+   3. RESET CSS (Remise à zéro des styles navigateur)
+   ─────────────────────────────────────────────────────────────
+   Ne pas modifier cette section.
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { 
+  scroll-behavior: smooth; 
+  -webkit-text-size-adjust: 100%; 
+  scroll-padding-top: 100px; /* Evite que le header collant ne cache les titres quand on clique sur un lien # */
+}
+
+
+/* ============================================================
+   4. FOND GLOBAL + TEXTURE
+   ─────────────────────────────────────────────────────────────
+   📁 IMAGE : assets/texture.webp (fond grain du site)
+   ✏️  Pour changer : remplacez 'assets/texture.webp' ici et dans
+       body::before ci-dessous.
+
+   ✏️  Pour rendre la texture plus claire : augmentez #1e1b17
+       ex: #2a2520 (plus clair) ou #15120f (plus sombre)
+   ✏️  Pour changer la taille du grain : modifiez background-size
+       ex: 300px (grain fin) ou 800px (grain large)
+   ============================================================ */
+body {
+  /* Fond anthracite chaud avec texture en overlay léger
+     PERFORMANCE : background-attachment:fixed supprimé */
+  background-color: #1e1b17;
+  /* Texture + calque d'assombrissement fusionnés en 1 seul background
+     Pour changer la texture : remplacez 'assets/texture.webp'
+     Pour changer l'assombrissement : modifiez rgba(30,27,23,0.52) */
+  background-image:
+    linear-gradient(rgba(30,27,23,0.52), rgba(30,27,23,0.52)),
+    url('assets/texture.webp');
+  background-repeat: repeat;
+  background-size: auto, 500px;
+  color: var(--creme);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* body::before supprimé : tout est fusionné dans background de body ci-dessus
+   Plus de position:fixed → plus de couche GPU séparée → scroll fluide */
+
+/* Tous les éléments passent au-dessus du calque texture */
+body > * { position: relative; z-index: 1; }
+
+/* Images : plein écran par défaut dans leur conteneur */
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Liens : héritent la couleur du parent par défaut */
+a { color: inherit; text-decoration: none; }
+
+
+/* ============================================================
+   5. CONTENEUR (limite la largeur du contenu sur grands écrans)
+   ✏️  Pour rendre le contenu plus large : augmentez --container
+       dans :root ci-dessus (ex: 1400px).
+   ============================================================ */
+.container {
+  width: 90%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+
+/* ============================================================
+   6. TYPOGRAPHIE COMMUNE
+   ─────────────────────────────────────────────────────────────
+   .eyebrow    → Petit label en majuscules au-dessus des titres
+   h1, h2, h3  → Titres en Playfair Display
+   p           → Paragraphes en Poppins
+
+   ✏️  Pour changer la taille des titres h1 :
+       modifiez la ligne h1 { font-size: clamp(...) }
+       clamp(min, valeur-fluide, max)
+   ============================================================ */
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 12px;
+}
+h1, h2, h3 { font-family: var(--font-serif); line-height: 1.15; }
+h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); color: var(--or-clair); }  /* Titre Hero */
+h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); color: var(--or-clair); }  /* Titres sections */
+h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--blanc); }     /* Sous-titres cartes */
+p  { font-size: clamp(0.9rem, 1.2vw, 1rem); opacity: 0.85; max-width: 60ch; }
+
+
+/* ============================================================
+   7. TRAIT DORÉ DÉCORATIF
+   ─────────────────────────────────────────────────────────────
+   Utilisé sous les titres des sections.
+   .gold-line         → trait aligné à gauche
+   .gold-line.center  → trait centré
+   ✏️  Pour changer la couleur du trait : modifiez --or dans :root
+   ============================================================ */
+.gold-line {
+  width: 50px; height: 2px;
+  background: var(--or);
+  margin-block: 20px;
+}
+.gold-line.center { margin-inline: auto; }
+
+
+/* ============================================================
+   8. BOUTONS
+   ─────────────────────────────────────────────────────────────
+   Usage HTML :
+     .btn .btn-or      → Bouton plein doré (action principale)
+     .btn .btn-outline → Bouton contour doré (action secondaire)
+   ============================================================ */
+
+/* Base commune à tous les boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;           /* ← Taille du bouton (hauteur/largeur) */
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--t-fast);
+  border-radius: 2px;
+}
+
+/* Bouton plein (couleur or) */
+.btn-or {
+  background: var(--or);
+  color: var(--noir);
+  border: 1px solid var(--or);
+}
+.btn-or:hover {
+  background: var(--or-clair);
+  border-color: var(--or-clair);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,164,92,0.25);
+}
+
+/* Bouton contour (transparent avec bordure dorée) */
+.btn-outline {
+  background: transparent;
+  color: var(--or);
+  border: 1px solid var(--or);
+}
+.btn-outline:hover {
+  background: rgba(201,164,92,0.08);
+  transform: translateY(-2px);
+}
+
+/* Accessibilité : Styles de focus clairs pour la navigation au clavier */
+:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 4px;
+}
+
+
+/* ============================================================
+   9. BARRE DE NAVIGATION (Navbar fixe en haut)
+   ─────────────────────────────────────────────────────────────
+   La navbar est transparente au départ et devient noire
+   avec flou quand l'utilisateur scrolle (classe .scrolled
+   ajoutée par script.js).
+
+   ✏️  Pour changer : la couleur du logo → .nav-logo { color }
+   ✏️  Pour changer : la couleur des liens → .nav-links a { color }
+   ============================================================ */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 1000;
+  padding: 22px 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background var(--t-fast), padding var(--t-fast), box-shadow var(--t-fast);
+  /* GPU layer propre : évite les repaints au scroll */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* État après scroll */
+.navbar.scrolled {
+  background: rgba(14,13,11,0.97);
+  /* PERFORMANCE : backdrop-filter désactivé (très coûteux sur mobile)
+     Remplacé par un fond opaque foncé */
+  padding: 14px 5%;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(201,164,92,0.1);
+}
+
+/* Logo texte "TANTI GUSTI II" */
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;                    /* ← Taille du logo dans la navbar */
+  font-weight: 700;
+  color: var(--or);                     /* ← Couleur du logo */
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* Liens de navigation (desktop) */
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--creme);                  /* ← Couleur des liens nav */
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--t-fast);
+}
+/* Trait qui apparaît sous le lien au survol */
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--or);
+  transition: width var(--t-fast);
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--or); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+/* Bouton CTA à droite dans la navbar */
+.nav-cta { margin-left: 24px; }
+
+
+/* ============================================================
+   10. MENU MOBILE (Hamburger + Drawer)
+   ─────────────────────────────────────────────────────────────
+   Le hamburger n'est visible que sur mobile (< 900px).
+   Le drawer s'ouvre depuis la droite.
+   Tout est géré par script.js.
+   ============================================================ */
+
+/* Hamburger (3 traits) */
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 26px; height: 2px;
+  background: var(--or);                /* ← Couleur des traits hamburger */
+  transition: var(--t-fast);
+}
+/* Animation hamburger → croix quand ouvert */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Panneau latéral mobile (drawer) */
+.nav-drawer {
+  display: none;
+  position: fixed; top: 0; right: -100%; width: min(320px, 85vw); height: 100dvh;
+  background: var(--noir-2);            /* ← Fond du menu mobile */
+  border-left: 1px solid rgba(201,164,92,0.15);
+  z-index: 999;
+  flex-direction: column;
+  padding: 100px 40px 60px;
+  gap: 32px;
+  transition: right 0.4s var(--ease);
+}
+.nav-drawer.open { right: 0; }
+.nav-drawer a {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;                    /* ← Taille des liens dans le drawer */
+  color: var(--creme);
+  transition: color var(--t-fast);
+}
+.nav-drawer a:hover { color: var(--or); }
+
+/* Fond semi-transparent derrière le drawer (cliquable pour fermer) */
+.nav-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+}
+.nav-overlay.open { display: block; }
+
+
+/* ============================================================
+   11. ANIMATIONS FADE-UP (Apparition au scroll)
+   ─────────────────────────────────────────────────────────────
+   Pour activer l'animation sur un élément HTML :
+   Ajoutez data-anim à la balise.
+   Pour ajouter un délai : data-anim-delay="1" à "4"
+   Ex: <div data-anim data-anim-delay="2">...</div>
+
+   La classe .visible est ajoutée par script.js quand
+   l'élément entre dans l'écran.
+
+   ✏️  Pour changer la vitesse : modifiez 0.8s ci-dessous
+   ✏️  Pour changer la hauteur de départ : modifiez 32px
+   ============================================================ */
+[data-anim] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  /* GPU pre-promotion : le navigateur prépare la couche avant l'animation */
+  will-change: opacity, transform;
+}
+[data-anim].visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto; /* Liberté la couche après l'animation */
+}
+/* Délais d'apparition décalés */
+[data-anim-delay="1"] { transition-delay: 0.12s; }
+[data-anim-delay="2"] { transition-delay: 0.24s; }
+[data-anim-delay="3"] { transition-delay: 0.36s; }
+[data-anim-delay="4"] { transition-delay: 0.48s; }
+
+
+/* ============================================================
+   12. SECTIONS (Espacement vertical commun)
+   ============================================================ */
+.section { padding: var(--section-py) 0; }
+.section-header { margin-bottom: clamp(36px, 5vw, 64px); }
+.section-header.center { text-align: center; }
+.section-header.center .gold-line { margin-inline: auto; }
+
+
+/* ============================================================
+   13. FOOTER
+   ─────────────────────────────────────────────────────────────
+   Structure HTML du footer :
+     .footer-grid     → 3 colonnes (logo + 2 colonnes liens)
+     .footer-col      → Chaque colonne
+     .footer-bottom   → Barre du bas (copyright + bouton)
+   ============================================================ */
+.footer {
+  background: #080706;                  /* ← Couleur fond footer */
+  border-top: 1px solid rgba(201,164,92,0.1);
+  padding: 60px 5% 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;  /* ← 3 colonnes : large, étroite, étroite */
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(201,164,92,0.08);
+  margin-bottom: 32px;
+}
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;                    /* ← Taille du nom dans le footer */
+  color: var(--or);
+  margin-bottom: 16px;
+}
+.footer-tagline { font-size: 0.82rem; opacity: 0.55; margin-bottom: 24px; }
+.footer-col h4 {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 16px;
+}
+.footer-col p,
+.footer-col a {
+  font-size: 0.85rem; opacity: 0.7; display: block; margin-bottom: 8px;
+  transition: opacity var(--t-fast);
+}
+.footer-col a:hover { opacity: 1; color: var(--or-clair); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 0.72rem; opacity: 0.35; }
+
+
+/* ============================================================
+   14. RESPONSIVE GLOBAL
+   ─────────────────────────────────────────────────────────────
+   En dessous de 900px :
+   - Les liens et le bouton CTA de la navbar disparaissent
+   - Le hamburger apparaît à la place
+   - Le footer passe en 1 colonne
+   ============================================================ */
+@media (max-width: 900px) {
+  /* Forcer la disparition des éléments desktop pour éviter les chevauchements */
+  .nav-links, 
+  .nav-cta { 
+    display: none !important; 
+  }
+
+  .hamburger { 
+    display: flex; 
+  }
+
+  .nav-drawer { 
+    display: flex; 
+  }
+
+  .navbar {
+    padding: 18px 5%; /* Ajustement padding mobile */
+  }
+
+  .navbar.scrolled {
+    padding: 12px 5%;
+  }
+
+  .footer-grid { 
+    grid-template-columns: 1fr; 
+    gap: 32px; 
+  }
+  
+  /* Amélioration tap targets sur mobile */
+  .btn {
+    padding: 16px 36px;
+    justify-content: center;
+    width: 100%; /* Boutons pleine largeur si besoin */
+  }
+}

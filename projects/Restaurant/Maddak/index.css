@@ -1,0 +1,985 @@
+/* ══════════════════════════════════════════════════════════════════
+   FICHIER : index.css
+   RÔLE    : Styles propres à la page d'accueil (index.html) UNIQUEMENT.
+   LIEN    : Chargé APRÈS style.css. N'affecte pas menu.html.
+   CONTIENT:
+     - Hero (image plein écran, titre animé, CTAs)
+     - Ribbon (bandeau défilant)
+     - About (grille 2 colonnes : photos + texte)
+     - Spécialités (cards avec photos)
+     - Horaires (grille 4 colonnes)
+     - Accès (infos + carte Google Maps)
+     - Responsive (breakpoints commentés)
+   ══════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO
+   Grande section plein écran (100svh = 100% de la hauteur visible).
+   Contient une photo de fond avec animation de zoom, un overlay
+   sombre, et le texte centré à gauche.
+   ══════════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;  /* 100% de la hauteur de l'écran (svh = sans la barre mobile) */
+  display: flex;
+  align-items: center;
+  overflow: hidden;    /* Cache le débordement du zoom de l'image */
+}
+
+/* Conteneur de la photo (position absolute = couvre tout le .hero) */
+.hero-media {
+  position: absolute;
+  inset: 0;   /* top:0, right:0, bottom:0, left:0 */
+  z-index: 0; /* Derrière le contenu textuel */
+}
+
+/* Photo de fond (zoom lent au chargement) */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* Recadre l'image pour couvrir le conteneur */
+  object-position: center;
+  transform: scale(1.04);     /* Commence légèrement zoomée... */
+  animation: heroZoom 14s ease-out forwards; /* ...puis dezoom en 14 secondes */
+  /* ► Pour changer l'effet couleur de la photo :
+       filter: saturate(.75) brightness(.6);
+       .75 = légère désaturation  |  .6 = assombrit à 60%
+       augmenter brightness = plus lumineux
+       augmenter saturate   = plus coloré */
+  filter: saturate(.75) brightness(.6);
+}
+/* Keyframe : le zoom recule de scale(1.04) à scale(1) */
+@keyframes heroZoom {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+/* Overlay dégradé sombre (améliore la lisibilité du texte) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Dégradé horizontal : opaque à gauche, transparent à droite
+     + dégradé vertical : opaque en bas, transparent au milieu
+     ► Pour assombrir l'ensemble : augmenter les valeurs rgba (ex: .95, .5) */
+  background:
+    linear-gradient(to right,
+      rgba(13,44,40,.93) 35%,   /* Côté gauche très sombre (texte sur ce côté) */
+      rgba(13,44,40,.25) 100%), /* Côté droit visible (on voit la photo) */
+    linear-gradient(to top,
+      rgba(13,44,40,.9) 0%,    /* Bas sombre */
+      transparent 55%);         /* Milieu transparent */
+}
+
+/* Texture de grain supplémentaire sur la photo du hero */
+.hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 160px;
+  opacity: .03;           /* 3% = à peine visible */
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Filigrane "lattes verticales" (lignes SVG fines à droite du hero)
+   ► Pour supprimer ces lignes : supprime ce bloc .hero-content::before */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  right: -180px; top: 0; bottom: 0;
+  width: 300px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 600' fill='none' stroke='%23D4AF37' stroke-width='0.5'%3E%3Cline x1='15' y1='0' x2='15' y2='600'/%3E%3Cline x1='35' y1='0' x2='35' y2='600'/%3E%3Cline x1='55' y1='0' x2='55' y2='600'/%3E%3Cline x1='75' y1='0' x2='75' y2='600'/%3E%3Cline x1='95' y1='0' x2='95' y2='600'/%3E%3C/svg%3E") repeat-y center;
+  background-size: 100px 600px;
+  opacity: .06; /* 6% = très discret */
+  pointer-events: none;
+}
+
+/* Contenu textuel du hero (z-index:2 = au-dessus de l'overlay) */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 7rem;     /* Évite que le texte soit caché par la navbar */
+  padding-bottom: 5rem;
+  max-width: 900px;      /* Limite la largeur du bloc texte (agrandi pour ne pas couper le H1) */
+}
+
+/* .hero-eyebrow : petit texte doré au-dessus du titre */
+.hero-eyebrow {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  animation: fadeUp .8s ease both; /* Apparition immédiate au chargement */
+}
+
+/* Titre principal "MADDAK" avec effet or brossé animé */
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  /* clamp(min, préféré, max) = fluide entre petits et grands écrans */
+  font-size: clamp(3.2rem, 15vw, 9rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 0.9;
+  /* Dégradé appliqué sur le texte lui-même (effet or brossé) */
+  background: linear-gradient(
+    145deg,
+    var(--gold-pale)  0%,
+    var(--gold-light) 30%,
+    var(--gold)       55%,
+    var(--gold-dim)   80%,
+    var(--gold-light) 100%
+  );
+  -webkit-background-clip: text;    /* Chrome/Safari : clip le fond sur le texte */
+  -webkit-text-fill-color: transparent; /* Rend le texte "transparent" pour voir le fond */
+  background-clip: text;
+  background-size: 200% 200%;       /* Plus grand que 100% pour pouvoir animer */
+  /* Deux animations combinées : apparition (fadeUp) + reflet animé (brushedGold) */
+  animation: fadeUp .8s .08s ease both, brushedGold 5s ease-in-out infinite alternate;
+}
+/* Animation du reflet : bouge le dégradé en diagonale en boucle */
+@keyframes brushedGold {
+  from { background-position: 0% 0%; }
+  to   { background-position: 100% 100%; }
+}
+
+/* Ligne décorative dorée entre le titre et le slogan */
+.hero-rule {
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 1.4rem 0;
+  animation: fadeUp .8s .16s ease both;
+}
+
+/* Slogan "Fait Maison · Produits Frais" */
+.hero-slogan {
+  font-size: clamp(.85rem, 2.5vw, 1rem);
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+  animation: fadeUp .8s .24s ease both;
+}
+
+/* Texte de description (2-3 lignes) */
+.hero-desc {
+  font-size: .92rem;
+  color: var(--text-soft);
+  max-width: 460px;      /* Limite la largeur pour une bonne lisibilité */
+  margin-bottom: 2.2rem;
+  animation: fadeUp .8s .32s ease both;
+  line-height: 1.75;
+}
+
+/* Conteneur des boutons CTA (flex row, wrap sur mobile) */
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: fadeUp .8s .4s ease both;
+}
+
+/* Indicateur "Scroll" (barre animée en bas à droite, desktop seulement) */
+.hero-scroll {
+  position: absolute;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+/* Texte "SCROLL" écrit verticalement */
+.hero-scroll-label {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  writing-mode: vertical-lr; /* Rotation 90° du texte */
+  opacity: .6;
+}
+/* Barre verticale animée qui pulse */
+.hero-scroll-bar {
+  width: 1px;
+  height: 55px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: .8; transform: scaleY(1);   transform-origin: top; }
+  60%       { opacity: .3; transform: scaleY(.4); transform-origin: top; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   RIBBON (bandeau défilant)
+   Le texte défile grâce à une animation translateX sur .ribbon-track.
+   Le contenu est dupliqué x2 dans le HTML pour créer une boucle
+   sans saut visible (quand la copie 1 sort, la copie 2 prend sa place).
+   ► Pour changer la vitesse : modifie 30s (plus petit = plus rapide)
+   ► Pour changer les textes : voir index.html section RIBBON
+   ══════════════════════════════════════════════════════════════════ */
+.ribbon {
+  overflow: hidden;   /* Cache ce qui dépasse à gauche/droite */
+  background: var(--emerald-2);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  padding: .65rem 0;
+}
+.ribbon-track {
+  display: inline-flex; /* Tous les spans sur une seule ligne */
+  gap: 2rem;
+  white-space: nowrap;  /* Empêche le retour à la ligne */
+  animation: ribbonScroll 30s linear infinite; /* Défilement en boucle */
+}
+/* Pause au survol (pratique pour lire sur desktop) */
+.ribbon-track:hover { animation-play-state: paused; }
+.ribbon-track span {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.rdot { opacity: .35; } /* Les ✦ séparateurs sont semi-transparents */
+/* Déplace le contenu de 0% à -50% (retour à la case départ car dupliqué x2) */
+@keyframes ribbonScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   À PROPOS
+   Grille 2 colonnes : photos (gauche) + texte éditorial (droite).
+   ══════════════════════════════════════════════════════════════════ */
+.about {
+  padding: 7rem 0;
+  position: relative;
+}
+
+/* Fond légèrement teinté de la section (gradient vertical) */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(15,53,48,.35) 30%, /* Zone centrale légèrement éclairée */
+    rgba(15,53,48,.35) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+/* Lattes horizontales filigranes (très subtiles, font "bois") */
+.about::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 40' fill='none' stroke='%23D4AF37' stroke-width='0.4'%3E%3Cline x1='0' y1='10' x2='800' y2='10'/%3E%3Cline x1='0' y1='22' x2='800' y2='22'/%3E%3Cline x1='0' y1='32' x2='800' y2='32'/%3E%3C/svg%3E") repeat;
+  background-size: 800px 40px;
+  opacity: .04;
+  pointer-events: none;
+}
+
+/* Grille 2 colonnes, 6rem d'espace entre elles
+   ► Pour passer en 1 colonne : grid-template-columns: 1fr
+   → voir aussi le @media (max-width: 900px) en bas de ce fichier */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  position: relative;
+  z-index: 1; /* Au-dessus des pseudo-éléments ::before et ::after */
+}
+
+/* ── Collage de photos ── */
+.about-imgs {
+  position: relative;
+  height: clamp(300px, 50vw, 520px); /* Espace pour les photos qui se chevauchent */
+}
+
+/* Photo principale (grande, haut gauche) */
+.about-img-main {
+  position: absolute;
+  top: 0; left: 0;
+  width: 78%; height: 78%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  box-shadow: var(--shadow);
+}
+
+/* Styles communs aux deux photos (hover: léger zoom + désaturation) */
+.about-img-main img,
+.about-img-accent img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+  filter: saturate(.85) brightness(.88); /* Légèrement désaturé par défaut */
+}
+.about-img-main:hover img,
+.about-img-accent:hover img {
+  transform: scale(1.05);             /* Zoom discret au survol */
+  filter: saturate(.95) brightness(.95); /* Plus lumineux au survol */
+}
+
+/* Photo secondaire (petite, bas droite, en surimpression) */
+.about-img-accent {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 52%; height: 52%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 3px solid var(--emerald);      /* Bordure vert foncé = "cadre" */
+  outline: 1px solid var(--gold-border); /* Trait doré subtil à l'extérieur */
+  box-shadow: var(--shadow);
+}
+
+/* Badge "100% Fait Maison" flottant entre les 2 photos */
+.about-badge-card {
+  position: absolute;
+  top: 44%; left: 65%;
+  transform: translate(-50%, -50%); /* Centre sur ce point */
+  background: rgba(13,44,40,.93);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212,175,55,.45);
+  border-radius: 16px;
+  padding: 1rem 1.4rem;
+  text-align: center;
+  z-index: 2; /* Au-dessus des photos */
+  box-shadow: var(--shadow-gold);
+}
+.badge-num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.badge-label {
+  display: block;
+  font-size: .6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: .2rem;
+}
+
+/* Barre de stats sous les photos (flex 3 colonnes, séparateurs verticaux) */
+.about-stats {
+  display: flex;
+  align-items: stretch;
+  background: var(--emerald-4);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  margin-top: 1.8rem;
+  overflow: hidden; /* Cache les débordements des bords arrondis */
+}
+.stat-item { flex: 1; padding: 1.2rem .8rem; text-align: center; }
+.stat-val {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: .2rem;
+}
+.stat-key {
+  display: block;
+  font-size: .6rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* Séparateur vertical = simple div de 1px de large */
+.stat-sep { width: 1px; background: var(--gold-border); flex-shrink: 0; }
+
+/* ── Colonne texte ── */
+.about-text p {
+  font-size: .88rem;
+  color: var(--text-soft);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+/* Les <strong> dans les paragraphes sont en or pour les mettre en valeur */
+.about-text strong { color: var(--gold-light); font-weight: 600; }
+/* Boutons CTA de la section about */
+.about-ctas { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   SPÉCIALITÉS
+   Grille de cards avec photos (2 colonnes).
+   ══════════════════════════════════════════════════════════════════ */
+.specialites {
+  padding: 6rem 0;
+  background: var(--emerald-2); /* Fond légèrement plus sombre pour alterner */
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.specialites-header { margin-bottom: 3rem; position: relative; z-index: 1; }
+
+/* Grille 2 colonnes, gap 1.2rem */
+.specialites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Carte spécialité individuelle */
+.spec-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  cursor: pointer;
+  background: var(--emerald-4);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.spec-card:hover {
+  border-color: var(--gold-border-h); /* Bordure plus visible au survol */
+  transform: translateY(-5px);         /* Monte légèrement */
+  box-shadow: var(--shadow-gold);
+}
+
+/* Conteneur photo avec hauteur fixe */
+.spec-img-wrap {
+  position: relative;
+  height: 220px;     /* ► Modifier pour changer la hauteur des photos */
+  overflow: hidden;
+}
+.spec-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease), filter .6s var(--ease);
+  filter: saturate(.7) brightness(.75);
+}
+.spec-card:hover .spec-img-wrap img {
+  transform: scale(1.07);
+  filter: saturate(.9) brightness(.85);
+}
+/* Overlay dégradé sur la photo (transparence vers le bas) */
+.spec-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,44,40,.9) 0%, rgba(13,44,40,.15) 60%);
+}
+
+/* Contenu textuel de la carte spécialité */
+.spec-content { padding: 1.4rem 1.5rem; }
+.spec-cat {
+  display: block;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+.spec-content h3 { font-size: 1.15rem; color: var(--text); margin-bottom: .4rem; }
+.spec-content p   { font-size: .78rem; color: var(--text-soft); margin-bottom: .8rem; line-height: 1.6; }
+.spec-price {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Bouton CTA sous la grille des spécialités */
+.specialites-cta { margin-top: 3rem; text-align: center; position: relative; z-index: 1; }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   HORAIRES
+   Encadré avec fond émeraude-4, 4 colonnes d'horaires.
+   ══════════════════════════════════════════════════════════════════ */
+.horaires {
+  padding: 6rem 0;
+  position: relative;
+}
+/* Bloc intérieur avec fond et arrondi */
+.horaires-inner {
+  background: var(--emerald-4);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+/* Lattes bois filigranes en fond du bloc */
+.horaires-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 30' fill='none' stroke='%23D4AF37' stroke-width='0.4'%3E%3Cline x1='0' y1='8' x2='600' y2='8'/%3E%3Cline x1='0' y1='18' x2='600' y2='18'/%3E%3Cline x1='0' y1='26' x2='600' y2='26'/%3E%3C/svg%3E") repeat;
+  background-size: 600px 30px;
+  opacity: .05;
+  pointer-events: none;
+}
+.horaires-header { margin-bottom: 2.5rem; position: relative; } /* z-index implicite */
+
+/* Grille 4 colonnes (une par groupe de jours)
+   ► Pour avoir 2 colonnes sur tablette : voir @media (max-width: 1024px) */
+.horaires-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+}
+
+/* Colonne individuelle d'horaires */
+.horaire-item {
+  background: var(--emerald-3);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color var(--dur), transform var(--dur);
+}
+.horaire-item:hover {
+  border-color: var(--gold-border-h);
+  transform: translateY(-3px);
+}
+/* Variante "featured" (ven-sam) : légère teinte dorée */
+.horaire-item--featured {
+  border-color: rgba(212,175,55,.42);
+  background: rgba(212,175,55,.05);
+}
+/* Variante "closed" (lundi) : très discret */
+.horaire-item--closed { opacity: .45; }
+
+/* Pastilles de jours */
+.horaire-days { display: flex; flex-wrap: wrap; gap: .4rem; }
+.day-badge {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 50px;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(212,175,55,.12);
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+}
+/* Pastille dorée pleine (ven-sam) */
+.day-badge--gold { background: var(--gold); color: var(--emerald); border-color: var(--gold); }
+/* Pastille grise (lundi fermé) */
+.day-badge--grey { background: rgba(255,255,255,.04); color: var(--text-muted); border-color: rgba(255,255,255,.07); }
+
+.horaire-times { display: flex; flex-direction: column; gap: .5rem; }
+/* Label de service (Midi / Soir / Service continu) */
+.time-label {
+  display: block;
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .15rem;
+}
+/* Horaires en grand (en Playfair Display) */
+.time-range {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem;
+  color: var(--text);
+}
+/* Séparateur "+" entre midi et soir */
+.time-sep { text-align: center; color: var(--gold); font-size: .9rem; opacity: .45; }
+/* Badge "Sans interruption" sous les horaires du week-end */
+.horaire-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212,175,55,.12);
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 50px;
+  padding: .25rem .7rem;
+  align-self: flex-start; /* S'aligne à gauche */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   ACCÈS
+   Grille 2 colonnes : infos (adresse/tel/insta) + carte Maps.
+   ══════════════════════════════════════════════════════════════════ */
+.acces {
+  padding: 6rem 0;
+  background: var(--emerald-2);
+  border-top: 1px solid var(--gold-border);
+}
+.acces-header { margin-bottom: 3rem; }
+
+/* Grille 2 colonnes (infos | carte), rapport 1:1.4 */
+.acces-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr; /* La carte est 40% plus large que les infos */
+  gap: 2rem;
+  align-items: start; /* Aligne en haut (pas en milieu) */
+}
+
+/* Colonne infos : empile 3 cartes en colonne */
+.acces-info { display: flex; flex-direction: column; gap: 1rem; }
+
+/* Carte info individuelle (adresse / tel / insta) */
+.info-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--emerald-4);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  transition: border-color var(--dur), transform var(--dur), box-shadow var(--dur);
+  cursor: pointer;
+}
+.info-card:hover {
+  border-color: var(--gold-border-h);
+  transform: translateX(5px); /* Glisse vers la droite au survol */
+  box-shadow: -5px 0 24px rgba(212,175,55,.07); /* Ombre à gauche */
+}
+/* Carré icône (fond doré translucide) */
+.info-icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(212,175,55,.1);
+  border: 1px solid rgba(212,175,55,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+.info-label {  /* "Adresse", "Téléphone", "Instagram" */
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .25rem;
+}
+.info-val {  /* La valeur principale */
+  font-family: 'Playfair Display', serif;
+  font-size: .98rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+.info-hint {  /* Petite invitation "Cliquez pour..." */
+  font-size: .7rem;
+  color: var(--gold);
+  margin-top: .3rem;
+  opacity: .8;
+}
+
+/* Conteneur de la carte Google Maps */
+.acces-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  box-shadow: var(--shadow);
+}
+.map-wrapper {
+  height: 380px; /* ► Modifier pour changer la hauteur de la carte */
+  position: relative;
+}
+/* Filtre CSS pour donner une teinte émeraude à la carte Google Maps
+   → invert(1) inverse les couleurs (nuit), hue-rotate(160deg) donne la teinte verte
+   ► Pour une carte couleur normale : supprimer ce filtre */
+.map-wrapper iframe {
+  filter: grayscale(1) invert(1) hue-rotate(160deg) brightness(.7) saturate(.6);
+  transition: filter var(--dur);
+}
+.map-wrapper:hover iframe {
+  filter: grayscale(.8) invert(1) hue-rotate(160deg) brightness(.78) saturate(.7);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE — BREAKPOINTS
+   RÈGLE : chaque @media ne modifie QUE ce qui est nécessaire.
+   Les styles hors @media s'appliquent à TOUS les écrans.
+
+   Breakpoints utilisés :
+   ≤ 1024px → tablette paysage
+   ≤  900px → tablette portrait / petits laptops
+   ≤  640px → mobile (> 420px)
+   ≤  420px → très petits mobiles
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Tablette paysage (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  /* Les horaires passent de 4 à 2 colonnes */
+  .horaires-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { gap: 4rem; }
+}
+
+/* ── Tablette portrait / petits laptops (≤ 900px) ── */
+@media (max-width: 900px) {
+  /* About : les 2 colonnes passent en 1 colonne (photos au-dessus du texte) */
+  .about-grid  { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .about-imgs  { height: 420px; max-width: 600px; margin: 0 auto; } /* Photos moins hautes (l'espace est limité) */
+  .gold-line { margin-inline: auto; }
+  .about-ctas { justify-content: center; }
+  .about-stats { max-width: 500px; margin-inline: auto; }
+  /* Spécialités : de 2 colonnes → 1 colonne */
+  .specialites-grid { grid-template-columns: 1fr; }
+  /* Accès : carte Maps passe sous les infos */
+  .acces-grid  { grid-template-columns: 1fr; }
+}
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+  /* Titre du hero plus petit sur téléphone */
+  .hero-title  { font-size: clamp(3.2rem, 18vw, 5rem); }
+  /* Cache l'indicateur "Scroll" (inutile sur mobile) */
+  .hero-scroll { display: none; }
+  /* Réduit le padding de la carte horaires */
+  .horaires-inner { padding: 2rem 1rem; }
+  /* Les horaires passent de 2 → 2 (on garde 2 colonnes sur mobile moyen) */
+  .horaires-grid { grid-template-columns: 1fr 1fr; }
+  /* Photos encore plus compactes */
+  .about-imgs  { height: 320px; }
+  /* Hauteur de carte Maps réduite */
+  .map-wrapper { height: 260px; }
+  .about-badge-card { padding: 0.8rem; left: 70%; }
+}
+
+/* ── Très petits mobiles (≤ 420px) ── */
+@media (max-width: 420px) {
+  /* Sur très petit écran, 1 seule colonne d'horaires */
+  .horaires-grid { grid-template-columns: 1fr; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .about-imgs { height: 280px; }
+  .stat-val { font-size: 1.1rem; }
+  .stat-key { font-size: 0.55rem; }
+}
+
+/* ── iPhone SE / Très petits écrans (≤ 360px) ── */
+@media (max-width: 360px) {
+  .hero-title { font-size: 3rem; }
+  .section-title { font-size: 1.6rem; }
+  .horaires-inner { padding: 1.5rem 0.8rem; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   MODALE DE RÉSERVATION
+   ══════════════════════════════════════════════════════════════════ */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10, 36, 32, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+.modal.open {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--emerald-4);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-lg);
+    width: min(100%, 580px);
+    max-height: 94vh;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    position: relative;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    transform: translateY(30px);
+    transition: transform .5s cubic-bezier(.34, 1.56, .64, 1);
+    scrollbar-width: none; /* Firefox */
+}
+.modal-content::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.modal.open .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--gold-dim);
+    cursor: pointer;
+    line-height: .8;
+    transition: color .3s, transform .3s;
+}
+.modal-close:hover {
+    color: var(--gold);
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Formulaire */
+.res-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.res-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+@media (max-width: 480px) {
+    .res-row { grid-template-columns: 1fr; }
+}
+
+.res-group {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.res-group label {
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+.res-group input,
+.res-group select,
+.res-group textarea {
+    background: var(--emerald-3);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-sm);
+    padding: .75rem 1rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: .85rem;
+    transition: border-color .3s, box-shadow .3s;
+}
+.res-group input:focus,
+.res-group select:focus,
+.res-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Toggle Pills */
+.res-toggle-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--emerald-3);
+    padding: 3px;
+    border-radius: 50px;
+    border: 1px solid var(--gold-border);
+}
+.pill-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: .6rem;
+    border-radius: 50px;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    transition: all .3s ease;
+}
+.pill-btn.active {
+    background: var(--gold);
+    color: var(--emerald);
+}
+
+/* Slots */
+.res-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: .6rem;
+    margin-top: .3rem;
+}
+.slot-btn {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: .5rem .2rem;
+    color: var(--text-soft);
+    font-size: .75rem;
+    text-align: center;
+    transition: all .3s;
+}
+.slot-btn:hover:not([disabled]) {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+.slot-btn.selected {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--emerald);
+    font-weight: 600;
+}
+.slot-btn[disabled] {
+    opacity: .3;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+.btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.res-status-msg {
+    font-size: .75rem;
+    text-align: center;
+    min-height: 1.2rem;
+}
+.res-status-msg.error { color: #ff6b6b; }
+.res-status-msg.loading { color: var(--gold-light); }
+
+/* Succès */
+.res-success-screen {
+    text-align: center;
+    padding: 2rem 0;
+    animation: fadeUp .6s ease both;
+}
+.success-icon {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+.res-success-screen h3 {
+    margin-bottom: 1rem;
+}
+.res-success-screen p {
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+    font-size: .9rem;
+}

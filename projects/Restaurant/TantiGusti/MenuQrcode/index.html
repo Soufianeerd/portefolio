@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REMPLACÉ : "TANTI GUSTI 2" → "TANTI GUSTI II" (cohérence avec le site principal) -->
+    <title>TANTI GUSTI II — Menu Digital</title>
+    <meta name="description"
+        content="Découvrez le menu digital de Tanti Gusti II à Nancy. Pizzas, Sandwichs, Texmex et bien plus dans une expérience immersive 3D.">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- OpenGraph / Social Media -->
+    <meta property="og:title" content="TANTI GUSTI II — Menu Digital">
+    <meta property="og:description" content="Découvrez notre carte interactive 3D : Pizzas, Sandwichs, Texmex.">
+    <meta property="og:image" content="asset/couverture.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tanti-gusti-nancy.fr/menu">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Preload images critiques -->
+    <link rel="preload" as="image" href="asset/couverture.webp">
+    <link rel="preload" as="image" href="asset/texture.webp">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="menu.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="book-container">
+            <div id="book" class="book" role="region" aria-label="Livre de menu interactif">
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 0 : COUVERTURE
+                   ═══════════════════════════════════════════ -->
+                <div class="page cover" id="p0" role="group" aria-label="Couverture du menu">
+                    <div class="pface" onclick="nextPage()" role="button" aria-label="Ouvrir le menu">
+                        <div class="cover-content">
+                            <div class="cover-overlay"></div>
+                            <div class="cover-footer">
+                                <button class="btn-open" onclick="nextPage(event)">OUVRIR LA CARTE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pback"></div>
+                </div><!-- /page p0 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 1 : INTRODUCTION
+                   ═══════════════════════════════════════════ -->
+                <!-- CORRIGÉ : balise </div> de fermeture de p1 était manquante,
+                               ce qui imbriquait les pages p2-p11 à l'intérieur de p1 -->
+                <div class="page pint" id="p1" role="group" aria-label="Page 1: Introduction">
+                    <div class="pface" onclick="nextPage()" role="button" aria-label="Page suivante">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">1 / 10</span>
+                            </div>
+                            <div class="ms intro-section">
+                                <div class="ms-title cinzel">Bienvenue</div>
+                                <div class="separator-gold-sm"></div>
+                                <!-- CORRIGÉ : attributs loading/decoding retirés du <p> (attributs réservés aux <img>) -->
+                                <p class="intro-text">
+                                    Une cuisine généreuse, des produits frais et une passion pour le goût. Découvrez
+                                    notre sélection préparée avec soin au cœur de Nancy.
+                                </p>
+                                <div class="info-box">
+                                    <div class="info-item">
+                                        <span class="icon">📍</span>
+                                        <p>3 Rue de Bonsecours, 54000 Nancy</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="icon">📞</span>
+                                        <p><a href="tel:0372917880" class="gold-link">03 72 91 78 80</a></p>
+                                    </div>
+                                </div>
+                                <div class="hours-box">
+                                    <h4 class="cinzel">Nos Horaires</h4>
+                                    <p>Lun – Ven : 11h30–14h00 · 18h30–02h00</p>
+                                    <p>Sam – Dim : 18h30–02h00</p>
+                                </div>
+                                <div class="swipe-hint">Swipez pour tourner</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div>
+                <!-- /page p1 — CORRIGÉ : fermé ici pour que p2-p11 soient des frères (siblings), pas des enfants -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 2 : PIZZAS TOMATE (1/2)
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p2">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">2 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍕 PIZZAS (Base Tomate)</div>
+                                <p class="ms-note">Tailles : 29cm | 33cm</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/margherita.webp')">
+                                    <span class="mn">Margherita <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">10,00€ | 11,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Fromage mozza, oignons</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/n2.webp')">
+                                    <span class="mn">N°2 <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">11,00€ | 13,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Jambon de poulet, champignons</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/4fromages.webp')">
+                                    <span class="mn">4 Fromages <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">13,00€ | 15,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Chèvre, raclette, munster</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/thon.webp')">
+                                    <span class="mn">Thon <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">11,00€ | 13,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Thon, olives</p>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p2 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 3 : PIZZAS TOMATE (2/2)
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p3">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">3 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍕 PIZZAS (Base Tomate suite)</div>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/Orientales.webp')">
+                                    <span class="mn">Orientales <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">14,00€ | 16,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Viande hachée, olives, merguez, poivrons, oignons</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/Végétarienne.webp')">
+                                    <span class="mn">Végétarienne <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">13,00€ | 15,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Champignons, oignons, poivrons, roquette, artichauts, asperges,
+                                    parmesan</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/royale.webp')">
+                                    <span class="mn">Royale <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">12,00€ | 14,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Viande hachée, œuf, poivrons</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/linda.webp')">
+                                    <span class="mn">Linda <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">11,00€ | 13,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Lardons, œuf</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/Pizza gourmet italienne avec burrata.webp')">
+                                    <span class="mn">Tanti Gusti <span class="special-badge">Signature</span> <span
+                                            class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">15,00€ | 17,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Champignons, oignons, poivrons, salami de bœuf, jambon de poulet,
+                                    burrata</p>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p3 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 4 : PIZZAS CRÈME (1/2)
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p4">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">4 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍕 PIZZAS (Base Crème)</div>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/poulet-curry.webp')">
+                                    <span class="mn">Poulet Curry <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">12,00€ | 14,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Émincé de poulet curry</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/paesana.webp')">
+                                    <span class="mn">Paesana <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">11,50€ | 13,50€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Chèvre, champignons, lardon de volaille</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/raclette.webp')">
+                                    <span class="mn">Raclette <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">12,00€ | 14,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Pomme de terre, raclette, lardon de volaille</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/suitzeria.webp')">
+                                    <span class="mn">Suitzeria <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">12,00€ | 14,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Viande hachée, oignons, raclette</p>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p4 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 5 : PIZZAS CRÈME (2/2)
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p5">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">5 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍕 PIZZAS (Base Crème suite)</div>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/nicco.webp')">
+                                    <span class="mn">Nicco <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">13,00€ | 15,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Poulet curry, chèvre, raclette</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/chevre-miel.webp')">
+                                    <span class="mn">Chèvre Miel <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">10,00€ | 12,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Chèvre, miel</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/saumon.webp')">
+                                    <span class="mn">Saumon <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">14,00€ | 16,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Saumon, boursin</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/pizza-nono.webp')">
+                                    <span class="mn">Pizza Nono <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">12,00€ | 14,00€</span>
+                                        <span class="price-size">29cm | 33cm</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Jambon de poulet fumé, merguez, brie</p>
+
+                                <div class="ms-title">➕ SUPPLÉMENTS pour Pizzas</div>
+
+                                <div class="mi">
+                                    <span class="mn">Burrata</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">4,00€</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p5 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 6 : SPÉCIALITÉS + SANDWICHS CLASSIQUES
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p6">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">6 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🥟 SPÉCIALITÉS</div>
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/chausson.webp')">
+                                    <span class="mn">Chaussons gratiné <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">11,00€ | 13,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Poulet curry ou viande hachée, sauce au choix, frites</p>
+
+                                <div class="spacer-sm"></div>
+
+                                <div class="ms-title">🥪 SANDWICHS CLASSIQUES</div>
+                                <p class="ms-note">Seul | En menu (boisson + frites)</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/le-belge.webp')">
+                                    <span class="mn">Le Belge <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">4,50€ | 6,50€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Sauce au choix, frites</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/american-cheese.webp')">
+                                    <span class="mn">Américain Cheese <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">9,00€ | 10,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Steak frais, boisson + frites, sauce au choix, crudités</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/poulet.webp')">
+                                    <span class="mn">Sandwich Poulet <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">9,00€ | 10,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Poulet frais, sauce au choix, boisson + frites, crudités</p>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p6 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 7 : SANDWICHS SPÉCIAUX
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p7">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">7 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🥪 SANDWICHS SPÉCIAUX</div>
+                                <p class="ms-note">Seul | En menu — Recettes maison généreuses</p>
+
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/brie-baguette.webp')">
+                                    <span class="mn">Brie Baguette <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">9,50€ | 11,50€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Steak frais, tomates, oignons caramélisés, poivrons grillés, brie</p>
+
+                                <!-- CORRIGÉ : asset/vosgien.webp manquant → remplacé par brie-baguette.webp
+                                              (image similaire en attendant la vraie photo du Vosgien) -->
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/brie-baguette.webp')">
+                                    <span class="mn">Le Vosgien <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">10,00€ | 12,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Steak frais, lardons de volaille, champignons, oignons, munster</p>
+
+                                <!-- CORRIGÉ : asset/special.webp manquant → remplacé par american-cheese.webp
+                                              (image similaire en attendant la vraie photo du Spécial) -->
+                                <div class="mi clickable-item"
+                                    onclick="event.stopPropagation(); openProductModal('asset/american-cheese.webp')">
+                                    <span class="mn">Le Spécial <span class="photo-icon">📸</span></span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">9,00€ | 10,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Steak frais, œuf, oignons caramélisés, boursin</p>
+
+                                <div class="spacer-sm"></div>
+
+                                <div class="ms-title">➕ SUPPLÉMENTS</div>
+                                <div class="mi">
+                                    <span class="mn">Viandes</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">2,50€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">Fromages</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">1,00€</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p7 -->
+
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 9 : TEXMEX + FRITES
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p8">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">8 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍗 TEXMEX</div>
+                                <p class="ms-note">Nuggets / Wings / Tenders</p>
+
+                                <div class="mi">
+                                    <span class="mn">Portion ×4</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">4,00€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">Portion ×6</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">6,00€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">Portion ×12</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">10,00€</span>
+                                    </div>
+                                </div>
+
+                                <div class="spacer-sm"></div>
+
+                                <div class="ms-title">🍟 FRITES</div>
+                                <div class="mi">
+                                    <span class="mn">La Petite</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">3,50€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">La Grande</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">5,00€</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p9 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 10 : DESSERTS + BOISSONS
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p9">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">9 / 10</span>
+                            </div>
+                            <div class="ms">
+                                <div class="ms-title">🍰 DESSERTS</div>
+
+                                <div class="mi">
+                                    <span class="mn">Tiramisu</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">4,00€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Fait maison (selon stock)</p>
+
+                                <div class="mi">
+                                    <span class="mn">Glaces</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">2,50€</span>
+                                    </div>
+                                </div>
+                                <p class="mi-desc">Selon stock disponible</p>
+
+                                <div class="spacer-sm"></div>
+
+                                <div class="ms-title">🥤 BOISSONS</div>
+                                <div class="mi">
+                                    <span class="mn">Canette 33cl</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">1,50€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">Bouteille 1,25L</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">3,50€</span>
+                                    </div>
+                                </div>
+                                <div class="mi">
+                                    <span class="mn">Red Bull</span>
+                                    <span class="md"></span>
+                                    <div class="mp-wrapper">
+                                        <span class="mp">2,50€</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swipe-hint">Swipez pour tourner</div>
+                        </div>
+                    </div>
+                    <div class="pback" onclick="prevPage()"></div>
+                </div><!-- /page p10 -->
+
+                <!-- ═══════════════════════════════════════════
+                   PAGE 11 : CONTACT / FIN
+                   ═══════════════════════════════════════════ -->
+                <div class="page pint" id="p10">
+                    <div class="pface" onclick="nextPage()">
+                        <div class="pc">
+                            <div class="phd">
+                                <span class="phd-logo">TANTI GUSTI II</span>
+                                <span class="phd-num">10 / 10</span>
+                            </div>
+                            <div class="ms final-section">
+                                <div class="ms-title cinzel">Bon Appétit</div>
+                                <div class="separator-gold-sm"></div>
+
+                                <div class="social-links">
+                                    <p>Suivez-nous</p>
+                                    <a href="https://www.instagram.com/tanti_gustiii/" target="_blank"
+                                        rel="noopener noreferrer" class="instagram-link">
+                                        <svg viewBox="0 0 24 24" class="icon-ig" aria-hidden="true">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                        </svg>
+                                        <span>@tanti_gustiii</span>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@tantigusti2" target="_blank"
+                                        rel="noopener noreferrer" class="tiktok-link">
+                                        <svg viewBox="0 0 24 24" class="icon-tiktok" aria-hidden="true">
+                                            <path
+                                                d="M19.589 6.686a4.793 4.793 0 0 1-3.77-1.866V14.54a5.54 5.54 0 1 1-4.81-5.497v2.844a2.69 2.69 0 1 0 1.84 2.553V2h2.73a4.8 4.8 0 0 0 4.01 2.16v2.526z" />
+                                        </svg>
+                                        <span>@tantigusti2</span>
+                                    </a>
+                                </div>
+                                <div class="footer-loop">
+                                    <button class="btn-loop" onclick="nextPage()">REVOIR LA COUVERTURE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pback"></div>
+                </div><!-- /page p11 -->
+
+            </div><!-- /book -->
+        </div><!-- /book-container -->
+    </div><!-- /app -->
+
+    <!-- MODAL APERÇU PRODUIT -->
+    <!-- CORRIGÉ : fragment HTML orphelin supprimé (ss="footer-loop">...) qui cassait la structure DOM -->
+    <div id="pizza-modal" class="pizza-modal" onclick="closeProductModal()" role="dialog" aria-modal="true"
+        aria-label="Aperçu du produit">
+        <span class="close-modal" aria-label="Fermer l'aperçu">&times;</span>
+        <img class="pizza-modal-content" id="pizza-img" src="" alt="Aperçu du produit sélectionné">
+    </div>
+
+    <!-- Scripts -->
+    <script src="menu.js"></script>
+</body>
+
+</html>

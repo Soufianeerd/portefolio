@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garage Saint-Nicolas-de-Port 54 – Mécanique & A+ Glass | Garage 2A</title>
+  <meta name="description"
+    content="Révision, freinage, distribution, pneumatiques et pare-brise A+ Glass (franchise offerte jusqu'à 150€) à Saint-Nicolas-de-Port. Devis gratuit en ligne. 03 83 21 10 02.">
+  <meta name="keywords"
+    content="garage Saint-Nicolas-de-Port, A+ Glass 54, pare-brise franchise, mécanique générale Meurthe-et-Moselle, révision auto 54210, pneumatiques Saint-Nicolas">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://garage2a.fr/garage.html">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-card:hover {
+      border-color: rgba(230, 126, 34, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-card .icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(230, 126, 34, 0.1);
+      border: 1px solid rgba(230, 126, 34, 0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover .icon {
+      background: rgba(230, 126, 34, 0.18);
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--c-white);
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 1.6;
+    }
+
+    /* A+ Glass hero banner */
+    .glass-section {
+      background: linear-gradient(135deg, #1e1e1e 0%, rgba(230, 126, 34, 0.06) 100%);
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .glass-hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .franchise-box {
+      background: var(--c-orange);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      min-width: 200px;
+      box-shadow: 0 12px 40px rgba(230, 126, 34, 0.35);
+      flex-shrink: 0;
+    }
+
+    .franchise-box .amount {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #111111;
+      line-height: 1;
+    }
+
+    .franchise-box .label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.75);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .franchise-box .sub {
+      font-size: 0.7rem;
+      color: rgba(0, 0, 0, 0.6);
+      margin-top: 8px;
+    }
+
+    /* Occasion section */
+    .occasion-block {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 20px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Devis form */
+    .devis-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-top: 3px solid var(--c-orange);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .glass-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .franchise-box {
+        min-width: unset;
+      }
+
+      .occasion-block {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .devis-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo" aria-label="Garage 2A - Accueil">
+        <img src="assets/img/logo-g2a.svg" alt="Logo Garage 2A">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Accueil</a>
+        <a href="carte-grise.html">Carte Grise</a>
+        <a href="carte-grise.html#code-route">Code de la Route</a>
+        <a href="garage.html" class="active">Garage & Vitrage</a>
+        <a href="#devis">Devis Atelier</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:0383211002" class="btn btn-primary btn-sm" id="nav-phone-btn">
+          📞 03 83 21 10 02
+        </a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="carte-grise.html">📋 Carte Grise — Nancy</a>
+    <a href="carte-grise.html#code-route">📖 Code de la Route</a>
+    <a href="garage.html">🔧 Garage & Vitrage — St-Nicolas</a>
+    <a href="#devis">📝 Demande de Devis</a>
+    <a href="tel:0383211002" style="color:var(--c-orange); font-weight:700; margin-top:8px;">📞 03 83 21 10 02</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span class="sep">›</span>
+        <span class="current">Garage 2A / A+ Glass — Saint-Nicolas-de-Port</span>
+      </div>
+      <div class="animate-in">
+        <div class="address-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          33 Rte de Ville en Vermois (Rue de la Croisette), 54210 Saint-Nicolas-de-Port
+        </div>
+        <h1>Garage & Vitrage à <span class="text-orange">Saint-Nicolas-de-Port</span></h1>
+        <p style="max-width:600px; margin:16px auto 0; font-size:1.05rem; line-height:1.7;">
+          Mécanique générale multi-marques et centre agréé A+ Glass pour votre pare-brise. Franchise offerte jusqu'à
+          150€.
+        </p>
+      </div>
+
+      <!-- Quick badges -->
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:32px;"
+        class="animate-in delay-2">
+        <span
+          style="background:rgba(230,126,34,0.12); border:1px solid rgba(230,126,34,0.25); border-radius:9999px; padding:8px 18px; font-size:0.82rem; font-weight:600; color:var(--c-orange);">
+          🏆 Centre agréé A+ Glass
+        </span>
+        <span
+          style="background:rgba(230,126,34,0.12); border:1px solid rgba(230,126,34,0.25); border-radius:9999px; padding:8px 18px; font-size:0.82rem; font-weight:600; color:var(--c-orange);">
+          💰 Franchise offerte jusqu'à 150€
+        </span>
+        <span
+          style="background:rgba(230,126,34,0.12); border:1px solid rgba(230,126,34,0.25); border-radius:9999px; padding:8px 18px; font-size:0.82rem; font-weight:600; color:var(--c-orange);">
+          ✅ Ouvert le mercredi en continu
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES MECANIQUE -->
+  <section class="section-padding" id="mecanique">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Atelier mécanique</span>
+        <h2 class="section-title">Nos prestations auto</h2>
+        <p>Expert en réparation multi-marques, nous prenons en charge l'ensemble de l'entretien de votre véhicule.</p>
+      </div>
+
+      <div class="services-grid animate-in delay-1">
+
+        <div class="service-card">
+          <div class="icon">🛠️</div>
+          <h3>Révision complète</h3>
+          <p>Vidange huile moteur, remplacement filtres (air, habitacle, gasoil), vérification niveaux et préconisations
+            constructeur.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">⛐</div>
+          <h3>Freinage</h3>
+          <p>Remplacement plaquettes, disques, étriers. Purge liquide de frein. Contrôle freins de stationnement.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">⚙️</div>
+          <h3>Distribution & Courroie</h3>
+          <p>Remplacement courroie de distribution, kit tendeur. Respect des préconisations kilométriques constructeur.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">📊</div>
+          <h3>Diagnostic électronique</h3>
+          <p>Lecture et effacement de codes défauts. Diagnostic multi-marques avec valise professionnelle.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🛞</div>
+          <h3>Pneumatiques</h3>
+          <p>Montage, démontage, équilibrage 3D. Large gamme de pneus toutes marques. Nettoyage jantes inclus.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🚗</div>
+          <h3>Entretien courant</h3>
+          <p>Batterie, amortisseurs, rotules, biellettes, éclairage. Devis gratuit sur simple demande.</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="#devis" class="btn btn-primary btn-lg" id="cta-devis-mecanique">
+          📝 Demander un devis →
+        </a>
+        <a href="tel:0383211002" class="btn btn-outline btn-lg" style="margin-left:12px;">
+          📞 03 83 21 10 02
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- A+ GLASS -->
+  <section class="section-padding glass-section" id="apglass">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Centre agréé</span>
+        <h2 class="section-title">Vitrage — A+ Glass</h2>
+      </div>
+
+      <div class="glass-hero animate-in delay-1">
+        <div>
+          <h3 style="font-size:1.6rem; margin-bottom:16px; color:#111111;">Votre pare-brise remplacé,<br>votre franchise
+            <span class="text-orange">prise en charge</span>
+          </h3>
+          <p style="line-height:1.8; margin-bottom:24px; color:#111111;">
+            En tant que centre agréé A+ Glass, nous traitons directement avec votre assureur. Pas d'avance de frais,
+            remplacement rapide, vitrage de qualité d'origine.
+          </p>
+          <ul style="display:flex; flex-direction:column; gap:12px; margin-bottom:28px;">
+            <li style="display:flex; gap:10px; font-size:0.9rem; color:rgba(0,0,0,0.8);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2.5"
+                style="flex-shrink:0; margin-top:1px;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Remplacement pare-brise, lunette arrière, vitres latérales
+            </li>
+            <li style="display:flex; gap:10px; font-size:0.9rem; color:rgba(0,0,0,0.8);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2.5"
+                style="flex-shrink:0; margin-top:1px;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Recalibrage caméra ADAS inclus si nécessaire
+            </li>
+            <li style="display:flex; gap:10px; font-size:0.9rem; color:rgba(0,0,0,0.8);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2.5"
+                style="flex-shrink:0; margin-top:1px;">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Prise en charge directe assurance — franchise offerte jusqu'à 150€
+            </li>
+          </ul>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="#devis" class="btn btn-primary btn-lg" id="cta-devis-glass">
+              🪟 Devis pare-brise gratuit →
+            </a>
+            <a href="tel:0383211002" class="btn btn-outline btn-lg">
+              📞 03 83 21 10 02
+            </a>
+          </div>
+        </div>
+
+        <div class="franchise-box animate-in delay-2">
+          <div
+            style="font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.65); margin-bottom:10px;">
+            Franchise offerte</div>
+          <div class="amount">150€</div>
+          <div class="label">maximum pris en charge</div>
+          <div class="sub" style="margin-top:12px; color:rgba(0,0,0,0.55);">Centre agréé A+ Glass ✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCCASION -->
+  <section class="section-padding" id="occasion">
+    <div class="container animate-in">
+      <div class="occasion-block">
+        <div>
+          <span class="section-eyebrow">Vente véhicule</span>
+          <h2 style="margin:12px 0 16px; font-size:2rem;">Véhicules d'Occasion</h2>
+          <p style="line-height:1.8; margin-bottom:24px; max-width:500px;">
+            Notre stock de véhicules d'occasion évolue régulièrement. Des voitures soigneusement contrôlées par nos
+            mécaniciens, disponibles directement au garage ou sur renseignement téléphonique.
+          </p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+            <a href="tel:0383211002" class="btn btn-primary btn-lg" id="cta-occasion-phone">
+              📞 03 83 21 10 02
+            </a>
+            <span style="font-size:0.85rem; color:var(--c-muted);">— Renseignements sur le stock disponible</span>
+          </div>
+        </div>
+        <div style="text-align:center; flex-shrink:0;">
+          <div style="font-size:5rem; margin-bottom:12px;">🚗</div>
+          <div
+            style="background:rgba(230,126,34,0.1); border:1px solid rgba(230,126,34,0.25); border-radius:12px; padding:16px 24px;">
+            <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:var(--c-orange);">
+              Stock tournant</div>
+            <p style="font-size:0.8rem; color:var(--c-muted); margin-top:4px;">Disponible sur place ou par tél.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVIS FORM -->
+  <section class="section-padding" id="devis"
+    style="background:var(--c-surface); border-top:1px solid var(--c-border);">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Atelier Garage 2A</span>
+        <h2 class="section-title">Demande de devis gratuit</h2>
+        <p>Notre équipe vous rappelle rapidement avec un devis détaillé et personnalisé.</p>
+      </div>
+
+      <div id="devis-container" class="animate-in delay-1">
+        <div class="devis-card">
+          <form id="form-devis" novalidate>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="devis-nom">Nom *</label>
+                <input type="text" id="devis-nom" class="form-input" placeholder="Votre nom" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="devis-tel">Téléphone *</label>
+                <input type="tel" id="devis-tel" class="form-input" placeholder="06 XX XX XX XX" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="devis-immat">Immatriculation du véhicule</label>
+              <input type="text" id="devis-immat" class="form-input" placeholder="AB-123-CD">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Type d'intervention *</label>
+              <div class="intervention-grid">
+                <button type="button" class="intervention-btn" data-value="vidange" id="btn-vidange">
+                  🛢️ Vidange / Révision
+                </button>
+                <button type="button" class="intervention-btn" data-value="freinage" id="btn-freinage">
+                  ⛐ Freinage
+                </button>
+                <button type="button" class="intervention-btn" data-value="distribution" id="btn-distrib">
+                  ⚙️ Distribution
+                </button>
+                <button type="button" class="intervention-btn" data-value="parebrise" id="btn-parebrise">
+                  💠 Pare-brise A+ Glass
+                </button>
+                <button type="button" class="intervention-btn" data-value="diagnostic" id="btn-diag">
+                  📊 Diagnostic
+                </button>
+                <button type="button" class="intervention-btn" data-value="pneumatiques" id="btn-pneu">
+                  🛞 Pneumatiques
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="devis-message">Précisions (optionnel)</label>
+              <textarea id="devis-message" class="form-input" rows="3"
+                placeholder="Décrivez votre problème ou votre demande..." style="resize:vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="btn-submit-devis">
+              📩 Envoyer ma demande →
+            </button>
+            <p style="text-align:center; margin-top:10px; font-size:0.78rem; color:var(--c-muted);">
+              Réponse garantie sous 24h ouvrées — Devis 100% gratuit
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORAIRES & CONTACT -->
+  <section class="section-padding" id="contact">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Accès & Horaires</span>
+        <h2 class="section-title">Garage 2A — Saint-Nicolas-de-Port</h2>
+      </div>
+
+      <div class="grid-2 animate-in delay-1" style="gap:40px;">
+        <div>
+          <div class="contact-block" style="margin-bottom:20px;">
+            <h3 style="margin-bottom:16px; font-size:1.1rem;">📍 Adresse</h3>
+            <p style="line-height:1.8; color:rgba(0,0,0,0.75);">
+              33 Route de Ville en Vermois<br>
+              (Rue de la Croisette)<br>
+              54210 Saint-Nicolas-de-Port<br>
+              Meurthe-et-Moselle (54)
+            </p>
+            <a href="tel:0383211002" class="phone-link" style="margin-top:16px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              03 83 21 10 02
+            </a>
+          </div>
+
+          <div class="contact-block">
+            <h3 style="margin-bottom:16px; font-size:1.1rem;">🕐 Horaires</h3>
+            <table class="horaires-table">
+              <thead>
+                <tr>
+                  <th>Jour</th>
+                  <th>Horaires</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lundi</td>
+                  <td>09:00 – 12:15 / 13:15 – 18:15</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Mardi</td>
+                  <td>09:00 – 12:15 / 13:15 – 18:15</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Mercredi</td>
+                  <td style="color:var(--c-orange); font-weight:600;">✅ 09:00 – 18:15 (journée continue)</td>
+                  <td><span class="tag-open special">Continu</span></td>
+                </tr>
+                <tr>
+                  <td>Jeudi</td>
+                  <td>09:00 – 12:15 / 13:15 – 18:15</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Vendredi</td>
+                  <td>09:00 – 12:15 / 13:15 – 18:15</td>
+                  <td><span class="tag-open yes">Ouvert</span></td>
+                </tr>
+                <tr>
+                  <td>Samedi</td>
+                  <td style="color:#e74c3c; font-weight:600;">FERMÉ</td>
+                  <td><span class="tag-open no">Fermé</span></td>
+                </tr>
+                <tr>
+                  <td>Dimanche</td>
+                  <td style="color:#e74c3c; font-weight:600;">FERMÉ</td>
+                  <td><span class="tag-open no">Fermé</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div>
+          <div class="map-embed animate-in delay-2">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.8!2d6.3046!3d48.6271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794a4d4b2b71a0f%3A0x1234!2s33+Route+de+Ville+en+Vermois%2C+54210+Saint-Nicolas-de-Port!5e0!3m2!1sfr!2sfr"
+              title="Carte Garage 2A Saint-Nicolas-de-Port" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top:20px;">
+            <a href="https://maps.google.com/?q=33+Route+de+Ville+en+Vermois,+54210+Saint-Nicolas-de-Port"
+              target="_blank" rel="noopener" class="btn btn-outline btn-block">
+              🗺️ Itinéraire Google Maps →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/img/logo-g2aa.png" alt="Logo G2A">
+          </div>
+          <p>Garage 2A — Centre agréé A+ Glass, mécanique générale multi-marques à Saint-Nicolas-de-Port (54210).</p>
+          <a href="tel:0383211002"
+            style="color:var(--c-orange); font-weight:700; display:inline-block; margin-top:14px;">📞 03 83 21 10 02</a>
+        </div>
+        <div class="footer-col">
+          <h4>Mécanique</h4>
+          <a href="#mecanique">Révision & Entretien</a>
+          <a href="#mecanique">Freinage</a>
+          <a href="#mecanique">Distribution</a>
+          <a href="#mecanique">Pneumatiques</a>
+        </div>
+        <div class="footer-col">
+          <h4>Vitrage & Occasion</h4>
+          <a href="#apglass">A+ Glass — Pare-brise</a>
+          <a href="#apglass">Franchise jusqu'à 150€</a>
+          <a href="#occasion">Véhicules d'occasion</a>
+          <a href="#devis">Demande de devis</a>
+        </div>
+        <div class="footer-col">
+          <h4>Liens utiles</h4>
+          <a href="../index.html">Accueil</a>
+          <a href="carte-grise.html">Carte Grise — Nancy</a>
+          <a href="carte-grise.html#code-route">Code de la Route</a>
+          <a href="#">Mentions légales</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Garage 2A — 33 Rte de Ville en Vermois, 54210 Saint-Nicolas-de-Port</span>
+        <span>Centre agréé A+ Glass · Mécanique multi-marques · Meurthe-et-Moselle (54)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/devis.js"></script>
+</body>
+
+</html>

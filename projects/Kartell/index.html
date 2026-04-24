@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartell Nancy | Mobilier Design & Luminaires — Flagship Store</title>
+    <meta name="description" content="Kartell Nancy, votre flagship store de mobilier design italien. Chaises, luminaires, tables et rangements signés Starck, Urquiola, Laviani. 35 Ter Rue Saint-Nicolas, Nancy. Service Karchitect sur rendez-vous.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0E0E0E">
+    <meta property="og:title" content="Kartell Nancy | Mobilier Design & Luminaires — Flagship Store">
+    <meta property="og:description" content="Flagship store Kartell à Nancy. Design italien d'exception. Showroom, service Karchitect et conseil personnalisé.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FurnitureStore",
+      "name": "Kartell Nancy — Flagship Store",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "35 Ter Rue Saint-Nicolas",
+        "addressLocality": "Nancy",
+        "postalCode": "54000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33383209833",
+      "email": "nancy@kartell.fr",
+      "openingHoursSpecification": [
+        {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"12:00"},
+        {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"14:00","closes":"19:00"}
+      ],
+      "aggregateRating": {"@type":"AggregateRating","ratingValue":"4.3","reviewCount":"313"},
+      "priceRange": "€€€"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+    <!-- CSS premium (surcharge le style.css existant) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium.css">
+</head>
+<body>
+
+    <!-- ===== HEADER — 3 BANDES ===== -->
+    <header class="header" id="header">
+        <!-- Bande 1 : Top Bar -->
+        <div class="header__top">
+            <p class="header__promo">Paiement en 3&times; sans frais &bull; Livraison sur rendez-vous</p>
+        </div>
+
+        <!-- Bande 2 : Logo & Icons -->
+        <div class="header__main">
+            <div class="container header__main-container">
+                <div class="header__left">
+                    <button class="header__burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                    </button>
+                </div>
+
+                <div class="header__center">
+                    <a href="#hero" class="header__logo" aria-label="Kartell Nancy — Retour à l'accueil">
+                        <div class="header__logo-row">
+                            <span class="header__logo-name">KARTELL</span>
+                            <span class="header__logo-by">by Intemporel</span>
+                        </div>
+                        <span class="header__logo-store">NANCY &mdash; FLAGSHIP STORE</span>
+                    </a>
+                </div>
+
+                <div class="header__right">
+                    <a href="client.html" class="header__icon-link" aria-label="Mon espace client"><i class="far fa-user"></i></a>
+                    <a href="admin.html" class="header__icon-link admin-link" aria-label="Accès Gérant"><i class="fas fa-lock"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bande 3 : Navigation -->
+        <nav class="header__nav" id="mainNav" aria-label="Navigation principale">
+            <div class="container">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#hero" class="nav__link">Accueil</a></li>
+                    <li class="nav__item"><a href="#univers" class="nav__link">L'Univers</a></li>
+                    <li class="nav__item"><a href="#collections" class="nav__link">Collections</a></li>
+                    <li class="nav__item"><a href="#icones" class="nav__link">Nos Icônes</a></li>
+                    <li class="nav__item"><a href="#karchitect" class="nav__link">Karchitect</a></li>
+                    <li class="nav__item"><a href="#magasin" class="nav__link">Le Magasin</a></li>
+                    <li class="nav__item"><a href="#footer" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="hero" aria-label="Section d'accueil">
+            <div class="hero__bg" aria-hidden="true">
+                <div class="hero__overlay"></div>
+                <svg class="hero__pattern" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <pattern id="grid-premium" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#D4A843" stroke-width="0.05" opacity="0.25"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#grid-premium)"/>
+                    <circle cx="20" cy="30" r="15" fill="none" stroke="#D4A843" stroke-width="0.04" opacity="0.12"/>
+                    <circle cx="80" cy="70" r="25" fill="none" stroke="#D4A843" stroke-width="0.04" opacity="0.08"/>
+                </svg>
+                <!-- Illustration chaise Louis Ghost en fond -->
+                <svg class="hero__bg-illustration" viewBox="0 0 300 400" aria-hidden="true">
+                    <path d="M100,380 L100,200 Q100,160 150,150 Q200,160 200,200 L200,380" fill="none" stroke="#D4A843" stroke-width="2"/>
+                    <path d="M80,380 L220,380" stroke="#D4A843" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M110,150 Q110,80 150,70 Q190,80 190,150" fill="none" stroke="#D4A843" stroke-width="2"/>
+                    <path d="M130,105 Q130,85 150,80 Q170,85 170,105" fill="none" stroke="#D4A843" stroke-width="1.5" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <span class="hero__overtitle reveal stagger-1">Revendeur Officiel Kartell</span>
+                    <h1 class="hero__title reveal stagger-2">L'Art du<br>Design,<br><em>Réinventé</em></h1>
+                    <p class="hero__subtitle reveal stagger-3">Mobilier &amp; luminaires d'exception depuis 1949 &mdash; Nancy</p>
+                    <div class="hero__actions reveal stagger-4">
+                        <a href="#collections" class="btn-premium">
+                            <span>Explorer les collections &rarr;</span>
+                        </a>
+                        <a href="#karchitect" class="btn-premium" style="border-color:rgba(212,168,67,.3);color:rgba(248,246,242,.6);">
+                            <span>Service Karchitect</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__scroll reveal stagger-4">
+                <span class="hero__scroll-label">Défiler</span>
+                <div class="scroll-line-premium"></div>
+            </div>
+        </section>
+
+        <!-- ===== L'UNIVERS KARTELL ===== -->
+        <section class="univers" id="univers">
+            <div class="container">
+                <div class="univers__header">
+                    <span class="section-label reveal stagger-1">Notre Héritage</span>
+                    <h2 class="section-title reveal stagger-2">L'Univers Kartell</h2>
+                    <div class="section-divider reveal stagger-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="univers__grid">
+                    <div class="univers__text reveal stagger-2">
+                        <p>Fondée en 1949 par Giulio Castelli à Milan, Kartell a révolutionné le monde du design en faisant de la matière plastique un matériau noble. En fusionnant technique industrielle et vision artistique, la marque a engendré des objets devenus des icônes universelles.</p>
+                        <p>Aujourd'hui, le flagship store de Nancy par <strong>Intemporel</strong> vous invite à découvrir cet univers où la transparence du polycarbonate côtoie la richesse des couleurs, où chaque pièce raconte l'histoire d'une collaboration entre de grands designers.</p>
+                    </div>
+
+                    <div class="univers__values">
+                        <article class="value-item reveal stagger-1">
+                            <span class="value-item__num">01</span>
+                            <h3 class="value-item__title">Innovation</h3>
+                            <p class="value-item__text">Pionnière dans l'utilisation du polycarbonate, Kartell repousse sans cesse les limites du design.</p>
+                        </article>
+                        <article class="value-item reveal stagger-2">
+                            <span class="value-item__num">02</span>
+                            <h3 class="value-item__title">Transparence</h3>
+                            <p class="value-item__text">L'ADN visuel de Kartell — légèreté et élégance absolue dans chaque courbe.</p>
+                        </article>
+                        <article class="value-item reveal stagger-3">
+                            <span class="value-item__num">03</span>
+                            <h3 class="value-item__title">Made in Italy</h3>
+                            <p class="value-item__text">Une production 100% italienne garantissant une qualité et un savoir-faire d'exception.</p>
+                        </article>
+                        <article class="value-item reveal stagger-4">
+                            <span class="value-item__num">04</span>
+                            <h3 class="value-item__title">Intemporel</h3>
+                            <p class="value-item__text">Des pièces qui transcendent les époques pour devenir des classiques éternels.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="univers__designers reveal">
+                <div class="designers-track">
+                    Starck &middot; Urquiola &middot; Citterio &middot; Laviani &middot; Lissoni &middot; Arad &middot; Bellini &middot; Castelli Ferrieri &middot;&nbsp;
+                    Starck &middot; Urquiola &middot; Citterio &middot; Laviani &middot; Lissoni &middot; Arad &middot; Bellini &middot; Castelli Ferrieri &middot;&nbsp;
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COLLECTIONS / BENTO ASYMÉTRIQUE ===== -->
+        <section class="collections" id="collections">
+            <div class="container">
+                <div class="collections__header">
+                    <span class="section-label reveal stagger-1">Nos Univers</span>
+                    <h2 class="section-title reveal stagger-2">Collections</h2>
+                    <div class="section-divider reveal stagger-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="collections__bento">
+
+                    <!-- 1. Sièges — grande carte (2 colonnes) -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/chairs" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-1">
+                        <div class="bento-card__bg">
+                            <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Images/Global/HomePage/Categories/seating.jpg" alt="Sièges Kartell" class="bento-card__img" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <span class="bento-card__tag">Édition 2026</span>
+                            <h3 class="bento-card__title">Sièges</h3>
+                            <p class="bento-card__count">124 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 2. Éclairage — tall (1 col, 2 lignes) -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/lighting" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-2">
+                        <div class="bento-card__bg">
+                            <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Images/Global/HomePage/Categories/lighting.jpg" alt="Éclairage Kartell" class="bento-card__img" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Éclairage</h3>
+                            <p class="bento-card__count">86 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 3. Tables -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/tables" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-1">
+                        <div class="bento-card__bg">
+                            <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Images/Global/HomePage/Categories/tables.jpg" alt="Tables Kartell" class="bento-card__img" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Tables</h3>
+                            <p class="bento-card__count">42 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 4. Canapés -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/sofas-and-armchairs" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-2">
+                        <div class="bento-card__bg">
+                            <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Images/Global/HomePage/Categories/tables.jpg" alt="Tables Kartell" class="bento-card__img" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Canapés &amp; Fauteuils</h3>
+                            <p class="bento-card__count">35 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 5. Rangement (2 colonnes) -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/storage" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-3">
+                        <div class="bento-card__bg">
+                            <svg viewBox="0 0 200 100" class="bento-card__placeholder" preserveAspectRatio="xMidYMid slice">
+                                <defs><linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EDEAE5"/><stop offset="100%" stop-color="#D0CCC5"/></linearGradient></defs>
+                                <rect width="200" height="100" fill="url(#gr)"/>
+                                <!-- 3 Componibili -->
+                                <g opacity="0.25">
+                                    <g transform="translate(70,10)">
+                                        <ellipse cx="0" cy="16" rx="22" ry="7" fill="none" stroke="#3C3830" stroke-width="2"/>
+                                        <rect x="-22" y="16" width="44" height="18" fill="none" stroke="#3C3830" stroke-width="1.8"/>
+                                        <ellipse cx="0" cy="34" rx="22" ry="7" fill="none" stroke="#3C3830" stroke-width="2"/>
+                                        <rect x="-22" y="34" width="44" height="18" fill="none" stroke="#3C3830" stroke-width="1.8"/>
+                                        <ellipse cx="0" cy="52" rx="22" ry="7" fill="none" stroke="#3C3830" stroke-width="2"/>
+                                        <rect x="-22" y="52" width="44" height="18" fill="none" stroke="#3C3830" stroke-width="1.8"/>
+                                        <ellipse cx="0" cy="70" rx="22" ry="7" fill="none" stroke="#3C3830" stroke-width="2"/>
+                                    </g>
+                                    <g transform="translate(130,20)">
+                                        <ellipse cx="0" cy="10" rx="16" ry="5" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                        <rect x="-16" y="10" width="32" height="14" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                        <ellipse cx="0" cy="24" rx="16" ry="5" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                        <rect x="-16" y="24" width="32" height="14" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                        <ellipse cx="0" cy="38" rx="16" ry="5" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Rangement</h3>
+                            <p class="bento-card__count">58 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 6. Arts de la Table — tall (1 col, 2 lignes) -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/home-accessories" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-4">
+                        <div class="bento-card__bg">
+                            <svg viewBox="0 0 100 200" class="bento-card__placeholder" preserveAspectRatio="xMidYMid slice">
+                                <defs><linearGradient id="ga" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0EDE8"/><stop offset="100%" stop-color="#D8D4CE"/></linearGradient></defs>
+                                <rect width="100" height="200" fill="url(#ga)"/>
+                                <g opacity="0.25">
+                                    <!-- Assiettes -->
+                                    <ellipse cx="50" cy="80" rx="30" ry="9" fill="none" stroke="#3C3830" stroke-width="2"/>
+                                    <ellipse cx="50" cy="80" rx="22" ry="6.5" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                    <!-- Verre -->
+                                    <path d="M42,55 Q38,65 40,75 L60,75 Q62,65 58,55 Z" fill="none" stroke="#3C3830" stroke-width="1.8"/>
+                                    <line x1="50" y1="75" x2="50" y2="90" stroke="#3C3830" stroke-width="1.8"/>
+                                    <line x1="40" y1="90" x2="60" y2="90" stroke="#3C3830" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Carafe -->
+                                    <path d="M45,120 Q40,130 40,150 Q40,162 50,165 Q60,162 60,150 Q60,130 55,120 Z" fill="none" stroke="#3C3830" stroke-width="1.8"/>
+                                    <line x1="45" y1="125" x2="55" y2="125" stroke="#3C3830" stroke-width="1.5"/>
+                                    <path d="M55,138 Q62,138 62,143" fill="none" stroke="#3C3830" stroke-width="1.5"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Arts de la Table</h3>
+                            <p class="bento-card__count">92 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                    <!-- 7. Accessoires (2 colonnes) -->
+                    <a href="https://www.kartell.com/fr/fr/ktfr/shop/category/new-arrivals" target="_blank" rel="noopener noreferrer" class="bento-card reveal stagger-1">
+                        <div class="bento-card__bg">
+                            <svg viewBox="0 0 200 100" class="bento-card__placeholder" preserveAspectRatio="xMidYMid slice">
+                                <defs><linearGradient id="gac" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C8C5BF"/><stop offset="100%" stop-color="#9A9690"/></linearGradient></defs>
+                                <rect width="200" height="100" fill="url(#gac)"/>
+                                <g opacity="0.22">
+                                    <!-- KARTELL K icon stylisé -->
+                                    <line x1="80" y1="20" x2="80" y2="80" stroke="#2A2A2A" stroke-width="3" stroke-linecap="round"/>
+                                    <line x1="80" y1="50" x2="115" y2="20" stroke="#2A2A2A" stroke-width="3" stroke-linecap="round"/>
+                                    <line x1="80" y1="50" x2="115" y2="80" stroke="#2A2A2A" stroke-width="3" stroke-linecap="round"/>
+                                    <!-- Étoile design -->
+                                    <circle cx="140" cy="50" r="20" fill="none" stroke="#2A2A2A" stroke-width="1.5"/>
+                                    <line x1="140" y1="30" x2="140" y2="70" stroke="#2A2A2A" stroke-width="1"/>
+                                    <line x1="120" y1="50" x2="160" y2="50" stroke="#2A2A2A" stroke-width="1"/>
+                                    <line x1="126" y1="36" x2="154" y2="64" stroke="#2A2A2A" stroke-width="1"/>
+                                    <line x1="154" y1="36" x2="126" y2="64" stroke="#2A2A2A" stroke-width="1"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="bento-card__overlay"></div>
+                        <div class="bento-card__content">
+                            <h3 class="bento-card__title">Accessoires &amp; Nouveautés</h3>
+                            <p class="bento-card__count">110 pièces &rarr;</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PIÈCES ICONIQUES ===== -->
+        <section class="iconic" id="icones">
+            <div class="container">
+                <div class="iconic__header">
+                    <span class="section-label reveal stagger-1">Bestsellers</span>
+                    <h2 class="section-title section-title--light reveal stagger-2">Pièces Iconiques</h2>
+                    <div class="section-divider reveal stagger-3" aria-hidden="true"></div>
+                </div>
+
+                <div class="iconic__editorial reveal">
+                    <!-- Produit principal -->
+                    <div class="iconic__hero">
+                        <div class="iconic__hero-visual reveal-img">
+                            <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-5883B4.jpg" alt="Chaise Louis Ghost par Philippe Starck pour Kartell" class="iconic__main-img" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div class="iconic__hero-info">
+                            <span class="designer-name">Philippe Starck</span>
+                            <h3 class="iconic__name">Louis Ghost</h3>
+                            <p class="iconic__desc">Véritable prodige technologique, c'est la chaise transparente la plus vendue au monde. Injectée en polycarbonate en un seul moulage, elle incarne l'alliance parfaite de la tradition et de l'innovation.</p>
+                            <p class="product-price">Depuis 310 €</p>
+                        </div>
+                    </div>
+
+                    <!-- Vignettes produits -->
+                    <div class="iconic__thumbs">
+                        <div class="iconic__thumb active"
+                             data-img="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-5883B4.jpg"
+                             data-name="Louis Ghost"
+                             data-designer="Philippe Starck"
+                             data-price="Depuis 310 €"
+                             data-desc="Véritable prodige technologique, c'est la chaise transparente la plus vendue au monde. Injectée en polycarbonate en un seul moulage, elle incarne l'alliance parfaite de la tradition et de l'innovation.">
+                            <div class="iconic__thumb-img">
+                                <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-5883B4.jpg" alt="Louis Ghost" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
+                            <span class="iconic__thumb-name">Louis Ghost</span>
+                        </div>
+
+                        <div class="iconic__thumb"
+                             data-img="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-9072B4.jpg"
+                             data-name="Bourgie"
+                             data-designer="Ferruccio Laviani"
+                             data-price="Depuis 490 €"
+                             data-desc="Une lampe au style inégalable, alliant classicisme baroque et modernité du polycarbonate. Son design baroque à trois niveaux en a fait une pièce de collection plébiscitée dans le monde entier.">
+                            <div class="iconic__thumb-img">
+                                <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-9072B4.jpg" alt="Bourgie" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
+                            <span class="iconic__thumb-name">Bourgie</span>
+                        </div>
+
+                        <div class="iconic__thumb"
+                             data-img="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-5865B4.jpg"
+                             data-name="Masters"
+                             data-designer="Starck &amp; Quitllet"
+                             data-price="Depuis 440 €"
+                             data-desc="L'hommage génial à trois chaises emblématiques — Eames, Saarinen, Jacobsen — entrelacées dans une silhouette hybride reconnaissable entre toutes.">
+                            <div class="iconic__thumb-img">
+                                <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-5865B4.jpg" alt="Masters" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
+                            <span class="iconic__thumb-name">Masters</span>
+                        </div>
+
+                        <div class="iconic__thumb"
+                             data-img="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-4966B4.jpg"
+                             data-name="Componibili"
+                             data-designer="Anna Castelli Ferrieri"
+                             data-price="Depuis 230 €"
+                             data-desc="L'icône absolue du rangement modulaire, dessinée en 1967. Une pièce des collections permanentes du MoMA de New York, toujours aussi contemporaine et fonctionnelle.">
+                            <div class="iconic__thumb-img">
+                                <img src="https://d3trhmpc56lg1h.cloudfront.net/Media/KARTELL/KARTELL/Products/Images/HD/09-4966B4.jpg" alt="Componibili" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
+                            <span class="iconic__thumb-name">Componibili</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SERVICE KARCHITECT ===== -->
+        <section class="karchitect" id="karchitect">
+            <div class="container">
+                <div class="karchitect__layout">
+                    <div class="karchitect__content">
+                        <span class="section-label reveal stagger-1">Service Exclusif</span>
+                        <h2 class="section-title section-title--light reveal stagger-2">Karchitect</h2>
+                        <p class="section-desc section-desc--light reveal stagger-3">Votre intérieur mérite l'expertise Kartell. Notre service de conseil personnalisé transforme vos espaces en œuvres d'art habitables.</p>
+
+                        <div class="karchitect__steps">
+                            <div class="karchitect__step reveal stagger-1">
+                                <span class="karchitect__num">01</span>
+                                <div>
+                                    <h3 class="karchitect__step-title">Rendez-vous</h3>
+                                    <p class="karchitect__step-text">Échangeons sur vos envies, votre style de vie et votre espace de vie.</p>
+                                </div>
+                            </div>
+                            <div class="karchitect__step reveal stagger-2">
+                                <span class="karchitect__num">02</span>
+                                <div>
+                                    <h3 class="karchitect__step-title">Conception</h3>
+                                    <p class="karchitect__step-text">Plan, sélection de produits et devis personnalisé sous 7 jours ouvrés.</p>
+                                </div>
+                            </div>
+                            <div class="karchitect__step reveal stagger-3">
+                                <span class="karchitect__num">03</span>
+                                <div>
+                                    <h3 class="karchitect__step-title">Réalisation</h3>
+                                    <p class="karchitect__step-text">Livraison et installation soignée par nos experts Kartell Nancy.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="karchitect__actions reveal stagger-4">
+                            <div class="karchitect__btn-group">
+                                <a href="tel:+33383209833" class="btn-karchitect btn-karchitect--phone">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Appeler le magasin</span>
+                                </a>
+                                <a href="mailto:nancy@kartell.fr?subject=Demande de rendez-vous Karchitect" class="btn-karchitect btn-karchitect--email">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Envoyer un email</span>
+                                </a>
+                            </div>
+                            <p class="karchitect__availability">Du mardi au samedi, 10h-12h / 14h-19h</p>
+                        </div>
+                    </div>
+
+                    <div class="karchitect__visual reveal stagger-4">
+                        <svg viewBox="0 0 400 500" class="karchitect__pattern">
+                            <rect width="400" height="500" fill="none" stroke="#D4A843" stroke-width="0.5" opacity="0.3"/>
+                            <path d="M 50 50 L 350 50 L 350 450 L 50 450 Z" fill="none" stroke="#D4A843" stroke-width="1" opacity="0.5"/>
+                            <line x1="50" y1="150" x2="350" y2="150" stroke="#D4A843" stroke-width="0.5" opacity="0.4"/>
+                            <line x1="50" y1="250" x2="350" y2="250" stroke="#D4A843" stroke-width="0.5" opacity="0.3"/>
+                            <line x1="150" y1="50" x2="150" y2="450" stroke="#D4A843" stroke-width="0.5" opacity="0.3"/>
+                            <line x1="250" y1="50" x2="250" y2="450" stroke="#D4A843" stroke-width="0.5" opacity="0.3"/>
+                            <circle cx="200" cy="250" r="80" fill="none" stroke="#C41A1A" stroke-width="0.8" opacity="0.4"/>
+                            <circle cx="200" cy="250" r="5" fill="#C41A1A" opacity="0.6"/>
+                            <!-- Dimensions -->
+                            <line x1="60" y1="440" x2="340" y2="440" stroke="#D4A843" stroke-width="0.8" opacity="0.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LE MAGASIN ===== -->
+        <section class="store" id="magasin">
+            <div class="container">
+                <div class="store__layout">
+                    <div class="store__info reveal stagger-1">
+                        <span class="section-label">Venez nous voir</span>
+                        <h2 class="section-title">Le Flagship Store</h2>
+                        <div class="section-divider" aria-hidden="true"></div>
+
+                        <div class="store__details">
+                            <div class="store__detail-item">
+                                <i class="fas fa-location-dot"></i>
+                                <div>
+                                    <p class="store__detail-label">Adresse</p>
+                                    <p class="store__detail-value">35 Ter Rue Saint-Nicolas, 54000 Nancy</p>
+                                </div>
+                            </div>
+                            <div class="store__detail-item">
+                                <i class="far fa-clock"></i>
+                                <div>
+                                    <p class="store__detail-label">Horaires</p>
+                                    <p class="store__detail-value">Mardi &mdash; Samedi : 10h00&ndash;12h00 / 14h00&ndash;19h00</p>
+                                </div>
+                            </div>
+                            <div class="store__detail-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <p class="store__detail-label">Téléphone</p>
+                                    <p class="store__detail-value"><a href="tel:+33383209833" style="color:inherit;">03 83 20 98 33</a></p>
+                                </div>
+                            </div>
+                            <div class="store__detail-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <p class="store__detail-label">Email</p>
+                                    <p class="store__detail-value"><a href="mailto:nancy@kartell.fr" style="color:inherit;">nancy@kartell.fr</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="store__badge">
+                            <div class="google-rating">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                <span class="rating-text">4,3/5 &mdash; 313 avis Google</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="store__visual reveal stagger-2">
+                        <div class="store__map-placeholder">
+                            <svg viewBox="0 0 500 400" class="store__map-svg">
+                                <rect width="500" height="400" fill="#E8E4DC"/>
+                                <!-- Rues stylisées -->
+                                <rect x="0" y="180" width="500" height="24" fill="#D4CFCA"/>
+                                <rect x="220" y="0" width="20" height="400" fill="#D4CFCA"/>
+                                <rect x="0" y="280" width="500" height="16" fill="#D4CFCA"/>
+                                <rect x="340" y="0" width="16" height="400" fill="#D4CFCA"/>
+                                <!-- Pâtés de maisons -->
+                                <rect x="30" y="30" width="180" height="140" fill="#DDD9D3" rx="2"/>
+                                <rect x="250" y="30" width="80" height="140" fill="#DDD9D3" rx="2"/>
+                                <rect x="30" y="212" width="180" height="60" fill="#DDD9D3" rx="2"/>
+                                <rect x="250" y="212" width="80" height="60" fill="#DDD9D3" rx="2"/>
+                                <rect x="30" y="304" width="180" height="80" fill="#DDD9D3" rx="2"/>
+                                <rect x="250" y="304" width="80" height="80" fill="#DDD9D3" rx="2"/>
+                                <rect x="364" y="30" width="120" height="140" fill="#DDD9D3" rx="2"/>
+                                <rect x="364" y="212" width="120" height="60" fill="#DDD9D3" rx="2"/>
+                                <rect x="364" y="304" width="120" height="80" fill="#DDD9D3" rx="2"/>
+                                <!-- Marqueur Kartell -->
+                                <circle cx="250" cy="192" r="14" fill="#C41A1A"/>
+                                <circle cx="250" cy="192" r="7" fill="white"/>
+                                <circle cx="250" cy="192" r="3" fill="#C41A1A"/>
+                                <!-- Légende -->
+                                <text x="250" y="228" font-family="serif" font-size="11" fill="#3A3830" text-anchor="middle" opacity="0.6">Kartell Nancy</text>
+                                <text x="250" y="242" font-family="serif" font-size="9" fill="#7A7570" text-anchor="middle">35 Ter Rue Saint-Nicolas</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TÉMOIGNAGES ===== -->
+        <section class="reviews" id="avis">
+            <div class="container">
+                <div class="reviews__header">
+                    <span class="section-label reveal stagger-1">Expériences Clients</span>
+                    <h2 class="section-title reveal stagger-2">Ils nous font confiance</h2>
+                </div>
+                <div class="reviews__grid">
+                    <blockquote class="review-card reveal stagger-1">
+                        <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-card__text">"Une boutique sublime et des conseils d'une grande finesse. Ma lampe Bourgie est la pièce maîtresse de mon salon."</p>
+                        <cite class="review-card__author">&mdash; Marie L. (Nancy)</cite>
+                    </blockquote>
+                    <blockquote class="review-card reveal stagger-2">
+                        <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-card__text">"L'accueil par l'équipe d'Intemporel est à la hauteur de la marque Kartell. Excellence et professionnalisme."</p>
+                        <cite class="review-card__author">&mdash; Thomas D. (Vandœuvre)</cite>
+                    </blockquote>
+                    <blockquote class="review-card reveal stagger-3">
+                        <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-card__text">"Le service Karchitect a transformé mon bureau professionnel. Un résultat moderne, élégant et parfaitement fonctionnel."</p>
+                        <cite class="review-card__author">&mdash; Dr. Sophie G. (Nancy)</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEWSLETTER ===== -->
+        <section class="newsletter" id="newsletter">
+            <div class="container">
+                <div class="newsletter__content reveal">
+                    <h2 class="newsletter__title">Restez Inspiré</h2>
+                    <p class="newsletter__subtitle">Inscrivez-vous pour recevoir les nouveautés et invitations exclusives Kartell Nancy.</p>
+                    <form class="newsletter__form">
+                        <input type="email" class="newsletter__input" placeholder="Votre adresse e-mail" aria-label="Adresse e-mail pour la newsletter" required>
+                        <button type="submit" class="newsletter__submit">S'inscrire &rarr;</button>
+                    </form>
+                    <p class="newsletter__legal">En vous inscrivant, vous acceptez notre politique de confidentialité.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <div class="footer__logo-group">
+                        <span class="footer__logo-name">KARTELL</span>
+                        <span class="footer__logo-by">by Intemporel</span>
+                    </div>
+                    <p class="footer__description">Le flagship store Kartell à Nancy par l'enseigne Intemporel. Une sélection pointue de design italien haut de gamme au cœur de la ville ducale.</p>
+                </div>
+
+                <div class="footer__col">
+                    <h4 class="footer__heading">Navigation</h4>
+                    <ul class="footer__list">
+                        <li><a href="#hero" class="footer__link">Accueil</a></li>
+                        <li><a href="#univers" class="footer__link">L'Univers</a></li>
+                        <li><a href="#collections" class="footer__link">Collections</a></li>
+                        <li><a href="#icones" class="footer__link">Iconiques</a></li>
+                        <li><a href="#karchitect" class="footer__link">Karchitect</a></li>
+                        <li><a href="client.html" class="footer__link">Espace Client</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4 class="footer__heading">Informations</h4>
+                    <ul class="footer__list">
+                        <li><a href="#magasin" class="footer__link">Le Magasin</a></li>
+                        <li><a href="javascript:void(0)" class="footer__link" id="legalOpenBtn">Mentions Légales</a></li>
+                        <li><a href="javascript:void(0)" class="footer__link">Confidentialité</a></li>
+                        <li><a href="#newsletter" class="footer__link">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h4 class="footer__heading">Suivez-nous</h4>
+                    <div class="footer__social">
+                        <a href="https://www.instagram.com/kartell_nancy/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/KartellNancy/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.pinterest.fr/kartell_official/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                    <p class="footer__link" style="margin-bottom:.5rem;"><a href="tel:+33383209833" style="color:inherit;">03 83 20 98 33</a></p>
+                    <p class="footer__link"><a href="mailto:nancy@kartell.fr" style="color:inherit;">nancy@kartell.fr</a></p>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2026 KARTELL NANCY &mdash; BY INTEMPOREL. ALL RIGHTS RESERVED.</p>
+                <div class="footer__legal">
+                    <a href="javascript:void(0)" class="footer__link">Plan du site</a>
+                    <a href="javascript:void(0)" class="footer__link">Cookies</a>
+                    <a href="admin.html" class="footer__link" style="opacity:.35;font-size:.72em;letter-spacing:.06em;">G&Eacute;RANT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MODAL MENTIONS LÉGALES ===== -->
+    <div class="modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle" aria-hidden="true">
+        <div class="modal__overlay"></div>
+        <div class="modal__container">
+            <button class="modal__close" id="legalClose" aria-label="Fermer">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="modal__content">
+                <h2 class="modal__title" id="legalModalTitle">Mentions Légales</h2>
+                <div class="modal__divider"></div>
+                <p><strong>Kartell Nancy &mdash; Flagship Store</strong></p>
+                <p>Exploité par Intemporel Nancy SARL.<br>35 Ter Rue Saint-Nicolas, 54000 Nancy.</p>
+                <p>Siret : [En attente] | RCS Nancy.</p>
+                <h3 class="modal__section-title">Données personnelles</h3>
+                <p>Ce site ne collecte aucune donnée personnelle sans votre consentement explicite. Le formulaire newsletter est soumis aux dispositions du Règlement Général sur la Protection des Données (RGPD &mdash; UE 2016/679). Vous disposez d'un droit d'accès, de rectification, de portabilité et de suppression de vos données en contactant : nancy@kartell.fr.</p>
+                <h3 class="modal__section-title">Cookies</h3>
+                <p>Ce site n'utilise que des cookies techniques strictement nécessaires à son fonctionnement. Aucun cookie publicitaire ou de pistage tiers n'est déposé sans votre consentement préalable.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script defer src="js/app.js"></script>
+</body>
+</html>

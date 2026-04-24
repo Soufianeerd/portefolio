@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garage 2A – Carte Grise Nancy & Garage Saint-Nicolas-de-Port (54)</title>
+  <meta name="description"
+    content="Deux centres automobiles en Meurthe-et-Moselle (54) : Point Auto Services à Nancy pour vos démarches carte grise, code de la route, et Garage 2A à Saint-Nicolas-de-Port pour la mécanique et le vitrage A+ Glass.">
+  <meta name="keywords"
+    content="carte grise Nancy, garage Saint-Nicolas-de-Port, A+ Glass 54, code de la route Nancy, mécanique Meurthe-et-Moselle">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://garage2a.fr/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Garage 2A – Carte Grise Nancy & Garage Saint-Nicolas-de-Port (54)">
+  <meta property="og:description"
+    content="Point Auto Services (Nancy) : Carte Grise, Code de la Route. Garage 2A (Saint-Nicolas-de-Port) : Mécanique, A+ Glass. Tél : 03 83 21 10 02">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Preconnect -->
+  <link rel="stylesheet" href="frontend/assets/css/main.css">
+
+  <style>
+    /* ─── Index-specific styles ─── */
+    .hero-index {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-index::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 50%, rgba(230, 126, 34, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(230, 126, 34, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 96px 0;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--c-orange);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--c-muted);
+      margin-top: 4px;
+    }
+
+    .poles-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .pole-card {
+      background: var(--c-surface);
+      border-radius: 24px;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .pole-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      border-color: rgba(230, 126, 34, 0.35);
+    }
+
+    .pole-card-header {
+      padding: 32px 32px 24px;
+      border-bottom: 1px solid var(--c-border);
+      position: relative;
+    }
+
+    .pole-card-header .pole-num {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(230, 126, 34, 0.08);
+      line-height: 1;
+      transition: color 0.25s;
+    }
+
+    .pole-card:hover .pole-num {
+      color: rgba(230, 126, 34, 0.15);
+    }
+
+    .pole-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-orange);
+      background: rgba(230, 126, 34, 0.12);
+      border: 1px solid rgba(230, 126, 34, 0.25);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 14px;
+    }
+
+    .pole-card-header h2 {
+      font-size: 1.5rem;
+      color: var(--c-white);
+      margin-bottom: 8px;
+    }
+
+    .pole-card-header .pole-address {
+      font-size: 0.85rem;
+      color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pole-card-body {
+      padding: 24px 32px;
+    }
+
+    .pole-services {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .pole-service-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .pole-service-item svg {
+      flex-shrink: 0;
+      color: var(--c-orange);
+    }
+
+    .pole-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .pole-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--c-orange);
+      transition: gap 0.2s;
+    }
+
+    .pole-card:hover .pole-cta-link {
+      gap: 14px;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 32px 0;
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .trust-item .icon {
+      font-size: 1.4rem;
+    }
+
+    /* Horaires quick */
+    .horaires-quick {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .horaires-quick-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .horaires-quick-card h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--c-white);
+    }
+
+    .horaires-quick-card .sub {
+      font-size: 0.78rem;
+      color: var(--c-muted);
+      margin-bottom: 16px;
+    }
+
+    .h-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .h-row:last-child {
+      border-bottom: none;
+    }
+
+    .h-row .day {
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    .h-row .hours {
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
+    }
+
+    .h-row .closed {
+      color: #e74c3c;
+    }
+
+    .h-row .special {
+      color: var(--c-orange);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 60px 0;
+      }
+
+      .poles-section {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-row {
+        gap: 20px;
+      }
+
+      .horaires-quick {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-bar {
+        gap: 20px;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Garage 2A - Accueil">
+        <img src="frontend/assets/img/logo-g2a.svg" alt="Logo Garage 2A">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="frontend/carte-grise.html">Carte Grise</a>
+        <a href="frontend/carte-grise.html#code-route">Code de la Route</a>
+        <a href="frontend/garage.html">Garage & Vitrage</a>
+        <a href="frontend/garage.html#devis">Devis Atelier</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:0383211002" class="btn btn-primary btn-sm" id="nav-phone-btn">
+          📞 03 83 21 10 02
+        </a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Navigation mobile">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="frontend/carte-grise.html">📋 Carte Grise — Nancy</a>
+    <a href="frontend/carte-grise.html#code-route">📖 Code de la Route</a>
+    <a href="frontend/garage.html">🔧 Garage & Vitrage — St-Nicolas</a>
+    <a href="frontend/garage.html#devis">📝 Demande de Devis</a>
+    <a href="tel:0383211002" style="color:var(--c-orange); font-weight:700; margin-top:8px;">📞 03 83 21 10 02</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-index" id="hero">
+    <div class="hero-bg-dots"></div>
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: pitch -->
+        <div>
+          <div class="hero-eyebrow animate-in">
+            <span class="live-dot"></span>
+            Meurthe-et-Moselle — 54
+          </div>
+          <h1 class="hero-title animate-in delay-1">
+            Votre expert auto<br>en <span class="highlight">Meurthe-et-Moselle</span>
+          </h1>
+          <p class="hero-desc animate-in delay-2">
+            Deux centres complémentaires pour tous vos besoins automobiles : démarches administratives à Nancy et
+            mécanique experte à Saint-Nicolas-de-Port.
+          </p>
+          <div class="hero-actions animate-in delay-3">
+            <a href="frontend/carte-grise.html" class="btn btn-primary btn-lg" id="cta-carte-grise">
+              📋 Simuler ma Carte Grise
+            </a>
+            <a href="frontend/garage.html" class="btn btn-outline btn-lg" id="cta-garage">
+              🔧 Services Mécaniques
+            </a>
+          </div>
+
+          <div class="stat-row animate-in delay-4">
+            <div class="stat-item">
+              <span class="stat-number">2</span>
+              <span class="stat-label">Centres agréés</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">150€</span>
+              <span class="stat-label">Franchise A+ Glass offerte</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">SIV</span>
+              <span class="stat-label">Habilité Ministère Intérieur</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: poles cards -->
+        <div class="poles-section animate-in delay-2">
+
+          <!-- Pôle 1 : Point Auto Services -->
+          <a href="frontend/carte-grise.html" class="pole-card" id="card-point-auto">
+            <div class="pole-card-header">
+              <span class="pole-num">01</span>
+              <div class="pole-tag">📍 Nancy 54000</div>
+              <h2>Point Auto Services</h2>
+              <p class="pole-address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                63 Rue St Nicolas, Nancy
+              </p>
+            </div>
+            <div class="pole-card-body">
+              <div class="pole-services">
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Carte Grise (SIV/ANTS) — Occasion, Import WW
+                </div>
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Quitus fiscal, Duplicata, Plaques d'immatriculation
+                </div>
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Code de la Route (Code'n Go / Bureau Veritas)
+                </div>
+              </div>
+              <div class="pole-cta">
+                <span class="pole-cta-link">
+                  Voir les services
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Pôle 2 : Garage 2A -->
+          <a href="frontend/garage.html" class="pole-card" id="card-garage-2a">
+            <div class="pole-card-header">
+              <span class="pole-num">02</span>
+              <div class="pole-tag">📍 St-Nicolas-de-Port 54210</div>
+              <h2>Garage 2A / A+ Glass</h2>
+              <p class="pole-address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                33 Rte de Ville en Vermois, St-Nicolas
+              </p>
+            </div>
+            <div class="pole-card-body">
+              <div class="pole-services">
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Mécanique générale — Révision, freinage, courroie
+                </div>
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Centre agréé A+ Glass — Franchise offerte jusqu'à 150€
+                </div>
+                <div class="pole-service-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Pneumatiques & Véhicules d'occasion
+                </div>
+              </div>
+              <div class="pole-cta">
+                <span class="pole-cta-link">
+                  Demander un devis
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track" id="ticker-track">
+      <span class="ticker-item">Carte Grise Express Nancy</span>
+      <span class="ticker-item">Habilité SIV — Ministère de l'Intérieur</span>
+      <span class="ticker-item">Code de la Route Auto · Moto · Bateau</span>
+      <span class="ticker-item">A+ Glass — Franchise offerte jusqu'à 150€</span>
+      <span class="ticker-item">Mécanique Générale St-Nicolas-de-Port</span>
+      <span class="ticker-item">Import WW — Quitus Fiscal — Duplicata</span>
+      <span class="ticker-item">Pneumatiques & Révision Complète</span>
+      <span class="ticker-item">Véhicules Occasion — Stock Tournant</span>
+      <span class="ticker-item">Code'n Go — Bureau Veritas Agréé</span>
+      <span class="ticker-item">📞 03 83 21 10 02</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item">Carte Grise Express Nancy</span>
+      <span class="ticker-item">Habilité SIV — Ministère de l'Intérieur</span>
+      <span class="ticker-item">Code de la Route Auto · Moto · Bateau</span>
+      <span class="ticker-item">A+ Glass — Franchise offerte jusqu'à 150€</span>
+      <span class="ticker-item">Mécanique Générale St-Nicolas-de-Port</span>
+      <span class="ticker-item">Import WW — Quitus Fiscal — Duplicata</span>
+      <span class="ticker-item">Pneumatiques & Révision Complète</span>
+      <span class="ticker-item">Véhicules Occasion — Stock Tournant</span>
+      <span class="ticker-item">Code'n Go — Bureau Veritas Agréé</span>
+      <span class="ticker-item">📞 03 83 21 10 02</span>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <section
+    style="background: var(--c-surface); border-top:1px solid var(--c-border); border-bottom:1px solid var(--c-border);">
+    <div class="container">
+      <div class="trust-bar">
+        <div class="trust-item">
+          <span class="icon">🏛️</span>
+          <span>Habilité SIV / ANTS — Ministère de l'Intérieur</span>
+        </div>
+        <div class="trust-item">
+          <span class="icon">🏆</span>
+          <span>Centre agréé A+ Glass</span>
+        </div>
+        <div class="trust-item">
+          <span class="icon">📖</span>
+          <span>Code'n Go — Bureau Veritas</span>
+        </div>
+        <div class="trust-item">
+          <span class="icon">📍</span>
+          <span>2 centres en Meurthe-et-Moselle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORAIRES RAPIDES -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-eyebrow">Horaires d'ouverture</span>
+        <h2 class="section-title">Quand nous retrouver ?</h2>
+        <p>Des horaires adaptés avec un centre ouvert le mercredi en journée continue.</p>
+      </div>
+      <div class="horaires-quick animate-in delay-1">
+        <!-- Point Auto Services -->
+        <div class="horaires-quick-card">
+          <h4>Point Auto Services</h4>
+          <p class="sub">📍 63 Rue St Nicolas — Nancy</p>
+          <div class="h-row"><span class="day">Lun · Mar · Jeu · Ven</span><span class="hours">09:30–12:00 /
+              13:00–17:00</span></div>
+          <div class="h-row"><span class="day">Samedi</span><span class="hours special">10:15–12:15 / 13:15–17:00</span>
+          </div>
+          <div class="h-row"><span class="day">Mercredi</span><span class="hours closed">Fermé</span></div>
+          <div class="h-row"><span class="day">Dimanche</span><span class="hours closed">Fermé</span></div>
+        </div>
+        <!-- Garage 2A -->
+        <div class="horaires-quick-card">
+          <h4>Garage 2A / A+ Glass</h4>
+          <p class="sub">📍 33 Rte de Ville en Vermois — St-Nicolas-de-Port</p>
+          <div class="h-row"><span class="day">Lun · Mar · Jeu · Ven</span><span class="hours">09:00–12:15 /
+              13:15–18:15</span></div>
+          <div class="h-row"><span class="day">Mercredi</span><span class="hours special"> 09:00–18:15 </span></div>
+          <div class="h-row"><span class="day">Samedi</span><span class="hours closed">⛔ Fermé</span></div>
+          <div class="h-row"><span class="day">Dimanche</span><span class="hours closed">⛔ Fermé</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section style="background: var(--c-surface); border-top:1px solid var(--c-border); padding: 80px 0;">
+    <div class="container text-center">
+      <div class="animate-in">
+        <span class="section-eyebrow">Contact unique</span>
+        <h2 style="margin-bottom:12px;">Un seul numéro pour les deux centres</h2>
+        <p style="max-width:500px; margin:0 auto 36px;">Notre équipe vous oriente selon votre besoin — carte grise, code
+          de la route, mécanique ou vitrage.</p>
+        <a href="tel:0383211002" class="btn btn-primary btn-lg" id="main-phone-cta"
+          style="font-size:1.2rem; padding:18px 40px;">
+          📞 03 83 21 10 02
+        </a>
+        <p style="margin-top:16px; font-size:0.82rem; color:var(--c-muted);">
+          Du lundi au samedi selon les horaires de chaque centre
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="frontend/assets/img/logo-g2aa.png" alt="Logo G2A">
+          </div>
+          <p>Deux centres automobiles complémentaires en Meurthe-et-Moselle. Démarches administratives à Nancy,
+            mécanique et vitrage à Saint-Nicolas-de-Port.</p>
+          <a href="tel:0383211002"
+            style="color:var(--c-orange); font-weight:700; font-size:1.1rem; display:inline-block; margin-top:16px;">📞
+            03 83 21 10 02</a>
+        </div>
+        <div class="footer-col">
+          <h4>Point Auto — Nancy</h4>
+          <a href="frontend/carte-grise.html">Simulateur Carte Grise</a>
+          <a href="frontend/carte-grise.html#demos">Nos démarches</a>
+          <a href="frontend/carte-grise.html#code-route">Code de la Route</a>
+          <a href="frontend/carte-grise.html#contact">Accès & Horaires</a>
+        </div>
+        <div class="footer-col">
+          <h4>Garage 2A — St-Nicolas</h4>
+          <a href="frontend/garage.html">Mécanique générale</a>
+          <a href="frontend/garage.html#apglass">A+ Glass Vitrage</a>
+          <a href="frontend/garage.html#occasion">Véhicules d'occasion</a>
+          <a href="frontend/garage.html#devis">Devis atelier</a>
+        </div>
+        <div class="footer-col">
+          <h4>Informations</h4>
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+          <a href="https://www.ants.gouv.fr" target="_blank" rel="noopener">Site ANTS officiel</a>
+          <a href="https://codengo.bureauveritas.fr/public/session?lng=6.181829&lat=48.6942" target="_blank"
+            rel="noopener">Code'n Go — Réserver</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Garage 2A & Point Auto Services — Meurthe-et-Moselle (54)</span>
+        <span>Service habilité SIV · Centre agréé A+ Glass · Code'n Go Bureau Veritas</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="frontend/assets/js/nav.js"></script>
+</body>
+
+</html>

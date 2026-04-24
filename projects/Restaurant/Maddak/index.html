@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  FICHIER : index.html                                           ║
+  ║  RÔLE    : Page d'accueil du site Maddak                        ║
+  ║  LIENS   : → style.css  (design system global : couleurs,       ║
+  ║                          boutons, navbar, footer, animations)   ║
+  ║            → index.css  (sections propres à cette page :        ║
+  ║                          hero, ribbon, about, spécialités,      ║
+  ║                          horaires, accès)                       ║
+  ║  IMAGES  : dossier assets/  (hero_bg.jpg, gourmet_burger.jpg…)  ║
+  ║  MODIF   : Pour changer un texte, trouve le commentaire de      ║
+  ║            section ci-dessous et modifie uniquement l'intérieur ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Viewport mobile : empêche le zoom automatique sur iPhone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── SEO ── -->
+    <title>Maddak — Restaurant Fait Maison à Nancy</title>
+    <meta name="description"
+        content="Maddak, restaurant fait maison au cœur de Nancy. Burgers gourmets, viandes halal certifiées, produits frais. 21 Rue Braconnot, 54000 Nancy." />
+    <!-- Couleur de la barre de navigateur sur mobile (Android Chrome) -->
+    <meta name="theme-color" content="#121212" />
+
+    <!-- ── Feuilles de style ── -->
+    <!-- style.css  → variables, reset, navbar, boutons, footer, animations -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- index.css  → sections de CETTE page uniquement -->
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ NAVBAR
+         ▌ Barre de navigation fixe en haut de l'écran.
+         ▌ La classe .scrolled s'ajoute via JS quand on descend >80px
+         ▌ → changer un lien : modifier le texte dans <a href="...">
+         ▌ → ajouter un lien : copier un <li>...</li> dans la <ul>
+         ═══════════════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <!-- Logo texte → remplace "MADDAK" par ton texte ou une <img> -->
+            <a href="index.html" class="nav-logo">MADDAK</a>
+
+            <!-- Menu de navigation desktop -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#horaires">Horaires</a></li>
+                <li><a href="#acces">Accès</a></li>
+                <!-- Nouveau lien Réserver -->
+                <li><a href="#" class="btn-reserver-trigger"
+                        style="font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid transparent; transition: border-color .3s;"
+                        onmouseover="this.style.borderColor='var(--gold)'"
+                        onmouseout="this.style.borderColor='transparent'">Réserver</a></li>
+                <!-- Bouton "La Carte" -->
+                <li><a href="menu.html" class="btn btn-gold" style="padding:.6rem 1.5rem">La Carte</a></li>
+            </ul>
+
+            <!-- Bouton hamburger (visible uniquement sur mobile <768px) -->
+            <!-- Les 3 <span> forment les 3 barres du hamburger (voir style.css) -->
+            <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- ▌ FIN NAVBAR ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ HERO (Écran d'accueil)
+         ▌ Grande section plein écran avec photo de fond + texte.
+         ▌ → changer la photo : remplace assets/hero_bg.jpg
+         ▌ → changer le titre : modifie le <h1 class="hero-title">
+         ▌ → changer le slogan : modifie le <p class="hero-slogan">
+         ▌ → changer les boutons CTA : les 2 <a class="btn"> dans .hero-ctas
+         ═══════════════════════════════════════════════════════════════ -->
+    <header class="hero" id="hero">
+
+        <!-- Photo de fond (zoom animé au chargement via keyframe heroZoom) -->
+        <div class="hero-media">
+            <img src="assets/hero_bg.jpg" alt="Ambiance intérieure du restaurant Maddak" class="hero-img"
+                loading="eager" />
+            <!-- Overlay sombre en dégradé pour rendre le texte lisible -->
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Contenu textuel du hero -->
+        <div class="hero-content container">
+            <!-- Petit texte au-dessus du titre (uppercase doré) -->
+            <p class="hero-eyebrow">Restaurant — Nancy</p>
+
+            <!-- Titre principal en grand avec effet or brossé animé -->
+            <h1 class="hero-title">MADDAK</h1>
+
+            <!-- Ligne dorée décorative sous le titre -->
+            <div class="hero-rule" aria-hidden="true"></div>
+
+            <!-- Slogan court -->
+            <p class="hero-slogan">Fait Maison &nbsp;·&nbsp; Produits Frais</p>
+
+            <!-- Texte de description (2-3 lignes max conseillés) -->
+            <p class="hero-desc">
+                Une cuisine généreuse et sincère, préparée chaque jour avec des produits sélectionnés.
+                Au cœur de Nancy, à deux pas de la Pépinière.
+            </p>
+
+            <!-- Boutons d'action (CTA) -->
+            <div class="hero-ctas">
+                <!-- CTA principal (doré) → va vers la carte -->
+                <a href="menu.html" class="btn btn-gold" id="cta-carte">
+                    Consulter la Carte
+                </a>
+                <!-- CTA Réserver (nouveau, style ambre entre les deux) -->
+                <button class="btn btn-outline btn-reserver-trigger" id="cta-reserve"
+                    style="background: rgba(212,175,55,.1); border-color: var(--gold)">
+                    Réserver une Table
+                </button>
+                <!-- CTA secondaire (contour doré) → scroll vers #about -->
+                <a href="#about" class="btn btn-outline" id="cta-about">Découvrir</a>
+            </div>
+        </div>
+
+        <!-- Indicateur de scroll (barre animée en bas à droite, cachée sur mobile) -->
+        <div class="hero-scroll" aria-hidden="true">
+            <span class="hero-scroll-label"></span>
+            <div class="hero-scroll-bar"></div>
+        </div>
+    </header>
+    <!-- ▌ FIN HERO ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ RIBBON (Bandeau défilant)
+         ▌ Bande de texte en défilement automatique.
+         ▌ Le contenu est doublé (x2) pour l'animation en boucle.
+         ▌ → changer un mot : remplace le texte dans les <span>
+         ▌ → changer la vitesse : dans index.css cherche "ribbonScroll"
+         ▌   et modifie "30s" (plus petit = plus rapide)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div class="ribbon" aria-hidden="true">
+        <div class="ribbon-track">
+            <!-- Groupe 1 (original) — les .rdot sont les séparateurs ✦ -->
+            <span>Fait Maison</span><span class="rdot">✦</span>
+            <span>Produits Frais</span><span class="rdot">✦</span>
+            <span>Viandes Halal AVS </span><span class="rdot">✦</span>
+            <span>Viande Fraîche Française</span><span class="rdot">✦</span>
+            <span>Burgers Gourmets</span><span class="rdot">✦</span>
+            <span>Farine Label Rouge</span><span class="rdot">✦</span>
+            <!-- Groupe 2 (copie) — nécessaire pour la boucle sans saut -->
+            <span>Fait Maison</span><span class="rdot">✦</span>
+            <span>Produits Frais</span><span class="rdot">✦</span>
+            <span>Viandes Halal AVS</span><span class="rdot">✦</span>
+            <span>Viande Fraîche Française</span><span class="rdot">✦</span>
+            <span>Burgers Gourmets</span><span class="rdot">✦</span>
+            <span>Farine Label Rouge</span><span class="rdot">✦</span>
+        </div>
+    </div>
+    <!-- ▌ FIN RIBBON ▌ -->
+
+
+    <main>
+
+        <!-- ═══════════════════════════════════════════════════════════
+             ▌ SECTION : À PROPOS
+             ▌ Grille 2 colonnes : photos à gauche, texte à droite.
+             ▌ La classe .fade-up déclenche une animation d'apparition
+             ▌   au scroll (gérée par IntersectionObserver en JS).
+             ▌ → changer les photos : remplace assets/gourmet_burger.jpg
+             ▌   et assets/assiette.jpg
+             ▌ → changer le texte : modifie les 3 paragraphes <p>
+             ▌ → changer la stat "100% Fait Maison" : .about-badge-card
+             ▌ → changer les stats (Halal / FR / 🌿) : les .stat-item
+             ═══════════════════════════════════════════════════════════ -->
+        <section class="about" id="about">
+            <div class="container about-grid">
+
+                <!-- Colonne gauche : collage de 2 photos + badge -->
+                <div class="about-visual fade-up">
+                    <div class="about-imgs">
+                        <!-- Photo principale (grande, en haut à gauche) -->
+                        <div class="about-img-main">
+                            <img src="assets/gourmet_burger.jpg" alt="Burger gourmet Maddak" loading="lazy" />
+                        </div>
+                        <!-- Photo secondaire (petite, en bas à droite, en surimpression) -->
+                        <div class="about-img-accent">
+                            <img src="assets/assiette.jpg" alt="Assiette gastronomique Maddak" loading="lazy" />
+                        </div>
+                        <!-- Badge flottant "100% Fait Maison" entre les 2 photos -->
+                        <div class="about-badge-card">
+                            <span class="badge-num">100%</span>
+                            <!-- .badge-label : texte sous le chiffre -->
+                            <span class="badge-label">Fait Maison</span>
+                        </div>
+                    </div>
+
+                    <!-- Barre de stats sous les photos (3 items séparés par des traits) -->
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <!-- .stat-val : la valeur principale (chiffre ou mot) -->
+                            <span class="stat-val">Halal</span>
+                            <!-- .stat-key : label sous la valeur -->
+                            <span class="stat-key">Certifié AVS par la Mosquée de Tomblaine</span>
+                        </div>
+                        <div class="stat-sep" aria-hidden="true"></div><!-- Séparateur vertical -->
+                        <div class="stat-item">
+                            <span class="stat-val">FR</span>
+                            <span class="stat-key">Viande hachée fraîche</span>
+                        </div>
+                        <div class="stat-sep" aria-hidden="true"></div>
+                        <div class="stat-item">
+                            <span class="stat-val">🌿</span>
+                            <span class="stat-key">Produits de saison</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- ▌ FIN colonne photos ▌ -->
+
+                <!-- Colonne droite : texte éditorial -->
+                <div class="about-text fade-up">
+                    <!-- .eyebrow : petit label doré au-dessus du titre -->
+                    <span class="eyebrow">Notre Histoire</span>
+
+                    <!-- Titre de section — les <em> sont en italique -->
+                    <h2 class="section-title">Une aventure familiale <br><em>au cœur de Nancy</em></h2>
+
+                    <!-- Ligne décorative dorée (.gold-line) -->
+                    <span class="gold-line"></span>
+
+                    <!-- Corps de texte (3 paragraphes éditoriaux) -->
+                    <p>
+                        Née d'une passion transmise de génération en génération, l'aventure <strong>Maddak</strong>
+                        a pris racine à deux pas du magnifique parc de la <strong>Pépinière</strong>, au cœur de Nancy.
+                        Un lieu où l'on cuisine comme à la maison — avec cœur, sans compromis.
+                    </p>
+                    <p>
+                        Nos burgers sont préparés avec des pains <strong>Farine Label Rouge</strong>,
+                        notre viande hachée est <strong>fraîche et 100% française</strong>,
+                        et chaque sauce est cuisinée maison. Une cuisine sincère qui parle avant tout.
+                    </p>
+                    <p>
+                        Que vous soyez seul au comptoir, en famille ou entre amis, Maddak vous accueille
+                        dans un espace chaleureux où la bonne table rime avec convivialité.
+                    </p>
+
+                    <!-- Boutons d'action dans la section about -->
+                    <div class="about-ctas">
+                        <a href="menu.html" class="btn btn-gold" id="about-cta">Voir la Carte</a>
+                        <!-- Bouton téléphone : href="tel:..." = appel direct sur mobile -->
+                        <a href="tel:0952020099" class="btn btn-outline" id="about-phone">
+                            <!-- Icône téléphone SVG (ne pas modifier) -->
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+                            </svg>
+                            Appeler
+                        </a>
+                    </div>
+                </div>
+                <!-- ▌ FIN colonne texte ▌ -->
+
+            </div>
+        </section>
+        <!-- ▌ FIN SECTION À PROPOS ▌ -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+             ▌ SECTION : SPÉCIALITÉS
+             ▌ Grille de 4 cartes photo illustrant les plats phares.
+             ▌ → ajouter une carte : copier un bloc <article class="spec-card">
+             ▌   et coller avant </div> (fin de .specialites-grid)
+             ▌ → supprimer une carte : supprimer l'<article> entier
+             ▌ → modifier une carte : changer src de l'<img>, le <h3>
+             ▌   et .spec-price
+             ▌ → la carte "large" (spec-card--large) occupe 2 colonnes
+             ═══════════════════════════════════════════════════════════ -->
+        <section class="specialites">
+            <div class="container">
+
+                <!-- En-tête de section -->
+                <div class="specialites-header fade-up">
+                    <span class="eyebrow">Nos Spécialités</span>
+                    <h2 class="section-title">Une carte pensée avec soin</h2>
+                    <span class="gold-line"></span>
+                </div>
+
+                <!-- Grille de cartes (2 colonnes desktop, 1 colonne mobile) -->
+                <div class="specialites-grid">
+
+                    <!-- ── Carte 1 : Smash Burger ── -->
+                    <article class="spec-card fade-up" id="spec-smash">
+                        <!-- Conteneur photo avec overlay sombre -->
+                        <div class="spec-img-wrap">
+                            <img src="assets/smash_burger.jpg" alt="Smash Burger Maddak" loading="lazy" />
+                            <div class="spec-img-overlay"></div>
+                        </div>
+                        <!-- Contenu textuel de la carte -->
+                        <div class="spec-content">
+                            <span class="spec-cat">Smash Burgers</span><!-- Catégorie (petit label doré) -->
+                            <h3>Double Cheese et Bacon</h3>
+                            <p>Double steak smashé, cheddar fondu, bacon croustillant, frites maison</p>
+                            <span class="spec-price">à partir de 9,90 €</span>
+                        </div>
+                    </article>
+
+                    <!-- ── Carte 2 : Burger Gourmet (grande, occupe 2 colonnes) ── -->
+                    <article class="spec-card spec-card--large fade-up" id="spec-gourmet">
+                        <div class="spec-img-wrap">
+                            <img src="assets/gourmet_burger.jpg" alt="Burger Gourmet Maddak" loading="lazy" />
+                            <div class="spec-img-overlay"></div>
+                        </div>
+                        <div class="spec-content">
+                            <span class="spec-cat">Burgers Gourmets</span>
+                            <h3>Super Maddak</h3>
+                            <p>Pain Label Rouge, double steak frais, sauce Maddak exclusive</p>
+                            <span class="spec-price">à partir de 13,90 €</span>
+                        </div>
+                    </article>
+
+                    <!-- ── Carte 3 : Assiette ── -->
+                    <article class="spec-card fade-up" id="spec-assiette">
+                        <div class="spec-img-wrap">
+                            <img src="assets/assiette.jpg" alt="Assiette Maddak" loading="lazy" />
+                            <div class="spec-img-overlay"></div>
+                        </div>
+                        <div class="spec-content">
+                            <span class="spec-cat">Assiettes</span>
+                            <h3>Escalope de veau marinée</h3>
+                            <p>Veau tendre mariné, grillé à la plancha, accompagnements maison</p>
+                            <span class="spec-price">à partir de 15,90 €</span>
+                        </div>
+                    </article>
+
+                    <!-- ── Carte 4 : Dessert ── -->
+                    <article class="spec-card fade-up" id="spec-dessert">
+                        <div class="spec-img-wrap">
+                            <img src="assets/dessert.jpg" alt="Dessert Maddak" loading="lazy" />
+                            <div class="spec-img-overlay"></div>
+                        </div>
+                        <div class="spec-content">
+                            <span class="spec-cat">Desserts Maison</span>
+                            <h3>Fondant Chocolat</h3>
+                            <p>Cœur coulant, glace vanille, feuille d'or</p>
+                            <span class="spec-price">à partir de 5,90 €</span>
+                        </div>
+                    </article>
+
+                </div>
+                <!-- ▌ FIN grille spécialités ▌ -->
+
+                <!-- Bouton "Voir toute la carte" centré sous la grille -->
+                <div class="specialites-cta fade-up">
+                    <a href="menu.html" class="btn btn-gold" id="spec-cta">
+                        Voir toute la carte
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ▌ FIN SECTION SPÉCIALITÉS ▌ -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+             ▌ SECTION : HORAIRES
+             ▌ 4 cartes (Mar-Jeu / Ven-Sam / Dim / Lun) avec créneaux.
+             ▌ → modifier un horaire : changer le .time-range
+             ▌ → ajouter un jour : copier un .horaire-item et l'insérer
+             ▌ → jour fermé : ajouter la classe horaire-item--closed
+             ▌ → jour featured (ven-sam) : horaire-item--featured
+             ▌ → badgés dorés : day-badge--gold
+             ═══════════════════════════════════════════════════════════ -->
+        <section class="horaires" id="horaires">
+            <div class="container">
+                <div class="horaires-inner fade-up">
+
+                    <!-- En-tête -->
+                    <div class="horaires-header">
+                        <span class="eyebrow">Nos Horaires</span>
+                        <h2 class="section-title">Quand nous retrouver ?</h2>
+                        <span class="gold-line"></span>
+                    </div>
+
+                    <!-- Grille 4 colonnes (2 sur tablette, 1 sur petit mobile) -->
+                    <div class="horaires-grid">
+
+                        <!-- ── Mardi / Mercredi / Jeudi ── -->
+                        <div class="horaire-item">
+                            <div class="horaire-days">
+                                <!-- .day-badge : pastille pour chaque jour -->
+                                <span class="day-badge">Mar</span>
+                                <span class="day-badge">Mer</span>
+                                <span class="day-badge">Jeu</span>
+                            </div>
+                            <div class="horaire-times">
+                                <div class="time-slot">
+                                    <span class="time-label">Midi</span>
+                                    <!-- .time-range : les horaires affichés en grand -->
+                                    <span class="time-range">12h00 – 14h30</span>
+                                </div>
+                                <div class="time-sep" aria-hidden="true"></div><!-- Séparateur "+" -->
+                                <div class="time-slot">
+                                    <span class="time-label">Soir</span>
+                                    <span class="time-range">19h00 – 22h30</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Vendredi / Samedi (featured = fond or subtil) ── -->
+                        <div class="horaire-item horaire-item--featured">
+                            <div class="horaire-days">
+                                <!-- day-badge--gold = badge plein doré -->
+                                <span class="day-badge day-badge--gold">Ven</span>
+                                <span class="day-badge day-badge--gold">Sam</span>
+                            </div>
+                            <div class="horaire-times">
+                                <div class="time-slot">
+                                    <span class="time-label">Service continu</span>
+                                    <span class="time-range">12h00 – 23h00</span>
+                                </div>
+                            </div>
+                            <!-- Badge "Sans interruption" sous les horaires -->
+                            <span class="horaire-badge">Sans interruption</span>
+                        </div>
+
+                        <!-- ── Dimanche ── -->
+                        <div class="horaire-item">
+                            <div class="horaire-days">
+                                <span class="day-badge">Dim</span>
+                            </div>
+                            <div class="horaire-times">
+                                <div class="time-slot">
+                                    <span class="time-label">Soir</span>
+                                    <span class="time-range">18h00 – 22h00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Lundi (fermé = opacité réduite) ── -->
+                        <div class="horaire-item horaire-item--closed">
+                            <div class="horaire-days">
+                                <!-- day-badge--grey = badge grisé pour les jours fermés -->
+                                <span class="day-badge day-badge--grey">Lun</span>
+                            </div>
+                            <div class="horaire-times">
+                                <div class="time-slot">
+                                    <span class="time-label">Fermé</span>
+                                    <span class="time-range">Repos hebdomadaire</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- ▌ FIN grille horaires ▌ -->
+
+                </div>
+            </div>
+        </section>
+        <!-- ▌ FIN SECTION HORAIRES ▌ -->
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+             ▌ SECTION : ACCÈS
+             ▌ Grille 2 colonnes : infos (adresse/tel/insta) + carte Google Maps.
+             ▌ → changer l'adresse : modifier href= et le texte dans .info-val
+             ▌ → changer le téléphone : modifier href="tel:..." et .info-val
+             ▌ → changer le lien Instagram : modifier les 2 href= (@maddak_nancy)
+             ▌ → changer la carte Maps : remplacer l'URL dans src= de l'<iframe>
+             ═══════════════════════════════════════════════════════════ -->
+        <section class="acces" id="acces">
+            <div class="container">
+
+                <!-- En-tête -->
+                <div class="acces-header fade-up">
+                    <span class="eyebrow">Nous Trouver</span>
+                    <h2 class="section-title">Venez nous rendre visite</h2>
+                    <span class="gold-line"></span>
+                </div>
+
+                <!-- Grille : infos à gauche, carte à droite -->
+                <div class="acces-grid">
+
+                    <!-- ── Colonne gauche : 3 cartes info (adresse / tel / insta) ── -->
+                    <div class="acces-info fade-up">
+
+                        <!-- Carte "Adresse" → cliquable, ouvre Google Maps -->
+                        <a href="https://maps.google.com/?q=21+Rue+Braconnot+54000+Nancy" target="_blank" rel="noopener"
+                            class="info-card" id="info-adresse">
+                            <!-- Icône SVG (symbole pin Maps) -->
+                            <div class="info-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="info-label">Adresse</p>
+                                <!-- .info-val : la valeur principale en grand -->
+                                <p class="info-val">21 Rue Braconnot<br>54000 Nancy</p>
+                                <!-- .info-hint : petite invitation à l'action -->
+                                <p class="info-hint">À deux pas de la Pépinière →</p>
+                            </div>
+                        </a>
+
+                        <!-- Carte "Téléphone" → cliquable, lance un appel sur mobile -->
+                        <a href="tel:0952020099" class="info-card" id="info-tel">
+                            <div class="info-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="info-label">Téléphone</p>
+                                <p class="info-val">09 52 02 00 99</p>
+                                <p class="info-hint">Cliquez pour appeler →</p>
+                            </div>
+                        </a>
+
+                        <!-- Carte "Instagram" → ouvre le profil dans un nouvel onglet -->
+                        <a href="https://www.instagram.com/maddak_nancy/" target="_blank" rel="noopener"
+                            class="info-card" id="info-insta">
+                            <div class="info-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="info-label">Instagram</p>
+                                <p class="info-val">@maddak_nancy</p>
+                                <p class="info-hint">Suivez nos actualités →</p>
+                            </div>
+                        </a>
+
+                    </div>
+                    <!-- ▌ FIN colonne infos ▌ -->
+
+                    <!-- ── Colonne droite : Google Maps intégrée ── -->
+                    <div class="acces-map fade-up">
+                        <div class="map-wrapper">
+                            <!-- Pour changer la carte : va sur maps.google.com → Partager → Intégrer une carte
+                                 et remplace le src= ci-dessous par le nouveau code -->
+                            <iframe title="Localisation Maddak — 21 Rue Braconnot Nancy"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.2573774745!2d6.174!3d48.6935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794987abc5f4ddd%3A0xa5f!2s21+Rue+Braconnot%2C+54000+Nancy!5e0!3m2!1sfr!2sfr!4v1"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ▌ FIN grille accès ▌ -->
+
+            </div>
+        </section>
+        <!-- ▌ FIN SECTION ACCÈS ▌ -->
+
+    </main>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ FOOTER
+         ▌ Pied de page : logo + certifications + lien Instagram + copyright.
+         ▌ → changer les certifications : modifier les .certif-badge
+         ▌ → changer l'Instagram : modifier href= et @maddak_nancy
+         ▌ → changer le copyright : modifier la ligne "© 2025 Maddak…"
+         ═══════════════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Logo et accroche -->
+                <div class="footer-brand">
+                    <p class="footer-logo">MADDAK</p>
+                    <p>Fait Maison — Nancy</p>
+                </div>
+
+                <!-- Badges certifications (centré) -->
+                <div class="footer-certifs">
+                    <span class="certif-badge">✦ Toutes nos viandes sont strictement certifiées Halal (AVS)</span>
+                    <span class="certif-badge">✦ Viande hachée fraîche &amp; française non congelée</span>
+                </div>
+
+                <!-- Lien Instagram -->
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/maddak_nancy/" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                        @maddak_nancy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ligne du bas : copyright + crédit -->
+            <div class="footer-bottom">
+                <p>© 2025 Maddak — 21 Rue Braconnot, 54000 Nancy — 09 52 02 00 99</p>
+            </div>
+        </div>
+    </footer>
+    <!-- ▌ FIN FOOTER ▌ -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ JAVASCRIPT — 3 fonctionnalités
+         ═══════════════════════════════════════════════════════════════ -->
+    <script>
+
+        /* ─────────────────────────────────────────────────────────────
+           1. HAMBURGER (menu mobile)
+           ─────────────────────────────────────────────────────────────
+           Quand on clique sur le bouton hamburger (#hamburger) :
+           - La classe .open s'ajoute/retire sur le bouton et sur #navLinks
+           - .open déclenche les animations CSS (3 barres → croix)
+           - .open sur #navLinks affiche le menu en plein écran (style.css)
+           - On bloque le scroll du body quand le menu est ouvert
+        ────────────────────────────────────────────────────────────── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            // toggle('open') ajoute la classe si absente, la retire si présente
+            const open = hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+            // Accessibilité : indique aux lecteurs d'écran si le menu est ouvert
+            hamburger.setAttribute('aria-expanded', String(open));
+            // Bloque le scroll de la page quand le menu mobile est ouvert
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+
+        // Ferme le menu quand on clique sur un lien (navigue vers une section)
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+
+        /* ─────────────────────────────────────────────────────────────
+           2. NAVBAR STICKY
+           ─────────────────────────────────────────────────────────────
+           Quand l'utilisateur descend de plus de 80px dans la page,
+           la classe .scrolled s'ajoute à la #navbar.
+           → Dans style.css, .navbar.scrolled réduit le padding et
+             ajoute une ombre pour signaler que la navbar est "ancrée".
+           { passive: true } = optimisation mobile (pas de blocage du scroll)
+        ────────────────────────────────────────────────────────────── */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            // classList.toggle(name, condition) : ajoute si condition=true, retire si false
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        }, { passive: true });
+
+
+        /* ─────────────────────────────────────────────────────────────
+           3. FADE-UP (animation d'apparition au scroll)
+           ─────────────────────────────────────────────────────────────
+           Tous les éléments avec la classe .fade-up commencent :
+           - invisibles (opacity: 0)
+           - décalés vers le bas (translateY: 30px)
+           Quand ils entrent dans le viewport (zone visible de l'écran),
+           IntersectionObserver ajoute la classe .visible sur l'élément.
+           → Dans style.css, .fade-up.visible anime l'apparition (0.75s).
+           observer.unobserve(e.target) = on n'observe plus l'élément
+           une fois affiché (économie de ressources).
+           threshold: 0.12 = l'animation se déclenche quand 12% de
+           l'élément est visible dans le viewport.
+        ────────────────────────────────────────────────────────────── */
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target); // n'observe plus une fois apparu
+                }
+            });
+        }, { threshold: 0.12 });
+
+        // Observe tous les éléments .fade-up de la page
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ▌ MODALE DE RÉSERVATION
+         ▌ Structure HTML de la popup de réservation.
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <span class="eyebrow">Réservation</span>
+                <h2 class="section-title">Réserver une <em>table</em></h2>
+                <span class="gold-line"></span>
+            </div>
+
+            <form id="reservationForm" class="res-form">
+                <div class="res-row">
+                    <div class="res-group">
+                        <label for="resDate">Date</label>
+                        <input type="date" id="resDate" required>
+                    </div>
+                    <div class="res-group">
+                        <label for="resPersons">Personnes</label>
+                        <select id="resPersons" required>
+                            <option value="1">1 Personne</option>
+                            <option value="2" selected>2 Personnes</option>
+                            <option value="3">3 Personnes</option>
+                            <option value="4">4 Personnes</option>
+                            <option value="5">5 Personnes</option>
+                            <option value="6">6 Personnes</option>
+                            <option value="7">7 Personnes</option>
+                            <option value="8">8 Personnes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="res-group">
+                    <label>Moment de la journée</label>
+                    <div class="res-toggle-pills">
+                        <button type="button" class="pill-btn active" data-moment="midi">Midi</button>
+                        <button type="button" class="pill-btn" data-moment="soir">Soir</button>
+                    </div>
+                </div>
+
+                <div class="res-group">
+                    <label>Horaire souhaité</label>
+                    <div id="timeSlots" class="res-slots">
+                        <!-- Généré par JS -->
+                    </div>
+                    <input type="hidden" id="resTime" required>
+                </div>
+
+                <div class="res-row">
+                    <div class="res-group">
+                        <label for="resFirstName">Prénom</label>
+                        <input type="text" id="resFirstName" placeholder="Ton prénom" required>
+                    </div>
+                    <div class="res-group">
+                        <label for="resLastName">Nom</label>
+                        <input type="text" id="resLastName" placeholder="Ton nom" required>
+                    </div>
+                </div>
+
+                <div class="res-group">
+                    <label for="resPhone">Téléphone</label>
+                    <input type="tel" id="resPhone" placeholder="06 00 00 00 00" required>
+                </div>
+
+                <div class="res-group">
+                    <label for="resComment">Commentaire (optionnel)</label>
+                    <textarea id="resComment" rows="2"
+                        placeholder="Une précision ? (Allergie, anniversaire...)"></textarea>
+                </div>
+
+                <div id="resMessage" class="res-status-msg"></div>
+
+                <button type="submit" id="submitRes" class="btn btn-gold btn-block" disabled>
+                    Confirmer la Réservation
+                </button>
+            </form>
+
+            <!-- Écran de succès caché par défaut -->
+            <div id="resSuccess" class="res-success-screen" style="display: none;">
+                <div class="success-icon">✦</div>
+                <h3>Réservation Confirmée !</h3>
+                <p>Merci pour votre confiance. Nous vous attendons avec impatience chez Maddak.</p>
+                <button type="button" class="btn btn-outline modal-close-btn">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de logique de réservation -->
+    <script src="reservation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,567 @@
+/* ══════════════════════════════════════════════════════════════════
+   FICHIER : style.css
+   RÔLE    : Design System global — partagé par index.html ET menu.html
+   CONTIENT: Variables CSS, reset, layout, boutons, navbar, footer,
+             animations (.fade-up) et responsive de base.
+   LIEN    : Ce fichier est chargé EN PREMIER dans les deux pages.
+             index.css et menu.css viennent ensuite et ajoutent leurs
+             propres styles sans écraser ceux-ci.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Importe les polices Google : Playfair Display (titres) + Poppins (texte) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* ══════════════════════════════════════════════════════════════════
+   VARIABLES CSS (modifier ici = change tout le site d'un coup)
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+
+  /* ── PALETTE PRINCIPALE (vert émeraude foncé) ──────────────────
+     --emerald     : couleur de fond principale des sections
+     --emerald-2   : légèrement plus sombre (footer, sections alternées)
+     --emerald-3   : intermédiaire (cartes horaires, boutons)
+     --emerald-4   : quasi-noir émeraude (fond des item-card)
+     --emerald-mid : milieu de gamme (utilisé rarement)
+     --emerald-pale: version plus claire (filigrane, hover)
+     ► COMMENT CHANGER LA COULEUR DU SITE :
+       remplace les valeurs hexadécimales de --emerald par ta couleur.
+       Exemple pour un fond bordeaux : #2C1020
+  ────────────────────────────────────────────────────────────── */
+  --emerald:      #0D2C28;  /* Fond principal */
+  --emerald-2:    #0A2420;  /* Fond plus sombre (footer, alternance) */
+  --emerald-3:    #0F3530;  /* Fond intermédiaire (cartes horaires) */
+  --emerald-4:    #122E2A;  /* Fond des cartes menu */
+  --emerald-mid:  #163D37;  /* Rarement utilisé */
+  --emerald-pale: #1F5047;  /* Hover subtil, filigrane */
+
+  /* ── OR & ACCENTS ──────────────────────────────────────────────
+     --gold        : OR PRINCIPAL — utilisé pour les titres, icônes
+     --gold-light  : champagne — légèrement plus clair
+     --gold-pale   : très clair, presque blanc doré
+     --gold-dim    : or atténué (texte secondaire, gradient bouton)
+     --gold-muted  : or très transparent (fond badge, Certif)
+     --gold-border : bordure or subtile (opacité 22%)
+     --gold-border-h: bordure or au survol (opacité 55%)
+     ► COMMENT CHANGER LA COULEUR OR :
+       remplace #D4AF37 dans --gold par ta couleur
+       (exemple argent : #C0C0C0)
+  ────────────────────────────────────────────────────────────── */
+  --gold:          #D4AF37;               /* Or principal */
+  --gold-light:    #E8CC6A;               /* Champagne */
+  --gold-pale:     #F2DFA0;               /* Or très clair */
+  --gold-dim:      #9E8228;               /* Or atténué */
+  --gold-muted:    rgba(212,175,55,.13);  /* Fond doré transparent */
+  --gold-border:   rgba(212,175,55,.22);  /* Bordure subtile */
+  --gold-border-h: rgba(212,175,55,.55);  /* Bordure au survol */
+
+  /* ── TEXTE ──────────────────────────────────────────────────────
+     --text       : couleur principale du texte (crème ivoire)
+     --text-soft  : texte secondaire (descriptions, paragraphes)
+     --text-muted : texte très atténué (labels, métadonnées)
+     ► POUR UN TEXTE BLANC PUR : remplace --text par #FFFFFF
+  ────────────────────────────────────────────────────────────── */
+  --text:       #F5EDD6;               /* Crème ivoire */
+  --text-soft:  rgba(245,237,214,.62); /* Texte secondaire */
+  --text-muted: rgba(245,237,214,.38); /* Texte très discret */
+
+  /* ── ALIASES (raccourcis pour éviter de répéter les valeurs) ───
+     Ces variables pointent vers les variables ci-dessus.
+     Elles facilitent la migration si on change de palette.
+  ────────────────────────────────────────────────────────────── */
+  --bg:           var(--emerald);
+  --bg-2:         var(--emerald-2);
+  --bg-3:         var(--emerald-3);
+  --bg-card:      var(--emerald-4);
+  --border:       var(--gold-border);
+  --border-hover: var(--gold-border-h);
+
+  /* ── OMBRES ────────────────────────────────────────────────────
+     --shadow      : ombre noire standard (cartes, images)
+     --shadow-gold : ombre dorée subtile (hover des cartes spécialités)
+  ────────────────────────────────────────────────────────────── */
+  --shadow:      0 4px 32px rgba(0,0,0,.55);
+  --shadow-gold: 0 8px 42px rgba(212,175,55,.12);
+
+  /* ── BORDURES ARRONDIES (border-radius) ────────────────────────
+     --radius-sm : léger arrondi (tags, petits éléments)
+     --radius    : arrondi standard (cartes, boutons)
+     --radius-lg : grand arrondi (blocs horaires, carte Map)
+  ────────────────────────────────────────────────────────────── */
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  24px;
+
+  /* ── TRANSITIONS ───────────────────────────────────────────────
+     --ease : courbe d'accélération standard (Material Design)
+     --dur  : durée standard des transitions (0.3 seconde)
+     ► Pour des animations plus lentes : augmente --dur (ex: .5s)
+  ────────────────────────────────────────────────────────────── */
+  --ease: cubic-bezier(.4,0,.2,1);
+  --dur:  .3s;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   GRAIN (texture de fond)
+   Une texture de bruit appliquée sur tout le site via body::before.
+   Donne un effet "cuir / papier" subtil pour le côté premium.
+   ► Pour supprimer cette texture : supprime tout ce bloc CSS
+   ► Pour la rendre plus visible : augmente opacity (actuellement .038)
+   ══════════════════════════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;        /* Reste en place quand on scrolle */
+  inset: 0;               /* Couvre tout l'écran */
+  z-index: 0;             /* Derrière tout le contenu */
+  pointer-events: none;   /* Ne bloque pas les clics */
+  opacity: .038;          /* Très discret (3,8%) */
+  /* Image de bruit SVG générée en ligne (ne pas modifier) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   FILIGRANE (crâne de taureau + lattes bois en SVG)
+   Appliqué en pseudo-élément ::after sur .hero et .menu-header.
+   Très discret, visible en bas à droite de ces sections.
+   ► Pour masquer le filigrane : ajoute "display: none;" à ce bloc
+   ► Pour le rendre plus visible : augmente opacity sur l'inner svg
+   ══════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════
+   RESET & BASE
+   Neutralise les marges/paddings par défaut des navigateurs.
+   ══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth; /* Défilement fluide lors des ancres (#about, etc.) */
+  font-size: 16px;          /* Base de référence pour les rem */
+}
+
+body {
+  background: var(--emerald);          /* Fond vert émeraude */
+  color: var(--text);                  /* Texte crème ivoire */
+  font-family: 'Poppins', sans-serif;  /* Police de corps */
+  line-height: 1.7;                    /* Hauteur de ligne confortable */
+  -webkit-font-smoothing: antialiased; /* Lissage des polices (macOS/iOS) */
+  overflow-x: hidden;                  /* Pas de scroll horizontal */
+  position: relative;                  /* Contexte pour body::before */
+}
+
+/* Règles globales simplifiées */
+img    { display: block; max-width: 100%; height: auto; }  /* Images responsive */
+a      { color: inherit; text-decoration: none; }          /* Liens sans soulignement */
+ul     { list-style: none; }                               /* Listes sans puces */
+button { cursor: pointer; }                                /* Curseur main sur bouton */
+
+/* Titres : toujours en Playfair Display */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYOUT
+   .container : limite la largeur du contenu à 1160px max,
+   centré horizontalement avec une marge de 4% de chaque côté.
+   ► Pour rétrécir la largeur max : change 1160px (ex: 960px)
+   ══════════════════════════════════════════════════════════════════ */
+.container {
+  width: min(92%, 1160px); /* 92% de la largeur, max 1160px */
+  margin-inline: auto;     /* Centrage horizontal */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   TOKENS (éléments visuels réutilisables dans toutes les pages)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* .eyebrow : petit label doré en MAJUSCULES au-dessus des titres
+   Exemple d'utilisation : <span class="eyebrow">Notre Histoire</span>
+   ► Pour changer le style : modifie font-size, letter-spacing, color */
+.eyebrow {
+  display: block;
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .6rem;
+}
+
+/* .section-title : titre H2 de chaque section
+   La taille est fluide entre 1.8rem (mobile) et 2.8rem (desktop).
+   ► Pour modifier la taille : change les valeurs dans clamp(min, vw, max) */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+/* .gold-line : trait horizontal doré décoratif sous les titres
+   Toujours placé après .section-title.
+   ► Pour le rendre plus long : augmente width (actuellement 48px)
+   ► Pour le supprimer : ne pas inclure cet élément dans le HTML */
+.gold-line {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 1.8rem;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   BOUTONS — Classe de base + variantes
+   USAGE : <a class="btn btn-gold">Texte</a>
+           <a class="btn btn-outline">Texte</a>
+
+   .btn       : styles communs (padding, font, arrondi, shimmer)
+   .btn-gold  : fond dégradé doré, texte vert émeraude
+   .btn-outline: transparent avec bordure dorée
+
+   ► Pour changer la taille : modifie padding dans .btn
+   ► Pour modifier la couleur du bouton doré : change les couleurs
+     dans .btn-gold background gradient
+   ══════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 2.2rem;
+  border-radius: 50px;            /* Arrondi en pilule */
+  font-family: 'Poppins', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: none;
+  position: relative;
+  overflow: hidden;               /* Pour contenir l'effet shimmer */
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+
+/* Effet "shimmer" (reflet de lumière qui traverse le bouton au survol)
+   C'est un pseudo-élément ::after qui glisse de gauche (-100%) à droite (+140%)
+   ► Pour supprimer l'effet shimmer : supprime ce bloc .btn::after + .btn:hover::after */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+  transition: left .55s ease;
+}
+.btn:hover::after { left: 140%; } /* Déclenche l'animation au survol */
+.btn svg { flex-shrink: 0; z-index: 1; position: relative; } /* Icône SVG dans le bouton */
+
+/* Bouton doré (CTA principal sur fond émeraude) */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 45%, var(--gold-light) 100%);
+  color: #0D2C28;    /* Texte vert foncé sur fond doré */
+  font-weight: 700;
+}
+.btn-gold:hover {
+  transform: translateY(-3px);                         /* Monte légèrement */
+  box-shadow: 0 10px 40px rgba(212,175,55,.3);         /* Halo doré */
+}
+.btn-gold:active { transform: translateY(0); }         /* Retour au clic */
+
+/* Bouton contour (CTA secondaire, transparent avec bordure) */
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+.btn-outline:hover {
+  background: var(--gold);       /* Fond doré au survol */
+  color: var(--emerald);         /* Texte vert au survol */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(212,175,55,.2);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   NAVBAR
+   Barre fixe en haut de l'écran.
+   .navbar.scrolled : état "condensé" quand l'utilisateur a scrollé.
+   ══════════════════════════════════════════════════════════════════ */
+.navbar {
+  position: fixed;          /* Toujours visible en haut */
+  inset: 0 0 auto;          /* Collée en haut (left:0, right:0, top:0) */
+  z-index: 900;             /* Au-dessus de tout le contenu */
+  padding: 1.1rem 0;
+  background: rgba(13,44,40,.9);             /* Fond émeraude semi-transparent */
+  backdrop-filter: blur(20px) saturate(1.4); /* Flou de fond (effet verre) */
+  -webkit-backdrop-filter: blur(20px) saturate(1.4); /* Safari */
+  border-bottom: 1px solid var(--gold-border);
+  transition: padding var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+/* État scrollé : navbar plus petite + ombre en dessous */
+.navbar.scrolled {
+  padding: .7rem 0;
+  box-shadow: 0 4px 32px rgba(0,0,0,.55);
+}
+
+/* Flex row : logo à gauche, liens au centre/droite, hamburger tout à droite */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Logo texte "MADDAK" */
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .07em;
+  flex-shrink: 0; /* Ne rétrécit pas si l'espace manque */
+}
+
+/* Liste des liens de navigation (desktop) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav-links a {
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(245,237,214,.7); /* Texte légèrement atténué */
+  position: relative;
+  transition: color var(--dur) var(--ease);
+}
+/* Soulignement doré qui s'anime au survol (via scaleX de 0 à 1) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);           /* Invisible par défaut */
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease);
+}
+.nav-links a:hover,
+.nav-links a.active            { color: var(--gold); }         /* Texte doré au survol */
+.nav-links a:hover::after,
+.nav-links a.active::after     { transform: scaleX(1); }       /* Soulignement visible */
+
+
+/* ── HAMBURGER ──────────────────────────────────────────────────────
+   Bouton 3 barres, visible uniquement sur mobile (<768px).
+   Les 3 <span> forment les barres.
+   Quand la classe .open est ajoutée via JS :
+   - 1ère barre pivote de +45° (et descend de 7px)
+   - 2ème barre disparaît (opacity: 0)
+   - 3ème barre pivote de -45° (et remonte de 7px)
+   → Résultat visuel : les 3 barres forment une croix ✕
+────────────────────────────────────────────────────────────────── */
+.hamburger {
+  display: none;          /* Caché sur desktop */
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 901;           /* Au-dessus de la nav-links mobile */
+}
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+/* Animation croix : 1ère barre */
+.hamburger.open span:first-child  { transform: translateY(7px) rotate(45deg); }
+/* Animation croix : 2ème barre disparaît */
+.hamburger.open span:nth-child(2) { opacity: 0; }
+/* Animation croix : 3ème barre */
+.hamburger.open span:last-child   { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════════════ */
+.site-footer {
+  background: var(--emerald-2);
+  border-top: 1px solid var(--gold-border);
+  padding: 3.5rem 0 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grille footer : logo | certifications | instagram (3 colonnes) */
+.footer-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* auto = taille du contenu */
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--gold-border);
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand .footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  letter-spacing: .06em;
+}
+.footer-brand p {
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: .2rem;
+}
+
+/* Badges certifications (en colonne, centrés) */
+.footer-certifs {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  align-items: center;
+  text-align: center;
+}
+/* .certif-badge : chaque badge individuel (pastille arrondie) */
+.certif-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--gold-muted);
+  border: 1px solid var(--gold-border);
+  border-radius: 50px;
+  padding: .35rem 1rem;
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  letter-spacing: .05em;
+}
+
+/* Lien Instagram dans le footer */
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--text-soft);
+  font-size: .78rem;
+  transition: color var(--dur) var(--ease);
+}
+.footer-social a:hover { color: var(--gold); }
+.footer-social svg { color: var(--gold); }
+
+/* Ligne du bas : copyright + crédit (flex row, wrappé sur mobile) */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  font-size: .68rem;
+  color: var(--text-muted);
+}
+.footer-bottom a { color: var(--gold-dim); transition: color var(--dur); }
+.footer-bottom a:hover { color: var(--gold); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Keyframe de base : apparition depuis le bas
+   Utilisée directement par quelques éléments (hero-eyebrow, etc.) */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── .fade-up ─────────────────────────────────────────────────────
+   CLASSE RÉUTILISABLE pour animer n'importe quel élément au scroll.
+   FONCTIONNEMENT :
+   1. Par défaut : l'élément est invisible (opacity:0) et décalé vers le bas
+   2. Quand l'élément entre dans le viewport (zone visible de l'écran),
+      le JS (IntersectionObserver) ajoute la classe .visible
+   3. La transition CSS anime l'apparition en 0.75s
+
+   UTILISATION : ajoute class="fade-up" sur n'importe quel élément HTML
+                 et il apparaîtra au scroll automatiquement.
+
+   ► Pour changer la durée : modifie .75s dans transition
+   ► Pour changer le décalage de départ : modifie translateY(30px)
+   ► Pour désactiver l'animation : supprime class="fade-up" du HTML
+────────────────────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+}
+/* État final = élément visible et à sa position normale */
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (écrans ≤ 768px)
+   ► RÈGLE : tout ce qui est dans ce bloc s'applique UNIQUEMENT
+     sur les petits écrans (téléphones et petites tablettes).
+   ► Pour modifier le comportement mobile-uniquement : édite ici.
+   ► Pour modifier le comportement desktop-uniquement : édite en
+     dehors de ce bloc (au-dessus).
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .container { width: 94%; }
+  .footer-grid { gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  /* Navigation mobile : passe en mode plein écran */
+  .nav-links {
+    display: none;           /* Cachée par défaut sur mobile */
+    position: fixed;
+    inset: 0;                /* Couvre tout l'écran */
+    background: rgba(13,44,40,.98);
+    flex-direction: column;  /* Liens en colonne */
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1.5rem, 5vh, 2.5rem);
+    z-index: 899;
+    padding: 2rem;
+  }
+  .nav-links.open { display: flex; } /* Affichage quand le hamburger est cliqué */
+  .nav-links a { font-size: 1.2rem; }  /* Liens plus grands sur mobile */
+
+  /* Affiche le bouton hamburger sur mobile */
+  .hamburger { display: flex; }
+
+  /* Footer : passe en 1 colonne sur mobile */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+  .footer-certifs { align-items: center; }
+  .footer-social  { justify-self: center; }
+  .footer-bottom  { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .container { width: 90%; }
+  .nav-logo { font-size: 1.3rem; }
+  .btn { padding: .8rem 1.6rem; font-size: .75rem; }
+}

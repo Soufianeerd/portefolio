@@ -1,0 +1,695 @@
+<!-- ============================================================
+   TANTI GUSTI II — PAGE CARTE COMPLÈTE
+   Fichier : menu.html
+   Rôle    : Affiche la totalité du menu par catégories.
+   ============================================================
+
+   📁 IMAGE DU HEADER CARTE : src="assets/menu.webp"
+   ✏️  Pour changer la photo du header :
+       remplacez menu.webp dans assets/
+       OU modifiez le src ci-dessous dans <div class="menu-page-header-bg">
+
+   ✏️  AJOUTER UN PLAT :
+       1. Choisissez la bonne section (ex: id="pizzas-tomate")
+       2. Copiez un bloc <article class="menu-item"> existant
+       3. Modifiez le nom, le prix et la description
+
+   ✏️  SUPPRIMER UN PLAT :
+       Supprimez le bloc <article class="menu-item"> du plat
+
+   ✏️  AJOUTER UNE CATÉGORIE :
+       1. Ajoutez un <button class="cat-btn" data-target="ma-category">
+          dans la barre <nav class="cat-bar">
+       2. Ajoutez une <section class="cat-section" id="ma-category">
+          dans le <div class="menu-body">
+
+   ✏️  MODIFIER LES PRIX :
+       Cherchez la classe .menu-item-price et modifiez le texte
+   ============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✏️ Titre de l'onglet -->
+  <title>La Carte — TANTI GUSTI II — Pizzas, Sandwichs, TexMex</title>
+
+  <!-- ✏️ Description SEO -->
+  <meta name="description"
+    content="Carte complète TANTI GUSTI II : Pizzas, chaussons, sandwichs spéciaux, texmex, desserts et boissons à Nancy.">
+
+  <!-- Polices (preconnect = connexion anticipée) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Préchargement de l'image du header carte -->
+  <link rel="preload" as="image" href="assets/menu.webp" fetchpriority="high">
+
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="style.css"> <!-- Design global -->
+  <link rel="stylesheet" href="menu.css"> <!-- Styles de la carte -->
+</head>
+
+<body>
+
+  <!-- ============================================================
+     NAVBAR (identique à l'accueil)
+     ✏️  Mêmes conseils de modification que dans index.html
+     ============================================================ -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo" aria-label="TANTI GUSTI II - Retour à l'accueil">TANTI GUSTI II</a>
+    <nav>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#about">À propos</a></li>
+        <li><a href="index.html#horaires">Horaires</a></li>
+        <li><a href="index.html#contact">Accès</a></li>
+      </ul>
+    </nav>
+    <!-- ✏️ Bouton téléphone dans la navbar -->
+    <a href="tel:0372917880" class="btn btn-or nav-cta" aria-label="Appeler le restaurant au 03 72 91 78 80">📞
+      Appeler</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <nav class="nav-drawer" id="nav-drawer">
+    <a href="index.html" onclick="closeDrawer()">Accueil</a>
+    <a href="index.html#about" onclick="closeDrawer()">À propos</a>
+    <a href="index.html#horaires" onclick="closeDrawer()">Horaires</a>
+    <a href="index.html#contact" onclick="closeDrawer()">Accès</a>
+    <a href="tel:0372917880" class="btn btn-or" style="margin-top:12px">📞 Appeler</a>
+  </nav>
+
+
+  <main>
+
+    <!-- ============================================================
+       HEADER DE LA PAGE CARTE (grande image en haut)
+       ─────────────────────────────────────────────────────────────
+       📁 IMAGE : src="assets/menu.webp"
+       ✏️  Changez "menu.webp" par votre photo.
+
+       ✏️  Pour changer le titre "Notre Carte" → modifiez le <h1>
+       ✏️  Pour changer le sous-titre → modifiez le <p>
+       ============================================================ -->
+    <div class="menu-page-header">
+      <div class="menu-page-header-bg">
+        <!-- 📁 PHOTO HEADER CARTE — Changez "menu.webp" -->
+        <img src="assets/menu.webp" alt="Notre sélection de pizzas artisanales et spécialités Nancy" loading="eager">
+      </div>
+      <div class="menu-page-header-content">
+        <span class="eyebrow">TANTI GUSTI II</span>
+        <h1>Notre Carte</h1> <!-- ✏️ Titre de la page carte -->
+        <!-- ✏️ Sous-titre : catégories listées -->
+        <p>Pizzas · Sandwichs · Chaussons · TexMex · Desserts · Boissons</p>
+      </div>
+    </div>
+
+
+    <!-- ============================================================
+       BARRE DE CATÉGORIES (colle en haut au scroll)
+       ─────────────────────────────────────────────────────────────
+       ✏️  Pour ajouter une catégorie :
+           Ajoutez <button class="cat-btn" data-target="mon-id">Mon Texte</button>
+           ET créez une section avec id="mon-id" dans menu-body.
+       ✏️  Pour supprimer une catégorie :
+           Supprimez son <button> ici ET sa <section> dans menu-body.
+       ✏️  data-target="XXX" doit correspondre exactement au id="XXX"
+           de la section dans le corps du menu ci-dessous.
+       ============================================================ -->
+    <nav class="cat-bar" id="cat-bar" aria-label="Catégories de la carte">
+      <div class="cat-bar-inner">
+        <!-- Format : data-target = id de la section correspondante -->
+        <button class="cat-btn active" data-target="pizzas-tomate">🍕 Base Tomate</button>
+        <button class="cat-btn" data-target="pizzas-creme">🍕 Base Crème</button>
+        <button class="cat-btn" data-target="chaussons">🥟 Chaussons</button>
+        <button class="cat-btn" data-target="sandwichs-classiques">🥪 Classiques</button>
+        <button class="cat-btn" data-target="sandwichs-speciaux">🥪 Spéciaux</button>
+        <button class="cat-btn" data-target="texmex" aria-label="Voir les produits TexMex">🍗 TexMex</button>
+        <button class="cat-btn" data-target="frites" aria-label="Voir les frites et accompagnements">🍟 Frites</button>
+        <button class="cat-btn" data-target="desserts" aria-label="Voir les desserts">🍰 Desserts</button>
+        <button class="cat-btn" data-target="boissons" aria-label="Voir les boissons">🥤 Boissons</button>
+      </div>
+    </nav>
+
+
+    <!-- ============================================================
+       CORPS DU MENU (toutes les catégories)
+       ─────────────────────────────────────────────────────────────
+       Chaque <section class="cat-section" id="..."> correspond
+       à un bouton de la barre de catégories.
+       L'id doit correspondre au data-target du bouton.
+
+       Structure d'un item :
+       <article class="menu-item">
+         <div class="menu-item-top">
+           <span class="menu-item-name">NOM DU PLAT</span>
+           <span class="menu-item-dots"></span>  ← Ligne pointillée
+           <span class="menu-item-price">PRIX</span>
+         </div>
+         <p class="menu-item-desc">Description du plat</p>
+       </article>
+       ============================================================ -->
+    <div class="menu-body">
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         PIZZAS BASE TOMATE
+         ✏️  Pour modifier un plat : changez le nom, prix ou description
+         ✏️  Pour ajouter une pizza : copiez un <article> et modifiez-le
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="pizzas-tomate">
+        <h2 class="cat-section-title" data-anim>🍕 Pizzas — Base Tomate</h2>
+        <!-- ✏️ Note sous le titre (ex: tailles disponibles) -->
+        <p class="cat-section-note">29 cm | 33 cm — Tomate, mozzarella, garnitures au choix</p>
+        <div class="cat-section-divider"></div>
+
+        <div class="menu-items-grid">
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/margherita.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Margherita <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">10,00€ | 11,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Fromage mozza, oignon</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/n2.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">N°2 <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">11,00€ | 13,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Jambon de poulet, champignons</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/4fromages.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">4 Fromages <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">13,00€ | 15,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Chèvre, raclette, munster</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/thon.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Thon <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">11,00€ | 13,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Thon, olives</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/Orientales.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Orientales <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">14,00€ | 16,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Viande hachée, olives, merguez, poivrons, oignons</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/Végétarienne.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Végétarienne <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">13,00€ | 15,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Champignons, oignons, poivrons, roquette, artichauts, asperges, parmesan</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/royale.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Royale <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">12,00€ | 14,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Viande hachée, œuf, poivrons</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/linda.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Linda <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">11,00€ | 13,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Lardons, œuf</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim
+            onclick="openProductModal('assets/Pizza charcutière à la burrata.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Tanti Gusti <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">15,00€ | 17,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Champignons, oignons, poivrons, salami de bœuf, jambon de poulet, burrata</p>
+          </article>
+
+        </div><!-- /menu-items-grid pizzas-tomate -->
+      </section><!-- /pizzas-tomate -->
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         PIZZAS BASE CRÈME
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="pizzas-creme">
+        <h2 class="cat-section-title" data-anim>🍕 Pizzas — Base Crème</h2>
+        <p class="cat-section-note">29 cm | 33 cm — Crème fraîche, mozzarella, garnitures</p>
+        <div class="cat-section-divider"></div>
+
+        <div class="menu-items-grid">
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/poulet-curry.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Poulet Curry <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">12,00€ | 14,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Émincé de poulet curry</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/paesana.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Paesana <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">11,50€ | 13,50€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Chèvre, champignons, lardon de volaille</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/raclette.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Raclette <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">12,00€ | 14,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Pomme de terre, raclette, lardon de volaille</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/suitzeria.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Suitzeria <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">12,00€ | 14,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Viande hachée, oignons, raclette</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/nicco.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Nicco <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">13,00€ | 15,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Poulet curry, chèvre, raclette</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/chevre-miel.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Chèvre Miel <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">10,00€ | 12,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Chèvre, miel</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/saumon.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Saumon <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">14,00€ | 16,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Saumon, boursin</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/pizza-nono.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Pizza Nono <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <div class="menu-item-price-wrapper">
+                <span class="menu-item-price">12,00€ | 14,00€</span>
+                <span class="price-size">29cm | 33cm</span>
+              </div>
+            </div>
+            <p class="menu-item-desc">Jambon de poulet fumé, merguez, brie</p>
+          </article>
+
+        </div><!-- /pizzas-creme -->
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         CHAUSSONS
+         ✏️  Pour modifier : cherchez et changez les textes
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="chaussons">
+        <h2 class="cat-section-title" data-anim>🥟 Chaussons</h2>
+        <p class="cat-section-note">Servis avec sauce au choix et frites</p>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/chausson.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Chaussons gratiné <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">11,00€ | 13,00€</span>
+            </div>
+            <p class="menu-item-desc">Poulet curry ou viande hachée, sauce au choix, frites</p>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         SANDWICHS CLASSIQUES
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="sandwichs-classiques">
+        <h2 class="cat-section-title" data-anim>🥪 Sandwichs Classiques</h2>
+        <!-- ✏️ Note : format "Seul | En menu" -->
+        <p class="cat-section-note">Seul | En menu (boisson + frites)</p>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/le-belge.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Le Belge <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <!-- ✏️ Format : Seul | Menu -->
+              <span class="menu-item-price">4,50€ | 6,50€</span>
+            </div>
+            <p class="menu-item-desc">Sauce au choix, frites</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim data-anim-delay="1"
+            onclick="openProductModal('assets/american-cheese.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Américain Cheese <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">9,00€ | 10,00€</span>
+            </div>
+            <p class="menu-item-desc">Steak frais, frites, sauce au choix, crudités</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/poulet.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Sandwich Poulet <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">9,00€ | 10,00€</span>
+            </div>
+            <p class="menu-item-desc">Poulet frais, sauce au choix, crudités</p>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         SANDWICHS SPÉCIAUX
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="sandwichs-speciaux">
+        <h2 class="cat-section-title" data-anim>🥪 Sandwichs Spéciaux</h2>
+        <p class="cat-section-note">Seul | En menu — Recettes maison généreuses</p>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/brie-baguette.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Brie Baguette <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">9,50€ | 11,50€</span>
+            </div>
+            <p class="menu-item-desc">Steak frais, tomates, oignons caramélisés, poivrons grillés, brie fondant</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/raclette.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Le Vosgien <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">10,00€ | 12,00€</span>
+            </div>
+            <p class="menu-item-desc">Steak frais, lardons de volaille, champignons, oignons, munster fondant</p>
+          </article>
+
+          <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/nicco.webp')">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Le Spécial <span class="photo-icon">📸</span></span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">9,00€ | 10,00€</span>
+            </div>
+            <p class="menu-item-desc">Steak frais, œuf, oignons caramélisés, crème fraîche, boursin fondant</p>
+          </article>
+
+        </div><!-- /sandwichs-speciaux grid -->
+
+        <!-- ─── Bloc Suppléments (sous la section sandwichs) ─── -->
+        <!-- ✏️  Pour modifier les suppléments : changez les <strong> et .price -->
+        <div class="supplements-block" data-anim>
+          <h3 class="cat-section-title" style="margin:0 0 16px;font-size:1.1rem;">
+            ➕ Suppléments
+          </h3>
+          <div class="suppl-grid">
+            <div class="suppl-item">
+              <strong>Viandes</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">2,50€</span> <!-- ✏️ Prix supplément viande -->
+            </div>
+            <div class="suppl-item">
+              <strong>Fromages</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">1,00€</span> <!-- ✏️ Prix supplément fromage -->
+            </div>
+            <div class="suppl-item">
+              <strong>Burrata</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">4,00€</span> <!-- ✏️ Prix supplément burrata -->
+            </div>
+          </div>
+        </div>
+      </section><!-- /sandwichs-speciaux -->
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         TEXMEX (Nuggets, Wings, Tenders)
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="texmex">
+        <h2 class="cat-section-title" data-anim>🍗 TexMex — Nuggets - Wings</h2>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Nuggets / Wings / Tenders × 4</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">4,00€</span>
+            </div>
+          </article>
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Nuggets / Wings / Tenders × 6</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">6,00€</span>
+            </div>
+          </article>
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Nuggets / Wings / Tenders × 12</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">10,00€</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         FRITES
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="frites">
+        <h2 class="cat-section-title" data-anim>🍟 Frites</h2>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Portion Petite</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">3,50€</span>
+            </div>
+          </article>
+
+          <article class="menu-item" data-anim data-anim-delay="1">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Portion Grande</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">5,00€</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         DESSERTS
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="desserts">
+        <h2 class="cat-section-title" data-anim>🍰 Desserts</h2>
+        <!-- ✏️ Note (ex: "selon disponibilité") -->
+        <p class="cat-section-note">Selon disponibilité</p>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item" data-anim style="border-left:2px solid var(--bois);">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Tiramisu</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">4,00€</span>
+            </div>
+            <p class="menu-item-desc">Fait maison (selon stock)</p>
+          </article>
+
+          <article class="menu-item" data-anim data-anim-delay="1">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Glaces</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">2,50€</span>
+            </div>
+            <p class="menu-item-desc">Selon stock disponible</p>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════════════════
+         BOISSONS
+         ═══════════════════════════════════════════════════════ -->
+      <section class="cat-section" id="boissons">
+        <h2 class="cat-section-title" data-anim>🥤 Boissons</h2>
+        <div class="cat-section-divider"></div>
+        <div class="menu-items-grid">
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Canette 33cl</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">1,50€</span>
+            </div>
+          </article>
+
+          <article class="menu-item" data-anim data-anim-delay="1">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Bouteille 1,25L</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">3,50€</span>
+            </div>
+          </article>
+
+          <article class="menu-item" data-anim>
+            <div class="menu-item-top">
+              <span class="menu-item-name">Red Bull</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">2,50€</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div><!-- /menu-body -->
+  </main>
+
+
+  <!-- ============================================================
+     FOOTER SIMPLIFIÉ (page carte)
+     ✏️  Modifiez le nom, le copyright et le lien si besoin
+     ============================================================ -->
+  <footer class="footer">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <p class="footer-logo" style="font-size:1.2rem">TANTI GUSTI II</p>
+      <!-- ✏️ Copyright -->
+      <p class="footer-copy">© 2026 TANTI GUSTI II — 3 Rue de Bonsecours, Nancy</p>
+      <a href="https://www.tiktok.com/@tantigusti2" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.68rem;padding:10px 22px;margin-right:8px">
+        TikTok
+      </a>
+      <a href="index.html" class="btn btn-outline" style="font-size:0.68rem;padding:10px 22px">
+        Accueil
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <!-- Modale pour l'aperçu des produits -->
+  <div id="pizza-modal" class="pizza-modal" onclick="closeProductModal()">
+    <span class="close-modal" onclick="closeProductModal()">&times;</span>
+    <img class="pizza-modal-content" id="pizza-img">
+  </div>
+</body>
+
+</html>

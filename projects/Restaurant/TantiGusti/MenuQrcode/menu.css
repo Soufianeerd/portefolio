@@ -1,0 +1,558 @@
+/* ============================================================
+   TANTI GUSTI II — MENU DIGITAL (Flipbook 3D)
+   Fichier : menu.css
+   Rôle    : Styles du menu interactif accessible via QR Code.
+   ============================================================ */
+
+/* CORRIGÉ : variable --font-sans manquante dans :root (utilisée dans price-size) */
+:root {
+    --bg-dark: #0F0F10;
+    --bg-deep: #090909;
+    --gold-main: #C9A45C;
+    --gold-light: #E1C27A;
+    --cream: #F4EBDD;
+    --white: #FAF7F2;
+    --brown: #4B372A;
+    --shadow: rgba(0, 0, 0, 0.6);
+    --transition: 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --font-sans: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    perspective: 2000px;
+}
+
+/* ============================================================
+   BOOK CONTAINER
+   ============================================================ */
+.book-container {
+    width: 90vw;
+    height: 80vh;
+    max-width: 500px;
+    max-height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) {
+    .book-container {
+        max-width: 80vw;
+        max-height: 85vh;
+    }
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+/* Recto et verso de chaque page */
+.pface,
+.pback {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+.pface {
+    z-index: 2;
+    background: var(--bg-deep);
+    border-right: 1px solid rgba(201, 164, 92, 0.2);
+}
+
+.pback {
+    z-index: 1;
+    transform: rotateY(180deg);
+    background: var(--bg-deep);
+    border-left: 1px solid rgba(201, 164, 92, 0.2);
+}
+
+/* État retourné */
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* ============================================================
+   COUVERTURE
+   ============================================================ */
+.cover .pface {
+    background: url('asset/couverture.webp') center/contain no-repeat;
+    display: flex;
+    align-items: flex-end;
+    background-color: var(--bg-deep);
+}
+
+/* Tablet / Desktop : affichage en contain pour voir l'image entière */
+@media (min-width: 768px) {
+    .cover .pface {
+        background-size: contain;
+        background-color: var(--bg-dark);
+    }
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, var(--bg-dark) 0%, transparent 70%);
+}
+
+.cover-content {
+    position: relative;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    z-index: 3;
+}
+
+.separator-gold {
+    width: 60px;
+    height: 2px;
+    background: var(--gold-main);
+    margin: 15px auto;
+}
+
+.cover-footer {
+    margin-top: 30px;
+}
+
+.btn-open {
+    background: var(--gold-main);
+    color: var(--bg-dark);
+    border: none;
+    padding: 18px 40px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-open:hover {
+    background: var(--gold-light);
+}
+
+/* ============================================================
+   PAGES INTERNES
+   ============================================================ */
+.pint .pface {
+    /* CORRIGÉ : texture.png → texture.webp (format optimisé disponible) */
+    background: url('asset/texture.webp') center/cover no-repeat, var(--bg-deep);
+}
+
+.pc {
+    height: 100%;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.pc::-webkit-scrollbar {
+    display: none;
+}
+
+/* En-tête de page (logo + numéro) */
+.phd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.3);
+    padding-bottom: 10px;
+}
+
+.phd-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--gold-main);
+}
+
+.phd-num {
+    font-size: 0.7rem;
+    color: var(--cream);
+}
+
+/* Titre de section */
+.ms-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem; /* Légèrement réduit pour "baisser" la dominance visuelle */
+    color: var(--gold-light);
+    margin-top: 20px;   /* Ajoute de l'espace au-dessus */
+    margin-bottom: 12px; /* Ajoute de l'espace avant l'item */
+}
+
+.ms-note {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-bottom: 20px;
+}
+
+/* ============================================================
+   ITEMS DE MENU
+   CORRIGÉ : règles dupliquées (.mn, .md, .mp, .mp-wrapper, .price-size)
+              fusionnées en un seul bloc chacune
+   ============================================================ */
+.mi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    position: relative;
+    padding-right: 5px;
+}
+
+.mp-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.mn {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.md {
+    flex-grow: 1;
+    border-bottom: 1px dotted rgba(201, 164, 92, 0.4);
+    margin: 0 10px;
+    height: 1px;
+    margin-bottom: 4px;
+}
+
+.mp {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-main);
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+/* CORRIGÉ : --font-sans maintenant défini dans :root */
+.price-size {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--cream);
+    opacity: 0.7;
+    margin-top: 2px;
+    font-family: var(--font-sans);
+    line-height: 1;
+}
+
+.mi-desc {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--cream);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   SECTIONS SPÉCIALES
+   ============================================================ */
+.separator-gold-sm {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-main);
+    margin: 15px 0;
+}
+
+.gold-link {
+    color: var(--gold-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.gold-link:hover {
+    color: var(--gold-light);
+}
+
+.swipe-hint {
+    margin-top: auto;
+    padding-top: 15px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.intro-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.info-box,
+.hours-box {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(201, 164, 92, 0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.hours-box h4 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: var(--gold-main);
+}
+
+.hours-box p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.special-badge {
+    background: var(--gold-main);
+    color: var(--bg-dark);
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
+    margin: 0 5px;
+}
+
+.spacer-xs { height: 20px; }
+.spacer-sm { height: 40px; }
+
+/* ============================================================
+   PAGE FINALE
+   ============================================================ */
+.final-section {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.social-links {
+    margin-top: 40px;
+}
+
+.social-links p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--gold-main);
+}
+
+.instagram-link,
+.tiktok-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.icon-ig,
+.icon-tiktok {
+    width: 24px;
+    height: 24px;
+    fill: var(--gold-main);
+}
+
+.footer-loop {
+    margin-top: auto;
+    padding-bottom: 20px;
+}
+
+.btn-loop {
+    background: none;
+    border: none;
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.6;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes pulse {
+    0%   { opacity: 0.4; transform: translateY(0); }
+    50%  { opacity: 0.8; transform: translateY(-5px); }
+    100% { opacity: 0.4; transform: translateY(0); }
+}
+
+/* ============================================================
+   UTILITAIRES
+   ============================================================ */
+.cinzel { font-family: 'Cinzel', serif; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 400px) {
+    .phd       { margin-bottom: 15px; }
+    .ms-title  { font-size: 1.1rem; }
+    .mn        { font-size: 0.95rem; }
+    .mi        { margin-top: 10px; }
+    .pc        { padding: 20px; }
+}
+
+/* ============================================================
+   MODAL APERÇU PRODUIT
+   ============================================================ */
+.pizza-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pizza-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.pizza-modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    object-fit: contain;
+}
+
+.pizza-modal.active .pizza-modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #e5e5e5;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10000;
+}
+
+.close-modal:hover {
+    color: var(--gold-main);
+}
+
+/* Style interactif des items cliquables */
+.clickable-item {
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin-left: -6px;
+    margin-right: -6px;
+}
+
+.clickable-item:hover {
+    background-color: rgba(201, 164, 92, 0.12);
+}
+
+.clickable-item:active {
+    transform: scale(0.98);
+}
+
+.photo-icon {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-left: 6px;
+    vertical-align: middle;
+}

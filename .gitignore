@@ -1,31 +1,10 @@
-# Fichiers à exclure du versionnement Git
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Node.js
 node_modules/
-npm-debug.log*
-
-# Variables d'environnement (JAMAIS de secrets sur Git)
 .env
-.env.local
-.env*.local
-
-# Flutter / Dart build
+*.log
+dist/
 build/
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-*.dill
-
-# IDE
-.idea/
 .vscode/
-*.code-workspace
-
-# Archives
+.idea/
+tmp/
 archive/
-*.zip
-*.tar.gz

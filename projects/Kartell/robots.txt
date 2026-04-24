@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap — remplacer [VOTRE-DOMAINE] par le vrai domaine
+# Sitemap: https://[VOTRE-DOMAINE]/sitemap.xml

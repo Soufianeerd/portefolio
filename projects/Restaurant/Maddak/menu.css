@@ -1,0 +1,565 @@
+/* ══════════════════════════════════════════════════════════════════
+   FICHIER : menu.css
+   RÔLE    : Styles propres à la page "La Carte" (menu.html) UNIQUEMENT.
+   LIEN    : Chargé APRÈS style.css. N'affecte pas index.html.
+   CONTIENT:
+     - Header de la carte (photo + titre)
+     - Barre de catégories sticky (.cat-nav)
+     - Sections de catégories (.cat-section)
+     - Grilles de plats (.items-grid)
+     - Cartes de plat individuelles (.item-card)
+     - Tags / badges de plat (.tag, variantes)
+     - Bloc "Bientôt disponibles" (.coming-soon-block)
+     - Responsive (breakpoints commentés)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Assure que le fond de la page carte reste vert émeraude */
+body.menu-page { background: var(--emerald); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   HEADER DE LA CARTE
+   Photo de couverture en haut de la page, avec titre en bas.
+   ► Pour changer la photo : voir menu.html <img class="menu-header-img">
+   ► Pour changer la hauteur : modifie les valeurs dans clamp()
+   ══════════════════════════════════════════════════════════════════ */
+.menu-header {
+  position: relative;
+  /* clamp(min, fluide, max) : la hauteur s'adapte à la largeur de l'écran */
+  height: clamp(240px, 38vw, 420px);
+  display: flex;
+  align-items: flex-end; /* Contenu textuel collé en bas */
+  overflow: hidden;
+}
+/* Conteneur de la photo de fond */
+.menu-header-bg {
+  position: absolute;
+  inset: 0; /* Couvre tout l'espace du header */
+}
+/* Photo elle-même */
+.menu-header-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;  /* Centre la photo légèrement vers le haut */
+  animation: headerZoom 10s ease-out forwards; /* Léger dezoom au chargement */
+  /* ► Filtre couleur sur la photo : saturation et luminosité */
+  filter: saturate(.65) brightness(.55) hue-rotate(10deg);
+  transition: opacity 0.6s ease; /* Ajout d'une transition pour le changement d'image */
+}
+/* Dezoom : de scale(1.05) à scale(1) en 10 secondes */
+@keyframes headerZoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1); }
+}
+/* Overlay sombre (du bas vers le haut) pour que le texte soit lisible */
+.menu-header-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(13,44,40,1)   0%,   /* Bas = opaque */
+      rgba(13,44,40,.35) 40%,  /* Milieu = semi-transparent */
+      rgba(13,44,40,.65) 100%  /* Haut = légèrement sombre */
+    );
+}
+/* Texte (eyebrow + titre + sous-titre) */
+.menu-header-content {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 2.5rem; /* Espace entre le texte et le bas du header */
+  animation: fadeUp .7s ease both; /* Apparition au chargement */
+}
+/* Titre principal de la page carte */
+.menu-header-title {
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  color: var(--text);
+  margin: .4rem 0 .5rem;
+}
+/* Sous-titre (Fait Maison · Produits Frais · Viandes Halal) */
+.menu-header-sub {
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   BARRE DE CATÉGORIES (onglets sticky)
+   Reste collée juste sous la navbar quand on scrolle (position: sticky).
+   La valeur "top" est calculée dynamiquement par JS (setCatTop).
+   ══════════════════════════════════════════════════════════════════ */
+.cat-nav {
+  position: sticky;
+  top: 62px;  /* Valeur de base ; recalculée par JS via navbar.offsetHeight */
+  z-index: 80;
+  background: rgba(13,44,40,.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px); /* Safari */
+  border-bottom: 1px solid var(--gold-border);
+}
+/* Défilement horizontal si trop de catégories (scrollbar cachée) */
+.cat-nav-inner {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;           /* Scroll horizontal si nécessaire */
+  scrollbar-width: none;      /* Cache la scrollbar Firefox */
+  -webkit-overflow-scrolling: touch; /* Défilement fluide iOS */
+}
+.cat-nav-inner::-webkit-scrollbar { display: none; } /* Cache la scrollbar Chrome */
+
+/* Chaque bouton de catégorie */
+.cat-nav-inner {
+  padding: 0 .5rem;
+}
+.cat-btn {
+  flex: none;           /* Ne comprend pas (chaque bouton garde sa taille) */
+  background: none;
+  border: none;
+  /* Soulignement inférieur qui apparaît quand le bouton est actif */
+  border-bottom: 2.5px solid transparent;
+  color: var(--text-muted); /* Texte discret par défaut */
+  font-family: 'Poppins', sans-serif;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 1.1rem 1rem;
+  white-space: nowrap; /* Ne passe pas à la ligne */
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.cat-btn:hover { color: var(--gold-light); } /* Léger éclairage au survol */
+/* État actif : soulignement doré + texte doré */
+.cat-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold); /* Le trait jaune sous le bouton actif */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   CONTENU PRINCIPAL
+   ══════════════════════════════════════════════════════════════════ */
+.menu-main { padding: 2.5rem 0 6rem; }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   SECTIONS DE CATÉGORIES
+   Chaque .cat-section correspond à un onglet (smash, gourmet...).
+   Par défaut : cachée (display:none).
+   Avec .active : affichée avec animation d'entrée.
+   Avec .leaving : animation de sortie avant d'être cachée.
+   ► Pour changer les durées des animations :
+     - Durée de sortie : modifie .26s dans catFadeOut (et la valeur
+       setTimeout dans le JS de menu.html)
+     - Durée d'entrée : modifie .35s dans catFadeIn
+   ══════════════════════════════════════════════════════════════════ */
+.cat-section { display: none; padding-top: 1.5rem; } /* Cachée par défaut */
+.cat-section.active {
+  display: block;
+  animation: catFadeIn .35s var(--ease) both; /* Animation d'entrée */
+}
+.cat-section.leaving {
+  animation: catFadeOut .26s var(--ease) forwards; /* Animation de sortie */
+}
+/* Apparition : glisse du bas + fade in */
+@keyframes catFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Disparition : glisse vers le haut + fade out */
+@keyframes catFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+/* En-tête de chaque section (titre + emoji décoratif) */
+.cat-section-hd {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .6rem;
+  padding-top: 1rem;
+}
+/* Titre de catégorie (grand) */
+.cat-title { font-size: clamp(1.7rem, 4vw, 2.4rem); color: var(--text); margin-bottom: .2rem; }
+/* Note sous le titre (ex: "Tous servis avec frites maison") */
+.cat-note  { font-size: .75rem; color: var(--text-muted); letter-spacing: .04em; }
+/* Emoji géant décoratif (ex: 🍔) en fond à droite — caché sur mobile */
+.cat-deco  { font-size: 3.5rem; opacity: .08; flex-shrink: 0; line-height: 1; align-self: flex-end; }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   GRILLES DE PLATS
+   .items-grid      : colonnes de min 290px (compact)
+   .items-grid--wide: colonnes de min 340px (plus large, pour assiettes/boissons)
+
+   Ces grilles utilisent auto-fill + minmax : les colonnes s'ajoutent
+   ou se retirent automatiquement selon la largeur disponible.
+   → Si tu supprimes 1 plat : les autres se replacent automatiquement.
+   → Si tu ajoutes 1 plat : il s'insère dans la grille sans rien casser.
+   ══════════════════════════════════════════════════════════════════ */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+/* Variante avec colonnes plus larges (assiettes, boissons) */
+.items-grid--wide {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+
+/* ── Séparateur de sous-catégorie dans la grille ── */
+.grid-separator {
+  grid-column: 1 / -1;
+  padding: 1.5rem 0 .5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: .85rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-border);
+  margin-top: 1rem;
+  margin-bottom: .8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: .85;
+}
+.grid-separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-border), transparent);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   CARTE DE PLAT INDIVIDUELLE (.item-card)
+   Structure :
+     .item-hd       → ligne nom + prix
+     .item-name     → nom du plat (Playfair Display)
+     .item-price    → prix (doré, à droite)
+     .item-desc     → description courte
+     .item-tags     → badges (Halal, Populaire, Label Rouge...)
+
+   VARIANTE :
+   .item-card--featured : bordure or + étoile ✦ automatique en haut à droite
+
+   ► COPIER-COLLER UN PLAT :
+   <article class="item-card" id="item-MON-PLAT-UNIQUE">
+     <div class="item-hd">
+       <h3 class="item-name">Nom du plat</h3>
+       <span class="item-price">XX,XX €</span>
+     </div>
+     <p class="item-desc">Description · Ingrédients</p>
+     <div class="item-tags">
+       <span class="tag">Halal</span>
+     </div>
+   </article>
+   ══════════════════════════════════════════════════════════════════ */
+.item-card {
+  background: var(--emerald-4);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--dur) var(--ease),
+    transform    var(--dur) var(--ease),
+    box-shadow   var(--dur) var(--ease);
+}
+
+/* Trait vertical doré à gauche de la carte (apparaît au survol via scaleY) */
+.item-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  transform: scaleY(0);       /* Invisible par défaut (hauteur = 0%) */
+  transform-origin: top;
+  border-radius: 0 2px 2px 0;
+  transition: transform var(--dur) var(--ease);
+}
+
+/* Grain de texture sur la carte (très subtil, 2.5%) */
+.item-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 120px;
+  opacity: .025;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+/* État au survol */
+.item-card:hover {
+  border-color: var(--gold-border-h);
+  transform: translateY(-4px); /* Monte de 4px */
+  box-shadow: 0 10px 35px rgba(0,0,0,.35), var(--shadow-gold);
+}
+/* Le trait gauche s'étend sur toute la hauteur au survol */
+.item-card:hover::before { transform: scaleY(1); }
+
+/* Carte "featured" : bordure légèrement dorée + ✦ auto via CSS */
+.item-card--featured { border-color: rgba(212,175,55,.3); }
+/* Le ✦ est généré automatiquement en CSS (pas besoin de HTML) */
+.item-card--featured > .item-hd::after {
+  content: '✦';
+  color: var(--gold);
+  font-size: .55rem;
+  opacity: .55;
+  margin-left: auto;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+/* Ligne nom + prix (flex row, nom à gauche, prix à droite) */
+.item-hd {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .8rem;
+  margin-bottom: .55rem;
+  position: relative;
+  z-index: 1; /* Au-dessus du grain ::after */
+}
+/* Nom du plat */
+.item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  flex: 1; /* Prend tout l'espace disponible (pousse le prix à droite) */
+}
+/* Prix (ne rétrécit jamais, reste sur une ligne) */
+.item-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  white-space: nowrap; /* Force une seule ligne */
+  flex-shrink: 0;
+}
+
+/* Description courte du plat */
+.item-desc {
+  font-size: .78rem;
+  color: var(--text-soft);
+  line-height: 1.65;
+  margin-bottom: .75rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Conteneur des tags (flex avec retour à la ligne possible) */
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   TAGS / BADGES DE PLAT
+   Petites pastilles colorées sous la description.
+   Utilisation : <span class="tag">Halal</span>
+                 <span class="tag tag-pop">⭐ Populaire</span>
+
+   VARIANTES DISPONIBLES :
+   .tag         → Or/doré discret (Halal, Fait maison, Sans alcool...)
+   .tag-pop     → Or vif (⭐ Populaire, ❤ Coup de cœur)
+   .tag-label   → Doré pâle (Label Rouge, Viande FR)
+   .tag-sig     → Or très pâle (✦ Signature)
+   .tag-veggie  → Vert (🌿 Végétarien)
+   .tag-spicy   → Rouge/rose (🌶 Épicé)
+   ══════════════════════════════════════════════════════════════════ */
+/* Tag par défaut (or discret) */
+.tag {
+  display: inline-block;
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .2rem .55rem;
+  border-radius: 50px;
+  background: rgba(212,175,55,.1);
+  color: rgba(212,175,55,.7);
+  border: 1px solid rgba(212,175,55,.18);
+}
+
+/* Populaire / Coup de cœur (or plus vif) */
+.tag-pop {
+  background: rgba(212,175,55,.18);
+  color: var(--gold);
+  border-color: rgba(212,175,55,.38);
+}
+
+/* Label Rouge / Viande FR */
+.tag-label {
+  background: rgba(15,53,48,.5);
+  color: var(--gold-light);
+  border: 1px solid rgba(212,175,55,.25);
+}
+
+/* Signature (✦) */
+.tag-sig {
+  background: rgba(212,175,55,.12);
+  color: var(--gold-pale);
+  border-color: rgba(212,175,55,.3);
+}
+
+/* Végétarien (vert) */
+.tag-veggie {
+  background: rgba(50,120,70,.2);
+  color: #80d48a;     /* ► Pour changer la couleur : modifie ce code hex */
+  border-color: rgba(50,120,70,.35);
+}
+
+/* Épicé (rouge/rosé) */
+.tag-spicy {
+  background: rgba(180,55,55,.15);
+  color: #e09080;     /* ► Pour changer la couleur : modifie ce code hex */
+  border-color: rgba(180,55,55,.28);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   BLOC "BIENTÔT DISPONIBLES"
+   Encadré pour les plats en cours de développement.
+   Structure :
+     .coming-soon-block  → encadré principal (bordure pointillée)
+     .coming-soon-title  → titre "Bientôt disponibles"
+     .coming-soon-list   → grille des plats à venir
+       li > span (nom) + .cs-badge ("Prix à venir")
+
+   ► AJOUTER UN PLAT À VENIR :
+   <li><span>Nom du plat</span><span class="cs-badge">Prix à venir</span></li>
+
+   ► QUAND LE PLAT EST DISPO : supprimer le <li> ici et créer
+     un .item-card dans la grille .items-grid de la section
+   ══════════════════════════════════════════════════════════════════ */
+.coming-soon-block {
+  background: var(--emerald-3);
+  border: 1px dashed rgba(212,175,55,.22); /* Bordure pointillée */
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+/* Lattes bois filigranes en fond */
+.coming-soon-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 30' fill='none' stroke='%23D4AF37' stroke-width='0.35'%3E%3Cline x1='0' y1='9' x2='600' y2='9'/%3E%3Cline x1='0' y1='20' x2='600' y2='20'/%3E%3C/svg%3E") repeat;
+  background-size: 600px 30px;
+  opacity: .06;
+  pointer-events: none;
+}
+/* Titre "Bientôt disponibles" avec icône ✦ */
+.coming-soon-title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  position: relative;
+}
+.cs-icon { opacity: .55; }
+
+/* Grille des plats à venir (flexible, colonnes à partir de 200px) */
+.coming-soon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .6rem;
+  position: relative;
+}
+/* Chaque item de la liste (nom | badge) */
+.coming-soon-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  background: var(--emerald-4);
+  border: 1px solid rgba(212,175,55,.08);
+  border-radius: var(--radius-sm);
+  padding: .7rem 1rem;
+  font-size: .8rem;
+  color: rgba(245,237,214,.4); /* Texte très atténué = "non disponible" */
+}
+/* Badge "Prix à venir" ou "Bientôt" à droite */
+.cs-badge {
+  font-size: .6rem;
+  font-style: italic;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ► Les styles au-dessus s'appliquent à TOUS les écrans.
+   ► Les @media ci-dessous modifient uniquement ce qui est nécessaire
+     pour les petits écrans.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+  /* Onglets de catégorie : texte plus petit, padding réduit */
+  .cat-btn { font-size: .62rem; padding: 0.9rem 0.75rem; }
+
+  /* Titre du header de la carte : taille fixe sur mobile */
+  .menu-header-title { font-size: 2.2rem; }
+  .menu-header-sub { font-size: 0.65rem; letter-spacing: 0.1em; }
+
+  /* Les grilles de plats passent en 1 seule colonne (compact) */
+  .items-grid,
+  .items-grid--wide { grid-template-columns: 1fr; gap: 0.8rem; }
+
+  /* En-tête de section : titre et emoji en colonne (pas côte à côte) */
+  .cat-section-hd { flex-direction: column; gap: 0.2rem; }
+  /* Cache l'emoji géant sur mobile (trop de place perdue) */
+  .cat-deco { display: none; }
+
+  /* Grille "bientôt disponible" en 1 colonne */
+  .coming-soon-list { grid-template-columns: 1fr; }
+  
+  /* Cartes de plat plus compactes sur mobile */
+  .item-card { padding: 1.2rem; }
+  .item-name { font-size: 1rem; }
+  .item-price { font-size: 1rem; }
+}
+
+/* ── iPhone SE / Très petits écrans (≤ 360px) ── */
+@media (max-width: 360px) {
+  .cat-btn { font-size: 0.58rem; padding: 0.8rem 0.6rem; }
+  .menu-header-title { font-size: 1.8rem; }
+  .item-name { font-size: 0.9rem; }
+}
+
+/* ── Tablette portrait (≥ 900px) ── */
+@media (min-width: 900px) {
+  /* Force 2 colonnes sur tablette */
+  .items-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Desktop (≥ 1200px) ── */
+@media (min-width: 1200px) {
+  /* 3 colonnes sur grand écran pour les grilles compactes */
+  .items-grid      { grid-template-columns: repeat(3, 1fr); }
+  /* 2 colonnes pour les grilles larges (assiettes, boissons) */
+  .items-grid--wide { grid-template-columns: repeat(2, 1fr); }
+}
