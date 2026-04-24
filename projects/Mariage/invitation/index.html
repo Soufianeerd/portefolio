@@ -14,17 +14,16 @@
        ╚══════════════════════════════════════════════════════╝ -->
 
   <!-- [EDIT] Titre de l'onglet du navigateur -->
-  <title>Soufiane & Salma — Notre Mariage · 23 Octobre 2026</title>
+  <title>Alexandre & Sophie — Notre Mariage · 20 Juin 2026</title>
 
   <!-- ── POLICES Google Fonts ──────────────────────────────
        [EDIT] Pour changer la police serif (titres) :
        Remplacez "Cormorant+Garamond" par ex. "Playfair+Display" ou "EB+Garamond"
        [EDIT] Pour changer la police sans-serif (texte) :
-       Remplacez "Montserrat" par ex. "Raleway" ou "Lato"
-       Pour les textes arabes, la police "Scheherazade+New" est incluse ──── -->
+       Remplacez "Montserrat" par ex. "Raleway" ou "Lato" ──── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
   /* ═══════════════════════════════════════════════════════
@@ -49,7 +48,6 @@
     /* [EDIT] Polices — changez le nom entre les guillemets */
     --font-serif:    'Cormorant Garamond', Georgia, serif;
     --font-sans:     'Montserrat', system-ui, sans-serif;
-    --font-arabic:   'Scheherazade New', 'Traditional Arabic', serif;
 
     /* Animations */
     --ease:          cubic-bezier(0.4, 0, 0.2, 1);
@@ -144,14 +142,13 @@
   .intro-border::before { top: -0.55em; left: -0.55em; }
   .intro-border::after  { bottom: -0.55em; right: -0.55em; }
 
-  /* Bismillah en arabe — [EDIT] Modifiez ce texte en HTML */
-  .intro-bismillah {
-    font-family: var(--font-arabic);
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
-    color: rgba(249,247,242,0.6);
-    letter-spacing: 0.05em;
+  /* Citation d'ouverture */
+  .intro-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-style: italic;
+    color: rgba(249,247,242,0.7);
     margin-bottom: 2rem;
-    direction: rtl;
     animation: introFadeUp 1.2s var(--ease) 0.3s both;
   }
 
@@ -683,12 +680,58 @@
     .countdown__number { font-size: clamp(2.5rem, 12vw, 4rem); }
     .intro-names       { font-size: clamp(2.8rem, 16vw, 5rem); }
   }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .fade-in-up { opacity: 1; transform: none; }
-    html { scroll-behavior: auto; }
+  /* ════════════════════════════════════════════════════════
+     12. CUSTOMIZER WIDGET (Template Preview)
+     ════════════════════════════════════════════════════════ */
+  .customizer {
+    position: fixed; top: 50%; right: 20px; transform: translateY(-50%) translateX(calc(100% + 40px));
+    width: 280px; background: white; border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15); z-index: 10000;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: var(--font-sans); color: #333; overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .customizer.active { transform: translateY(-50%) translateX(0); }
+  .customizer-toggle {
+    position: absolute; left: -50px; top: 20px; width: 40px; height: 40px;
+    background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: -5px 0 15px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+  }
+  .customizer-header { padding: 1.25rem; border-bottom: 1px solid #f0f0f0; background: #fafafa; }
+  .customizer-header h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0; }
+  .customizer-body { padding: 1.25rem; max-height: 70vh; overflow-y: auto; }
+  .custom-section { margin-bottom: 1.5rem; }
+  .custom-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 0.75rem; display: block; }
+  
+  /* Color Presets */
+  .color-presets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .preset-btn {
+    border: 1px solid #eee; background: white; border-radius: 6px; padding: 0.5rem;
+    cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s;
+  }
+  .preset-btn:hover { border-color: #ddd; background: #f9f9f9; }
+  .preset-btn.active { border-color: #333; background: #f0f0f0; }
+  .swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+  .preset-label { font-size: 0.65rem; font-weight: 500; }
+
+  /* Font Controls */
+  .font-selector { width: 100%; padding: 0.6rem; border: 1px solid #eee; border-radius: 6px; font-size: 0.75rem; outline: none; }
+  
+  /* Animation Controls */
+  .toggle-wrap { display: flex; align-items: center; justify-content: space-between; }
+  .switch { position: relative; display: inline-block; width: 34px; height: 20px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; inset: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
+  .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+  input:checked + .slider { background-color: #2ecc71; }
+  input:checked + .slider:before { transform: translateX(14px); }
+
+  @media (max-width: 600px) {
+    .customizer { width: 240px; right: 10px; }
   }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 </head>
 <body class="locked">
 
@@ -711,15 +754,14 @@
       <!-- Cadre décoratif -->
       <div class="intro-border" aria-hidden="true"></div>
 
-      <!-- [EDIT] Texte arabe (Bismillah ou autre) -->
-      <!-- بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ = "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux" -->
-      <p class="intro-bismillah" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <!-- [EDIT] Citation d'ouverture -->
+      <p class="intro-quote">« L'amour est la seule chose qui grandit quand on la partage. »</p>
 
       <!-- [EDIT] Prénom 1 et Prénom 2 des mariés -->
       <h1 class="intro-names">
-        Soufiane
+        Alexandre
         <span>— &amp; —</span>
-        Salma
+        Sophie
       </h1>
 
       <!-- Séparateur décoratif -->
@@ -730,7 +772,7 @@
       </div>
 
       <!-- [EDIT] Date du mariage -->
-      <p class="intro-date">Vendredi · 23 Octobre 2026</p>
+      <p class="intro-date">Samedi · 20 Juin 2026</p>
 
       <!-- [EDIT] Texte du bouton -->
       <button class="intro-btn" id="introBtn" aria-label="Ouvrir l'invitation">
@@ -767,9 +809,9 @@
 
         <!-- [EDIT] Prénoms des mariés -->
         <h1 class="hero__names">
-          <span class="hero__name">Soufiane</span>
+          <span class="hero__name">Alexandre</span>
           <span class="hero__ampersand">&amp;</span>
-          <span class="hero__name">Salma</span>
+          <span class="hero__name">Sophie</span>
         </h1>
 
         <div class="hero__divider" aria-hidden="true">
@@ -779,9 +821,9 @@
         </div>
 
         <!-- [EDIT] Date longue -->
-        <p class="hero__date">Vendredi 23 Octobre 2026</p>
+        <p class="hero__date">Samedi 20 Juin 2026</p>
         <!-- [EDIT] Lieux résumés -->
-        <p class="hero__location">Mairie de Toul &amp; Domaine de Camélia</p>
+        <p class="hero__location">La Mairie &amp; Le Château de BelleVue</p>
 
         <!-- [EDIT] Texte du bouton CTA -->
         <a href="#rsvp" class="btn btn--primary">
@@ -803,7 +845,7 @@
         <span class="section__label">Notre Histoire</span>
 
         <!-- [EDIT] Titre de la section -->
-        <h2 class="section__title fade-in-up">Un amour béni</h2>
+        <h2 class="section__title fade-in-up">Notre Union</h2>
 
         <!-- ┌─────────────────────────────────────────────┐
              │  BLOC DUAA — Verset coranique               │
@@ -812,13 +854,9 @@
              └─────────────────────────────────────────────┘ -->
         <div class="duaa-block fade-in-up" style="transition-delay:.1s">
 
-          <!-- [EDIT] Texte arabe de la duaa / du verset
-               Duaa actuelle : Sourate Al-Furqan (25:74)
-               رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
-               Vous pouvez la remplacer par n'importe quel verset ou duaa.
-               Direction du texte : rtl (droite à gauche) — NE PAS modifier dir="rtl" -->
-          <p class="duaa__text" lang="ar" dir="rtl">
-            رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+          <!-- [EDIT] Citation sur l'amour -->
+          <p class="duaa__translation" style="font-size: 1.5rem; font-style: normal;">
+            « Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. »
           </p>
 
           <!-- Séparateur décoratif -->
@@ -828,14 +866,8 @@
             <span class="duaa__sep-line"></span>
           </div>
 
-          <!-- [EDIT] Traduction française du verset -->
-          <p class="duaa__translation">
-            « Notre Seigneur, accorde-nous, de nos épouses et de notre descendance,<br>
-            ce qui réjouit nos yeux, et fais de nous un modèle pour les pieux. »
-          </p>
-
-          <!-- [EDIT] Référence du verset -->
-          <span class="duaa__ref">Sourate Al-Furqan · 25 : 74</span>
+          <!-- [EDIT] Auteur -->
+          <span class="duaa__ref">Antoine de Saint-Exupéry</span>
         </div>
 
     <!-- ══ PARCOURS — CARTE AU TRÉSOR ════════════════════ -->
@@ -846,7 +878,7 @@
       <div class="container">
 
         <span class="section__label">Le Grand Jour</span>
-        <h2 class="section__title fade-in-up">L'itinéraire du 23 Octobre</h2>
+        <h2 class="section__title fade-in-up">L'itinéraire du 20 Juin</h2>
         <p class="section__subtitle fade-in-up" style="transition-delay:.1s">
           Suivez le chemin de notre journée — du premier rassemblement jusqu'à la fête.
         </p>
@@ -865,13 +897,12 @@
               <div class="stop-line" aria-hidden="true"></div>
               <div class="stop__details">
                 <!-- [EDIT] Nom de l'étape -->
-                <h3 class="stop__name">Chez Soufiane</h3>
+                <h3 class="stop__name">Maison de l'Époux</h3>
                 <!-- [EDIT] Heure (ou "" pour masquer) -->
-                <p class="stop__time">Départ · 13h30</p>
+                <p class="stop__time">Départ · 11h30</p>
                 <!-- [EDIT] Adresse (ou commentez si vous ne souhaitez pas l'afficher) -->
                 <p class="stop__address">
-                  <!-- ⚠️ [EDIT] Remplacez par votre adresse, ou supprimez cette ligne -->
-                  Votre adresse, Ville
+                  Rue des Lilas, 69000 Lyon
                 </p>
               </div>
             </div>
@@ -885,11 +916,10 @@
               <div class="stop-line" aria-hidden="true"></div>
               <div class="stop__details">
                 <!-- [EDIT] -->
-                <h3 class="stop__name">Chez Salma</h3>
-                <p class="stop__time">Rassemblement · 14h00</p>
+                <h3 class="stop__name">Maison de l'Épouse</h3>
+                <p class="stop__time">Rassemblement · 12h30</p>
                 <p class="stop__address">
-                  <!-- ⚠️ [EDIT] Remplacez par l'adresse de Salma -->
-                  Adresse de Salma, Ville
+                  Avenue des Fleurs, 69000 Lyon
                 </p>
               </div>
             </div>
@@ -902,11 +932,10 @@
               <div class="stop-line" aria-hidden="true"></div>
               <div class="stop__details">
                 <!-- [EDIT] -->
-                <h3 class="stop__name">Mairie de Toul</h3>
-                <p class="stop__time">Cérémonie civile · 15h00</p>
+                <h3 class="stop__name">La Mairie</h3>
+                <p class="stop__time">Cérémonie civile · 14h30</p>
                 <p class="stop__address">
-                  <!-- [EDIT] Adresse de la mairie -->
-                  13 Rue de Rigny<br>54200 Toul
+                  Place de l'Hôtel de Ville<br>69001 Lyon
                 </p>
               </div>
             </div>
@@ -919,11 +948,10 @@
               <!-- Pas de ligne après la dernière étape -->
               <div class="stop__details">
                 <!-- [EDIT] -->
-                <h3 class="stop__name">Domaine de Camélia</h3>
-                <p class="stop__time">Cocktail &amp; Dîner · 19h00</p>
+                <h3 class="stop__name">Château de BelleVue</h3>
+                <p class="stop__time">Cocktail &amp; Dîner · 18h30</p>
                 <p class="stop__address">
-                  <!-- [EDIT] -->
-                  1 bis Rte de Briey<br>57160 Châtel-Saint-Germain
+                  Avenue des Glycines<br>69000 Lyon
                 </p>
               </div>
             </div>
@@ -933,20 +961,19 @@
 
         <!-- Boutons itinéraires Google Maps -->
         <div class="parcours__links fade-in-up" style="transition-delay:.4s">
-          <!-- [EDIT] Mettez à jour les liens Google Maps si besoin -->
-          <a href="https://maps.google.com/?q=13+Rue+de+Rigny+54200+Toul"
+          <a href="https://maps.google.com/?q=Hotel+de+Ville+Lyon"
              target="_blank" rel="noopener" class="map-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
             </svg>
-            Mairie de Toul
+            La Mairie
           </a>
-          <a href="https://maps.google.com/?q=1+bis+Rte+de+Briey+57160+Châtel-Saint-Germain"
+          <a href="https://maps.google.com/?q=Chateau+BelleVue+Lyon"
              target="_blank" rel="noopener" class="map-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
             </svg>
-            Domaine de Camélia
+            Château de BelleVue
           </a>
         </div>
 
@@ -973,7 +1000,7 @@
             </div>
             <h3 class="detail__title">La Date</h3>
             <!-- [EDIT] -->
-            <p class="detail__info">Vendredi 23 Octobre 2026</p>
+            <p class="detail__info">Samedi 20 Juin 2026</p>
             <p class="detail__sub">Une journée inoubliable vous attend</p>
           </div>
 
@@ -985,10 +1012,10 @@
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
             </div>
-            <h3 class="detail__title">Mairie de Toul</h3>
+            <h3 class="detail__title">La Mairie</h3>
             <!-- [EDIT] -->
-            <p class="detail__info">15h00 · Cérémonie civile</p>
-            <p class="detail__sub">13 Rue de Rigny<br>54200 Toul</p>
+            <p class="detail__info">14h30 · Cérémonie civile</p>
+            <p class="detail__sub">Place de l'Hôtel de Ville<br>69001 Lyon</p>
           </div>
 
           <!-- Carte 3 — Domaine -->
@@ -999,10 +1026,10 @@
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
-            <h3 class="detail__title">Domaine de Camélia</h3>
+            <h3 class="detail__title">Château de BelleVue</h3>
             <!-- [EDIT] -->
-            <p class="detail__info">19h00 · Cocktail &amp; Dîner</p>
-            <p class="detail__sub">1 bis Rte de Briey<br>57160 Châtel-Saint-Germain</p>
+            <p class="detail__info">18h30 · Cocktail &amp; Dîner</p>
+            <p class="detail__sub">Avenue des Glycines<br>69000 Lyon</p>
           </div>
 
           <!-- Carte 4 — Programme -->
@@ -1015,9 +1042,9 @@
             </div>
             <h3 class="detail__title">Programme</h3>
             <!-- [EDIT] Code vestimentaire et programme -->
-            <p class="detail__info">15h00 · Cérémonie civile</p>
+            <p class="detail__info">14h30 · Cérémonie civile</p>
             <p class="detail__sub">
-              19h00 · Cocktail &amp; Soirée<br>
+              18h30 · Cocktail &amp; Soirée<br>
               <!-- [EDIT] Code vestimentaire -->
               Tenue de soirée recommandée
             </p>
@@ -1059,7 +1086,7 @@
           </div>
         </div>
         <!-- [EDIT] Affichage de la date sous le compteur -->
-        <p class="countdown__date-display">23 · 10 · 2026</p>
+        <p class="countdown__date-display">20 · 06 · 2026</p>
       </div>
     </section>
 
@@ -1156,7 +1183,7 @@
         <div class="form__success form__success--oui" id="formSuccessOui" aria-live="polite">
           <span class="form__success-icon">✦</span>
           <!-- [EDIT] Texte confirmation présence OUI -->
-          <p>Quelle joie ! Votre présence est confirmée.<br>Nous avons hâte de vous retrouver le 23 Octobre.</p>
+          <p>Quelle joie ! Votre présence est confirmée.<br>Nous avons hâte de vous retrouver le 20 Juin.</p>
           <small>Un email de confirmation vous a été envoyé.</small>
         </div>
 
@@ -1175,8 +1202,8 @@
     <!-- [EDIT] Noms et date en bas de page -->
     <footer class="footer">
       <div class="footer__ornament" aria-hidden="true">✦</div>
-      <p class="footer__names">Soufiane &amp; Salma</p>
-      <p class="footer__date">23 · 10 · 2026</p>
+      <p class="footer__names">Alexandre &amp; Sophie</p>
+      <p class="footer__date">20 · 06 · 2026</p>
       <!-- [EDIT] Texte copyright / crédit -->
       <p class="footer__copy">Fait avec amour ✦ 2026</p>
     </footer>
@@ -1224,7 +1251,7 @@
      [EDIT] Modifiez la date/heure cible ci-dessous
      Format : 'AAAA-MM-JJTHH:MM:SS'                        */
   (function () {
-    const weddingDate = new Date('2026-10-23T15:00:00'); // [EDIT] Date du mariage
+    const weddingDate = new Date('2026-06-20T14:30:00'); // [EDIT] Date du mariage
     const pad = n => String(n).padStart(2, '0');
 
     function tick() {
@@ -1232,7 +1259,7 @@
       if (diff <= 0) {
         // [EDIT] Message affiché le jour J
         document.getElementById('countdown').innerHTML =
-          '<p class="countdown__over">اللَّهُمَّ بَارِكْ 🤍 Le grand jour est arrivé !</p>';
+          '<p class="countdown__over">Vive les mariés ! 🤍 Le grand jour est arrivé !</p>';
         return;
       }
       document.getElementById('days').textContent    = pad(Math.floor(diff / 86400000));
@@ -1380,6 +1407,120 @@
       io.observe(s);
     });
   })();
+  /* ═══════════════════════════════════════════════════════
+     JS — CUSTOMIZER WIDGET
+     ═══════════════════════════════════════════════════════ */
+  (function() {
+    const customizer = document.getElementById('customizer');
+    const toggle = document.getElementById('customizerToggle');
+    
+    // Open/Close
+    toggle.addEventListener('click', () => customizer.classList.toggle('active'));
+
+    // Presets Configuration
+    const presets = {
+      bordeaux: { cream: '#F9F7F2', bordeaux: '#5D262C', bordeauxLt: '#7a3339', bordeauxPale: '#f0e8e8', ink: '#2d1214', muted: '#9a7c7e' },
+      midnight: { cream: '#F4F7F9', bordeaux: '#1C3A5A', bordeauxLt: '#2a527d', bordeauxPale: '#e8eff5', ink: '#0e1d2d', muted: '#6a7d91' },
+      forest:   { cream: '#F2F5F2', bordeaux: '#2E4A3E', bordeauxLt: '#3e6353', bordeauxPale: '#eef3ef', ink: '#17251f', muted: '#768c81' },
+      minimal:  { cream: '#FFFFFF', bordeaux: '#000000', bordeauxLt: '#333333', bordeauxPale: '#f0f0f0', ink: '#000000', muted: '#666666' }
+    };
+
+    // Apply Colors
+    document.querySelectorAll('[data-preset]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = presets[btn.dataset.preset];
+        const root = document.documentElement;
+        
+        root.style.setProperty('--cream', theme.cream);
+        root.style.setProperty('--bordeaux', theme.bordeaux);
+        root.style.setProperty('--bordeaux-lt', theme.bordeauxLt);
+        root.style.setProperty('--bordeaux-pale', theme.bordeauxPale);
+        root.style.setProperty('--ink', theme.ink);
+        root.style.setProperty('--muted', theme.muted);
+
+        document.querySelectorAll('[data-preset]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Apply Fonts
+    document.getElementById('fontSerif').addEventListener('change', (e) => {
+      document.documentElement.style.setProperty('--font-serif', `'${e.target.value}', serif`);
+    });
+
+    // Toggle Animations
+    document.getElementById('animToggle').addEventListener('change', (e) => {
+      if (!e.target.checked) {
+        document.body.classList.add('no-anim');
+        const style = document.createElement('style');
+        style.id = 'disable-anim-style';
+        style.innerHTML = `*, *::before, *::after { animation: none !important; transition: none !important; } .fade-in-up { opacity: 1 !important; transform: none !important; }`;
+        document.head.appendChild(style);
+      } else {
+        const style = document.getElementById('disable-anim-style');
+        if (style) style.remove();
+      }
+    });
+  })();
   </script>
+
+  <!-- ══════════════════════════════════════════════════════
+       WIDGET DE PERSONNALISATION (Preview Template)
+       ══════════════════════════════════════════════════════ -->
+  <div class="customizer" id="customizer">
+    <div class="customizer-toggle" id="customizerToggle">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </div>
+    
+    <div class="customizer-header">
+      <h3>Personnaliser</h3>
+    </div>
+    
+    <div class="customizer-body">
+      <div class="custom-section">
+        <span class="custom-label">Palette de couleurs</span>
+        <div class="color-presets">
+          <button class="preset-btn active" data-preset="bordeaux">
+            <span class="swatch" style="background:#5D262C"></span>
+            <span class="preset-label">Bordeaux</span>
+          </button>
+          <button class="preset-btn" data-preset="midnight">
+            <span class="swatch" style="background:#1C3A5A"></span>
+            <span class="preset-label">Bleu Nuit</span>
+          </button>
+          <button class="preset-btn" data-preset="forest">
+            <span class="swatch" style="background:#2E4A3E"></span>
+            <span class="preset-label">Vert Forêt</span>
+          </button>
+          <button class="preset-btn" data-preset="minimal">
+            <span class="swatch" style="background:#000000"></span>
+            <span class="preset-label">Minimalist</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="custom-section">
+        <span class="custom-label">Typographie (Titres)</span>
+        <select class="font-selector" id="fontSerif">
+          <option value="Cormorant Garamond">Cormorant Garamond</option>
+          <option value="Playfair Display">Playfair Display</option>
+          <option value="EB Garamond">EB Garamond</option>
+        </select>
+      </div>
+      
+      <div class="custom-section">
+        <div class="toggle-wrap">
+          <span class="custom-label" style="margin:0">Animations</span>
+          <label class="switch">
+            <input type="checkbox" id="animToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
