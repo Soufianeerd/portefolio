@@ -27,6 +27,7 @@
         wireBlobParallax();
         wireProjectSearch();
         wireResetFilters();
+        wireDynamicBackground();
         bootLucide();
     }
 
@@ -304,5 +305,45 @@
             b1.style.transform = 'translate(' + (-x) + 'px,' + (-y) + 'px)';
             b2.style.transform = 'translate(' + x + 'px,' + y + 'px)';
         }, { passive: true });
+    }
+
+    /* --------------------------------------------------------
+       Dynamic Background based on time of day
+       -------------------------------------------------------- */
+    function wireDynamicBackground() {
+        const hero = document.querySelector('.hero-dynamic-bg');
+        if (!hero) return;
+
+        function updateBackground(testHour) {
+            const now = new Date();
+            const hour = testHour !== undefined ? testHour : now.getHours();
+            let period = 'day';
+
+            if (hour >= 5 && hour < 10) period = 'morning';
+            else if (hour >= 10 && hour < 14) period = 'day';
+            else if (hour >= 14 && hour < 18) period = 'afternoon';
+            else if (hour >= 18 && hour < 20) period = 'sunset';
+            else if (hour >= 20 && hour < 23) period = 'evening';
+            else period = 'night';
+
+            // Update body attribute
+            document.body.setAttribute('data-time', period);
+
+            // Update CSS variable for the background image
+            const bgUrl = `url('assets/backgrounds/background-${period}.webp')`;
+            hero.style.setProperty('--hero-bg', bgUrl);
+
+            console.log(`[DynamicBG] Time: ${hour}h, Period: ${period}`);
+        }
+
+        // Run immediately
+        updateBackground();
+
+        // Check every minute
+        setInterval(updateBackground, 60000);
+
+        // Expose to window for easy testing
+        // Example: window.setPortfolioTime(21)
+        window.setPortfolioTime = (h) => updateBackground(h);
     }
 })();
