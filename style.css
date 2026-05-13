@@ -4,27 +4,27 @@
    ============================================================ */
 
 :root {
-    /* Soft editorial palette — terracotta clay & warm stone */
-    --bg-cream: #faf7f2;          /* warm off-white, slightly more saturated */
+    /* New Blue & Navy Editorial Palette */
+    --bg-cream: #F6FAFD;          /* very light blue background */
     --bg-white: #ffffff;          /* cards */
-    --bg-soft: #f0ebe2;           /* subtle alt surface */
-    --text-black: #1c1917;        /* warm near-black, easier on the eye */
-    --text-muted: #57534e;        /* warm stone grey */
-    --text-soft: #8a857d;         /* muted */
-    --accent-bright: #d97757;     /* clay / soft terracotta — main accent */
-    --accent-deep: #c2410c;       /* burnt orange — hover/active */
-    --accent-soft: #fbe9dd;       /* warm tint for chips/backgrounds */
-    --accent-tint: rgba(217, 119, 87, 0.10);
-    --border-color: #e7e5e0;      /* warm beige border */
-    --border-soft: #efedea;
+    --bg-soft: #B3CFE5;           /* light blue for alt surfaces */
+    --text-black: #0A1931;        /* deep navy for text */
+    --text-muted: #1A3D63;        /* medium-deep blue for muted text */
+    --text-soft: #4A7FA7;         /* accent blue for soft text */
+    --accent-bright: #4A7FA7;     /* medium blue — main accent */
+    --accent-deep: #0A1931;       /* dark navy — hover/active */
+    --accent-soft: #B3CFE5;       /* light blue for chips/backgrounds */
+    --accent-tint: rgba(74, 127, 167, 0.10);
+    --border-color: #d1e2f0;      /* light blue border */
+    --border-soft: #e3effa;
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-xl: 40px;
-    --shadow-sm: 0 2px 12px rgba(18, 18, 18, 0.04);
-    --shadow-md: 0 12px 32px rgba(18, 18, 18, 0.08);
-    --shadow-lg: 0 24px 48px rgba(18, 18, 18, 0.10);
-    --shadow-xl: 0 40px 80px rgba(18, 18, 18, 0.12);
+    --shadow-sm: 0 2px 12px rgba(10, 25, 49, 0.04);
+    --shadow-md: 0 12px 32px rgba(10, 25, 49, 0.08);
+    --shadow-lg: 0 24px 48px rgba(10, 25, 49, 0.10);
+    --shadow-xl: 0 40px 80px rgba(10, 25, 49, 0.12);
     --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --transition-fast: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     --max-width: 1400px;
@@ -83,14 +83,14 @@ em { font-style: normal; color: var(--accent-bright); font-weight: 600; }
     right: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(closest-side, rgba(217, 119, 87, 0.18), transparent);
+    background: radial-gradient(closest-side, rgba(74, 127, 167, 0.18), transparent);
 }
 .bg-blob--2 {
     bottom: -300px;
     left: -200px;
     width: 700px;
     height: 700px;
-    background: radial-gradient(closest-side, rgba(217, 119, 87, 0.10), transparent);
+    background: radial-gradient(closest-side, rgba(26, 61, 99, 0.10), transparent);
 }
 
 /* Scroll progress bar */
@@ -267,9 +267,9 @@ section {
 }
 
 @keyframes pulse {
-    0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 119, 87, 0.4); }
-    70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(217, 119, 87, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 119, 87, 0); }
+    0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 127, 167, 0.4); }
+    70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(74, 127, 167, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 127, 167, 0); }
 }
 
 .hero-title {
@@ -393,7 +393,7 @@ section {
 .btn-primary:hover {
     background: var(--accent-bright);
     transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(217, 119, 87, 0.3);
+    box-shadow: 0 12px 24px rgba(10, 25, 49, 0.3);
 }
 
 .btn-secondary {
@@ -1088,7 +1088,7 @@ section {
     right: -15%;
     width: 60%;
     height: 200%;
-    background: radial-gradient(closest-side, rgba(217, 119, 87, 0.20), transparent);
+    background: radial-gradient(closest-side, rgba(74, 127, 167, 0.20), transparent);
     pointer-events: none;
 }
 .contact-section h2 {
