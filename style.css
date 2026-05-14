@@ -727,24 +727,57 @@ p, .section-subtitle, .hero-desc {
     color: var(--text-muted);
 }
 
-/* Cards & Widgets */
-.profil-card, .comp-card, .project-card, .timeline-card, .contact-card {
-    background: var(--surface-main);
-    color: var(--text-main);
-    border: 1px solid var(--border-soft);
-}
-
-.profil-card:hover, .comp-card:hover, .project-card:hover {
-    background: var(--surface-strong);
-    border-color: var(--border-strong);
-}
-
-.project-info h3, .profil-name, .comp-header h3 {
+/* Cards & Widgets - STRICT UNIFORMITY */
+.profil-card, 
+.comp-card, 
+.project-card, 
+.timeline-card, 
+.contact-card,
+.contact-section {
+    background: var(--surface-main) !important;
     color: var(--text-main) !important;
+    border: 1px solid var(--border-soft) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    transition: var(--transition);
 }
 
-.project-info p, .profil-text, .timeline-text {
-    color: var(--text-muted) !important;
+.profil-card:hover, 
+.comp-card:hover, 
+.project-card:hover,
+.contact-card:hover {
+    background: var(--surface-strong) !important;
+    border-color: var(--border-strong) !important;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Project Buttons / CTAs */
+.project-link, .btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--button-bg);
+    color: var(--button-text) !important;
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+    border: 1px solid var(--border-strong);
+}
+
+.project-link:hover, .btn-link:hover {
+    transform: scale(1.05);
+    background: var(--accent-main);
+    color: white !important;
+}
+
+.project-link i, .btn-link i {
+    width: 18px;
+    height: 18px;
 }
 
 /* Badges / Labels / Chips */
