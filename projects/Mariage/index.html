@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeddingSuite Pro | THE ULTIMATE FUSION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Alex+Brush&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Alex+Brush&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
     <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="builder-container">
         <!-- Sidebar Customizer -->
@@ -24,7 +28,6 @@
                 <button class="tab-btn active" data-tab="design" title="Style"><i data-lucide="palette"></i></button>
                 <button class="tab-btn" data-tab="content" title="Textes"><i data-lucide="edit-3"></i></button>
                 <button class="tab-btn" data-tab="media" title="Photos"><i data-lucide="image"></i></button>
-                <button class="tab-btn" data-tab="settings" title="API"><i data-lucide="key"></i></button>
             </nav>
 
             <div class="sidebar-scrollable">
@@ -78,9 +81,12 @@
                     <div class="config-group">
                         <label>Identité de l'Événement</label>
                         <input type="text" id="name1" value="Alexandre" class="builder-input" placeholder="Marié 1">
-                        <input type="text" id="name2" value="Sophie" class="builder-input" placeholder="Marié 2" style="margin-top:0.5rem">
-                        <input type="date" id="eventDate" value="2026-06-20" class="builder-input" style="margin-top:1rem">
-                        <textarea id="venue" class="builder-input" rows="2" style="margin-top:0.5rem">Château de la Verrière, Versailles</textarea>
+                        <input type="text" id="name2" value="Sophie" class="builder-input" placeholder="Marié 2"
+                            style="margin-top:0.5rem">
+                        <input type="date" id="eventDate" value="2026-06-20" class="builder-input"
+                            style="margin-top:1rem">
+                        <textarea id="venue" class="builder-input" rows="2"
+                            style="margin-top:0.5rem">Château de la Verrière, Versailles</textarea>
                     </div>
                 </div>
 
@@ -96,22 +102,8 @@
                     </div>
                 </div>
 
-                <!-- SETTINGS TAB -->
-                <div class="tab-content hidden" id="settingsTab">
-                    <div class="config-group">
-                        <label>Unsplash Access Key</label>
-                        <input type="password" id="unsplashKey" value="5wKdoMiPs6mPwJ4AYt7bfWg6Od8dS3blnMCNSChAnO8" class="builder-input">
-                        <p class="help-text">Utilisée pour le chargement des médias haute résolution.</p>
-                    </div>
-                    <div class="config-group">
-                        <label>Modules Connectés</label>
-                        <ul class="status-list">
-                            <li><i data-lucide="check" class="text-success"></i> Faire-part Sync</li>
-                            <li><i data-lucide="check" class="text-success"></i> Livre d'Or Sync</li>
-                            <li><i data-lucide="check" class="text-success"></i> Galerie Photos Sync</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- SETTINGS (Hidden for testers) -->
+                <input type="hidden" id="unsplashKey" value="5wKdoMiPs6mPwJ4AYt7bfWg6Od8dS3blnMCNSChAnO8">
             </div>
 
             <footer class="sidebar-footer">
@@ -154,4 +146,5 @@
     <script src="js/builder.js"></script>
     <script src="../_shared/portfolio-bar.js" defer></script>
 </body>
+
 </html>
