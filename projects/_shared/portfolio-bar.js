@@ -39,33 +39,25 @@
         // ---- Style (scoped via .sef-pf-bar prefix)
         var css = ''
             + '.sef-pf-bar{'
-            +   'position:fixed;top:14px;left:14px;z-index:2147483646;'
+            +   'position:fixed;bottom:24px;right:24px;z-index:2147483646;'
             +   'display:inline-flex;align-items:center;gap:8px;'
-            +   'padding:8px 14px 8px 12px;'
-            +   'background:rgba(18,18,18,0.92);color:#fff;'
+            +   'padding:10px 16px;'
+            +   'background:rgba(0,0,0,0.4);color:rgba(255,255,255,0.7);'
             +   'font-family:"Outfit",system-ui,-apple-system,sans-serif;'
-            +   'font-weight:600;font-size:13px;letter-spacing:0.2px;'
+            +   'font-weight:600;font-size:12px;letter-spacing:0.4px;'
             +   'text-decoration:none;border-radius:100px;'
             +   'backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);'
-            +   'box-shadow:0 6px 20px rgba(0,0,0,0.18);'
-            +   'transition:transform .25s cubic-bezier(.23,1,.32,1),background .25s,color .25s;'
-            +   'border:1px solid rgba(255,255,255,0.08);'
+            +   'box-shadow:0 8px 32px rgba(0,0,0,0.1);'
+            +   'transition:all .3s cubic-bezier(.23,1,.32,1);'
+            +   'border:1px solid rgba(255,255,255,0.1);'
+            +   'text-transform:uppercase;'
             + '}'
-            + '.sef-pf-bar:hover{background:#d97757;transform:translateY(-2px) scale(1.03);}'
-            + '.sef-pf-bar svg{width:14px;height:14px;flex-shrink:0;}'
-            + '.sef-pf-bar .sef-pf-dot{width:6px;height:6px;border-radius:50%;background:#d97757;'
-            +   'box-shadow:0 0 0 0 rgba(217,119,87,0.5);'
-            +   'animation:sefPfPulse 2s infinite;flex-shrink:0;'
-            + '}'
-            + '.sef-pf-bar:hover .sef-pf-dot{background:#fff;animation:none;}'
-            + '@keyframes sefPfPulse{'
-            +   '0%{box-shadow:0 0 0 0 rgba(217,119,87,0.5);}'
-            +   '70%{box-shadow:0 0 0 8px rgba(217,119,87,0);}'
-            +   '100%{box-shadow:0 0 0 0 rgba(217,119,87,0);}'
-            + '}'
+            + '.sef-pf-bar:hover{background:rgba(0,0,0,0.8);color:#fff;transform:translateY(-2px);border-color:rgba(255,255,255,0.3);}'
+            + '.sef-pf-bar svg{width:14px;height:14px;flex-shrink:0;transition:transform .3s;}'
+            + '.sef-pf-bar:hover svg{transform:translateX(-3px);}'
             + '@media print{.sef-pf-bar{display:none !important;}}'
-            + '@media (max-width:480px){.sef-pf-bar{font-size:12px;padding:7px 12px 7px 10px;}}'
-            + '@media (prefers-reduced-motion:reduce){.sef-pf-bar,.sef-pf-bar:hover{transition:none;transform:none;}.sef-pf-dot{animation:none;}}';
+            + '@media (max-width:480px){.sef-pf-bar{bottom:16px;right:16px;font-size:11px;padding:8px 12px;}}'
+            + '@media (prefers-reduced-motion:reduce){.sef-pf-bar,.sef-pf-bar:hover{transition:none;transform:none;}}';
 
         var styleTag = document.createElement('style');
         styleTag.setAttribute('data-sef-pf-bar', '');
@@ -78,10 +70,6 @@
         a.href = backUrl;
         a.setAttribute('aria-label', 'Retour au portfolio de Soufiane EL RHADI');
         a.title = 'Retour au portfolio';
-
-        var dot = document.createElement('span');
-        dot.className = 'sef-pf-dot';
-        a.appendChild(dot);
 
         // arrow icon
         var svgNS = 'http://www.w3.org/2000/svg';
