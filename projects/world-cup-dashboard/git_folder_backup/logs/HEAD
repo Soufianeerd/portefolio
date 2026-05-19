@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 d9bdae2a7b71ae9f034f07d5db6d040cc7b1c30d EL RHADI <soufiane.erd@gmail.com> 1778158590 +0200	commit (initial): premier commit
+0000000000000000000000000000000000000000 0000000000000000000000000000000000000000 EL RHADI <soufiane.erd@gmail.com> 1778158590 +0200	Branch: renamed refs/heads/main to refs/heads/main
+d9bdae2a7b71ae9f034f07d5db6d040cc7b1c30d d9bdae2a7b71ae9f034f07d5db6d040cc7b1c30d EL RHADI <soufiane.erd@gmail.com> 1778158590 +0200	Branch: renamed refs/heads/main to refs/heads/main
+d9bdae2a7b71ae9f034f07d5db6d040cc7b1c30d 66619c285c0a367a8f788c71433522aef7081f24 EL RHADI <soufiane.erd@gmail.com> 1778159597 +0200	commit: first commit
+0000000000000000000000000000000000000000 0000000000000000000000000000000000000000 EL RHADI <soufiane.erd@gmail.com> 1778159597 +0200	Branch: renamed refs/heads/main to refs/heads/main
+66619c285c0a367a8f788c71433522aef7081f24 66619c285c0a367a8f788c71433522aef7081f24 EL RHADI <soufiane.erd@gmail.com> 1778159597 +0200	Branch: renamed refs/heads/main to refs/heads/main
+66619c285c0a367a8f788c71433522aef7081f24 c31b9f457101fed0b0622f02a2a9cbe0af7c272e EL RHADI <soufiane.erd@gmail.com> 1778159630 +0200	commit: first commit
+0000000000000000000000000000000000000000 0000000000000000000000000000000000000000 EL RHADI <soufiane.erd@gmail.com> 1778159630 +0200	Branch: renamed refs/heads/main to refs/heads/main
+c31b9f457101fed0b0622f02a2a9cbe0af7c272e c31b9f457101fed0b0622f02a2a9cbe0af7c272e EL RHADI <soufiane.erd@gmail.com> 1778159630 +0200	Branch: renamed refs/heads/main to refs/heads/main
+c31b9f457101fed0b0622f02a2a9cbe0af7c272e 4ca530674d85271548a9861f02984d8b8289b518 EL RHADI <soufiane.erd@gmail.com> 1778161923 +0200	commit: Fix typescript and linting errors for NextJS build
+4ca530674d85271548a9861f02984d8b8289b518 6fa9ee622e80bc8f3b2344e74fb66e0534c87e55 EL RHADI <soufiane.erd@gmail.com> 1778162329 +0200	commit: Add index.html redirect to out/index.html
+6fa9ee622e80bc8f3b2344e74fb66e0534c87e55 32368c4a198e244b146e323615bc76c043d995d4 EL RHADI <soufiane.erd@gmail.com> 1778163431 +0200	commit: Fix file:/// routing for Sidebar and set Calibri font
