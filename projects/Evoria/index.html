@@ -4,105 +4,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evoria — SaaS Faire-Part Digital de Mariage Premium</title>
-  <meta name="description" content="Evoria : Créez votre faire-part digital de mariage en quelques minutes. Invitation personnalisable, RSVP intégré, galerie photos, compte à rebours. Démo interactive.">
-  <meta name="author" content="Soufiane EL RHADI">
+  <title>Julien & Amandine — Notre Mariage · 13 Juin 2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@400;600&family=Alex+Brush&family=Parisienne&family=Cinzel:wght@400;600&family=Prata&family=Inter:wght@300;400;500&family=Outfit:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="locked">
-
-  <!-- ═══════════════════════════════════════════
-       ÉCRAN D'INTRODUCTION — ENVELOPPE SCELLÉE
-       ═══════════════════════════════════════════ -->
+  <!-- ÉCRAN D'INTRODUCTION (CINÉMATIQUE PORTE) -->
   <div id="introScreen" class="intro-screen">
-    <div class="envelope-wrapper">
-      <!-- L'enveloppe entière avec image de fond -->
-      <div class="envelope" id="envelopeEl">
-        <div class="envelope-front">
-          <div class="envelope-seal-area">
-            <img src="asset/seau_v2.webp" id="introBtn" class="intro-seal" alt="Sceau Royal — Cliquez pour ouvrir">
-            <p class="seal-hint">Cliquez pour ouvrir votre invitation</p>
-          </div>
-        </div>
-      </div>
+    <div class="door door--left"></div>
+    <div class="door door--right"></div>
+    <div class="intro-seal-wrapper">
+      <!-- Sceau Royal SVG Émeraude & Or -->
+      <img src="assets/seau_v2.webp" id="introBtn" class="intro-seal" alt="Sceau Royal">
     </div>
   </div>
 
-  <!-- Arrière-plan Fixe (image de fond personnalisable) -->
-  <div id="customBgOverlay" class="custom-bg-overlay"></div>
-
-  <!-- ═══════════════════════════════════════════
-       CONTENU PRINCIPAL — FAIRE-PART
-       ═══════════════════════════════════════════ -->
   <main id="mainContent" class="main-content">
-
-    <!-- NAV SUPÉRIEURE -->
-    <nav class="invite-nav">
-      <div class="nav-logo">✦ Evoria</div>
-      <div class="nav-links">
-        <a href="#histoire">Notre Histoire</a>
-        <a href="#programme">Programme</a>
-        <a href="#compte-a-rebours">Compte à rebours</a>
-        <a href="#souvenirs">Souvenirs</a>
-        <a href="#rsvp">RSVP</a>
-      </div>
-      <a href="../../index.html#projects" class="nav-portfolio-btn" title="Retour au portfolio">
-        ← Portfolio
-      </a>
-    </nav>
-
-    <!-- ─── SECTION 1 : HERO ÉDITORIALE ────────────────── -->
-    <section class="hero-premium" id="hero">
+    <!-- SECTION 1 : HERO ÉDITORIALE -->
+    <section class="hero-premium">
       <div class="container">
 
+        <!-- LOGO OISEAU DE PARADIS SVG -->
         <div class="hero__basmala-wrapper fade-in-up">
-          <img src="asset/image.webp" class="hero__basmala-img" alt="Logo Evoria">
+          <img src="assets/image.webp" class="hero__basmala-img" alt="Logo">
         </div>
 
         <div class="hero__content">
+          <!-- LES FAMILLES -->
           <div class="hero__families-intro fade-in-up" style="transition-delay: 0.2s;">
             Les familles
           </div>
 
           <div class="hero__family-names fade-in-up" style="transition-delay: 0.4s;">
-            <span class="family" id="customFamily1">Dumont &amp; Lemaire</span>
-            <span class="ampersand">&amp;</span>
-            <span class="family" id="customFamily2">Valois &amp; Petit</span>
+            <span class="family" id="customFamily1">Dumont & Lemaire</span>
+            <span class="ampersand">&</span>
+            <span class="family" id="customFamily2">Valois & Petit</span>
           </div>
 
+          <!-- INVITATION TEXTE -->
           <div class="hero__invitation-text fade-in-up" style="transition-delay: 0.6s;">
             ont la joie et le plaisir de vous faire part du mariage de leurs enfants
           </div>
 
+          <!-- LES MARIÉS -->
           <h1 class="hero__couple-names fade-in-up" id="customCoupleNames" style="transition-delay: 0.8s;">
-            Julien <span class="couple-amp">&amp;</span> Amandine
+            Julien <span class="couple-amp">&</span> Amandine
           </h1>
 
+          <!-- DATE -->
           <div class="hero__date fade-in-up" id="customDateText" style="transition-delay: 1s;">
             Le samedi 13 Juin 2026
-          </div>
-
-          <div class="hero__cta fade-in-up" style="transition-delay: 1.2s;">
-            <a href="#programme" class="btn-hero">Découvrir le programme</a>
-            <a href="#rsvp" class="btn-hero btn-hero--outline">Confirmer ma présence</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─── SECTION 2 : NOTRE HISTOIRE ─────────────────── -->
+    <!-- SECTION 2 : CÉLÉBRATION ET BÉNÉDICTION -->
     <section class="section" id="histoire">
       <div class="container container--narrow fade-in-up">
-        <p class="section__label">Notre Histoire</p>
-        <h2 class="section__title">Une rencontre, une vie</h2>
         <div class="duaa-block fade-in-up" style="transition-delay:.1s">
           <p class="duaa__text" style="font-family: var(--font-serif); font-style: italic;">
             « Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. »
@@ -115,25 +81,23 @@
           </div>
 
           <p class="duaa__translation">
-            C'est avec beaucoup de bonheur que nous vous invitons à célébrer cette union,
-            symbole de notre engagement et de notre chemin commun vers une belle vie partagée.
+            C'est avec beaucoup de bonheur que nous vous invitons à célébrer cette union, symbole de notre engagement et de notre chemin commun.
           </p>
           <span class="duaa__ref">— Antoine de Saint-Exupéry</span>
         </div>
       </div>
     </section>
 
-    <!-- ─── SECTION 3 : PROGRAMME ───────────────────────── -->
-    <section class="section" id="programme">
+    <!-- SECTION 3 : LE PROGRAMME -->
+    <section class="section" id="parcours">
       <div class="container fade-in-up">
-        <p class="section__label">Le Grand Jour</p>
         <h2 class="section__title">Programme de la journée</h2>
 
         <div class="itinerary-wrapper">
           <!-- ÉTAPE 1 : MAIRIE -->
           <div class="itinerary-column">
             <div class="itinerary-item">
-              <div class="itinerary-icon">🏛️</div>
+              <div class="itinerary-icon" style="font-size: 2.5rem;">🏛️</div>
               <h4>Mairie de Bordeaux</h4>
               <p>14h00 · Cérémonie Civile</p>
             </div>
@@ -144,8 +108,8 @@
                   width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
               </div>
               <p class="map-legend">Place Pey Berland, 33000 Bordeaux</p>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=Mairie+de+Bordeaux+Place+Pey+Berland"
-                target="_blank" class="itinerary-btn">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Mairie+de+Bordeaux+Place+Pey+Berland" target="_blank"
+                class="itinerary-btn">
                 📍 Itinéraire
               </a>
             </div>
@@ -154,9 +118,9 @@
           <!-- ÉTAPE 2 : CHATEAU -->
           <div class="itinerary-column">
             <div class="itinerary-item">
-              <div class="itinerary-icon">🏰</div>
+              <div class="itinerary-icon" style="font-size: 2.5rem;">🏰</div>
               <h4>Château Pape Clément</h4>
-              <p>17h00 · Réception &amp; Dîner</p>
+              <p>17h00 · Réception & Dîner</p>
             </div>
             <div class="map-wrapper">
               <div class="map-container">
@@ -175,13 +139,14 @@
       </div>
     </section>
 
-    <!-- ─── SECTION 4 : COUNTDOWN & CALENDAR ───────────── -->
+    <!-- SECTION 5 : COUNTDOWN & CALENDAR -->
     <section class="section countdown-section" id="compte-a-rebours">
       <div class="container fade-in-up">
         <p class="section__label">Le Grand Jour</p>
         <h2 class="section__title">Plus que...</h2>
 
         <div class="calendar-countdown-wrapper">
+          <!-- Countdown -->
           <div class="countdown-timer" id="countdown">
             <div class="time-block"><span id="days">00</span><label>Jours</label></div>
             <div class="time-block"><span id="hours">00</span><label>Heures</label></div>
@@ -189,25 +154,31 @@
             <div class="time-block"><span id="seconds">00</span><label>Secondes</label></div>
           </div>
 
+          <!-- Calendar -->
           <div class="mini-calendar">
             <div class="calendar-header" id="calendarHeader">JUIN 2026</div>
-            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="calendar-grid" id="calendarGrid">
+              <!-- Généré dynamiquement en JS -->
+            </div>
           </div>
         </div>
 
         <div style="text-align: center; margin-top: 2rem;">
-          <a href="#" class="calendar-btn-refined demo-widget-btn">📅 Ajouter au calendrier</a>
+          <a href="mariage.ics" class="calendar-btn-refined" download="mariage.ics">
+            Ajouter au calendrier
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ─── SECTION 5 : SOUVENIRS & PARTAGE ────────────── -->
+    <!-- SECTION 5.5 : SOUVENIRS & PARTAGE -->
     <section class="section souvenirs-section" id="souvenirs">
       <div class="container fade-in-up">
-        <p class="section__label">Souvenirs &amp; Partage</p>
-        <h2 class="section__title">Immortalisez l'instant</h2>
+        <p class="section__label">Souvenirs & Partage</p>
+        <h2 class="section__title" style="color: var(--bordeaux);">Immortalisez l'instant</h2>
 
         <div class="souvenirs-grid">
+          <!-- Widget 1: Livre d'Or Audio -->
           <div class="souvenir-card">
             <div class="souvenir-icon-wrapper">
               <span class="souvenir-emoji">🎙️</span>
@@ -217,6 +188,7 @@
             <button class="btn-secondary-outline demo-widget-btn">Enregistrer un message</button>
           </div>
 
+          <!-- Widget 2: Photos Souvenirs -->
           <div class="souvenir-card">
             <div class="souvenir-icon-wrapper">
               <span class="souvenir-emoji">📷</span>
@@ -225,108 +197,82 @@
             <p>Partagez vos plus beaux clichés de la journée directement avec nous.</p>
             <button class="btn-secondary-outline demo-widget-btn">Partager une photo</button>
           </div>
-
-          <div class="souvenir-card">
-            <div class="souvenir-icon-wrapper">
-              <span class="souvenir-emoji">💌</span>
-            </div>
-            <h3>Message aux Mariés</h3>
-            <p>Glissez un petit mot de félicitations dans notre livre d'or numérique.</p>
-            <button class="btn-secondary-outline demo-widget-btn">Écrire un message</button>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- ─── SECTION 6 : RSVP ────────────────────────────── -->
+    <!-- SECTION 6 : RSVP -->
     <section class="section rsvp-section" id="rsvp">
       <div class="container container--narrow fade-in-up">
-        <p class="section__label">Réponse</p>
         <h2 class="section__title">Serez-vous des nôtres ?</h2>
-        <p class="rsvp-subtitle">Merci de bien vouloir confirmer votre présence avant le 1er Mai 2026.</p>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;">Merci de bien vouloir confirmer votre présence avant le 1er Avril 2026.</p>
 
         <form id="rsvpForm" class="rsvp-form">
           <div class="form-group">
-            <input type="text" id="name" name="name" class="form-input" placeholder="Votre Nom &amp; Prénom" required>
+            <input type="text" id="name" class="form-input" placeholder="Votre Nom & Prénom" required>
           </div>
           <div class="form-group">
-            <input type="email" id="email" name="email" class="form-input" placeholder="Votre Email" required>
+            <input type="email" id="email" class="form-input" placeholder="Votre Email" required>
           </div>
           <div class="form-row form-group">
             <label class="radio-group">
               <input type="radio" name="attendance" value="oui" required>
-              <span>Je serai présent(e) 🎉</span>
+              <span>Je serai présent(e)</span>
             </label>
             <label class="radio-group">
               <input type="radio" name="attendance" value="non" required>
-              <span>Je serai absent(e) 😢</span>
+              <span>Je serai absent(e)</span>
             </label>
           </div>
           <div class="form-group">
-            <textarea id="message" name="message" class="form-input" placeholder="Un petit mot pour nous ?" rows="3"></textarea>
+            <textarea id="message" class="form-input" placeholder="Un petit mot pour nous ?" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn" style="width: 100%;">Confirmer ma réponse ✨</button>
+          <button type="submit" class="btn" style="width: 100%;">Confirmer ma réponse</button>
         </form>
 
-        <div id="successMessage" style="display: none; text-align: center; padding: 4rem;">
-          <p style="font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; color: var(--bordeaux);">
+        <div id="successMessage"
+          style="display: none; text-align: center; padding: 4rem; background: white; margin-top: 2rem; border-radius: 4px;">
+          <p style="font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; color: var(--bordeaux);">
             Merci ! Votre réponse a bien été enregistrée. ✨
           </p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
-      <div class="footer-sep" aria-hidden="true">
-        <span></span><span class="duaa__sep-gem">✦</span><span></span>
-      </div>
-      <p class="footer-label">Nous avons hâte de célébrer ce moment à vos côtés</p>
-      <h2 id="customCoupleNamesFooter">Julien &amp; Amandine</h2>
-      <p class="footer-date" id="customDateFooter">13 · 06 · 2026</p>
-      <p class="footer-credit">
-        Fait avec ❤️ par <a href="../../index.html#projects" style="color: var(--gold-sand);">Evoria SaaS</a>
-        &mdash; <a href="../../index.html" style="color: var(--muted); font-size: 0.8em;">← Retour au portfolio</a>
+      <p style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.4em; opacity: 0.85; margin-bottom: 2rem; text-transform: uppercase;">
+        Nous avons hâte de célébrer ce moment à vos côtés
       </p>
-    </footer>
-
+      <h2 id="customCoupleNamesFooter">Julien & Amandine</h2>
+      <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 2rem;" id="customDateFooter">13 · 06 · 2026</p>
   </main>
 
-  <!-- ═══════════════════════════════════════════
-       ALERTE DÉMO
-       ═══════════════════════════════════════════ -->
+  <!-- Arrière-plan Fixe Parallaxe -->
+  <div id="customBgOverlay" class="custom-bg-overlay"></div>
+
+  <!-- Alerte Démo Personnalisée -->
   <div id="demoAlert" class="demo-alert">
     <div class="demo-alert-content">
       <span class="demo-alert-icon">✨</span>
-      <p class="demo-alert-text">Ces fonctionnalités seront actives dans le SaaS Evoria en production.</p>
+      <p class="demo-alert-text">Ces fonctionnalités seront fonctionnelles dans le SaaS Evoria.</p>
       <button id="closeDemoAlert" class="demo-alert-close">&times;</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       BOUTON PERSONNALISATION FLOTTANT
-       ═══════════════════════════════════════════ -->
-  <button id="customizeBtn" class="customize-btn" title="Personnaliser le faire-part" aria-label="Ouvrir le panneau de personnalisation">
+  <!-- Bouton de Personnalisation Flottant -->
+  <button id="customizeBtn" class="customize-btn" title="Personnaliser le faire-part">
     🎨
   </button>
 
-  <!-- ═══════════════════════════════════════════
-       VOLET DE PERSONNALISATION
-       ═══════════════════════════════════════════ -->
-  <div id="customizePanel" class="customize-panel" role="dialog" aria-label="Panneau de personnalisation">
+  <!-- Volet de Personnalisation -->
+  <div id="customizePanel" class="customize-panel">
     <div class="customize-panel-header">
-      <div class="panel-title-row">
-        <span class="panel-logo">✦ Evoria</span>
-        <h3>Personnalisation</h3>
-      </div>
-      <button id="closeCustomizePanel" class="customize-panel-close" aria-label="Fermer">&times;</button>
+      <h3>Personnalisation</h3>
+      <button id="closeCustomizePanel" class="customize-panel-close">&times;</button>
     </div>
-
     <div class="customize-panel-body">
-
-      <!-- Noms & Familles -->
       <div class="customize-section">
-        <h4>👫 Couple &amp; Familles</h4>
+        <h4>Couples & Familles</h4>
         <div class="input-field">
           <label for="custGroom">Prénom Marié 1</label>
           <input type="text" id="custGroom" placeholder="Ex: Julien">
@@ -337,40 +283,28 @@
         </div>
         <div class="input-field">
           <label for="custFamily1">Famille Marié 1</label>
-          <input type="text" id="custFamily1" placeholder="Ex: Dumont &amp; Lemaire">
+          <input type="text" id="custFamily1" placeholder="Ex: Dumont & Lemaire">
         </div>
         <div class="input-field">
           <label for="custFamily2">Famille Marié 2</label>
-          <input type="text" id="custFamily2" placeholder="Ex: Valois &amp; Petit">
+          <input type="text" id="custFamily2" placeholder="Ex: Valois & Petit">
         </div>
       </div>
 
-      <!-- Date -->
       <div class="customize-section">
-        <h4>📅 Date de Célébration</h4>
+        <h4>Date de Célébration</h4>
         <div class="input-field">
           <label for="custDate">Date du Mariage</label>
           <input type="date" id="custDate">
         </div>
       </div>
 
-      <!-- Images -->
       <div class="customize-section">
-        <h4>🖼️ Images &amp; Visuels</h4>
-        <p class="customizer-info-text">Téléversez une image locale ou cherchez sur Unsplash</p>
-
+        <h4>Images & Visuels</h4>
+        <p class="customizer-info-text">Téléversement local ou recherche Unsplash</p>
+        
         <div class="input-field">
-          <label>Image de Fond de l'Invitation</label>
-          <div class="image-selector-row">
-            <input type="file" id="custBg" accept="image/*" class="file-input-styled">
-            <button class="unsplash-btn" data-target="bgInvite">🔍 Unsplash</button>
-          </div>
-          <div class="upload-progress-bar"><div id="progressBg" class="upload-progress-fill"></div></div>
-          <span class="upload-status" id="statusBg"></span>
-        </div>
-
-        <div class="input-field">
-          <label>Visuel de l'Enveloppe</label>
+          <label>Visuel de l'Enveloppe (Portes)</label>
           <div class="image-selector-row">
             <input type="file" id="custDoors" accept="image/*" class="file-input-styled">
             <button class="unsplash-btn" data-target="bgDoors">🔍 Unsplash</button>
@@ -378,14 +312,23 @@
           <div class="upload-progress-bar"><div id="progressDoors" class="upload-progress-fill"></div></div>
           <span class="upload-status" id="statusDoors"></span>
         </div>
+
+        <div class="input-field">
+          <label>Image de Fond</label>
+          <div class="image-selector-row">
+            <input type="file" id="custBg" accept="image/*" class="file-input-styled">
+            <button class="unsplash-btn" data-target="bgInvite">🔍 Unsplash</button>
+          </div>
+          <div class="upload-progress-bar"><div id="progressBg" class="upload-progress-fill"></div></div>
+          <span class="upload-status" id="statusBg"></span>
+        </div>
       </div>
 
-      <!-- Couleurs -->
       <div class="customize-section">
-        <h4>🎨 Styles &amp; Couleurs</h4>
+        <h4>Styles & Couleurs</h4>
         <div class="input-field inline-row">
           <div>
-            <label for="custColorTheme">Principal</label>
+            <label for="custColorTheme">Principal (Bordeaux)</label>
             <input type="color" id="custColorTheme" value="#0E3D26">
           </div>
           <div>
@@ -423,22 +366,22 @@
         </div>
       </div>
 
-      <button id="resetCustomize" class="customize-reset-btn">↺ Réinitialiser</button>
+      <button id="resetCustomize" class="customize-reset-btn">Réinitialiser les réglages</button>
     </div>
 
-    <!-- Sous-panel Unsplash -->
+    <!-- Panel de Recherche Unsplash (Glisse par-dessus) -->
     <div id="unsplashSearchPanel" class="unsplash-search-panel">
       <div class="unsplash-search-header">
-        <h4>🔍 Images Unsplash</h4>
+        <h4>Images Unsplash</h4>
         <button id="closeUnsplashSearch" class="unsplash-search-close">&times;</button>
       </div>
       <div class="unsplash-search-body">
         <div class="unsplash-search-bar">
-          <input type="text" id="unsplashQuery" placeholder="Ex: fleurs, forêt, château...">
-          <button id="unsplashSearchBtn">Chercher</button>
+          <input type="text" id="unsplashQuery" placeholder="Ex: fleurs, porte dorée...">
+          <button id="unsplashSearchBtn">Rechercher</button>
         </div>
         <div id="unsplashResults" class="unsplash-results-grid"></div>
-        <button id="unsplashLoadMore" class="unsplash-load-more-btn" style="display:none;">Afficher plus</button>
+        <button id="unsplashLoadMore" class="unsplash-load-more-btn">Afficher plus</button>
       </div>
     </div>
   </div>
