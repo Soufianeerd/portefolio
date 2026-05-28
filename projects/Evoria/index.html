@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-editable="pageTitle">Élise & Gabriel — Notre Mariage · 12 Juin 2027</title>
+  <title>Julien & Amandine — Notre Mariage · 13 Juin 2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Scheherazade+New:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css">
@@ -21,7 +21,8 @@
     <div class="door door--left"></div>
     <div class="door door--right"></div>
     <div class="intro-seal-wrapper">
-      <img src="assets/sceau-generic-pro.png" id="introBtn" class="intro-seal" alt="Sceau" data-image-target="seal">
+      <!-- Sceau Royal SVG Émeraude & Or -->
+      <img src="assets/seau_v2.webp" id="introBtn" class="intro-seal" alt="Sceau Royal">
     </div>
   </div>
 
@@ -30,8 +31,9 @@
     <section class="hero-premium">
       <div class="container">
 
+        <!-- LOGO OISEAU DE PARADIS SVG -->
         <div class="hero__basmala-wrapper fade-in-up">
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop" class="hero__basmala-img" alt="Illustration Centrale" data-image-target="heroImg" style="object-fit: cover; opacity: 0.6;">
+          <img src="assets/image.webp" class="hero__basmala-img" alt="Logo">
         </div>
 
         <div class="hero__content">
@@ -41,37 +43,35 @@
           </div>
 
           <div class="hero__family-names fade-in-up" style="transition-delay: 0.4s;">
-            <span class="family" data-editable="family1">Durand</span>
+            <span class="family" id="customFamily1">Dumont & Lemaire</span>
             <span class="ampersand">&</span>
-            <span class="family" data-editable="family2">Lefebvre</span>
+            <span class="family" id="customFamily2">Valois & Petit</span>
           </div>
 
           <!-- INVITATION TEXTE -->
-          <div class="hero__invitation-text fade-in-up" style="transition-delay: 0.6s;" data-editable="introText">
-            ont le plaisir de vous inviter au mariage de leurs enfants
+          <div class="hero__invitation-text fade-in-up" style="transition-delay: 0.6s;">
+            ont la joie et le plaisir de vous faire part du mariage de leurs enfants
           </div>
 
           <!-- LES MARIÉS -->
-          <h1 class="hero__couple-names fade-in-up" style="transition-delay: 0.8s;" data-editable="coupleNames">
-            Élise <span class="couple-amp">&</span> Gabriel
+          <h1 class="hero__couple-names fade-in-up" id="customCoupleNames" style="transition-delay: 0.8s;">
+            Julien <span class="couple-amp">&</span> Amandine
           </h1>
 
-
           <!-- DATE -->
-          <div class="hero__date fade-in-up" style="transition-delay: 1s;" data-editable="heroDate">
-            Le samedi 12 Juin 2027
+          <div class="hero__date fade-in-up" id="customDateText" style="transition-delay: 1s;">
+            Le samedi 13 Juin 2026
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2 : DUAA (UN AMOUR BÉNI) -->
-    <section class="section" id="histoire" style="background: var(--cream-dark);">
+    <!-- SECTION 2 : CÉLÉBRATION ET BÉNÉDICTION -->
+    <section class="section" id="histoire">
       <div class="container container--narrow fade-in-up">
-
         <div class="duaa-block fade-in-up" style="transition-delay:.1s">
-          <p class="duaa__text" style="font-style: italic; text-align: center; font-family: var(--font-serif); font-size: 1.8rem;" data-editable="quoteText">
-            "Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction."
+          <p class="duaa__text" style="font-family: var(--font-serif); font-style: italic;">
+            « Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. »
           </p>
 
           <div class="duaa__sep" aria-hidden="true">
@@ -80,59 +80,58 @@
             <span class="duaa__sep-line"></span>
           </div>
 
-          <p class="duaa__translation" style="text-align: center;" data-editable="quoteSub">
-            Un nouveau chapitre commence aujourd'hui...
+          <p class="duaa__translation">
+            C'est avec beaucoup de bonheur que nous vous invitons à célébrer cette union, symbole de notre engagement et de notre chemin commun.
           </p>
-
-          <span class="duaa__ref" style="text-align: center; display: block;" data-editable="quoteRef">Antoine de Saint-Exupéry</span>
+          <span class="duaa__ref">— Antoine de Saint-Exupéry</span>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3 : LE PROGRAMME DU VENDREDI 23 OCTOBRE -->
+    <!-- SECTION 3 : LE PROGRAMME -->
     <section class="section" id="parcours">
       <div class="container fade-in-up">
-        <h2 class="section__title" data-editable="progTitle">Le Programme du Samedi 12 Juin</h2>
+        <h2 class="section__title">Programme de la journée</h2>
 
         <div class="itinerary-wrapper">
-          <!-- ÉTAPE 1 : LIEU 1 -->
+          <!-- ÉTAPE 1 : MAIRIE -->
           <div class="itinerary-column">
             <div class="itinerary-item">
-              <div class="itinerary-icon" style="font-size: 2.5rem;"></div>
-              <h4 data-editable="lieu1Nom">Mairie de Toul</h4>
-              <p data-editable="lieu1Heure">15h00 · Cérémonie Civile</p>
+              <div class="itinerary-icon" style="font-size: 2.5rem;">🏛️</div>
+              <h4>Mairie de Bordeaux</h4>
+              <p>14h00 · Cérémonie Civile</p>
             </div>
             <div class="map-wrapper">
               <div class="map-container">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2629.74!2d5.88!3d48.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47949!2sMairie%20de%20Toul!5e0!3m2!1sfr!2sfr!4v1715264000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.3!2d-0.58!3d44.8378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e!2sMairie%20de%20Bordeaux!5e0!3m2!1sfr!2sfr!4v1715264000000"
                   width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
               </div>
-              <p class="map-legend" data-editable="lieu1Adresse">13 Rue de Rigny, 54200 Toul</p>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=13+Rue+de+Rigny+54200+Toul" target="_blank"
-                class="itinerary-btn" data-editable-href="lieu1Adresse">
-                <span class="itinerary-btn__icon">📍</span> Itinéraire
+              <p class="map-legend">Place Pey Berland, 33000 Bordeaux</p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Mairie+de+Bordeaux+Place+Pey+Berland" target="_blank"
+                class="itinerary-btn">
+                📍 Itinéraire
               </a>
             </div>
           </div>
 
-          <!-- ÉTAPE 2 : LIEU 2 -->
+          <!-- ÉTAPE 2 : CHATEAU -->
           <div class="itinerary-column">
             <div class="itinerary-item">
-              <div class="itinerary-icon" style="font-size: 2.5rem;"></div>
-              <h4 data-editable="lieu2Nom">Domaine de Camélia</h4>
-              <p data-editable="lieu2Heure">18h30 · Réception & Dîner</p>
+              <div class="itinerary-icon" style="font-size: 2.5rem;">🏰</div>
+              <h4>Château Pape Clément</h4>
+              <p>17h00 · Réception & Dîner</p>
             </div>
             <div class="map-wrapper">
               <div class="map-container">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2610.74!2d6.08!3d49.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794db!2sDomaine%20de%20Cam%C3%A9lia!5e0!3m2!1sfr!2sfr!4v1715264000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.4!2d-0.63!3d44.80!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd552a9!2sCh%C3%A2teau%20Pape%20Cl%C3%A9ment!5e0!3m2!1sfr!2sfr!4v1715264000000"
                   width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
               </div>
-              <p class="map-legend" data-editable="lieu2Adresse">1 bis Rte de Briey, 57160 Châtel-Saint-Germain</p>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=1+bis+Rte+de+Briey+57160+Châtel-Saint-Germain"
-                target="_blank" class="itinerary-btn" data-editable-href="lieu2Adresse">
-                <span class="itinerary-btn__icon">📍</span> Itinéraire
+              <p class="map-legend">216 Avenue Nancel Penard, 33600 Pessac</p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Château+Pape+Clément+Pessac"
+                target="_blank" class="itinerary-btn">
+                📍 Itinéraire
               </a>
             </div>
           </div>
@@ -140,20 +139,7 @@
       </div>
     </section>
 
-    <!-- NOUVELLE SECTION : INFOS PRATIQUES (Cachée par défaut) -->
-    <section class="section hidden-section" id="infos-pratiques" style="background: var(--cream-dark);">
-      <div class="container container--narrow fade-in-up">
-        <p class="section__label">Détails</p>
-        <h2 class="section__title">Informations Pratiques</h2>
-        <div class="infos-pratiques-content" data-editable="infosPratiques" style="line-height: 1.8; color: var(--muted); text-align: center; white-space: pre-line;">
-          Votre présence est notre plus beau cadeau.
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- SECTION 5 : COUNTDOWN & CALENDAR (BORDEAUX) -->
+    <!-- SECTION 5 : COUNTDOWN & CALENDAR -->
     <section class="section countdown-section" id="compte-a-rebours">
       <div class="container fade-in-up">
         <p class="section__label">Le Grand Jour</p>
@@ -170,80 +156,46 @@
 
           <!-- Calendar -->
           <div class="mini-calendar">
-            <div class="calendar-header" data-editable="calHeader">JUIN 2027</div>
-            <div class="calendar-grid">
-              <div class="day-name">Lu</div>
-              <div class="day-name">Ma</div>
-              <div class="day-name">Me</div>
-              <div class="day-name">Je</div>
-              <div class="day-name">Ve</div>
-              <div class="day-name">Sa</div>
-              <div class="day-name">Di</div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-              <div>5</div>
-              <div>6</div>
-              <div>7</div>
-              <div>8</div>
-              <div>9</div>
-              <div>10</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>17</div>
-              <div>18</div>
-              <div>19</div>
-              <div>20</div>
-              <div>21</div>
-              <div>22</div>
-              <div class="special-day">12</div>
-              <div>24</div>
-              <div>25</div>
-              <div>26</div>
-              <div>27</div>
-              <div>28</div>
-              <div>29</div>
-              <div>30</div>
-              <div>31</div>
+            <div class="calendar-header" id="calendarHeader">JUIN 2026</div>
+            <div class="calendar-grid" id="calendarGrid">
+              <!-- Généré dynamiquement en JS -->
             </div>
           </div>
         </div>
 
         <div style="text-align: center; margin-top: 2rem;">
-          <a href="#" id="smartCalendarBtn" class="calendar-btn-refined">
+          <a href="mariage.ics" class="calendar-btn-refined" download="mariage.ics">
             Ajouter au calendrier
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5.5 : SOUVENIRS -->
-    <section id="souvenirs" class="fade-in-up">
-      <div class="container" style="text-align: center; padding-bottom: 4rem;">
+    <!-- SECTION 5.5 : SOUVENIRS & PARTAGE -->
+    <section class="section souvenirs-section" id="souvenirs">
+      <div class="container fade-in-up">
         <p class="section__label">Souvenirs & Partage</p>
-        <h2 class="section__title">Immortalisez l'instant</h2>
-        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;">
-          <!-- Livre d'Or Audio -->
-          <div class="souvenir-card" onclick="window.open('livre-or-audio/index.html', '_blank')">
-            <div class="souvenir-icon">🎙️</div>
+        <h2 class="section__title" style="color: var(--bordeaux);">Immortalisez l'instant</h2>
+
+        <div class="souvenirs-grid">
+          <!-- Widget 1: Livre d'Or Audio -->
+          <div class="souvenir-card">
+            <div class="souvenir-icon-wrapper">
+              <span class="souvenir-emoji">🎙️</span>
+            </div>
             <h3>Livre d'Or Audio</h3>
             <p>Laissez-nous un message vocal que nous pourrons réécouter à l'infini.</p>
-            <button class="btn btn-souvenir">Enregistrer un message</button>
+            <button class="btn-secondary-outline demo-widget-btn">Enregistrer un message</button>
           </div>
-          <!-- Galerie Photos -->
-          <div class="souvenir-card" onclick="window.open('livre-photos/index.html', '_blank')">
-            <div class="souvenir-icon">📷</div>
+
+          <!-- Widget 2: Photos Souvenirs -->
+          <div class="souvenir-card">
+            <div class="souvenir-icon-wrapper">
+              <span class="souvenir-emoji">📷</span>
+            </div>
             <h3>Photos Souvenirs</h3>
             <p>Partagez vos plus beaux clichés de la journée directement avec nous.</p>
-            <button class="btn btn-souvenir">Partager une photo</button>
+            <button class="btn-secondary-outline demo-widget-btn">Partager une photo</button>
           </div>
         </div>
       </div>
@@ -252,22 +204,15 @@
     <!-- SECTION 6 : RSVP -->
     <section class="section rsvp-section" id="rsvp">
       <div class="container container--narrow fade-in-up">
-        <p class="section__label">Réponse souhaitée</p>
         <h2 class="section__title">Serez-vous des nôtres ?</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;" data-editable="rsvpDeadline">Merci de nous confirmer votre présence avant le 1er Mai 2027.</p>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;">Merci de bien vouloir confirmer votre présence avant le 1er Avril 2026.</p>
 
         <form id="rsvpForm" class="rsvp-form">
-          <div class="form-group demo-notice" style="background: rgba(255,255,255,0.8); padding: 1rem; border-radius: 4px; border-left: 3px solid var(--gold-sand); font-size: 0.85rem; margin-bottom: 1.5rem;">
-            <strong>Mode démo :</strong> Vous recevrez deux emails d'exemple (mariés et invité) pour visualiser l'expérience RSVP.
-          </div>
-          <div class="form-group">
-            <input type="email" id="demoEmail" class="form-input" placeholder="Votre email pour recevoir la démo RSVP" required style="border: 1px solid var(--gold-sand);">
-          </div>
           <div class="form-group">
             <input type="text" id="name" class="form-input" placeholder="Votre Nom & Prénom" required>
           </div>
           <div class="form-group">
-            <input type="email" id="email" class="form-input" placeholder="Votre Email (champ original)" required>
+            <input type="email" id="email" class="form-input" placeholder="Votre Email" required>
           </div>
           <div class="form-row form-group">
             <label class="radio-group">
@@ -278,10 +223,6 @@
               <input type="radio" name="attendance" value="non" required>
               <span>Je serai absent(e)</span>
             </label>
-          </div>
-          <div class="form-group">
-            <textarea id="allergies" class="form-input" placeholder="Restrictions alimentaires / Allergies ?"
-              rows="2"></textarea>
           </div>
           <div class="form-group">
             <textarea id="message" class="form-input" placeholder="Un petit mot pour nous ?" rows="3"></textarea>
@@ -299,79 +240,153 @@
     </section>
 
     <footer class="footer">
-      <p
-        style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.4em; opacity: 0.5; margin-bottom: 2rem; text-transform: uppercase;" data-editable="footerSubtitle">
-        Nous avons hâte de vous voir</p>
-      <h2 data-editable="footerNames">Élise & Gabriel</h2>
-      <p style="font-size: 0.8rem; opacity: 0.3; margin-top: 2rem;" data-editable="footerDate">12 · 06 · 2027</p>
-    </footer>
+      <p style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.4em; opacity: 0.85; margin-bottom: 2rem; text-transform: uppercase;">
+        Nous avons hâte de célébrer ce moment à vos côtés
+      </p>
+      <h2 id="customCoupleNamesFooter">Julien & Amandine</h2>
+      <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 2rem;" id="customDateFooter">13 · 06 · 2026</p>
+  </main>
+
+  <!-- Arrière-plan Fixe Parallaxe -->
+  <div id="customBgOverlay" class="custom-bg-overlay"></div>
+
+  <!-- Alerte Démo Personnalisée -->
+  <div id="demoAlert" class="demo-alert">
+    <div class="demo-alert-content">
+      <span class="demo-alert-icon">✨</span>
+      <p class="demo-alert-text">Ces fonctionnalités seront fonctionnelles dans le SaaS Evoria.</p>
+      <button id="closeDemoAlert" class="demo-alert-close">&times;</button>
+    </div>
+  </div>
+
+  <!-- Bouton de Personnalisation Flottant -->
+  <button id="customizeBtn" class="customize-btn" title="Personnaliser le faire-part">
+    🎨
+  </button>
+
+  <!-- Volet de Personnalisation -->
+  <div id="customizePanel" class="customize-panel">
+    <div class="customize-panel-header">
+      <h3>Personnalisation</h3>
+      <button id="closeCustomizePanel" class="customize-panel-close">&times;</button>
+    </div>
+    <div class="customize-panel-body">
+      <div class="customize-section">
+        <h4>Couples & Familles</h4>
+        <div class="input-field">
+          <label for="custGroom">Prénom Marié 1</label>
+          <input type="text" id="custGroom" placeholder="Ex: Julien">
+        </div>
+        <div class="input-field">
+          <label for="custBride">Prénom Marié 2</label>
+          <input type="text" id="custBride" placeholder="Ex: Amandine">
+        </div>
+        <div class="input-field">
+          <label for="custFamily1">Famille Marié 1</label>
+          <input type="text" id="custFamily1" placeholder="Ex: Dumont & Lemaire">
+        </div>
+        <div class="input-field">
+          <label for="custFamily2">Famille Marié 2</label>
+          <input type="text" id="custFamily2" placeholder="Ex: Valois & Petit">
+        </div>
+      </div>
+
+      <div class="customize-section">
+        <h4>Date de Célébration</h4>
+        <div class="input-field">
+          <label for="custDate">Date du Mariage</label>
+          <input type="date" id="custDate">
+        </div>
+      </div>
+
+      <div class="customize-section">
+        <h4>Images & Visuels</h4>
+        <p class="customizer-info-text">Téléversement local ou recherche Unsplash</p>
+        
+        <div class="input-field">
+          <label>Visuel de l'Enveloppe (Portes)</label>
+          <div class="image-selector-row">
+            <input type="file" id="custDoors" accept="image/*" class="file-input-styled">
+            <button class="unsplash-btn" data-target="bgDoors">🔍 Unsplash</button>
+          </div>
+          <div class="upload-progress-bar"><div id="progressDoors" class="upload-progress-fill"></div></div>
+          <span class="upload-status" id="statusDoors"></span>
+        </div>
+
+        <div class="input-field">
+          <label>Image de Fond</label>
+          <div class="image-selector-row">
+            <input type="file" id="custBg" accept="image/*" class="file-input-styled">
+            <button class="unsplash-btn" data-target="bgInvite">🔍 Unsplash</button>
+          </div>
+          <div class="upload-progress-bar"><div id="progressBg" class="upload-progress-fill"></div></div>
+          <span class="upload-status" id="statusBg"></span>
+        </div>
+      </div>
+
+      <div class="customize-section">
+        <h4>Styles & Couleurs</h4>
+        <div class="input-field inline-row">
+          <div>
+            <label for="custColorTheme">Principal (Bordeaux)</label>
+            <input type="color" id="custColorTheme" value="#0E3D26">
+          </div>
+          <div>
+            <label for="custColorGold">Accent (Or)</label>
+            <input type="color" id="custColorGold" value="#D4AF37">
+          </div>
+        </div>
+
+        <div class="input-field">
+          <label for="custFontScript">Typographie Prénoms</label>
+          <select id="custFontScript">
+            <option value="Great Vibes">Great Vibes</option>
+            <option value="Dancing Script">Dancing Script</option>
+            <option value="Alex Brush">Alex Brush</option>
+            <option value="Parisienne">Parisienne</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label for="custFontSerif">Typographie Titres</label>
+          <select id="custFontSerif">
+            <option value="Playfair Display">Playfair Display</option>
+            <option value="Cormorant Garamond">Cormorant Garamond</option>
+            <option value="Cinzel">Cinzel</option>
+            <option value="Prata">Prata</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label for="custFontSans">Typographie Corps</label>
+          <select id="custFontSans">
+            <option value="Montserrat">Montserrat</option>
+            <option value="Inter">Inter</option>
+            <option value="Outfit">Outfit</option>
+            <option value="Lora">Lora</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="resetCustomize" class="customize-reset-btn">Réinitialiser les réglages</button>
     </div>
 
-    <script src="invitation.js"></script>
-    <script src="config.js"></script>
-    <script src="evoria-editor.js?v=fusion_suite_v3"></script>
+    <!-- Panel de Recherche Unsplash (Glisse par-dessus) -->
+    <div id="unsplashSearchPanel" class="unsplash-search-panel">
+      <div class="unsplash-search-header">
+        <h4>Images Unsplash</h4>
+        <button id="closeUnsplashSearch" class="unsplash-search-close">&times;</button>
+      </div>
+      <div class="unsplash-search-body">
+        <div class="unsplash-search-bar">
+          <input type="text" id="unsplashQuery" placeholder="Ex: fleurs, porte dorée...">
+          <button id="unsplashSearchBtn">Rechercher</button>
+        </div>
+        <div id="unsplashResults" class="unsplash-results-grid"></div>
+        <button id="unsplashLoadMore" class="unsplash-load-more-btn">Afficher plus</button>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      // Intersection Observer for scroll animations
-      document.addEventListener('DOMContentLoaded', () => {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              e.target.classList.add('is-visible');
-              io.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.fade-in-up').forEach(el => io.observe(el));
-
-        // Form logic
-        const rsvpForm = document.getElementById('rsvpForm');
-        const successMsg = document.getElementById('successMessage');
-
-        if (rsvpForm) {
-          // Sauvegarde email démo pour les autres modules
-        const demoEmailInput = document.getElementById('demoEmail');
-        demoEmailInput.addEventListener('input', () => {
-          localStorage.setItem('evoria_demo_email', demoEmailInput.value);
-        });
-
-        rsvpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const SCRIPT_URL = window.EVORIA_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzZWe-qOa1wEyYkQViX-_nfzP-O8Iq7wHhYR85Uotcmy_q1ml6bR97tejXou_mNr8EJ/exec';
-
-            const btn = rsvpForm.querySelector('.btn');
-            btn.disabled = true;
-            btn.innerText = "ENVOI EN COURS...";
-
-            const demoEmail = document.getElementById('demoEmail') ? document.getElementById('demoEmail').value : null;
-
-            const data = {
-              name: document.getElementById('name').value,
-              email: document.getElementById('email').value,
-              attendance: document.querySelector('input[name="attendance"]:checked').value,
-              allergies: document.getElementById('allergies').value,
-              message: document.getElementById('message').value,
-              demoMode: true,
-              demoEmail: demoEmail
-            };
-
-            fetch(SCRIPT_URL, {
-              method: 'POST',
-              mode: 'no-cors',
-              body: JSON.stringify(data)
-            }).then(() => {
-              rsvpForm.parentElement.style.display = 'none';
-              successMsg.style.display = 'block';
-            }).catch(() => {
-              alert("Une erreur est survenue. Veuillez réessayer.");
-              btn.disabled = false;
-              btn.innerText = "CONFIRMER MA RÉPONSE";
-            });
-          });
-        }
-      });
-    </script>
-    <script src="../_shared/portfolio-bar.js" defer></script>
+  <script src="invitation.js"></script>
 </body>
 
 </html>
