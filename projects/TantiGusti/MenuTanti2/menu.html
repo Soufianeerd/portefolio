@@ -68,14 +68,6 @@
         <li><a href="index.html#contact">Accès</a></li>
       </ul>
     </nav>
-    <!-- ✏️ Panier -->
-    <div class="nav-cart" id="nav-cart">
-      <a href="commande.html" class="cart-link" aria-label="Voir mon panier">
-        <span class="cart-icon">🛒</span>
-        <span class="cart-count">0</span>
-      </a>
-    </div>
-
     <!-- ✏️ Bouton téléphone dans la navbar -->
     <a href="tel:0372917880" class="btn btn-or nav-cta" aria-label="Appeler le restaurant au 03 72 91 78 80">📞
       Appeler</a>
@@ -189,12 +181,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Fromage mozza, oignon</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-margherita-29" data-type="pizza" data-name="Margherita 29cm" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-margherita-33" data-type="pizza" data-name="Margherita 33cm" data-price="11.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -208,12 +194,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Jambon de poulet, champignons</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-n2-29" data-type="pizza" data-name="N°2 29cm" data-price="11.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-n2-33" data-type="pizza" data-name="N°2 33cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/4fromages.webp')">
@@ -226,12 +206,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Chèvre, raclette, munster</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-4fromages-29" data-type="pizza" data-name="4 Fromages 29cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-4fromages-33" data-type="pizza" data-name="4 Fromages 33cm" data-price="15.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -245,12 +219,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Thon, olives</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-thon-29" data-type="pizza" data-name="Thon 29cm" data-price="11.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-thon-33" data-type="pizza" data-name="Thon 33cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/Orientales.webp')">
@@ -263,12 +231,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Viande hachée, olives, merguez, poivrons, oignons</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-orientales-29" data-type="pizza" data-name="Orientales 29cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-orientales-33" data-type="pizza" data-name="Orientales 33cm" data-price="16.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -282,12 +244,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Champignons, oignons, poivrons, roquette, artichauts, asperges, parmesan</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-vegetarienne-29" data-type="pizza" data-name="Végétarienne 29cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-vegetarienne-33" data-type="pizza" data-name="Végétarienne 33cm" data-price="15.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/royale.webp')">
@@ -300,12 +256,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Viande hachée, œuf, poivrons</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-royale-29" data-type="pizza" data-name="Royale 29cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-royale-33" data-type="pizza" data-name="Royale 33cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -319,12 +269,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Lardons, œuf</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-linda-29" data-type="pizza" data-name="Linda 29cm" data-price="11.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-linda-33" data-type="pizza" data-name="Linda 33cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim
@@ -338,12 +282,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Champignons, oignons, poivrons, salami de bœuf, jambon de poulet, burrata</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-tantigusti-29" data-type="pizza" data-name="Tanti Gusti 29cm" data-price="15.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-tantigusti-33" data-type="pizza" data-name="Tanti Gusti 33cm" data-price="17.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
         </div><!-- /menu-items-grid pizzas-tomate -->
@@ -370,12 +308,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Émincé de poulet curry</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-curry-29" data-type="pizza" data-name="Poulet Curry 29cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-curry-33" data-type="pizza" data-name="Poulet Curry 33cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -389,12 +321,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Chèvre, champignons, lardon de volaille</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-paesana-29" data-type="pizza" data-name="Paesana 29cm" data-price="11.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-paesana-33" data-type="pizza" data-name="Paesana 33cm" data-price="13.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/raclette.webp')">
@@ -407,12 +333,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Pomme de terre, raclette, lardon de volaille</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-raclette-29" data-type="pizza" data-name="Raclette 29cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-raclette-33" data-type="pizza" data-name="Raclette 33cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -426,12 +346,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Viande hachée, oignons, raclette</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-suitzeria-29" data-type="pizza" data-name="Suitzeria 29cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-suitzeria-33" data-type="pizza" data-name="Suitzeria 33cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/nicco.webp')">
@@ -444,12 +358,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Poulet curry, chèvre, raclette</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-nicco-29" data-type="pizza" data-name="Nicco 29cm" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-nicco-33" data-type="pizza" data-name="Nicco 33cm" data-price="15.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -463,12 +371,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Chèvre, miel</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-chevremiel-29" data-type="pizza" data-name="Chèvre Miel 29cm" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-chevremiel-33" data-type="pizza" data-name="Chèvre Miel 33cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/saumon.webp')">
@@ -481,12 +383,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Saumon, boursin</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-saumon-29" data-type="pizza" data-name="Saumon 29cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-saumon-33" data-type="pizza" data-name="Saumon 33cm" data-price="16.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -500,12 +396,6 @@
               </div>
             </div>
             <p class="menu-item-desc">Jambon de poulet fumé, merguez, brie</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="pizza-nono-29" data-type="pizza" data-name="Pizza Nono 29cm" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 29cm</button>
-              <button class="add-btn" data-id="pizza-nono-33" data-type="pizza" data-name="Pizza Nono 33cm" data-price="14.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ 33cm</button>
-            </div>
           </article>
 
         </div><!-- /pizzas-creme -->
@@ -528,12 +418,6 @@
               <span class="menu-item-price">11,00€ | 13,00€</span>
             </div>
             <p class="menu-item-desc">Poulet curry ou viande hachée, sauce au choix, frites</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="chausson-11" data-name="Chausson Gratiné (Seul)" data-price="11.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="chausson-13" data-name="Chausson Gratiné (Menu)" data-price="13.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
         </div>
       </section>
@@ -557,12 +441,6 @@
               <span class="menu-item-price">4,50€ | 6,50€</span>
             </div>
             <p class="menu-item-desc">Sauce au choix, frites</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="belge-4" data-name="Le Belge (Seul)" data-price="4.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="belge-6" data-name="Le Belge (Menu)" data-price="6.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim data-anim-delay="1"
@@ -573,12 +451,6 @@
               <span class="menu-item-price">9,00€ | 10,00€</span>
             </div>
             <p class="menu-item-desc">Steak frais, frites, sauce au choix, crudités</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="american-9" data-name="Américain Cheese (Seul)" data-price="9.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="american-10" data-name="Américain Cheese (Menu)" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/poulet.webp')">
@@ -588,12 +460,6 @@
               <span class="menu-item-price">9,00€ | 10,00€</span>
             </div>
             <p class="menu-item-desc">Poulet frais, sauce au choix, crudités</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="poulet-9" data-name="Sandwich Poulet (Seul)" data-price="9.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="poulet-10" data-name="Sandwich Poulet (Menu)" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
         </div>
@@ -616,12 +482,6 @@
               <span class="menu-item-price">9,50€ | 11,50€</span>
             </div>
             <p class="menu-item-desc">Steak frais, tomates, oignons caramélisés, poivrons grillés, brie fondant</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="brie-9" data-name="Brie Baguette (Seul)" data-price="9.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="brie-11" data-name="Brie Baguette (Menu)" data-price="11.50"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/raclette.webp')">
@@ -631,12 +491,6 @@
               <span class="menu-item-price">10,00€ | 12,00€</span>
             </div>
             <p class="menu-item-desc">Steak frais, lardons de volaille, champignons, oignons, munster fondant</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="vosgien-10" data-name="Le Vosgien (Seul)" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="vosgien-12" data-name="Le Vosgien (Menu)" data-price="12.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
           <article class="menu-item clickable-item" data-anim onclick="openProductModal('assets/nicco.webp')">
@@ -646,16 +500,34 @@
               <span class="menu-item-price">9,00€ | 10,00€</span>
             </div>
             <p class="menu-item-desc">Steak frais, œuf, oignons caramélisés, crème fraîche, boursin fondant</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="special-9" data-name="Le Spécial (Seul)" data-price="9.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Seul</button>
-              <button class="add-btn" data-id="special-10" data-name="Le Spécial (Menu)" data-price="10.00"
-                onclick="event.stopPropagation(); addToCart(this)">+ Menu</button>
-            </div>
           </article>
 
         </div><!-- /sandwichs-speciaux grid -->
 
+        <!-- ─── Bloc Suppléments (sous la section sandwichs) ─── -->
+        <!-- ✏️  Pour modifier les suppléments : changez les <strong> et .price -->
+        <div class="supplements-block" data-anim>
+          <h3 class="cat-section-title" style="margin:0 0 16px;font-size:1.1rem;">
+            ➕ Suppléments
+          </h3>
+          <div class="suppl-grid">
+            <div class="suppl-item">
+              <strong>Viandes</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">2,50€</span> <!-- ✏️ Prix supplément viande -->
+            </div>
+            <div class="suppl-item">
+              <strong>Fromages</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">1,00€</span> <!-- ✏️ Prix supplément fromage -->
+            </div>
+            <div class="suppl-item">
+              <strong>Burrata</strong>
+              <div class="menu-item-dots" style="flex:0;width:24px;border-style:dashed;margin:0 8px"></div>
+              <span class="price">4,00€</span> <!-- ✏️ Prix supplément burrata -->
+            </div>
+          </div>
+        </div>
       </section><!-- /sandwichs-speciaux -->
 
 
@@ -673,10 +545,6 @@
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">4,00€</span>
             </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="texmex-4" data-name="Nuggets/Wings/Tenders x4" data-price="4.00"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim>
@@ -685,10 +553,6 @@
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">6,00€</span>
             </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="texmex-6" data-name="Nuggets/Wings/Tenders x6" data-price="6.00"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim>
@@ -696,10 +560,6 @@
               <span class="menu-item-name">Nuggets / Wings / Tenders × 12</span>
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">10,00€</span>
-            </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="texmex-12" data-name="Nuggets/Wings/Tenders x12" data-price="10.00"
-                onclick="addToCart(this)">Ajouter</button>
             </div>
           </article>
 
@@ -721,10 +581,6 @@
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">3,50€</span>
             </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="frites-p" data-name="Portion Petite Frites" data-price="3.50"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim data-anim-delay="1">
@@ -732,10 +588,6 @@
               <span class="menu-item-name">Portion Grande</span>
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">5,00€</span>
-            </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="frites-g" data-name="Portion Grande Frites" data-price="5.00"
-                onclick="addToCart(this)">Ajouter</button>
             </div>
           </article>
 
@@ -760,10 +612,6 @@
               <span class="menu-item-price">4,00€</span>
             </div>
             <p class="menu-item-desc">Fait maison (selon stock)</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="dessert-tiramisu" data-name="Tiramisu" data-price="4.00"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim data-anim-delay="1">
@@ -773,10 +621,6 @@
               <span class="menu-item-price">2,50€</span>
             </div>
             <p class="menu-item-desc">Selon stock disponible</p>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="dessert-glace" data-name="Glace" data-price="2.50"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
         </div>
@@ -797,10 +641,6 @@
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">1,50€</span>
             </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="boisson-33" data-name="Canette 33cl" data-price="1.50"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim data-anim-delay="1">
@@ -809,10 +649,6 @@
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">3,50€</span>
             </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="boisson-125" data-name="Bouteille 1.25L" data-price="3.50"
-                onclick="addToCart(this)">Ajouter</button>
-            </div>
           </article>
 
           <article class="menu-item" data-anim>
@@ -820,10 +656,6 @@
               <span class="menu-item-name">Red Bull</span>
               <span class="menu-item-dots"></span>
               <span class="menu-item-price">2,50€</span>
-            </div>
-            <div class="menu-item-add">
-              <button class="add-btn" data-id="boisson-redbull" data-name="Red Bull" data-price="2.50"
-                onclick="addToCart(this)">Ajouter</button>
             </div>
           </article>
 
@@ -843,8 +675,7 @@
       <p class="footer-logo" style="font-size:1.2rem">TANTI GUSTI II</p>
       <!-- ✏️ Copyright -->
       <p class="footer-copy">© 2026 TANTI GUSTI II — 3 Rue de Bonsecours, Nancy</p>
-      <a href="https://www.tiktok.com/@tantigusti2" target="_blank" rel="noopener" class="btn btn-outline"
-        style="font-size:0.68rem;padding:10px 22px;margin-right:8px">
+      <a href="https://www.tiktok.com/@tantigusti2" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.68rem;padding:10px 22px;margin-right:8px">
         TikTok
       </a>
       <a href="index.html" class="btn btn-outline" style="font-size:0.68rem;padding:10px 22px">
@@ -859,34 +690,7 @@
     <span class="close-modal" onclick="closeProductModal()">&times;</span>
     <img class="pizza-modal-content" id="pizza-img">
   </div>
-
-<div id="pizza-supplement-modal" class="supplement-modal hidden" aria-hidden="true">
-  <div class="supplement-modal-backdrop" id="pizza-supplement-backdrop"></div>
-
-  <div class="supplement-modal-content" role="dialog" aria-modal="true" aria-labelledby="pizza-supplement-title">
-    <button id="pizza-supplement-close" class="supplement-modal-close" type="button" aria-label="Fermer">×</button>
-
-    <div class="supplement-modal-header">
-      <span class="supplement-modal-label">Personnalisation</span>
-      <h3 id="pizza-supplement-title">Pizza sélectionnée</h3>
-      <p id="pizza-supplement-base-price">Prix de base : 0,00€</p>
-    </div>
-
-    <div id="pizza-supplement-list" class="supplement-list"></div>
-
-    <div class="supplement-modal-footer">
-      <div class="supplement-modal-total-block">
-        <span>Total</span>
-        <strong id="pizza-supplement-total">0,00€</strong>
-      </div>
-
-      <button id="pizza-supplement-add" class="btn btn-or" type="button">
-        Ajouter au panier
-      </button>
-    </div>
-  </div>
-</div>
-
+  <script src="../../_shared/portfolio-bar.js" defer></script>
 </body>
 
 </html>

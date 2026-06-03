@@ -1,0 +1,149 @@
+<!-- ============================================================
+   TANTI GUSTI II — VOTRE COMMANDE
+   Fichier : commande.html
+   Rôle    : Récapitulatif du panier et finalisation.
+   ============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre Commande — TANTI GUSTI II</title>
+  <meta name="description" content="Récapitulatif de votre commande chez Tanti Gusti II Nancy.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="commande.css">
+</head>
+
+<body class="commande-page">
+
+  <header class="navbar scrolled" id="navbar">
+    <a href="index.html" class="nav-logo">TANTI GUSTI II</a>
+    <nav>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="menu.html">La Carte</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cart" id="nav-cart">
+      <a href="commande.html" class="cart-link active">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+    <a href="tel:0372917880" class="btn btn-or nav-cta">📞 Appeler</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <nav class="nav-drawer" id="nav-drawer">
+    <a href="index.html">Accueil</a>
+    <a href="menu.html">La Carte</a>
+    <a href="tel:0372917880" class="btn btn-or" style="margin-top:12px">📞 Appeler</a>
+  </nav>
+
+  <main class="container commande-container">
+    <header class="section-header" style="margin-top: 120px;">
+      <span class="eyebrow">Finalisation</span>
+      <h1>Votre Panier</h1>
+      <div class="gold-line"></div>
+    </header>
+
+    <div class="cart-wrapper">
+      <div class="cart-left">
+        <!-- Liste des produits -->
+        <div class="cart-items" id="cart-items">
+          <!-- Généré par JS -->
+          <div class="empty-cart-msg">Votre panier est vide. <br><br> <a href="menu.html" class="btn btn-or">Voir la carte</a></div>
+        </div>
+
+        <!-- Formulaire de commande -->
+        <div class="checkout-form" id="checkout-form-container">
+          <h3>Informations de livraison</h3>
+          <form id="order-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nom">Nom Complet</label>
+                <input type="text" id="nom" name="nom" placeholder="Ex: Jean Dupont" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" name="phone" placeholder="Ex: 06 12 34 56 78" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress">Adresse complète</label>
+              <input type="text" id="adress" name="adress" placeholder="N° de rue, ville, code postal" required>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="order_type">Type de commande</label>
+                <select id="order_type" name="order_type" required>
+                  <option value="delivery">Livraison</option>
+                  <option value="takeaway">À emporter</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes (Optionnel)</label>
+              <textarea id="notes" name="notes" placeholder="Ex: Digicode, instructions spéciales..."></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Résumé de la commande -->
+      <aside class="cart-summary" id="cart-summary">
+        <div class="summary-box">
+          <h3>Résumé</h3>
+          <div class="summary-row">
+            <span>Sous-total</span>
+            <span id="subtotal">0,00€</span>
+          </div>
+          <div class="summary-row">
+            <span>Frais de livraison</span>
+            <span>Gratuit</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="total-price">0,00€</span>
+          </div>
+
+          <button class="btn btn-or w-100" id="btn-order">Commander via WhatsApp</button>
+          <p class="summary-note">Paiement à la réception (Espèces, CB)</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Success Overlay -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-content">
+      <span class="success-icon">✨</span>
+      <h2>Commande validée !</h2>
+      <p>Merci pour votre confiance. Nous préparons votre festin avec soin. Vous allez être redirigé...</p>
+      <a href="index.html" class="btn btn-or">Retour à l'accueil</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <p class="footer-logo">TANTI GUSTI II</p>
+      <p class="footer-copy">© 2026 TANTI GUSTI II — Nancy</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+  <script src="pocketbase.js"></script>
+  <script src="commande.js"></script>
+</body>
+
+</html>

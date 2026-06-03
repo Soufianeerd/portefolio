@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Restaurant OS — TANTI GUSTI II</title>
+    
+    <link rel="stylesheet" href="admin.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- External Libs -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="theme-dark admin-body">
+
+    <!-- LOGIN -->
+    <div id="login-screen" class="login-overlay">
+        <div class="login-card">
+            <h1>TANTI GUSTI II</h1>
+            <p>Accès Administrateur</p>
+            <form id="login-form">
+                <input type="email" id="admin-email" required placeholder="Email">
+                <input type="password" id="admin-password" required placeholder="Mot de passe">
+                <button type="submit">Connexion</button>
+            </form>
+            <div id="login-error" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- MAIN SYSTEM -->
+    <div id="admin-system" class="system-container" style="display: none;">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="brand">TG II</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i data-feather="grid"></i> <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="live-orders">
+                    <i data-feather="zap"></i> <span>Live</span>
+                    <span class="badge" id="live-count">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="phone-order">
+                    <i data-feather="phone-call"></i> <span>Prise téléphone</span>
+                </a>
+                <a href="#" class="nav-item" data-section="history">
+                    <i data-feather="clock"></i> <span>Historique</span>
+                </a>
+                <a href="#" class="nav-item" data-section="products">
+                    <i data-feather="box"></i> <span>Stock</span>
+                </a>
+                <a href="#" class="nav-item" data-section="customers">
+                    <i data-feather="users"></i> <span>Clients</span>
+                </a>
+                <div class="nav-spacer" style="flex:1"></div>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i data-feather="settings"></i> <span>Paramètres</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-block">
+                    <div class="avatar-mini">AD</div>
+                    <div class="user-info">
+                        <span class="name">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-area">
+            
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h2 id="section-title">Dashboard</h2>
+                    <span class="clock" id="clock">--:--:--</span>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="status-pill open" id="restaurant-status-btn">
+                        <span class="dot"></span> <span>Ouvert</span>
+                    </div>
+                    
+                    <div class="view-switcher" id="time-filter">
+                        <button class="view-btn active" data-range="day">Jour</button>
+                        <button class="view-btn" data-range="week">Semaine</button>
+                        <button class="view-btn" data-range="month">Mois</button>
+                        <button class="view-btn" data-range="year">Année</button>
+                    </div>
+
+                    <button class="icon-btn" id="theme-toggle"><i data-feather="moon"></i></button>
+                    <button id="logout-btn" class="icon-btn" title="Déconnexion"><i data-feather="log-out"></i></button>
+                </div>
+            </header>
+
+            <!-- SECTIONS WRAPPER -->
+            <div class="content-area">
+                
+                <!-- SECTION: DASHBOARD -->
+                <section id="section-dashboard" class="section active">
+                    <div class="kpi-row">
+                        <div class="kpi-card">
+                            <div class="label">CA TOTAL</div>
+                            <div class="value" id="kpi-rev">0,00€</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="label">COMMANDES</div>
+                            <div class="value" id="kpi-orders">0</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="label">PANIER MOYEN</div>
+                            <div class="value" id="kpi-avg">0,00€</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="label">RUSH HOUR</div>
+                            <div class="value" id="kpi-rush">--:--</div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <div class="card-panel">
+                            <div class="card-header"><h4>Performance Financière</h4></div>
+                            <div id="revenue-chart"></div>
+                            <div id="chart-empty-state" class="empty-state" style="display:none">Aucune donnée disponible.</div>
+                        </div>
+                        <div class="card-panel">
+                            <div class="card-header"><h4>Top Produits</h4></div>
+                            <div id="top-products-list" class="mini-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: LIVE ORDERS -->
+                <section id="section-live-orders" class="section">
+                    <div class="kanban-container">
+                        <div class="kanban-col" id="col-pending">
+                            <div class="col-head"><span>Nouveaux</span> <span class="count">0</span></div>
+                            <div class="orders-list"></div>
+                        </div>
+                        <div class="kanban-col" id="col-preparing">
+                            <div class="col-head"><span>En cuisine</span> <span class="count">0</span></div>
+                            <div class="orders-list"></div>
+                        </div>
+                        <div class="kanban-col" id="col-ready">
+                            <div class="col-head"><span>Prêts</span> <span class="count">0</span></div>
+                            <div class="orders-list"></div>
+                        </div>
+                        <div class="kanban-col" id="col-finished">
+                            <div class="col-head"><span>Terminés</span> <span class="count">0</span></div>
+                            <div class="orders-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: PHONE ORDER -->
+                <section id="section-phone-order" class="section">
+                    <div class="phone-order-layout">
+                        <div class="card-panel phone-form-panel">
+                            <div class="card-header">
+                                <h4>Prise de commande téléphone</h4>
+                            </div>
+                            <p class="sub-text" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px; margin-top: -10px;">
+                                Renseignez les informations du client avant de composer la commande.
+                            </p>
+                            
+                            <div class="phone-form-grid">
+                                <div class="phone-field">
+                                    <label>Nom du client</label>
+                                    <input type="text" id="phone-customer-name" placeholder="Ex : Jean Dupont">
+                                </div>
+                                <div class="phone-field">
+                                    <label>Téléphone</label>
+                                    <input type="tel" id="phone-customer-phone" placeholder="Ex : 06 12 34 56 78">
+                                </div>
+                                <div class="phone-field">
+                                    <label>Adresse</label>
+                                    <input type="text" id="phone-customer-address" placeholder="Ex : 12 rue de Nancy">
+                                </div>
+                                <div class="phone-field">
+                                    <label>Type de commande</label>
+                                    <select id="phone-order-type">
+                                        <option value="livraison">Livraison</option>
+                                        <option value="emporter">À emporter</option>
+                                    </select>
+                                </div>
+                                <div class="phone-field" style="grid-column: 1 / -1;">
+                                    <label>Notes</label>
+                                    <textarea id="phone-order-notes" placeholder="Ex : sans champignons, digicode, heure souhaitée..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="phone-customer-summary" class="phone-customer-summary"></div>
+                    </div>
+
+                    <div class="phone-catalog-panel" style="margin-top: 20px;">
+                        <div class="phone-catalog-header">
+                            <div>
+                                <h4>Catalogue produits</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Recherchez un produit pendant l’appel.</p>
+                            </div>
+                            <input 
+                                type="search" 
+                                id="phone-product-search" 
+                                placeholder="Rechercher une pizza, sandwich, boisson..."
+                            >
+                        </div>
+
+                        <div id="phone-category-filters" class="phone-category-filters"></div>
+
+                        <div class="phone-catalog-layout">
+                            <div id="phone-product-grid" class="phone-product-grid"></div>
+
+                            <aside id="phone-product-detail" class="phone-product-detail">
+                                <div class="empty-state">
+                                    Sélectionnez un produit pour voir le détail.
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <div class="phone-cart-panel" style="margin-top: 20px;">
+                        <div class="card-header">
+                            <h4>Panier téléphone</h4>
+                        </div>
+
+                        <div id="phone-cart-list" class="phone-cart-list">
+                            <div class="empty-state">Aucun produit ajouté.</div>
+                        </div>
+
+                        <div class="phone-cart-total">
+                            <span>Total</span>
+                            <strong id="phone-cart-total">0,00€</strong>
+                        </div>
+
+                        <div class="phone-cart-actions">
+                            <button id="phone-clear-cart-btn" class="btn-secondary" type="button">
+                                Vider le panier
+                            </button>
+                            <button id="phone-submit-order-btn" class="btn-primary" type="button" disabled>
+                                Envoyer en Live
+                            </button>
+                        </div>
+
+                        <div id="phone-order-feedback" class="phone-order-feedback" style="display:none;"></div>
+                    </div>
+                </section>
+
+                <!-- SECTION: HISTORY -->
+                <section id="section-history" class="section">
+                    <div class="history-controls card-panel" style="margin-bottom:20px; padding:15px;">
+                        <div class="filters-row">
+                            <input type="text" id="history-search" placeholder="Rechercher un client...">
+                            <select id="filter-status">
+                                <option value="all">Tous les statuts</option>
+                                <option value="finished">Terminées</option>
+                                <option value="cancelled">Annulées</option>
+                            </select>
+                            <select id="filter-type">
+                                <option value="all">Tous types</option>
+                                <option value="delivery">Livraison</option>
+                                <option value="takeaway">Emporter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-panel" style="padding:0; overflow:hidden;">
+                        <table class="stock-table" id="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Heure</th>
+                                    <th>Client</th>
+                                    <th>Type</th>
+                                    <th>Total</th>
+                                    <th>Produits</th>
+                                    <th>Statut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION: PRODUCTS -->
+                <section id="section-products" class="section">
+                    <div class="card-panel">
+                        <div class="card-header">
+                            <h4>Gestion de l'Inventaire</h4>
+                            <button class="btn-action" id="btn-create-test-prod">+ Créer Test</button>
+                        </div>
+                        <div id="stock-empty-state" class="empty-state" style="display:none">
+                            Aucun produit synchronisé pour le moment.
+                        </div>
+                        <table class="stock-table" id="stock-table-el">
+                            <thead>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Catégorie</th>
+                                    <th>Prix</th>
+                                    <th>Stock</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION: CUSTOMERS -->
+                <section id="section-customers" class="section">
+                    <div class="card-panel" style="padding:0; overflow:hidden;">
+                        <div class="card-header" style="padding:20px"><h4>Base Clients</h4></div>
+                        <table class="stock-table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Téléphone</th>
+                                    <th>Dernière Commande</th>
+                                    <th>Total Commandes</th>
+                                    <th>Dépense Totale</th>
+                                    <th>Type Préféré</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-table-body"></tbody>
+                        </table>
+                        <div id="customers-empty-state" class="empty-state" style="display:none; padding:40px">
+                            Pas encore de clients enregistrés.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION: SETTINGS -->
+                <section id="section-settings" class="section">
+                    <div class="settings-grid">
+                        <div class="card-panel">
+                            <div class="card-header"><h4>Paramètres Généraux</h4></div>
+                            <div class="form-group" style="margin-bottom:20px">
+                                <label style="display:block; margin-bottom:8px; font-size:0.8rem">Message de fermeture</label>
+                                <textarea id="set-close-msg" style="width:100%; background:var(--bg); border:1px solid var(--border); color:#fff; padding:10px; border-radius:8px;"></textarea>
+                            </div>
+                            <div class="form-group" style="margin-bottom:20px">
+                                <label style="display:block; margin-bottom:8px; font-size:0.8rem">Limite de commandes simultanées</label>
+                                <input type="number" id="set-max-orders" style="width:100%; background:var(--bg); border:1px solid var(--border); color:#fff; padding:10px; border-radius:8px;">
+                            </div>
+                            <button class="btn-action" id="btn-save-settings">Enregistrer</button>
+                            <button class="btn-secondary" id="btn-init-settings" style="margin-left:10px; display:none">Initialiser les paramètres</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="new-order-sound" src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3" preload="auto"></audio>
+
+    <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

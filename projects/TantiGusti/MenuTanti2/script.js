@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
          id="nav-overlay" → le fond transparent
   ─────────────────────────────────────────────────────────── */
   const hamburger = document.getElementById('hamburger');
-  const drawer = document.getElementById('nav-drawer');
-  const overlay = document.getElementById('nav-overlay');
+  const drawer    = document.getElementById('nav-drawer');
+  const overlay   = document.getElementById('nav-overlay');
 
   /* Ouvre le menu mobile */
   function openDrawer() {
@@ -123,25 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
   ─────────────────────────────────────────────────────────── */
   const animEls = document.querySelectorAll('[data-anim]');
   if (animEls.length) {
-    if (!('IntersectionObserver' in window)) {
-      animEls.forEach(el => el.classList.add('visible'));
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible'); /* Déclenche l'animation CSS */
-              observer.unobserve(entry.target);      /* S'arrête après la 1ère apparition */
-            }
-          });
-        },
-        {
-          threshold: 0.12,              /* ← 12% visible = l'animation démarre */
-          rootMargin: '0px 0px -40px 0px' /* Déclenche un peu avant d'arriver en bas */
-        }
-      );
-      animEls.forEach(el => observer.observe(el));
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible'); /* Déclenche l'animation CSS */
+            observer.unobserve(entry.target);      /* S'arrête après la 1ère apparition */
+          }
+        });
+      },
+      {
+        threshold: 0.12,              /* ← 12% visible = l'animation démarre */
+        rootMargin: '0px 0px -40px 0px' /* Déclenche un peu avant d'arriver en bas */
+      }
+    );
+    animEls.forEach(el => observer.observe(el));
   }
 
 
@@ -175,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = btn.getAttribute('data-target');
-        const section = document.getElementById(targetId);
+        const section  = document.getElementById(targetId);
         if (!section) return;
 
         /* Plus précis : hauteur dynamique car la navbar change à scrolled */
@@ -211,12 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
                (scrollIntoView scrollerait aussi verticalement → bug de scroll) */
             const activeBtn = document.querySelector(`.cat-btn[data-target="${id}"]`);
             if (activeBtn && catBar) {
-              const barRect = catBar.getBoundingClientRect();
-              const btnRect = activeBtn.getBoundingClientRect();
-              const btnLeft = activeBtn.offsetLeft;
-              const btnWidth = activeBtn.offsetWidth;
-              const barScroll = catBar.scrollLeft;
-              const barWidth = catBar.offsetWidth;
+              const barRect    = catBar.getBoundingClientRect();
+              const btnRect    = activeBtn.getBoundingClientRect();
+              const btnLeft    = activeBtn.offsetLeft;
+              const btnWidth   = activeBtn.offsetWidth;
+              const barScroll  = catBar.scrollLeft;
+              const barWidth   = catBar.offsetWidth;
               /* Centre le bouton dans la barre */
               const targetScroll = btnLeft - barWidth / 2 + btnWidth / 2;
               catBar.scrollTo({ left: targetScroll, behavior: 'smooth' });
@@ -256,275 +252,3 @@ function closeProductModal() {
     document.body.style.overflow = ''; // Rétablit le scroll
   }
 }
-
-/* ──────────────────────────────────────────────────────────
-   6. GESTION DU PANIER (localStorage)
-   ────────────────────────────────────────────────────────── */
-
-// Initialisation au chargement
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartBadge();
-});
-
-window.getCart = function () {
-  try {
-    const cart = localStorage.getItem('tanti_gusti_cart');
-    return cart ? JSON.parse(cart) : [];
-  } catch (e) {
-    return [];
-  }
-}
-
-window.saveCart = function (cart) {
-  localStorage.setItem('tanti_gusti_cart', JSON.stringify(cart));
-  window.updateCartBadge();
-}
-
-window.addToCart = function (btn) {
-  const type = btn.getAttribute('data-type');
-  const id = btn.getAttribute('data-id');
-  const name = btn.getAttribute('data-name');
-  const price = parseFloat(btn.getAttribute('data-price'));
-
-  const product = {
-    id: id,
-    name: name,
-    price: price,
-    quantity: 1
-  };
-
-  if (type === "pizza") {
-    openPizzaSupplementModal(product);
-    return;
-  }
-
-  let cart = getCart();
-  const existing = cart.find(item => item.id === id);
-
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push(product);
-  }
-
-  saveCart(cart);
-
-  // Animation de confirmation sur le bouton
-  const originalText = btn.innerHTML;
-  btn.innerHTML = '✓ Ajouté';
-  btn.style.borderColor = '#4CAF50';
-  btn.style.color = '#4CAF50';
-
-  setTimeout(() => {
-    btn.innerHTML = originalText;
-    btn.style.borderColor = '';
-    btn.style.color = '';
-  }, 1500);
-
-  // Animation volante vers le panier
-  animateToCart(btn);
-}
-
-window.updateCartBadge = function () {
-  const cart = getCart();
-  const count = cart.reduce((total, item) => total + item.quantity, 0);
-  const badges = document.querySelectorAll('.cart-count');
-
-  badges.forEach(badge => {
-    badge.textContent = count;
-    if (count > 0) {
-      badge.classList.add('bump');
-      setTimeout(() => badge.classList.remove('bump'), 300);
-    }
-  });
-}
-
-function animateToCart(btn) {
-  const cartIcon = document.querySelector('.nav-cart');
-  if (!cartIcon) return;
-
-  const btnRect = btn.getBoundingClientRect();
-  const cartRect = cartIcon.getBoundingClientRect();
-
-  const floating = document.createElement('div');
-  floating.className = 'floating-item';
-  floating.style.left = `${btnRect.left + btnRect.width / 2}px`;
-  floating.style.top = `${btnRect.top + btnRect.height / 2}px`;
-
-  const tx = cartRect.left + cartRect.width / 2 - (btnRect.left + btnRect.width / 2);
-  const ty = cartRect.top + cartRect.height / 2 - (btnRect.top + btnRect.height / 2);
-
-  floating.style.setProperty('--tx', `${tx}px`);
-  floating.style.setProperty('--ty', `${ty}px`);
-  floating.style.animation = 'flyToCart 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
-
-  document.body.appendChild(floating);
-  setTimeout(() => floating.remove(), 800);
-}
-
-/* ──────────────────────────────────────────────────────────
-   7. GESTION DE LA MODALE DES SUPPLÉMENTS PIZZAS
-   ────────────────────────────────────────────────────────── */
-
-const PIZZA_SUPPLEMENTS = [
-  {
-    category: "Viandes / poissons",
-    items: [
-      { name: "Jambon de poulet", price: 2.50 },
-      { name: "Thon", price: 2.50 },
-      { name: "Viande hachée", price: 2.50 },
-      { name: "Merguez", price: 2.50 },
-      { name: "Salami de bœuf", price: 2.50 },
-      { name: "Lardons", price: 2.50 },
-      { name: "Lardon de volaille", price: 2.50 },
-      { name: "Émincé de poulet curry", price: 2.50 },
-      { name: "Poulet curry", price: 2.50 },
-      { name: "Jambon de poulet fumé", price: 2.50 },
-      { name: "Saumon", price: 3.00 }
-    ]
-  },
-  {
-    category: "Fromages",
-    items: [
-      { name: "Mozzarella", price: 1.00 },
-      { name: "Chèvre", price: 1.00 },
-      { name: "Raclette", price: 1.00 },
-      { name: "Munster", price: 1.00 },
-      { name: "Parmesan", price: 1.00 },
-      { name: "Boursin", price: 1.00 },
-      { name: "Brie", price: 1.00 },
-      { name: "Burrata", price: 4.00 }
-    ]
-  }
-];
-
-let selectedPizzaForSupplements = null;
-let selectedPizzaSupplements = [];
-
-function openPizzaSupplementModal(product) {
-  selectedPizzaForSupplements = product;
-  selectedPizzaSupplements = [];
-
-  const modal = document.getElementById('pizza-supplement-modal');
-  const title = document.getElementById('pizza-supplement-title');
-  const basePrice = document.getElementById('pizza-supplement-base-price');
-
-  if (!modal) return;
-
-  title.textContent = product.name;
-  basePrice.textContent = `Prix de base : ${formatPrice(product.price)}`;
-
-  renderPizzaSupplements();
-  updatePizzaModalTotal();
-
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
-}
-
-window.closePizzaSupplementModal = function() {
-  const modal = document.getElementById('pizza-supplement-modal');
-  if (!modal) return;
-
-  modal.classList.add('hidden');
-  modal.setAttribute('aria-hidden', 'true');
-
-  selectedPizzaForSupplements = null;
-  selectedPizzaSupplements = [];
-}
-
-function renderPizzaSupplements() {
-  const list = document.getElementById('pizza-supplement-list');
-  if (!list) return;
-
-  list.innerHTML = PIZZA_SUPPLEMENTS.map(group => `
-    <div class="supplement-category">
-      <h4 class="supplement-category-title">${group.category}</h4>
-      <div class="supplement-grid">
-        ${group.items.map(item => `
-          <label class="supplement-choice">
-            <input
-              type="checkbox"
-              data-name="${item.name}"
-              data-price="${item.price}"
-              onchange="togglePizzaSupplement(this)"
-            >
-            <span>${item.name}</span>
-            <strong>+ ${formatPrice(item.price)}</strong>
-          </label>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-window.togglePizzaSupplement = function(input) {
-  const name = input.dataset.name;
-  const price = Number(input.dataset.price);
-
-  if (input.checked) {
-    selectedPizzaSupplements.push({ name, price });
-  } else {
-    selectedPizzaSupplements = selectedPizzaSupplements.filter(item => item.name !== name);
-  }
-
-  updatePizzaModalTotal();
-};
-
-function calculatePizzaSupplementsTotal() {
-  return selectedPizzaSupplements.reduce((sum, item) => sum + Number(item.price || 0), 0);
-}
-
-function updatePizzaModalTotal() {
-  const totalEl = document.getElementById('pizza-supplement-total');
-  if (!totalEl || !selectedPizzaForSupplements) return;
-
-  const total = Number(selectedPizzaForSupplements.price || 0) + calculatePizzaSupplementsTotal();
-  totalEl.textContent = formatPrice(total);
-}
-
-window.confirmPizzaWithSupplements = function() {
-  if (!selectedPizzaForSupplements) return;
-
-  const supplementsTotal = calculatePizzaSupplementsTotal();
-  const finalPrice = Number(selectedPizzaForSupplements.price || 0) + supplementsTotal;
-
-  const supplementsNames = selectedPizzaSupplements.map(item => item.name);
-  const optionsText = supplementsNames.length
-    ? `Suppléments : ${supplementsNames.join(', ')}`
-    : '';
-
-  const cartItem = {
-    id: selectedPizzaForSupplements.id + '-sup-' + Date.now(),
-    originalId: selectedPizzaForSupplements.id,
-    name: selectedPizzaForSupplements.name,
-    price: finalPrice,
-    quantity: 1,
-    options: optionsText,
-    optionsText: optionsText,
-    supplements: selectedPizzaSupplements
-  };
-
-  let cart = getCart();
-  cart.push(cartItem);
-  saveCart(cart);
-
-  closePizzaSupplementModal();
-
-  // Animation sur le panier en haut
-  const cartIcon = document.querySelector('.nav-cart');
-  if (cartIcon) {
-    cartIcon.classList.add('bump');
-    setTimeout(() => cartIcon.classList.remove('bump'), 300);
-  }
-}
-
-function formatPrice(value) {
-  return Number(value || 0).toFixed(2).replace('.', ',') + '€';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('pizza-supplement-close')?.addEventListener('click', closePizzaSupplementModal);
-  document.getElementById('pizza-supplement-backdrop')?.addEventListener('click', closePizzaSupplementModal);
-  document.getElementById('pizza-supplement-add')?.addEventListener('click', confirmPizzaWithSupplements);
-});
-
