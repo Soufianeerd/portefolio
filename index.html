@@ -59,7 +59,7 @@ footer{padding:28px 0 40px}.footer{display:flex;justify-content:space-between;ga
       <a class="btn primary" href="#contact">Parlons de votre projet <span aria-hidden="true">↗</span></a>
     </div>
     <button class="showreel-preview" type="button" data-showreel-open aria-haspopup="dialog" aria-controls="showreel-dialog" aria-label="Regarder la vidéo de présentation des réalisations, durée une minute onze secondes">
-      <img src="media/showreel-poster.webp" loading="lazy" decoding="async" width="910" height="512" alt="Aperçu des réalisations numériques présentées dans la vidéo">
+      <img src="showreel-poster.webp" loading="lazy" decoding="async" width="910" height="512" alt="Aperçu des réalisations numériques présentées dans la vidéo">
       <span class="showreel-stamp">SHOWREEL · 2026</span>
       <span class="showreel-preview-label"><span class="showreel-play" aria-hidden="true">▶</span><span><strong>Découvrir les réalisations</strong><small>Lecture à la demande · 01:11 · Avec son</small></span></span>
     </button>
@@ -98,8 +98,8 @@ document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){var c
     video.controls=true;
     video.playsInline=true;
     video.preload='metadata';
-    video.poster='media/showreel-poster.webp';
-    video.src='media/showreel-soufiane.mp4';
+    video.poster='showreel-poster.webp';
+    video.src='showreel-soufiane.mp4';
     video.setAttribute('aria-label','Vidéo de présentation des réalisations de Soufiane El Rhadi');
     player.appendChild(video);
     dialog.showModal();
