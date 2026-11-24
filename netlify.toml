@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  command = "node -e 'const fs=require(\"fs\");const url=(process.env.NEXT_PUBLIC_BUSINESS_OS_URL||process.env.VITE_BUSINESS_OS_URL||process.env.PUBLIC_BUSINESS_OS_URL||process.env.BUSINESS_OS_URL||\"https://app.serguides.fr\").replace(/\\/+$/,\"\");fs.writeFileSync(\"config.js\",\"window.BUSINESS_OS_URL = \"+JSON.stringify(url)+\";\\n\");'"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"

@@ -1,0 +1,44 @@
+# Soufiane El Rhadi — Digitalisation, Sites Web IA, Audits Agent-Ready & Outils Métier
+
+> Indépendant spécialisé en création de sites web professionnels, Audits « Agent-Ready Commerce », parcours clients (devis, réservation, commande), automatisations et outils métier / CRM B2B pour indépendants, commerces et PME.
+
+## Activité & Expertises
+
+- **Audits « Agent-Ready Commerce »** : diagnostic complet sur 4 piliers (accès crawlers IA `robots.txt` / `llms.txt`, données structurées JSON-LD Schema.org, lisibilité sémantique et SEO technique, conformité web FR/UE) pour rendre un site lisible et recommandable par Google, ChatGPT, Claude et Perplexity.
+- **Sites vitrines & Sites Web IA** : sites rapides, responsive et orientés conversion, adaptés à l'identité de chaque activité (restaurants, garages, cabinets médicaux, artisans, lieux événementiels, artistes, PME).
+- **Parcours clients & acquisition** : devis en ligne, réservation, commande, formulaires métier intelligents, gestion des avis Google, automatisation WhatsApp Sales.
+- **Outils métier, CRM & Automatisations B2B** : centralisation clients, dossiers, chantiers, patients, planning, facturation, portails clients, intégrations API B2B et assistants internes IA.
+
+## Offres & Tarifs (EUR)
+
+- **Mini-audit Agent-Ready initial** : **Gratuit** (premier diagnostic envoyé sur demande via le formulaire du site ; mise à niveau complète sur devis).
+- **Site vitrine professionnel** : **dès 549 €** (site vitrine compact à une page, design adapté à votre identité, affichage soigné sur mobile, formulaire ou contact direct, SEO de base et mise en ligne).
+- **Site + parcours métier** : **sur cadrage** (site avec parcours principal : devis, réservation ou formulaire avancé, notification email, fonctionnalités additionnelles sur devis et périmètre défini avant réalisation).
+- **Outil métier / CRM & automatisations** : **sur devis** (analyse des besoins, gestion clients/dossiers/suivi, devis/factures/planning selon modules, accès/rôles, intégrations API B2B et développement par étapes).
+
+*Note tarifaire : toute page ou fonctionnalité supplémentaire fait l'objet d'un devis précisant le montant total et le régime de TVA applicable. Nom de domaine, hébergement, abonnements tiers et maintenance sont détaillés séparément lorsqu'ils sont nécessaires.*
+
+## Zone d'intervention & Disponibilité
+
+- **Zone principale** : Metz, Nancy, Grand Est (France) et Luxembourg.
+- **Interventions à distance** : toute la France et pays francophones.
+- **Disponibilité** : 24h/24, 7j/7.
+
+## Contact
+
+- **Formulaire de contact & mini-audit gratuit** : https://soufianeerd.netlify.app/#contact
+- **Email direct** : soufiane.erd@gmail.com
+- **Site principal** : https://soufianeerd.netlify.app/
+
+## Pages principales & Informations légales
+
+- [Accueil & Portfolio](https://soufianeerd.netlify.app/)
+- [Services](https://soufianeerd.netlify.app/#services)
+- [Showreel vidéo](https://soufianeerd.netlify.app/#showreel)
+- [Réalisations](https://soufianeerd.netlify.app/#realisations)
+- [Offres & Tarifs](https://soufianeerd.netlify.app/#offres)
+- [Questions fréquentes (FAQ)](https://soufianeerd.netlify.app/#faq)
+- [Mentions légales](https://soufianeerd.netlify.app/mentions-legales.html)
+- [Politique de confidentialité / RGPD](https://soufianeerd.netlify.app/confidentialite.html)
+- [CGV / CGU](https://soufianeerd.netlify.app/cgv-cgu.html)
+- [Gestion des cookies](https://soufianeerd.netlify.app/cookies.html)
