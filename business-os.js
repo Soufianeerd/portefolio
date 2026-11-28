@@ -71,6 +71,26 @@
     el.textContent = text;
   }
 
+  /**
+   * Filet de sécurité : si le back-office est injoignable (réseau, 5xx), la demande est
+   * enregistrée dans Netlify Forms pour ne jamais être perdue.
+   */
+  function submitToNetlifyForms(payload) {
+    var body = new URLSearchParams();
+    body.append("form-name", "contact");
+    Object.keys(payload).forEach(function (key) {
+      body.append(key, payload[key] == null ? "" : String(payload[key]));
+    });
+    return fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString()
+    }).then(function (response) {
+      if (!response.ok) throw new Error("Envoi de secours impossible.");
+      return { ok: true, fallback: true };
+    });
+  }
+
   function bindLeadForm() {
     var form = document.getElementById("lead-form");
     if (!form) return;
@@ -129,7 +149,16 @@
         },
         body: JSON.stringify(payload)
       })
+        .catch(function () {
+          return null; // réseau / DNS / CORS : back-office injoignable
+        })
         .then(function (response) {
+          if (!response) {
+            return submitToNetlifyForms(payload);
+          }
+          if (response.status >= 500) {
+            return submitToNetlifyForms(payload);
+          }
           if (!response.ok) {
             return response
               .json()
