@@ -2,8 +2,8 @@
 
 Le showreel de `index.html` référence deux médias ajoutés **à la racine du dépôt** :
 
-- `/showreel-soufiane.mp4` — vidéo optimisée H.264/AAC, 3,97 Mo.
-- `/showreel-poster.webp` — miniature WebP, 33 Ko.
+- `/showreel-soufiane.mp4` — vidéo optimisée H.264/AAC 1080p, 1 min 20 s, 11,9 Mo (réencodée depuis le master 4K).
+- `/showreel-poster.webp` — miniature WebP 960×540 (image à 52 s).
 
 Les fichiers ont été ajoutés sur `main`, avant la fusion de la PR. La branche de la PR ne les contient donc pas forcément avant la fusion.
 

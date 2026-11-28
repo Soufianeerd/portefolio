@@ -87,7 +87,7 @@
       var phone = String(data.get("phone") || "").trim();
       var company = String(data.get("company") || "").trim();
       var websiteUrl = normalizeWebsiteUrl(String(data.get("website_url") || ""));
-      var serviceInterest = String(data.get("service_interest") || "audit-agent-ready").trim();
+      var serviceInterest = String(data.get("service_interest") || "audit-securite-rgpd").trim();
       var message = String(data.get("message") || "").trim();
       var websiteHp = String(data.get("website_hp") || "");
 
@@ -151,7 +151,7 @@
           setFeedback(
             feedbackEl,
             "success",
-            "Merci ! Votre demande a bien été transmise. Je reviens vers vous rapidement (disponible 24h/24, 7j/7)."
+            "Merci ! Votre demande a bien été transmise. Je reviens vers vous rapidement."
           );
           form.reset();
         })
@@ -160,7 +160,7 @@
             feedbackEl,
             "error",
             (err && err.message ? err.message + " " : "") +
-              "Vous pouvez aussi m'écrire directement à soufiane.erd@gmail.com."
+              "Vous pouvez aussi m'écrire à soufiane.erd@gmail.com ou m'appeler au 07 66 16 80 39."
           );
         })
         .finally(function () {
