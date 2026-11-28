@@ -1,22 +1,25 @@
-# Soufiane El Rhadi — Digitalisation, Sites Web IA, Audits Agent-Ready & Outils Métier
+# Soufiane El Rhadi — Audit sécurité & RGPD, sites web et outils métier
 
-> Indépendant spécialisé en création de sites web professionnels, Audits « Agent-Ready Commerce », parcours clients (devis, réservation, commande), automatisations et outils métier / CRM B2B pour indépendants, commerces et PME.
+> Indépendant basé à Metz : audit gratuit de sites web (sécurité, conformité RGPD, référencement Google, performance mobile), mise en conformité, maintenance mensuelle, création de sites web, parcours clients et outils métier / CRM pour indépendants, commerces et PME.
 
 ## Activité & Expertises
 
-- **Audits « Agent-Ready Commerce »** : diagnostic complet sur 4 piliers (accès crawlers IA `robots.txt` / `llms.txt`, données structurées JSON-LD Schema.org, lisibilité sémantique et SEO technique, conformité web FR/UE) pour rendre un site lisible et recommandable par Google, ChatGPT, Claude et Perplexity.
-- **Sites vitrines & Sites Web IA** : sites rapides, responsive et orientés conversion, adaptés à l'identité de chaque activité (restaurants, garages, cabinets médicaux, artisans, lieux événementiels, artistes, PME).
-- **Parcours clients & acquisition** : devis en ligne, réservation, commande, formulaires métier intelligents, gestion des avis Google, automatisation WhatsApp Sales.
-- **Outils métier, CRM & Automatisations B2B** : centralisation clients, dossiers, chantiers, patients, planning, facturation, portails clients, intégrations API B2B et assistants internes IA.
+- **Audit sécurité & RGPD** : note sur 100 points en 4 volets — sécurité (HTTPS, en-têtes de protection, informations techniques exposées), conformité RGPD et légale (mentions légales, confidentialité, CGV, cookies, traceurs chargés avant consentement), référencement Google de base, performance mobile. Rapport PDF.
+- **Mise en conformité & maintenance** : correction des points relevés par l'audit, puis suivi mensuel (surveillance, sauvegardes, nouvel audit chaque mois).
+- **Sites vitrines** : sites rapides, responsive et orientés conversion, adaptés à chaque activité (restaurants, garages, cabinets médicaux, artisans, lieux événementiels, artistes, PME).
+- **Parcours clients** : devis en ligne, réservation, commande, formulaires métier.
+- **Outils métier, CRM & automatisations** : clients, dossiers, chantiers, patients, planning, facturation, portails clients et intégrations.
 
 ## Offres & Tarifs (EUR)
 
-- **Mini-audit Agent-Ready initial** : **Gratuit** (premier diagnostic envoyé sur demande via le formulaire du site ; mise à niveau complète sur devis).
-- **Site vitrine professionnel** : **dès 549 €** (site vitrine compact à une page, design adapté à votre identité, affichage soigné sur mobile, formulaire ou contact direct, SEO de base et mise en ligne).
-- **Site + parcours métier** : **sur cadrage** (site avec parcours principal : devis, réservation ou formulaire avancé, notification email, fonctionnalités additionnelles sur devis et périmètre défini avant réalisation).
-- **Outil métier / CRM & automatisations** : **sur devis** (analyse des besoins, gestion clients/dossiers/suivi, devis/factures/planning selon modules, accès/rôles, intégrations API B2B et développement par étapes).
+- **Audit sécurité & RGPD** : **gratuit**, rapport PDF.
+- **Mise en conformité** : **390 à 590 €** pour un site vitrine standard (en-têtes de sécurité, pages légales, traceurs bloqués jusqu'au consentement, SEO de base, nouvel audit).
+- **Maintenance & surveillance** : **89 € / mois** (surveillance, sauvegardes, audit mensuel avec rapport PDF).
+- **Site vitrine professionnel** : **dès 549 €** (site compact à une page, design adapté, mobile, formulaire, SEO de base et mise en ligne).
+- **Site + parcours métier** : **sur cadrage**.
+- **Outil métier / CRM & automatisations** : **sur devis**.
 
-*Note tarifaire : toute page ou fonctionnalité supplémentaire fait l'objet d'un devis précisant le montant total et le régime de TVA applicable. Nom de domaine, hébergement, abonnements tiers et maintenance sont détaillés séparément lorsqu'ils sont nécessaires.*
+*Note tarifaire : un site plus complexe ou toute fonctionnalité supplémentaire fait l'objet d'un devis précisant le montant total et le régime de TVA applicable.*
 
 ## Zone d'intervention & Disponibilité
 
@@ -26,8 +29,9 @@
 
 ## Contact
 
-- **Formulaire de contact & mini-audit gratuit** : https://soufianeerd.netlify.app/#contact
+- **Formulaire de contact & audit gratuit** : https://soufianeerd.netlify.app/#contact
 - **Email direct** : soufiane.erd@gmail.com
+- **Téléphone** : 07 66 16 80 39
 - **Site principal** : https://soufianeerd.netlify.app/
 
 ## Pages principales & Informations légales
